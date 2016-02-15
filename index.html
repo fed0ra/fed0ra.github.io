@@ -68,324 +68,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-123" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/15/123/" class="article-date">
-  <time datetime="2016-02-15T02:42:51.118Z" itemprop="datePublished">2016-02-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/15/123/">ELKstack</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tall me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="日志收集分析系统（题外话）"><a href="#日志收集分析系统（题外话）" class="headerlink" title="日志收集分析系统（题外话）"></a><em>日志收集分析系统（题外话）</em></h2><p>日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:</p>
-<ul>
-<li>根据关键字查询日志详情</li>
-<li>监控系统的运行状况</li>
-<li>统计分析，比如接口的调用次数、执行时间、成功率等</li>
-<li>异常数据自动触发消息通知</li>
-<li>基于日志的数据挖掘</li>
-<li><p>很多团队在日志方面可能遇到的一些问题有:</p>
-</li>
-<li><p>开发人员不能登录线上服务器查看详细日志，经过运维周转费时费力</p>
-</li>
-<li>日志数据分散在多个系统，难以查找</li>
-<li>日志数据量大，查询速度慢</li>
-<li>一个调用会涉及多个系统，难以在这些系统的日志中快速定位数据</li>
-<li>数据不够实时</li>
-<li><p>常见的一些重量级的开源Trace系统有:</p>
-</li>
-<li><p>facebook scribe</p>
-</li>
-<li>cloudera flume</li>
-<li>twitter zipkin</li>
-<li>storm</li>
-<li>这些项目功能强大，但对于很多团队来说过于复杂，配置和部署比较麻烦，在系统规模大到一定程度前推荐轻量级下载即用的方案；<br>比如logstash+elasticsearch+kibana(LEK)组合；<br>对于日志来说，最常见的需求就是收集、查询、显示，正对应logstash、elasticsearch、kibana的功能。</li>
-</ul>
-<h2 id="LEK介绍"><a href="#LEK介绍" class="headerlink" title="LEK介绍"></a><strong>LEK介绍</strong></h2><h4 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h4><ul>
-<li><p>logstash部署简单，下载一个jar就可以用了，对日志的处理逻辑也很简单，就是一个pipeline的过程：</p>
-<p>  inputs &gt;&gt; codecs &gt;&gt; filters &gt;&gt; outputs.</p>
-</li>
-<li><p>logstash支持常见的日志类型，与其他监控系统的整合也很方便，可以将数据输出到zabbix、nagios、email等。</p>
-</li>
-<li>推荐用redis作为输入缓冲队列。</li>
-<li>你还可以把数据统计后输出到graphite，实现统计数据的可视化显示。(metrics demo,statsd,graphite)</li>
-<li><h4 id="elasticsearch"><a href="#elasticsearch" class="headerlink" title="elasticsearch"></a>elasticsearch</h4></li>
-</ul>
-<p>elasticsearch是基于lucene的开源搜索引擎，近年来发展比较快，主要的特点有:</p>
-<ul>
-<li>real time</li>
-<li>distributed</li>
-<li>high availability</li>
-<li>document oriented</li>
-<li>schema free</li>
-<li>restful api</li>
-<li><h4 id="kibana"><a href="#kibana" class="headerlink" title="kibana"></a>kibana</h4></li>
-</ul>
-<p>kibana是一个功能强大的elasticsearch数据显示客户端，logstash已经内置了kibana；<br>你也可以单独部署kibana，最新版的kibana3是纯html+js客户端，可以很方便的部署到Apache、Nginx等Http服务器。</p>
-<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a><strong>安装部署</strong></h2><h4 id="1、安装java-推荐1-7-版本"><a href="#1、安装java-推荐1-7-版本" class="headerlink" title="1、安装java(推荐1.7+版本)"></a>1、安装java(推荐1.7+版本)</h4><pre><code>java -version
-</code></pre><p>安装略</p>
-<h4 id="2、安装redis"><a href="#2、安装redis" class="headerlink" title="2、安装redis"></a>2、安装redis</h4><pre><code>wget http://download.redis.io/releases/redis-3.0.6.tar.gz
-tar xf redis-3.0.6.tar.gz
-cd redis-3.0.6
-make
-make install
-</code></pre><p>可以通过redis源代码里utils/install_server下的脚本简化配置工作</p>
-<pre><code>cd utils
-sudo ./install_server.sh
-</code></pre><p>install_server.sh在问你几个问题后会把redis安装为开机启动的服务，可以通过下面的命令行来启动/停止服务</p>
-<pre><code>/etc/init.d/redis_6379 start/stop
-</code></pre><p>启动redis客户端来验证安装</p>
-<pre><code>redis-cli
-redis&gt; set foo bar
-OK
-redis&gt; get foo
-&quot;bar
-</code></pre><h4 id="3、安装Elasticsearch-2-1-1"><a href="#3、安装Elasticsearch-2-1-1" class="headerlink" title="3、安装Elasticsearch 2.1.1"></a><strong>3、安装Elasticsearch 2.1.1</strong></h4><p>下载解压、建立软连接：</p>
-<pre><code>cd /usr/local/src/
-wget https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.1.1/elasticsearch-2.1.1.tar.gz
-tar xf elasticsearch-2.1.1.tar.gz
-mv elasticsearch-2.1.1 /usr/local/
-cd /usr/local/
-ln -s /usr/local/elasticsearch-2.1.1/ /usr/local/elasticsearch
-</code></pre><p>修改配置文件：</p>
-<pre><code>cd elasticsearch/config
-vim elasticsearch.yml
-</code></pre><p>配置文件内容如下：</p>
-<pre><code>cluster.name: my-application
-node.name: node-1
-bootstrap.mlockall: true
-network.host: 192.168.2.42
-http.port: 9200
-</code></pre><p>启动elasticsearch</p>
-<pre><code>cd elasticsearch-2.1.1/bin/
-nohup ./elasticsearch &amp;
-</code></pre><p>or</p>
-<pre><code>/usr/local/elasticsearch/bin/elasticsearch -d
-</code></pre><p>查看elasticsearch启动是否成功</p>
-<pre><code>curl -X GET http://192.168.2.42:9200
-netstat -lntup | grep 9200
-</code></pre><h4 id="3-1、elasticsearch使用"><a href="#3-1、elasticsearch使用" class="headerlink" title="3.1、elasticsearch使用"></a><strong>3.1、elasticsearch使用</strong></h4><p>使用curl和es交互测试，查询里边有多少文档</p>
-<pre><code>[root@AY140627165949601290Z ~]# curl -i -XGET &apos;http://192.168.2.42:9200/_count?pretty&apos; -d &apos;
-&gt; 
-&gt; {
-&gt;   &quot;query&quot;:{
-&gt;     &quot;match_all&quot;:{}
-&gt;   }
-&gt; }
-&gt; &apos;
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-Content-Length: 98
-
-{
-  &quot;count&quot; : 1315,
-  &quot;_shards&quot; : {
-    &quot;total&quot; : 3,
-    &quot;successful&quot; : 3,
-    &quot;failed&quot; : 0
-  }
-}
-</code></pre><p>安装es管理监控插件，实现通过web界面和es交互</p>
-<p>Install Marvel into Elasticsearch:</p>
-<pre><code>/usr/local/elasticsearch/bin/plugin install license
-/usr/local/elasticsearch/bin/plugin install marvel-agent
-#IP:9200/_plugin/marvel
-</code></pre><p>安装head插件：</p>
-<pre><code>/opt/elasticsearch/bin/plugin install mobz/elasticsearch-head
-</code></pre><p>通过浏览器访问：192.168.2.42:9200/_plugin/head</p>
-<p>关闭集群命令：</p>
-<pre><code>http://192.168.2.42:9200/_cluster/nodes/_shutdown
-</code></pre><p>查看集群健康：</p>
-<pre><code>http://192.168.2.42:9200/_cluster/health
-</code></pre><p>安装启动管理工具，地址github.com/elastic/elasticsearch-servicewrapper.git（停止维护？）</p>
-<pre><code>git clone https://github.com/elastic/elasticsearch-servicewrapper.git
-cd elasticsearch-servicewrapper/
-mv service/ /usr/local/elasticsearch/bin/
-/usr/local/elasticsearch/bin/service/elasticsearch install
-cat /etc/init.d/elasticsearch
-cd /usr/local/elasticsearch/bin/service
-</code></pre><p>设置es启动管理工具的配置文件，通过service启动</p>
-<pre><code>vim elasticsearch.conf
-service elasticsearch status
-</code></pre><h4 id="4、安装Logstash-2-1-1"><a href="#4、安装Logstash-2-1-1" class="headerlink" title="4、安装Logstash 2.1.1"></a>4、安装Logstash 2.1.1</h4><p>下载Logstash 2.1.1，建立软连接</p>
-<pre><code>cd /usr/local/src/
-wget https://download.elastic.co/logstash/logstash/logstash-2.1.1.tar.gz
-tar xf logstash-2.1.1.tar.gz
-mv logstash-2.1.1 /usr/local/
-cd /usr/local/
-ln -s /usr/local/logstash-2.1.1 /usr/local/logstash
-</code></pre><p>通过service启动logstash，启动文件项目地址<a href="https://github.com/unixhot/elk-config" target="_blank" rel="external">https://github.com/unixhot/elk-config</a></p>
-<pre><code>git clone https://github.com/unixhot/elk-config.git
-cd elk-config
-cp logstash.init /etc/init.d/logstash
-chmod +x /etc/init.d/logstash
-</code></pre><p>编辑配置文件，根据环境修改</p>
-<pre><code>vim /etc/logstash.conf
-/usr/local/logstash/bin/logstash -f /etc/logstash.conf --configtest
-/etc/init.d/logstash start
-</code></pre><p>测试logstash</p>
-<pre><code>/opt/logstash/bin/logstash -e &apos;input { stdin{} } output { stdout{ codec =&gt; rubydebug} }&apos;
-hello world
-</code></pre><p>logstash把数据写入es中</p>
-<pre><code>/opt/logstash/bin/logstash -e &apos;input { stdin{} } output {  elasticsearch { hosts =&gt; &quot;your ip address&quot;  }  stdout{} }&apos;
-</code></pre><p>通过浏览器访问elasticsearch，查看logstash key下是否有新插入的数据：IP:9200/_plugin/head</p>
-<p>通过-f参数指定配置文件启动</p>
-<pre><code>/opt/logstash/bin/logstash -f /etc/logstash.conf
-</code></pre><p>编写配置文件配置文件（例）</p>
-<p>cat /etc/logstash.conf</p>
-<pre><code>#输入
-input {
-    file {
-        path =&gt; &quot;/path/to/your/logs/*&quot;
-        type =&gt; &quot;type_1&quot;
-        #start_position =&gt; &quot;beginning&quot;
-        #multiline多行，用于java日志
-        codec =&gt; multiline {
-            pattern =&gt; &quot;^\[&quot;
-            negate =&gt; true
-            what =&gt; previous
-        }
-    }
-    file { 
-        path =&gt; &quot;/path/to/your/logs2/*&quot;
-        type =&gt; &quot;type_2&quot;
-        codec =&gt; multiline {
-            pattern =&gt; &quot;^%{TIMESTAMP_ISO8601}&quot;
-            negate =&gt; true
-            what =&gt; previous
-        }
-    }
-
-}
-
-#输出
-output {
-    #根据key类型判断，写入到elasticsearch的哪一个key中
-    if [type] == &quot;type_1&quot;  {
-        elasticsearch {
-            hosts =&gt; &quot;192.168.2.42&quot;
-            index =&gt; &quot;type_1-%{+YYYY-MM}&quot;
-        }
-    }
-    if [type] == &quot;type_2&quot;  {
-        elasticsearch {
-            hosts =&gt; &quot;192.168.2.42&quot;
-            index =&gt; &quot;type_2-%{+YYYY-MM}&quot;
-        } 
-    }
-
-}
-</code></pre><p>测试：匹配分、时、[</p>
-<pre><code>input {
-    stdin {
-        type =&gt; &quot;test01&quot;
-        #start_position =&gt; &quot;beginning&quot;
-        codec =&gt; multiline {
-            pattern =&gt; &quot;^[0-1][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]|^\[&quot;
-            negate =&gt; true
-            what =&gt; previous
-        }
-    }
- }
-output {
-    if [type] == &quot;test01&quot;  {
-        elasticsearch {
-            hosts =&gt; &quot;192.168.2.42&quot;
-             index =&gt; &quot;test01-%{+YYYY-MM}&quot;
-         }
-    }
-    stdout {
-        codec =&gt; rubydebug
-    }
-}
-</code></pre><h4 id="5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x"><a href="#5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x" class="headerlink" title="5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)"></a>5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)</h4><p>下载安装kibana4.3.1</p>
-<pre><code>cd /usr/local/src/
-wget https://download.elastic.co/kibana/kibana/kibana-4.3.1-linux-x64.tar.gz
-tar xf kibana-4.3.1-linux-x64.tar.gz
-mv kibana-4.3.1-linux-x64/ /usr/local/
-ln -s /usr/local/kibana-4.3.1-linux-x64/ /usr/local/kibana
-</code></pre><p>修改启动文件中elasticsearch的url地址</p>
-<pre><code>vim /usr/local/kibana/config/kibana.yml
-</code></pre><p>elasticsearch.url: “<a href="http://192.168.2.42:9200" target="_blank" rel="external">http://192.168.2.42:9200</a>“</p>
-<p>启动kibana</p>
-<pre><code>screen kibana
-cd kibana-4.3.1-linux-x64/bin
-./kibana
-#nohup ./kibana &amp;
-</code></pre><p>查看启动是否成功</p>
-<pre><code>netstat -lntup | grep 5601
-</code></pre><p>访问kibana</p>
-<pre><code>http://192.168.2.42:5601/
-</code></pre><p>nginx代理kibana配置验证<br>生成用户认证的用户名和密码</p>
-<pre><code>htpasswd -c /usr/local/nginx/conf/kibana.auth admin
-ll /usr/local/nginx/conf/kibana.auth
-</code></pre><p>为Nginx添加auth认证配置</p>
-<p>编辑nginx配置文件：</p>
-<pre><code>vim /etc/nginx/nginx.conf
-</code></pre><p>添加如下：</p>
-<pre><code>include extra/kibana.conf;
-</code></pre><p>编辑nginx配置文件：</p>
-<pre><code>vim /etc/nginx/extra/kibana.conf
-</code></pre><p>添加如下：</p>
-<pre><code>server {
-    listen    80;
-    server_name    kibana.example.com;
-    access_log    /var/log/nginx/kibana.srv-log-dev.log;
-    error_log    /var/log/nginx/kibana.srv-log-dev.error.log;
-
-    #ssl    on;
-    #ssl_certificate    /etc/nginx/ssl/all.crt;
-    #ssl_certificate_key    /etc/nginx/ssl/server_nopass.key;
-
-    location / {
-    #location ~ ^/kibana4/.* {
-        proxy_pass    http://kibana4;
-        rewrite ^/kibana4/(.*) /$1 break;
-        auth_basic &quot;Authorized users only,for search...&quot;;
-        auth_basic_user_file    /usr/local/nginx/conf/kibana.auth;
-        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header    Host $host;
-        #auth_basic    &quot;Restricted&quot;;
-        #auth_basic_user_file    /etc/nginx/conf.d/kibana.myhost.org.htpasswd;
-    }
-}
-</code></pre><p>重启nginx</p>
-<pre><code>/usr/sbin/nginx -t
-/usr/sbin/nginx -s reload
-</code></pre><p>访问nginx</p>
-<pre><code>http://kibana.example.com
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://fed0ra.github.io/2016/02/15/123/" data-id="cikndm6bw0000s0gshszeilnk" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-ELKstack" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/02/15/ELKstack/" class="article-date">
-  <time datetime="2016-02-15T02:42:41.258Z" itemprop="datePublished">2016-02-15</time>
+  <time datetime="2016-02-15T05:56:40.100Z" itemprop="datePublished">2016-02-15</time>
 </a>
     
   </div>
@@ -404,7 +90,7 @@ ll /usr/local/nginx/conf/kibana.auth
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tall me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+        <p>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
 <h2 id="日志收集分析系统（题外话）"><a href="#日志收集分析系统（题外话）" class="headerlink" title="日志收集分析系统（题外话）"></a><em>日志收集分析系统（题外话）</em></h2><p>日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:</p>
 <ul>
 <li>根据关键字查询日志详情</li>
@@ -413,280 +99,15 @@ ll /usr/local/nginx/conf/kibana.auth
 <li>异常数据自动触发消息通知</li>
 <li>基于日志的数据挖掘</li>
 </ul>
-<p>很多团队在日志方面可能遇到的一些问题有:</p>
-<ul>
-<li>开发人员不能登录线上服务器查看详细日志，经过运维周转费时费力</li>
-<li>日志数据分散在多个系统，难以查找</li>
-<li>日志数据量大，查询速度慢</li>
-<li>一个调用会涉及多个系统，难以在这些系统的日志中快速定位数据</li>
-<li>数据不够实时</li>
-</ul>
-<p>常见的一些重量级的开源Trace系统有:</p>
-<ul>
-<li>facebook scribe</li>
-<li>cloudera flume</li>
-<li>twitter zipkin</li>
-<li>storm</li>
-</ul>
-<p>这些项目功能强大，但对于很多团队来说过于复杂，配置和部署比较麻烦，在系统规模大到一定程度前推荐轻量级下载即用的方案；<br>比如logstash+elasticsearch+kibana(LEK)组合；<br>对于日志来说，最常见的需求就是收集、查询、显示，正对应logstash、elasticsearch、kibana的功能。</p>
-<h2 id="LEK介绍"><a href="#LEK介绍" class="headerlink" title="LEK介绍"></a><strong>LEK介绍</strong></h2><h4 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h4><ul>
-<li><p>logstash部署简单，下载一个jar就可以用了，对日志的处理逻辑也很简单，就是一个pipeline的过程：</p>
-<p>  inputs &gt;&gt; codecs &gt;&gt; filters &gt;&gt; outputs.</p>
-</li>
-<li><p>logstash支持常见的日志类型，与其他监控系统的整合也很方便，可以将数据输出到zabbix、nagios、email等。</p>
-</li>
-<li>推荐用redis作为输入缓冲队列。</li>
-<li>你还可以把数据统计后输出到graphite，实现统计数据的可视化显示。(metrics demo,statsd,graphite)</li>
-</ul>
-<h4 id="elasticsearch"><a href="#elasticsearch" class="headerlink" title="elasticsearch"></a>elasticsearch</h4><p>elasticsearch是基于lucene的开源搜索引擎，近年来发展比较快，主要的特点有:</p>
-<ul>
-<li>real time</li>
-<li>distributed</li>
-<li>high availability</li>
-<li>document oriented</li>
-<li>schema free</li>
-<li>restful api</li>
-</ul>
-<h4 id="kibana"><a href="#kibana" class="headerlink" title="kibana"></a>kibana</h4><p>kibana是一个功能强大的elasticsearch数据显示客户端，logstash已经内置了kibana；<br>你也可以单独部署kibana，最新版的kibana3是纯html+js客户端，可以很方便的部署到Apache、Nginx等Http服务器。</p>
-<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a><strong>安装部署</strong></h2><h4 id="1、安装java-推荐1-7-版本"><a href="#1、安装java-推荐1-7-版本" class="headerlink" title="1、安装java(推荐1.7+版本)"></a>1、安装java(推荐1.7+版本)</h4><pre><code>$ java -version
-</code></pre><p>安装略</p>
-<h4 id="2、安装redis"><a href="#2、安装redis" class="headerlink" title="2、安装redis"></a>2、安装redis</h4><pre><code>$ wget http://download.redis.io/releases/redis-3.0.6.tar.gz
-$ tar xf redis-3.0.6.tar.gz
-$ cd redis-3.0.6
-$ make
-$ make install
-</code></pre><p>可以通过redis源代码里utils/install_server下的脚本简化配置工作</p>
-<pre><code>$ cd utils
-$ sudo ./install_server.sh
-</code></pre><p>install_server.sh在问你几个问题后会把redis安装为开机启动的服务，可以通过下面的命令行来启动/停止服务</p>
-<pre><code>$ /etc/init.d/redis_6379 start/stop
-</code></pre><p>启动redis客户端来验证安装</p>
-<pre><code>$ redis-cli
-$ redis&gt; set foo bar
-OK
-$ redis&gt; get foo
-&quot;bar&quot;
-</code></pre><h4 id="3、安装Elasticsearch-2-1-1"><a href="#3、安装Elasticsearch-2-1-1" class="headerlink" title="3、安装Elasticsearch 2.1.1"></a><strong>3、安装Elasticsearch 2.1.1</strong></h4><p>下载解压、建立软连接：</p>
-<pre><code>$ cd /usr/local/src/
-$ wget https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.1.1/elasticsearch-2.1.1.tar.gz
-$ tar xf elasticsearch-2.1.1.tar.gz
-$ mv elasticsearch-2.1.1 /usr/local/
-$ cd /usr/local/
-$ ln -s /usr/local/elasticsearch-2.1.1/ /usr/local/elasticsearch
-</code></pre><p>修改配置文件：</p>
-<pre><code>$ cd elasticsearch/config
-$ vim elasticsearch.yml
-</code></pre><p>配置文件内容如下：</p>
-<pre><code>cluster.name: my-application
-node.name: node-1
-bootstrap.mlockall: true
-network.host: 192.168.2.42
-http.port: 9200
-</code></pre><p>启动elasticsearch</p>
-<pre><code>$ cd elasticsearch-2.1.1/bin/
-$ nohup ./elasticsearch &amp;
-</code></pre><p>or</p>
-<pre><code>$ /usr/local/elasticsearch/bin/elasticsearch -d
-</code></pre><p>查看elasticsearch启动是否成功</p>
-<pre><code>$ curl -X GET http://192.168.2.42:9200
-$ netstat -lntup | grep 9200
-</code></pre><h4 id="3-1、elasticsearch使用"><a href="#3-1、elasticsearch使用" class="headerlink" title="3.1、elasticsearch使用"></a><strong>3.1、elasticsearch使用</strong></h4><p>使用curl和es交互测试，查询里边有多少文档</p>
-<pre><code>[root@AY140627165949601290Z ~]# curl -i -XGET &apos;http://192.168.2.42:9200/_count?pretty&apos; -d &apos;
-&gt; 
-&gt; {
-&gt;   &quot;query&quot;:{
-&gt;     &quot;match_all&quot;:{}
-&gt;   }
-&gt; }
-&gt; &apos;
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-Content-Length: 98
-
-{
-  &quot;count&quot; : 1315,
-  &quot;_shards&quot; : {
-    &quot;total&quot; : 3,
-    &quot;successful&quot; : 3,
-    &quot;failed&quot; : 0
-  }
-}
-</code></pre><p>安装es管理监控插件，实现通过web界面和es交互</p>
-<p>Install Marvel into Elasticsearch:</p>
-<pre><code>$ /usr/local/elasticsearch/bin/plugin install license
-$ /usr/local/elasticsearch/bin/plugin install marvel-agent
-#IP:9200/_plugin/marvel
-</code></pre><p>安装head插件：</p>
-<pre><code>$ /opt/elasticsearch/bin/plugin install mobz/elasticsearch-head
-</code></pre><p>通过浏览器访问：192.168.2.42:9200/_plugin/head</p>
-<p>关闭集群命令：</p>
-<pre><code>$ http://192.168.2.42:9200/_cluster/nodes/_shutdown
-</code></pre><p>查看集群健康：</p>
-<pre><code>$ http://192.168.2.42:9200/_cluster/health
-</code></pre><p>安装启动管理工具，地址github.com/elastic/elasticsearch-servicewrapper.git（停止维护？）</p>
-<pre><code>$ git clone https://github.com/elastic/elasticsearch-servicewrapper.git
-$ cd elasticsearch-servicewrapper/
-$ mv service/ /usr/local/elasticsearch/bin/
-$ /usr/local/elasticsearch/bin/service/elasticsearch install
-$ cat /etc/init.d/elasticsearch
-$ cd /usr/local/elasticsearch/bin/service
-</code></pre><p>设置es启动管理工具的配置文件，通过service启动</p>
-<pre><code>$ vim elasticsearch.conf
-$ service elasticsearch status
-</code></pre><h4 id="4、安装Logstash-2-1-1"><a href="#4、安装Logstash-2-1-1" class="headerlink" title="4、安装Logstash 2.1.1"></a>4、安装Logstash 2.1.1</h4><p>下载Logstash 2.1.1，建立软连接</p>
-<pre><code>$ cd /usr/local/src/
-$ wget https://download.elastic.co/logstash/logstash/logstash-2.1.1.tar.gz
-$ tar xf logstash-2.1.1.tar.gz
-$ mv logstash-2.1.1 /usr/local/
-$ cd /usr/local/
-$ ln -s /usr/local/logstash-2.1.1 /usr/local/logstash
-</code></pre><p>通过service启动logstash，启动文件项目地址<a href="https://github.com/unixhot/elk-config" target="_blank" rel="external">https://github.com/unixhot/elk-config</a></p>
-<pre><code>$ git clone https://github.com/unixhot/elk-config.git
-$ cd elk-config
-$ cp logstash.init /etc/init.d/logstash
-$ chmod +x /etc/init.d/logstash
-</code></pre><p>编辑配置文件，根据环境修改</p>
-<pre><code>$ vim /etc/logstash.conf
-$ /usr/local/logstash/bin/logstash -f /etc/logstash.conf --configtest
-$ /etc/init.d/logstash start
-</code></pre><p>测试logstash</p>
-<pre><code>$ /opt/logstash/bin/logstash -e &apos;input { stdin{} } output { stdout{ codec =&gt; rubydebug} }&apos;
-$ &gt;hello world
-</code></pre><p>logstash把数据写入es中</p>
-<pre><code>$ /opt/logstash/bin/logstash -e &apos;input { stdin{} } output {  elasticsearch { hosts =&gt; &quot;your ip address&quot;  }  stdout{} }&apos;
-</code></pre><p>通过浏览器访问elasticsearch，查看logstash key下是否有新插入的数据：IP:9200/_plugin/head</p>
-<p>通过-f参数指定配置文件启动</p>
-<pre><code>$ /opt/logstash/bin/logstash -f /etc/logstash.conf
-</code></pre><p>编写配置文件配置文件（例）</p>
-<p>cat /etc/logstash.conf</p>
-<pre><code>#输入
-input {
-    file {
-        path =&gt; &quot;/path/to/your/logs/*&quot;
-        type =&gt; &quot;type_1&quot;
-        #start_position =&gt; &quot;beginning&quot;
-        #multiline多行，用于java日志
-        codec =&gt; multiline {
-            pattern =&gt; &quot;^\[&quot;
-            negate =&gt; true
-            what =&gt; previous
-        }
-    }
-    file { 
-        path =&gt; &quot;/path/to/your/logs2/*&quot;
-        type =&gt; &quot;type_2&quot;
-        codec =&gt; multiline {
-            pattern =&gt; &quot;^%{TIMESTAMP_ISO8601}&quot;
-            negate =&gt; true
-            what =&gt; previous
-        }
-    }
-
-}
-
-#输出
-output {
-    #根据key类型判断，写入到elasticsearch的哪一个key中
-    if [type] == &quot;type_1&quot;  {
-        elasticsearch {
-            hosts =&gt; &quot;192.168.2.42&quot;
-            index =&gt; &quot;type_1-%{+YYYY-MM}&quot;
-        }
-    }
-    if [type] == &quot;type_2&quot;  {
-        elasticsearch {
-            hosts =&gt; &quot;192.168.2.42&quot;
-            index =&gt; &quot;type_2-%{+YYYY-MM}&quot;
-        } 
-    }
-
-}
-</code></pre><p>测试：匹配分、时、[</p>
-<pre><code>input {
-    stdin {
-        type =&gt; &quot;test01&quot;
-        #start_position =&gt; &quot;beginning&quot;
-        codec =&gt; multiline {
-            pattern =&gt; &quot;^[0-1][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]|^\[&quot;
-            negate =&gt; true
-            what =&gt; previous
-        }
-    }
- }
-output {
-    if [type] == &quot;test01&quot;  {
-        elasticsearch {
-            hosts =&gt; &quot;192.168.2.42&quot;
-             index =&gt; &quot;test01-%{+YYYY-MM}&quot;
-         }
-    }
-    stdout {
-        codec =&gt; rubydebug
-    }
-}
-</code></pre><h4 id="5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x"><a href="#5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x" class="headerlink" title="5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)"></a>5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)</h4><p>下载安装kibana4.3.1</p>
-<pre><code>$ cd /usr/local/src/
-$ wget https://download.elastic.co/kibana/kibana/kibana-4.3.1-linux-x64.tar.gz
-$ tar xf kibana-4.3.1-linux-x64.tar.gz
-$ mv kibana-4.3.1-linux-x64/ /usr/local/
-$ ln -s /usr/local/kibana-4.3.1-linux-x64/ /usr/local/kibana
-</code></pre><p>修改启动文件中elasticsearch的url地址</p>
-<pre><code>$ vim /usr/local/kibana/config/kibana.yml
-</code></pre><p>elasticsearch.url: “<a href="http://192.168.2.42:9200" target="_blank" rel="external">http://192.168.2.42:9200</a>“</p>
-<p>启动kibana</p>
-<pre><code>$ screen kibana
-$ cd kibana-4.3.1-linux-x64/bin
-$ ./kibana
-$ #nohup ./kibana &amp;
-</code></pre><p>查看启动是否成功</p>
-<pre><code>$ netstat -lntup | grep 5601
-</code></pre><p>浏览器访问kibana：</p>
-<p><a href="http://192.168.2.42:5601/" target="_blank" rel="external">http://192.168.2.42:5601/</a></p>
-<p>nginx代理kibana配置验证：</p>
-<p>生成用户认证的用户名和密码</p>
-<pre><code>$ htpasswd -c /usr/local/nginx/conf/kibana.auth admin
-$ ll /usr/local/nginx/conf/kibana.auth
-</code></pre><p>为Nginx添加auth认证配置</p>
-<p>编辑nginx配置文件：</p>
-<pre><code>$ vim /etc/nginx/nginx.conf
-</code></pre><p>添加如下：</p>
-<pre><code>include extra/kibana.conf;
-</code></pre><p>编辑nginx配置文件：</p>
-<pre><code>$ vim /etc/nginx/extra/kibana.conf
-</code></pre><p>添加如下：</p>
-<pre><code>server {
-    listen    80;
-    server_name    kibana.example.com;
-    access_log    /var/log/nginx/kibana.srv-log-dev.log;
-    error_log    /var/log/nginx/kibana.srv-log-dev.error.log;
-
-    #ssl    on;
-    #ssl_certificate    /etc/nginx/ssl/all.crt;
-    #ssl_certificate_key    /etc/nginx/ssl/server_nopass.key;
-
-    location / {
-    #location ~ ^/kibana4/.* {
-        proxy_pass    http://kibana4;
-        rewrite ^/kibana4/(.*) /$1 break;
-        auth_basic &quot;Authorized users only,for search...&quot;;
-        auth_basic_user_file    /usr/local/nginx/conf/kibana.auth;
-        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header    Host $host;
-        #auth_basic    &quot;Restricted&quot;;
-        #auth_basic_user_file    /etc/nginx/conf.d/kibana.myhost.org.htpasswd;
-    }
-
-}
-</code></pre><p>重启nginx</p>
-<pre><code>$ /usr/sbin/nginx -t
-$ /usr/sbin/nginx -s reload
-</code></pre><p>访问nginx</p>
-<pre><code>http://kibana.example.com
-</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/2016/02/15/ELKstack/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://fed0ra.github.io/2016/02/15/ELKstack/" data-id="cikndm6d40003s0gs7h7i6b4d" class="article-share-link">Share</a>
+      <a data-url="http://fed0ra.github.io/2016/02/15/ELKstack/" data-id="ciknkjoxn0000bogs89wpm06g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -699,7 +120,7 @@ $ /usr/sbin/nginx -s reload
     <article id="post-fed0ra.github.io" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/02/15/fed0ra.github.io/" class="article-date">
-  <time datetime="2016-02-15T01:53:14.786Z" itemprop="datePublished">2016-02-15</time>
+  <time datetime="2016-02-15T05:56:31.840Z" itemprop="datePublished">2016-02-15</time>
 </a>
     
   </div>
@@ -718,106 +139,22 @@ $ /usr/sbin/nginx -s reload
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tall me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+        <p>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
 <h3 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a><em>版权声明</em></h3><pre><code>严重参考（照抄）http://www.jianshu.com/p/985d07d88ef4#
 http://www.chinaz.com/web/2016/0105/491998.shtml
 </code></pre><h2 id="为什么选择GitHub-Pages"><a href="#为什么选择GitHub-Pages" class="headerlink" title="为什么选择GitHub Pages"></a>为什么选择GitHub Pages</h2><ul>
 <li>1 GitHub Pages 有300M免费空间，资料自己管理，保存可靠；</li>
 <li>2 学着用 GitHub ，享受 GitHub 的便利，上面有很多大牛，眼界会开阔很多；</li>
-<li>3 顺便看看 GitHub 工作原理，最好的团队协作流程；</li>
-<li>4 GitHub 是趋势；</li>
-<li>5 你不觉得一个文科生用 GitHub 很geek吗？瞬间跻身技术界；</li>
-<li>6 就算 GitHub 被墙了，我可以搬到国内的 GitCafe 中去。</li>
-</ul>
-<h2 id="一、首先你需要准备什么"><a href="#一、首先你需要准备什么" class="headerlink" title="一、首先你需要准备什么"></a>一、首先你需要准备什么</h2><ul>
-<li>一个github账户</li>
-</ul>
-<p>访问：<a href="https://www.github.com" target="_blank" rel="external">https://www.github.com</a><br>注册十分简单，记住注册时使用的邮箱，过程略。</p>
-<ul>
-<li>创建一个仓库</li>
-</ul>
-<p>注册号账户后，在你的主页面点击New repository</p>
-<p>Repository name仓库名字命名为yourname.github.io（yourname自定义，后面.github.io最后不变，我这里为fed0ra.github.io）</p>
-<p>免费只能勾选public，下面勾选Initialize this repository with a README</p>
-<p>点击Create repository就OK了</p>
-<p>现在你访问你的yourname.github.io这个域名是404是正确的。</p>
-<h2 id="二、环境安装"><a href="#二、环境安装" class="headerlink" title="二、环境安装"></a>二、环境安装</h2><ul>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>（下载Windows版本后安装，安装过程一路向西）</li>
-<li><a href="http://git-scm.com/download" target="_blank" rel="external">git</a>（下载Windows版本后安装，安装过程同上）（不翻墙下载速度比较慢，也可以去百度下载<a href="http://rj.baidu.com/soft/detail/30195.html?ald" target="_blank" rel="external">git</a>）</li>
-</ul>
-<h2 id="三、使用Hexo生成博客的静态页面"><a href="#三、使用Hexo生成博客的静态页面" class="headerlink" title="三、使用Hexo生成博客的静态页面"></a>三、使用Hexo生成博客的静态页面</h2><p>Hexo 是一个轻量的静态博客框架。通过Hexo可以快速生成一个静态博客框架,仅需要几条命令就可以完成,相当方便。</p>
-<h4 id="1、运行Node-js-command-prompt"><a href="#1、运行Node-js-command-prompt" class="headerlink" title="1、运行Node.js command prompt"></a>1、运行<em>Node.js command prompt</em></h4><p>安装好Node.js后，在桌面或开始菜单中找到<em>Node.js command prompt</em>的快捷方式，打开后输入命令</p>
-<pre><code>$ cd d:
-$ npm install hexo-cli -g
-</code></pre><p>cd d:是切换到nodejs安装路径，不必要操作看个人习惯</p>
-<h4 id="2、Hexo部署"><a href="#2、Hexo部署" class="headerlink" title="2、Hexo部署"></a>2、Hexo部署</h4><p>通过命令<em>hexo init [文件名]</em>生成</p>
-<pre><code>$ f:
-$ hexo init fed0ra.github.io
-</code></pre><p>cd f:切换到任意盘符下，这里切换到f盘下；fed0ra.github.io根据自己网站定义(yourname.github.com)，记下之后再github建库时候建成同名的库；回车后仔细看有没有报错，没有报错证明成功</p>
-<p>这是你会在F盘根目录下，发现多出一个名字为fed0ra.github.io的文件夹，再输入以下命令安装依赖文件</p>
-<pre><code>$ cd fed0ra.github.io
-$ npm install
-</code></pre><p>回车后看是否报错</p>
-<p>经过以上方法后，Hexo会自动在目标文件夹建立博客网站所需要的所有文件。</p>
-<p>此时可以通过输入以下命令在本地进行预览（在刚才创建的文件夹里）：</p>
-<pre><code>$ hexo generate (可以简写成: hexo g生成文件，出现一排排INFO表示成功)
-$ hexo server （启动服务，成功后显示一行INFO，本地浏览地址）
-</code></pre><p>此时打开浏览器，在浏览器地址栏输入 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> （默认端口为4000）便可以看到最原始的博客了（以后发表博文想先预览，也可以通过 hexo server 在本地先跑起来，看看效果，Ctrl+C停止服务，停止后本地就访问不了了）</p>
-<p>到目前为止博客的雏形已经有了。</p>
-<p>在<em>Node.js command prompt</em>中按 Ctrl + C并输入y可以停止该服务（本地访问不了了）。</p>
-<h2 id="四、将本地文件部署到-GitHub"><a href="#四、将本地文件部署到-GitHub" class="headerlink" title="四、将本地文件部署到 GitHub"></a>四、将本地文件部署到 GitHub</h2><h4 id="1、配置和使用-Github"><a href="#1、配置和使用-Github" class="headerlink" title="1、配置和使用 Github"></a>1、配置和使用 Github</h4><p>使用ssh keys让本地git项目与远程的github建立联系呢（等同于把上一步生成的页面文件，即F盘下的fed0ra.github.io文件夹的内容上传的github库）</p>
-<h4 id="第二部安装好git后会生成快捷方式Git-Bash，运行Git-Bash，在命令行操作"><a href="#第二部安装好git后会生成快捷方式Git-Bash，运行Git-Bash，在命令行操作" class="headerlink" title="第二部安装好git后会生成快捷方式Git Bash，运行Git Bash，在命令行操作"></a>第二部安装好git后会生成快捷方式Git Bash，运行Git Bash，在命令行操作</h4><h4 id="a）输入以下命令检查本机是否有ssh密钥："><a href="#a）输入以下命令检查本机是否有ssh密钥：" class="headerlink" title="a）输入以下命令检查本机是否有ssh密钥："></a>a）输入以下命令检查本机是否有ssh密钥：</h4><pre><code>$ cd ~/.ssh
-</code></pre><p>如果提示：No such file or directory 说明你是第一次使用git,还没有生成秘钥</p>
-<h4 id="b）输入以下命令生成新的SSH-Key："><a href="#b）输入以下命令生成新的SSH-Key：" class="headerlink" title="b）输入以下命令生成新的SSH Key："></a>b）输入以下命令生成新的SSH Key：</h4><pre><code>$ ssh-keygen -t rsa -C &quot;邮件地址@youremail.com&quot;
-</code></pre><p>一直回车</p>
-<p>注意: 此处的邮箱地址，你可以输入自己的邮箱地址;此处的「-C」的是大写的「C」</p>
-<h4 id="c）查看生成的秘钥"><a href="#c）查看生成的秘钥" class="headerlink" title="c）查看生成的秘钥"></a>c）查看生成的秘钥</h4><pre><code>$ cd ~/.ssh
-$ ls
-$ cat id_rsa.pub
-</code></pre><p>cd ~/.ssh进入生成秘钥的目录，ls查看，发现目录下有id_rsa和id_rsa.pub,id_rsa.pub就是我们需要的，cat id_rsa.pub查看文件里的内容，选中后已经复制好了，直接粘贴到其他文档中备用。</p>
-<h4 id="d）添加SSH-Key到GitHub"><a href="#d）添加SSH-Key到GitHub" class="headerlink" title="d）添加SSH Key到GitHub"></a>d）添加SSH Key到GitHub</h4><p>在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。</p>
-<p>登陆github系统。点击右上角的Account Settings—&gt;SSH keys —&gt;new SSH key。</p>
-<p>把你本地生成的密钥刚刚复制好的粘贴到里面(key文本框中)，点击add key就ok了。</p>
-<p>测试：</p>
-<p>可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：</p>
-<pre><code>$ ssh -T git@github.com
-</code></pre><p>如果是下面的反馈：</p>
-<p>The authenticity of host ‘github.com (207.97.227.239)’ can’t be established.</p>
-<p>RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</p>
-<p>Are you sure you want to continue connecting (yes/no)?</p>
-<p>不要紧张，输入yes就好，然后会看到：</p>
-<p>Hi aierui! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
-<h4 id="e）最后一击，设置用户信息"><a href="#e）最后一击，设置用户信息" class="headerlink" title="e）最后一击，设置用户信息"></a>e）最后一击，设置用户信息</h4><p>现在你已经可以通过 SSH 链接到 GitHub 了，还有一些个人信息需要完善，否则后面本地文件上传github会出错。</p>
-<pre><code>$ git config --global user.name &quot;yourname&quot;//用户名
-$ git config --global user.email &quot;imland@outlook.com&quot;//填写自己的邮箱
-</code></pre><h4 id="2、修改-Hexo-中的-config-yml-文件"><a href="#2、修改-Hexo-中的-config-yml-文件" class="headerlink" title="2、修改 Hexo 中的 _config.yml 文件"></a>2、修改 Hexo 中的 _config.yml 文件</h4><p>在fed0ra.github.com文件夹下找到_config.yml文件</p>
-<p>找到其中的 deploy 标签，改成如下所示，并保存：</p>
-<pre><code>deploy:
-  type: git
-  #repository: https://github.com/fed0ra/fed0ra.github.io
-  repository: ssh://git@github.com/fed0ra/fed0ra.github.io
-  branch: master
-  plugins: -hexo-generator-feed
-</code></pre><p>其中 branch 选项可以填写 master 或 gh-pages。如果你是为一个项目制作网站，那么需要把 branch 设置为 gh-pages 。若要绑定自定义域名也可以参考Hexo 或 Github Page 的帮助文档，制作一个 CNAME 文件。</p>
-<h4 id="3、将第三步Hexo生成博客的静态页面部署到github仓库"><a href="#3、将第三步Hexo生成博客的静态页面部署到github仓库" class="headerlink" title="3、将第三步Hexo生成博客的静态页面部署到github仓库"></a>3、将第三步Hexo生成博客的静态页面部署到github仓库</h4><p>运行Git Bash，输入以下命令：</p>
-<pre><code>$ cd f:    \\切换到F盘
-$ cd fed0ra.github.io    \\切换到博客目录
-$ hexo clean
-$ hexo generate
-$ hexo deploy
-</code></pre><p>如果出现ERROR Deployer not found: github，将deploy的type改成 git，然后再在Git Shell中运行以下命令：</p>
-<pre><code>$ npm install hexo-deployer-git --save
-</code></pre><p>再重新来一遍</p>
-<pre><code>$ hexo clean
-$ hexo generate
-$ hexo deploy
-</code></pre><p>运行没报错，出现INFO Deploy done: git则表示博客已经部署到github上了。</p>
-<p>去<a href="https://github.com/fed0ra/fed0ra.github.io仓库查看，文件已经上传上了。再访问http://fed0ra.github.io，显示初始博客页面，大功告成。" target="_blank" rel="external">https://github.com/fed0ra/fed0ra.github.io仓库查看，文件已经上传上了。再访问http://fed0ra.github.io，显示初始博客页面，大功告成。</a></p>
-
+<li>3 顺便看看 GitHub 工作原理，最好的团队协作流程；
+        
+          <p class="article-more-link">
+            <a href="/2016/02/15/fed0ra.github.io/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://fed0ra.github.io/2016/02/15/fed0ra.github.io/" data-id="cikndm6d10002s0gs1goq2tqd" class="article-share-link">Share</a>
+      <a data-url="http://fed0ra.github.io/2016/02/15/fed0ra.github.io/" data-id="ciknkjoyt0002bogsrf3qhlh0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -829,8 +166,8 @@ $ hexo deploy
   
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/14/hello-world/" class="article-date">
-  <time datetime="2016-02-14T05:22:46.989Z" itemprop="datePublished">2016-02-14</time>
+    <a href="/2016/02/15/hello-world/" class="article-date">
+  <time datetime="2016-02-15T03:26:16.054Z" itemprop="datePublished">2016-02-15</time>
 </a>
     
   </div>
@@ -841,7 +178,7 @@ $ hexo deploy
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/14/hello-world/">Hello World</a>
+      <a class="article-title" href="/2016/02/15/hello-world/">Hello World</a>
     </h1>
   
 
@@ -849,20 +186,18 @@ $ hexo deploy
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+        <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a><br>
+        
+          <p class="article-more-link">
+            <a href="/2016/02/15/hello-world/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://fed0ra.github.io/2016/02/14/hello-world/" data-id="cikndm6cx0001s0gsdywum6qr" class="article-share-link">Share</a>
+      <a data-url="http://fed0ra.github.io/2016/02/15/hello-world/" data-id="ciknkjoyp0001bogsnplb9usf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -902,10 +237,6 @@ $ hexo deploy
       <ul>
         
           <li>
-            <a href="/2016/02/15/123/">ELKstack</a>
-          </li>
-        
-          <li>
             <a href="/2016/02/15/ELKstack/">ELKstack</a>
           </li>
         
@@ -914,7 +245,7 @@ $ hexo deploy
           </li>
         
           <li>
-            <a href="/2016/02/14/hello-world/">Hello World</a>
+            <a href="/2016/02/15/hello-world/">Hello World</a>
           </li>
         
       </ul>
