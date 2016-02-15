@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ELKstack | Fed0ra&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to fed0ra’s blog! If you found any problems, you can tall me on GitHub.
+日志收集分析系统（题外话）日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:
+
+根据关键字查询日志详情
+监控系统的运行状况
+统计分析，比如接口的调用次数、执行时间、成功率等
+异常数据自动触发消">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELKstack">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/15/123/index.html">
+<meta property="og:site_name" content="Fed0ra's blog">
+<meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tall me on GitHub.
+日志收集分析系统（题外话）日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:
+
+根据关键字查询日志详情
+监控系统的运行状况
+统计分析，比如接口的调用次数、执行时间、成功率等
+异常数据自动触发消">
+<meta property="og:updated_time" content="2016-02-15T02:41:36.316Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ELKstack">
+<meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tall me on GitHub.
+日志收集分析系统（题外话）日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:
+
+根据关键字查询日志详情
+监控系统的运行状况
+统计分析，比如接口的调用次数、执行时间、成功率等
+异常数据自动触发消">
+  
+    <link rel="alternate" href="/atom.xml" title="Fed0ra&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fed0ra&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">mean</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://fed0ra.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-123" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/15/123/" class="article-date">
+  <time datetime="2016-02-15T02:42:51.118Z" itemprop="datePublished">2016-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ELKstack
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tall me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="日志收集分析系统（题外话）"><a href="#日志收集分析系统（题外话）" class="headerlink" title="日志收集分析系统（题外话）"></a><em>日志收集分析系统（题外话）</em></h2><p>日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:</p>
+<ul>
+<li>根据关键字查询日志详情</li>
+<li>监控系统的运行状况</li>
+<li>统计分析，比如接口的调用次数、执行时间、成功率等</li>
+<li>异常数据自动触发消息通知</li>
+<li>基于日志的数据挖掘</li>
+<li><p>很多团队在日志方面可能遇到的一些问题有:</p>
+</li>
+<li><p>开发人员不能登录线上服务器查看详细日志，经过运维周转费时费力</p>
+</li>
+<li>日志数据分散在多个系统，难以查找</li>
+<li>日志数据量大，查询速度慢</li>
+<li>一个调用会涉及多个系统，难以在这些系统的日志中快速定位数据</li>
+<li>数据不够实时</li>
+<li><p>常见的一些重量级的开源Trace系统有:</p>
+</li>
+<li><p>facebook scribe</p>
+</li>
+<li>cloudera flume</li>
+<li>twitter zipkin</li>
+<li>storm</li>
+<li>这些项目功能强大，但对于很多团队来说过于复杂，配置和部署比较麻烦，在系统规模大到一定程度前推荐轻量级下载即用的方案；<br>比如logstash+elasticsearch+kibana(LEK)组合；<br>对于日志来说，最常见的需求就是收集、查询、显示，正对应logstash、elasticsearch、kibana的功能。</li>
+</ul>
+<h2 id="LEK介绍"><a href="#LEK介绍" class="headerlink" title="LEK介绍"></a><strong>LEK介绍</strong></h2><h4 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h4><ul>
+<li><p>logstash部署简单，下载一个jar就可以用了，对日志的处理逻辑也很简单，就是一个pipeline的过程：</p>
+<p>  inputs &gt;&gt; codecs &gt;&gt; filters &gt;&gt; outputs.</p>
+</li>
+<li><p>logstash支持常见的日志类型，与其他监控系统的整合也很方便，可以将数据输出到zabbix、nagios、email等。</p>
+</li>
+<li>推荐用redis作为输入缓冲队列。</li>
+<li>你还可以把数据统计后输出到graphite，实现统计数据的可视化显示。(metrics demo,statsd,graphite)</li>
+<li><h4 id="elasticsearch"><a href="#elasticsearch" class="headerlink" title="elasticsearch"></a>elasticsearch</h4></li>
+</ul>
+<p>elasticsearch是基于lucene的开源搜索引擎，近年来发展比较快，主要的特点有:</p>
+<ul>
+<li>real time</li>
+<li>distributed</li>
+<li>high availability</li>
+<li>document oriented</li>
+<li>schema free</li>
+<li>restful api</li>
+<li><h4 id="kibana"><a href="#kibana" class="headerlink" title="kibana"></a>kibana</h4></li>
+</ul>
+<p>kibana是一个功能强大的elasticsearch数据显示客户端，logstash已经内置了kibana；<br>你也可以单独部署kibana，最新版的kibana3是纯html+js客户端，可以很方便的部署到Apache、Nginx等Http服务器。</p>
+<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a><strong>安装部署</strong></h2><h4 id="1、安装java-推荐1-7-版本"><a href="#1、安装java-推荐1-7-版本" class="headerlink" title="1、安装java(推荐1.7+版本)"></a>1、安装java(推荐1.7+版本)</h4><pre><code>java -version
+</code></pre><p>安装略</p>
+<h4 id="2、安装redis"><a href="#2、安装redis" class="headerlink" title="2、安装redis"></a>2、安装redis</h4><pre><code>wget http://download.redis.io/releases/redis-3.0.6.tar.gz
+tar xf redis-3.0.6.tar.gz
+cd redis-3.0.6
+make
+make install
+</code></pre><p>可以通过redis源代码里utils/install_server下的脚本简化配置工作</p>
+<pre><code>cd utils
+sudo ./install_server.sh
+</code></pre><p>install_server.sh在问你几个问题后会把redis安装为开机启动的服务，可以通过下面的命令行来启动/停止服务</p>
+<pre><code>/etc/init.d/redis_6379 start/stop
+</code></pre><p>启动redis客户端来验证安装</p>
+<pre><code>redis-cli
+redis&gt; set foo bar
+OK
+redis&gt; get foo
+&quot;bar
+</code></pre><h4 id="3、安装Elasticsearch-2-1-1"><a href="#3、安装Elasticsearch-2-1-1" class="headerlink" title="3、安装Elasticsearch 2.1.1"></a><strong>3、安装Elasticsearch 2.1.1</strong></h4><p>下载解压、建立软连接：</p>
+<pre><code>cd /usr/local/src/
+wget https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.1.1/elasticsearch-2.1.1.tar.gz
+tar xf elasticsearch-2.1.1.tar.gz
+mv elasticsearch-2.1.1 /usr/local/
+cd /usr/local/
+ln -s /usr/local/elasticsearch-2.1.1/ /usr/local/elasticsearch
+</code></pre><p>修改配置文件：</p>
+<pre><code>cd elasticsearch/config
+vim elasticsearch.yml
+</code></pre><p>配置文件内容如下：</p>
+<pre><code>cluster.name: my-application
+node.name: node-1
+bootstrap.mlockall: true
+network.host: 192.168.2.42
+http.port: 9200
+</code></pre><p>启动elasticsearch</p>
+<pre><code>cd elasticsearch-2.1.1/bin/
+nohup ./elasticsearch &amp;
+</code></pre><p>or</p>
+<pre><code>/usr/local/elasticsearch/bin/elasticsearch -d
+</code></pre><p>查看elasticsearch启动是否成功</p>
+<pre><code>curl -X GET http://192.168.2.42:9200
+netstat -lntup | grep 9200
+</code></pre><h4 id="3-1、elasticsearch使用"><a href="#3-1、elasticsearch使用" class="headerlink" title="3.1、elasticsearch使用"></a><strong>3.1、elasticsearch使用</strong></h4><p>使用curl和es交互测试，查询里边有多少文档</p>
+<pre><code>[root@AY140627165949601290Z ~]# curl -i -XGET &apos;http://192.168.2.42:9200/_count?pretty&apos; -d &apos;
+&gt; 
+&gt; {
+&gt;   &quot;query&quot;:{
+&gt;     &quot;match_all&quot;:{}
+&gt;   }
+&gt; }
+&gt; &apos;
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Content-Length: 98
+
+{
+  &quot;count&quot; : 1315,
+  &quot;_shards&quot; : {
+    &quot;total&quot; : 3,
+    &quot;successful&quot; : 3,
+    &quot;failed&quot; : 0
+  }
+}
+</code></pre><p>安装es管理监控插件，实现通过web界面和es交互</p>
+<p>Install Marvel into Elasticsearch:</p>
+<pre><code>/usr/local/elasticsearch/bin/plugin install license
+/usr/local/elasticsearch/bin/plugin install marvel-agent
+#IP:9200/_plugin/marvel
+</code></pre><p>安装head插件：</p>
+<pre><code>/opt/elasticsearch/bin/plugin install mobz/elasticsearch-head
+</code></pre><p>通过浏览器访问：192.168.2.42:9200/_plugin/head</p>
+<p>关闭集群命令：</p>
+<pre><code>http://192.168.2.42:9200/_cluster/nodes/_shutdown
+</code></pre><p>查看集群健康：</p>
+<pre><code>http://192.168.2.42:9200/_cluster/health
+</code></pre><p>安装启动管理工具，地址github.com/elastic/elasticsearch-servicewrapper.git（停止维护？）</p>
+<pre><code>git clone https://github.com/elastic/elasticsearch-servicewrapper.git
+cd elasticsearch-servicewrapper/
+mv service/ /usr/local/elasticsearch/bin/
+/usr/local/elasticsearch/bin/service/elasticsearch install
+cat /etc/init.d/elasticsearch
+cd /usr/local/elasticsearch/bin/service
+</code></pre><p>设置es启动管理工具的配置文件，通过service启动</p>
+<pre><code>vim elasticsearch.conf
+service elasticsearch status
+</code></pre><h4 id="4、安装Logstash-2-1-1"><a href="#4、安装Logstash-2-1-1" class="headerlink" title="4、安装Logstash 2.1.1"></a>4、安装Logstash 2.1.1</h4><p>下载Logstash 2.1.1，建立软连接</p>
+<pre><code>cd /usr/local/src/
+wget https://download.elastic.co/logstash/logstash/logstash-2.1.1.tar.gz
+tar xf logstash-2.1.1.tar.gz
+mv logstash-2.1.1 /usr/local/
+cd /usr/local/
+ln -s /usr/local/logstash-2.1.1 /usr/local/logstash
+</code></pre><p>通过service启动logstash，启动文件项目地址<a href="https://github.com/unixhot/elk-config" target="_blank" rel="external">https://github.com/unixhot/elk-config</a></p>
+<pre><code>git clone https://github.com/unixhot/elk-config.git
+cd elk-config
+cp logstash.init /etc/init.d/logstash
+chmod +x /etc/init.d/logstash
+</code></pre><p>编辑配置文件，根据环境修改</p>
+<pre><code>vim /etc/logstash.conf
+/usr/local/logstash/bin/logstash -f /etc/logstash.conf --configtest
+/etc/init.d/logstash start
+</code></pre><p>测试logstash</p>
+<pre><code>/opt/logstash/bin/logstash -e &apos;input { stdin{} } output { stdout{ codec =&gt; rubydebug} }&apos;
+hello world
+</code></pre><p>logstash把数据写入es中</p>
+<pre><code>/opt/logstash/bin/logstash -e &apos;input { stdin{} } output {  elasticsearch { hosts =&gt; &quot;your ip address&quot;  }  stdout{} }&apos;
+</code></pre><p>通过浏览器访问elasticsearch，查看logstash key下是否有新插入的数据：IP:9200/_plugin/head</p>
+<p>通过-f参数指定配置文件启动</p>
+<pre><code>/opt/logstash/bin/logstash -f /etc/logstash.conf
+</code></pre><p>编写配置文件配置文件（例）</p>
+<p>cat /etc/logstash.conf</p>
+<pre><code>#输入
+input {
+    file {
+        path =&gt; &quot;/path/to/your/logs/*&quot;
+        type =&gt; &quot;type_1&quot;
+        #start_position =&gt; &quot;beginning&quot;
+        #multiline多行，用于java日志
+        codec =&gt; multiline {
+            pattern =&gt; &quot;^\[&quot;
+            negate =&gt; true
+            what =&gt; previous
+        }
+    }
+    file { 
+        path =&gt; &quot;/path/to/your/logs2/*&quot;
+        type =&gt; &quot;type_2&quot;
+        codec =&gt; multiline {
+            pattern =&gt; &quot;^%{TIMESTAMP_ISO8601}&quot;
+            negate =&gt; true
+            what =&gt; previous
+        }
+    }
+
+}
+
+#输出
+output {
+    #根据key类型判断，写入到elasticsearch的哪一个key中
+    if [type] == &quot;type_1&quot;  {
+        elasticsearch {
+            hosts =&gt; &quot;192.168.2.42&quot;
+            index =&gt; &quot;type_1-%{+YYYY-MM}&quot;
+        }
+    }
+    if [type] == &quot;type_2&quot;  {
+        elasticsearch {
+            hosts =&gt; &quot;192.168.2.42&quot;
+            index =&gt; &quot;type_2-%{+YYYY-MM}&quot;
+        } 
+    }
+
+}
+</code></pre><p>测试：匹配分、时、[</p>
+<pre><code>input {
+    stdin {
+        type =&gt; &quot;test01&quot;
+        #start_position =&gt; &quot;beginning&quot;
+        codec =&gt; multiline {
+            pattern =&gt; &quot;^[0-1][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]|^\[&quot;
+            negate =&gt; true
+            what =&gt; previous
+        }
+    }
+ }
+output {
+    if [type] == &quot;test01&quot;  {
+        elasticsearch {
+            hosts =&gt; &quot;192.168.2.42&quot;
+             index =&gt; &quot;test01-%{+YYYY-MM}&quot;
+         }
+    }
+    stdout {
+        codec =&gt; rubydebug
+    }
+}
+</code></pre><h4 id="5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x"><a href="#5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x" class="headerlink" title="5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)"></a>5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)</h4><p>下载安装kibana4.3.1</p>
+<pre><code>cd /usr/local/src/
+wget https://download.elastic.co/kibana/kibana/kibana-4.3.1-linux-x64.tar.gz
+tar xf kibana-4.3.1-linux-x64.tar.gz
+mv kibana-4.3.1-linux-x64/ /usr/local/
+ln -s /usr/local/kibana-4.3.1-linux-x64/ /usr/local/kibana
+</code></pre><p>修改启动文件中elasticsearch的url地址</p>
+<pre><code>vim /usr/local/kibana/config/kibana.yml
+</code></pre><p>elasticsearch.url: “<a href="http://192.168.2.42:9200" target="_blank" rel="external">http://192.168.2.42:9200</a>“</p>
+<p>启动kibana</p>
+<pre><code>screen kibana
+cd kibana-4.3.1-linux-x64/bin
+./kibana
+#nohup ./kibana &amp;
+</code></pre><p>查看启动是否成功</p>
+<pre><code>netstat -lntup | grep 5601
+</code></pre><p>访问kibana</p>
+<pre><code>http://192.168.2.42:5601/
+</code></pre><p>nginx代理kibana配置验证<br>生成用户认证的用户名和密码</p>
+<pre><code>htpasswd -c /usr/local/nginx/conf/kibana.auth admin
+ll /usr/local/nginx/conf/kibana.auth
+</code></pre><p>为Nginx添加auth认证配置</p>
+<p>编辑nginx配置文件：</p>
+<pre><code>vim /etc/nginx/nginx.conf
+</code></pre><p>添加如下：</p>
+<pre><code>include extra/kibana.conf;
+</code></pre><p>编辑nginx配置文件：</p>
+<pre><code>vim /etc/nginx/extra/kibana.conf
+</code></pre><p>添加如下：</p>
+<pre><code>server {
+    listen    80;
+    server_name    kibana.example.com;
+    access_log    /var/log/nginx/kibana.srv-log-dev.log;
+    error_log    /var/log/nginx/kibana.srv-log-dev.error.log;
+
+    #ssl    on;
+    #ssl_certificate    /etc/nginx/ssl/all.crt;
+    #ssl_certificate_key    /etc/nginx/ssl/server_nopass.key;
+
+    location / {
+    #location ~ ^/kibana4/.* {
+        proxy_pass    http://kibana4;
+        rewrite ^/kibana4/(.*) /$1 break;
+        auth_basic &quot;Authorized users only,for search...&quot;;
+        auth_basic_user_file    /usr/local/nginx/conf/kibana.auth;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    Host $host;
+        #auth_basic    &quot;Restricted&quot;;
+        #auth_basic_user_file    /etc/nginx/conf.d/kibana.myhost.org.htpasswd;
+    }
+}
+</code></pre><p>重启nginx</p>
+<pre><code>/usr/sbin/nginx -t
+/usr/sbin/nginx -s reload
+</code></pre><p>访问nginx</p>
+<pre><code>http://kibana.example.com
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fed0ra.github.io/2016/02/15/123/" data-id="cikndm6bw0000s0gshszeilnk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/02/15/ELKstack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ELKstack</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/02/15/123/">ELKstack</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/15/ELKstack/">ELKstack</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/15/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/14/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 990370200@qq.com<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
