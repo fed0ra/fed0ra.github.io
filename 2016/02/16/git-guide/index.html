@@ -15,7 +15,7 @@ Pull Request在Forking工作流中使用示例适用于小团队的开发协作�
 <meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
 Pull Request在Forking工作流中使用示例适用于小团队的开发协作和第三方开发者向开源项目的贡献。
 示例中，A是个开发，B是项目维护者。各自有一个公开的github仓库，而B的仓库包含了正式工程">
-<meta property="og:updated_time" content="2016-02-16T02:33:22.531Z">
+<meta property="og:updated_time" content="2016-02-16T08:19:14.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git guide">
 <meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
@@ -231,7 +231,7 @@ Pull Request在Forking工作流中使用示例适用于小团队的开发协作�
         <section id="main"><article id="post-git-guide" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/02/16/git-guide/" class="article-date">
-  <time datetime="2016-02-16T02:59:52.366Z" itemprop="datePublished">2016-02-16</time>
+  <time datetime="2016-02-16T10:05:57.788Z" itemprop="datePublished">2016-02-16</time>
 </a>
     
   </div>
@@ -250,31 +250,32 @@ Pull Request在Forking工作流中使用示例适用于小团队的开发协作�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Pull-Request在Forking工作流中使用示例"><a href="#Pull-Request在Forking工作流中使用示例" class="headerlink" title="Pull Request在Forking工作流中使用示例"></a><strong>Pull Request在Forking工作流中使用示例</strong></h2><p>适用于小团队的开发协作和第三方开发者向开源项目的贡献。</p>
 <p>示例中，A是个开发，B是项目维护者。各自有一个公开的<code>github</code>仓库，而B的仓库包含了正式工程</p>
 <a id="more"></a>
 <h4 id="A-fork正式项目"><a href="#A-fork正式项目" class="headerlink" title="A fork正式项目"></a><strong>A fork正式项目</strong></h4><p>A先要<code>fork</code>B的<code>github</code>t仓库，开始项目的开发。A登陆<code>github</code>，浏览到B的仓库页面，点<code>Fork</code>按钮。</p>
 <h4 id="A克隆自己的github仓库"><a href="#A克隆自己的github仓库" class="headerlink" title="A克隆自己的github仓库"></a><strong>A克隆自己的github仓库</strong></h4><p>A克隆自己刚才<code>fork</code>出来的<code>github</code>仓库，以在本机上准备出工作拷贝。</p>
 <p><code>git clone</code>会自动创建<code>origin</code>远程别名，是指向之前<code>fork</code>出来的仓库。命令如下：</p>
-<pre><code>git clone https://user@bitbucket.org/user/repo.git
+<pre><code>$ git clone https://user@bitbucket.org/user/repo.git
 </code></pre><h4 id="A开发新功能"><a href="#A开发新功能" class="headerlink" title="A开发新功能"></a><strong>A开发新功能</strong></h4><p>改代码前，A要为新功能先新建一个新分支,用这个分支作为Pull Request的源分支。</p>
 <p>创建并切换分支，命令如下：</p>
-<pre><code>git checkout -b new-branch
+<pre><code>$ git checkout -b new-branch
 
 *编辑代码，开发新功能*
 </code></pre><p>提交，命令如下：</p>
-<pre><code>git add .
-git add --update .
-git commit -a -m “Add first draft of some feature”
+<pre><code>$ git add .
+$ git add --update .
+$ git commit -a -m “Add first draft of some feature”
 </code></pre><h4 id="A-push功能到她的github仓库中"><a href="#A-push功能到她的github仓库中" class="headerlink" title="A push功能到她的github仓库中"></a><strong>A push功能到她的github仓库中</strong></h4><p>A完成了功能后，<code>push</code>功能到她自己的<code>github</code>仓库中（不是正式仓库），用下面简单的命令：</p>
-<pre><code>git push origin new-branch
+<pre><code>$ git push origin new-branch
 </code></pre><h4 id="A发起Pull-Request-and-B-review-Pull-Request"><a href="#A发起Pull-Request-and-B-review-Pull-Request" class="headerlink" title="A发起Pull Request and B review Pull Request"></a><strong>A发起Pull Request and B review Pull Request</strong></h4><p>New pull request…略</p>
+<p><a href="#top">返回顶部</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://fed0ra.github.io/2016/02/16/git-guide/" data-id="cikotpye7000320gsfx4a98vs" class="article-share-link">Share</a>
+      <a data-url="http://fed0ra.github.io/2016/02/16/git-guide/" data-id="cikp93a8b00020cgsnev6tnfg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -283,7 +284,7 @@ git commit -a -m “Add first draft of some feature”
     
 <nav id="article-nav">
   
-    <a href="/2016/02/16/high/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/02/16/Hexo/high/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -293,9 +294,9 @@ git commit -a -m “Add first draft of some feature”
     </a>
   
   
-    <a href="/2016/02/15/ELKstack/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/02/16/Hexo/fed0ra.github.io/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">ELKstack</div>
+      <div class="article-nav-title">Windows下使用 GitHub Pages + Hexo搭建博客</div>
     </a>
   
 </nav>
@@ -332,7 +333,15 @@ git commit -a -m “Add first draft of some feature”
       <ul>
         
           <li>
-            <a href="/2016/02/16/high/">High 一下</a>
+            <a href="/2016/02/16/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建（一步到位）（持续更新。。。）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/16/ELKstack/ELKstack/">ELKstack</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/16/Hexo/high/">High 一下</a>
           </li>
         
           <li>
@@ -340,15 +349,7 @@ git commit -a -m “Add first draft of some feature”
           </li>
         
           <li>
-            <a href="/2016/02/15/ELKstack/">ELKstack</a>
-          </li>
-        
-          <li>
-            <a href="/2016/02/15/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
-          </li>
-        
-          <li>
-            <a href="/2016/02/15/hello-world/">Hello World</a>
+            <a href="/2016/02/16/Hexo/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
           </li>
         
       </ul>

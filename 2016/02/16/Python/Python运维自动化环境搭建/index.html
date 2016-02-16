@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python运维自动化开发环境搭建（一步到位）（持续更新。。。） | Fed0ra&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+一、Eclipse+PyDev插件搭建Python开发环境
+二、Eclipse报错问题
+三、MySQL和Python模块
+四、Python的easy_install和pip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python运维自动化开发环境搭建（一步到位）（持续更新。。。）">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/index.html">
+<meta property="og:site_name" content="Fed0ra's blog">
+<meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+一、Eclipse+PyDev插件搭建Python开发环境
+二、Eclipse报错问题
+三、MySQL和Python模块
+四、Python的easy_install和pip">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%201.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%202.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E8%AE%BF%E9%97%AEsamba.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/login%20samba.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E6%98%A0%E5%B0%84%E7%BD%91%E7%BB%9C%E9%A9%B1%E5%8A%A8%E5%99%A8.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%20default%20workbase%201.png">
+<meta property="og:updated_time" content="2016-02-16T10:02:50.336Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python运维自动化开发环境搭建（一步到位）（持续更新。。。）">
+<meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+一、Eclipse+PyDev插件搭建Python开发环境
+二、Eclipse报错问题
+三、MySQL和Python模块
+四、Python的easy_install和pip">
+  
+    <link rel="alternate" href="/atom.xml" title="Fed0ra&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fed0ra&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">mean</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+
+		
+		<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+		
+		
+		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://fed0ra.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python/Python运维自动化环境搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/16/Python/Python运维自动化环境搭建/" class="article-date">
+  <time datetime="2016-02-16T10:06:37.708Z" itemprop="datePublished">2016-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python运维自动化开发环境搭建（一步到位）（持续更新。。。）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、Eclipse+PyDev插件搭建Python开发环境</a></p>
+<p><a href="#二">二、Eclipse报错问题</a></p>
+<p><a href="#三">三、MySQL和Python模块</a></p>
+<p><a href="#四">四、Python的easy_install和pip</a><br><a id="more"></a><br><a href="#五">五、Windows结合Linux开发环境（samba+映射磁盘）</a></p>
+<hr>
+<h2 id="一、Eclipse-PyDev插件搭建Python开发环境"><a href="#一、Eclipse-PyDev插件搭建Python开发环境" class="headerlink" title="一、Eclipse+PyDev插件搭建Python开发环境"></a><span id="一">一、Eclipse+PyDev插件搭建Python开发环境</span></h2><p><strong>编辑器: Eclipse + pydev插件</strong></p>
+<ol>
+<li>Eclipse是写JAVA的IDE， 这样就可以通用了,学习代价小。  学会了Eclipse, 以后写Python或者JAVA 都可以。</li>
+<li>Eclipse, 功能强大。</li>
+<li>Eclipse跨平台， 可以在Mac上和Windows运行</li>
+</ol>
+<h4 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h4><ul>
+<li>下载Python</li>
+</ul>
+<p>下载地址：<code>http://www.python.org/</code></p>
+<p>Python有Python2和Python3两个版本，语法有些区别。保险起见,我安装Python 2.7.6</p>
+<ul>
+<li>下载JAVA JDK</li>
+</ul>
+<p>下载地址：<code>http://www.oracle.com/technetwork/java/javase/downloads/index.html</code></p>
+<p>Eclipse 需要这个安装好JAVA JDK后才能运行</p>
+<ul>
+<li>下载Eclipse</li>
+</ul>
+<p>下载地址：<code>http://www.eclipse.org/downloads/</code></p>
+<p>下载完后，解压就可以直接使用，Eclipse不需要安装。</p>
+<ul>
+<li>pydev插件介绍</li>
+</ul>
+<p>pydev插件的官方网站: <code>http://www.pydev.org/</code>（不需要下载）</p>
+<h4 id="2-安装JDK6"><a href="#2-安装JDK6" class="headerlink" title="2.安装JDK6"></a>2.安装JDK6</h4><p>JDK的安装很容易的，一般一直点下一步即可。多数教程都说，安装完JDK需要设置环境变量，但如今的IDE已经不再通过环境变量来查找JDK的路径了，所以这个不设也罢。 </p>
+<h4 id="3-安装Eclipse和Python"><a href="#3-安装Eclipse和Python" class="headerlink" title="3.安装Eclipse和Python"></a>3.安装Eclipse和Python</h4><p>Eclipse是绿色软件，找个地方解压一下就OK了 。Python的安装就更不用说了，一般点下一步即可。</p>
+<h4 id="4-给Eclipse安装PyDev插件"><a href="#4-给Eclipse安装PyDev插件" class="headerlink" title="4.给Eclipse安装PyDev插件"></a>4.给Eclipse安装PyDev插件</h4><p>启用Eclipse，如果前面的步骤都正确无误的话，那么Eclipse就该能够正常启动了。 第一次启动会让你选择一个工作空间，按缺省设置，勾选一下不再提醒，就可以了。</p>
+<p>如果启动Eclipse打开出现<code>“no java virtual machine was found....&quot;</code>，或Eclipse无法打开<code>“Failed to load the JNI shared library”</code>看文章第二部分</p>
+<p><strong>方法一：（PyDev的更新地址不好确定，一般使用方法二）</strong></p>
+<p>启动Eclipse后，在<code>Help</code>菜单中，选择<code>Install New Software···</code>， 选择<code>Add</code>按钮，<code>Name：PyDev</code>（这个随便起），<code>Location：http://pydev.org/updates</code>（PyDev的更新地址），OK</p>
+<p>选择<code>PyDev</code>下的<code>PyDev for Eclipse</code>，别的都不要选，否则依赖检查那关过不去。点下一步，下一步安装。中间会问你是否信任Aptana、Pydev什么的，信任就可以了。</p>
+<p>最后重启Eclipse</p>
+<p><strong>方法二：</strong></p>
+<p>在<code>Window</code>菜单中选<code>Help -&gt; Eclipse Marketplace -&gt; Search - PyDev - Installed</code>，等待。</p>
+<p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%201.png" alt="python env 1"><br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%202.png" alt="python env 2"></p>
+<h4 id="5-配置PyDev插件"><a href="#5-配置PyDev插件" class="headerlink" title="5.配置PyDev插件"></a>5.配置PyDev插件</h4><p>在<code>Window</code>菜单中选<code>Preference</code></p>
+<ul>
+<li><code>PyDev-&gt;Interpreter - Python</code>，New一个Python解释器，填上解释器名字和路径，路径选相应的python.exe。 </li>
+</ul>
+<p>　　以下几步Python 3.x必选，Python2随意。比较习惯Unicode，所以一次性在这儿设定了。</p>
+<ul>
+<li><code>General-&gt;Editors-&gt;Text Editors-&gt;Spelling</code>，Encoding改成<code>Other:UTF-8</code></li>
+<li><code>General-&gt;Workspace</code>，Text file encoding改成<code>Other:UTF-8</code></li>
+<li>找到安装目录下的<code>\plugins\org.python.pydev.debug_x.x.x.yyyymmddhh\pysrc\pydevd.py</code></li>
+</ul>
+<p>　　920行的<code>encoding = Non</code>改成<code>encoding = &quot;UTF-8&quot;</code>，保存。</p>
+<p>至此，PyDev的配置就完成了。</p>
+<h4 id="6-测试"><a href="#6-测试" class="headerlink" title="6.测试"></a>6.测试</h4><p>File-&gt;New-&gt;Project，选PyDev下的PyDev Project，Grammer和Interpreter选相应的版本，Finish。 </p>
+<p>在PyDev Package Explorer的项目上右键，New-&gt;PyDev Module，随便写个名字，Finish。</p>
+<p>然后随便写几行代码，Run</p>
+<p>在弹出的对话框中选择Python Run</p>
+<p>OK</p>
+<h4 id="7-注释"><a href="#7-注释" class="headerlink" title="7.注释"></a>7.注释</h4><p>注1：这里说明一下，JDK和Eclispse好像得同为32位或者64位的，否则有可能遇到问题。我第一次尝试是用的64位JDK+32位Eclipse的组合，就碰到了和这里<code>http://superuser.com/questions/186001/eclipse-failed-to-load-the-jni-shared-library</code>一样的问题，于是换了32位JDK。 </p>
+<p>注2：我想做GAE的开发，所以选了版本2.6.6，一般情况下选最新版即可。</p>
+<p>注3：PyDev Mylyn Integration (optional)：这个依赖于PyDev for Eclipse，你得装完后者就可以装了。 PyDev Django Templates Editor：这个需要Aptana Studio 3。</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、Eclipse报错问题"><a href="#二、Eclipse报错问题" class="headerlink" title="二、Eclipse报错问题"></a><span id="二">二、Eclipse报错问题</span></h2><p><strong>1.Eclipse打开出现no java virtual machine was found</strong></p>
+<p>这个错误一般是环境变量设置错误导致</p>
+<p>在点击计算机开始–&gt;运行后输入<code>cmd</code>出现的窗口里面输入<code>java -version</code>看有没有版本的提示？有的话说明你的JDK是对的，那么就是Eclipse的问题了。</p>
+<p>否则你就要设置环境变量信息了：</p>
+<p>依次点击：“我的电脑”－(右键)“属性”－“高级”－“环境变量”，弹出Windows的“环境变量”配置卡。</p>
+<p>在“系统变量”栏下执行三项操作：</p>
+<ol>
+<li>新建“JAVA_HOME”，值：JDK所在的绝对路径(例如<code>D:\Program Files\Java\jdk1.6.0_43</code>)。</li>
+<li>新建“CLASSPATH”(如果已有，则直接编辑)，值：<code>.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar</code>(若值中原来有内容，用分号与之隔开)。</li>
+<li>新建“PATH”(如果已有，则直接编辑),值：<code>%JAVA_HOME%\bin\;%JAVA_HOME%\jre\bin</code>;(若值中原来有内容，用分号与之隔开)。</li>
+</ol>
+<p><strong>2.Eclipse无法打开“Failed to load the JNI shared library”</strong></p>
+<p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80.png" alt="eclipse error01"></p>
+<p><em>这是因为64的操作系统安装了32位的JDK(或者是32位的eclipse)导致的，换成64位的即可！</em></p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、MySQL和Python模块"><a href="#三、MySQL和Python模块" class="headerlink" title="三、MySQL和Python模块"></a><span id="三">三、MySQL和Python模块</span></h2><h4 id="1-Linux环境"><a href="#1-Linux环境" class="headerlink" title="1. Linux环境"></a><strong>1. Linux环境</strong></h4><p>建议使用Ubuntu系统（开发是在eclipse上，运行代码则需要在Linux系统上，所以需要Linux环境）</p>
+<ul>
+<li><p>安装mysql和python-mysql模块，命令如下：</p>
+<pre><code>$ apt-get install mysql-server python-mysqldb    \\提示输入mysql密码
+</code></pre></li>
+</ul>
+<h4 id="2-Windows环境"><a href="#2-Windows环境" class="headerlink" title="2. Windows环境"></a><strong>2. Windows环境</strong></h4><p><strong>2.1 安装mysql：</strong></p>
+<p>方法一：下载安装包</p>
+<ul>
+<li>MySQL官网<a href="http://dev.mysql.com/downloads/installer/" target="_blank" rel="external">下载安装包</a><code>mysql_installer_community_V5.6.21.1_setup.1415604646.msi</code>，一步步安装</li>
+</ul>
+<p>方法二：mysql免安装版</p>
+<ul>
+<li>MySQL官网<code>Download--&gt;Community--&gt;MySQL Community Server</code>，<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">下载</a> mysql-5.5.47-winx64.zip安装包</li>
+<li>解压，将以下载的MySQL压缩包解压到自定义目录下,我的解压目录是：<code>&quot;F:\MySQL\mysql-5.5.47-winx64&quot;</code></li>
+<li>将解压目录下默认文件 my-default.ini拷贝一份，改名my.ini（如果没有my-default.ini,可自己新建my.ini或者从其他地方中获取）</li>
+<li><p>添加环境变量，操作如下：</p>
+<pre><code>a)    右键单击我的电脑-&gt;属性-&gt;高级系统设置(高级)-&gt;环境变量
+    点击系统变量下的新建按钮
+    输入变量名：MYSQL_HOME
+    输入变量值：D:\Program Files\mysql-5.6.11-winx64
+    #即为mysql的自定义解压目录。
+b)    选择系统变量中的Path
+    点击编辑按钮
+    在变量值中添加变量值：%MYSQL_HOME%\bin
+    注意是在原有变量值后面加上这个变量，用;隔开，不能删除原来的变量值，
+</code></pre></li>
+<li><p>将mysql注册为windows系统服务</p>
+<pre><code>a)从控制台进入（管理员身份运行）到MySQL解压目录下的 bin 目录下：
+b)输入服务安装命令：
+    mysqld.exe install MySQL --defaults-file=&quot;F:\MySQL\mysql-5.5.47-winx64\my.ini&quot;    \\解压目录下修改的my.ini文件
+
+安装成功后会提示服务安装成功。移除服务命令为：mysqld remove
+
+注1：my.ini文件放在MySQL解压后的根目录下
+注2：在windos的cmd下安装mysql，切换到mysql的bin目录下面执行：mysqld --install
+报错信息如下：Install/Remove of the Service Denied
+解决办法：打开cmd.exe程序的时候选择“用管理员身份打开”。
+</code></pre></li>
+<li><p>启动MySQL服务</p>
+<pre><code>方法一：
+    启动服务命令为：net start mysql
+方法二：
+    打开管理工具 服务，找到MySQL服务。
+    通过右键选择启动或者直接点击左边的启动来启动服务。
+</code></pre></li>
+<li><p>修改root账号的密码（刚安装完成时root账号默认密码为空，此时可以将密码修改为指定的密码。如：123456）</p>
+<pre><code>c:&gt;mysql –uroot
+mysql&gt;show databases;
+mysql&gt;use mysql;
+mysql&gt;UPDATE user SET password=PASSWORD(&quot;123456&quot;) WHERE user=&apos;root&apos;;
+mysql&gt;FLUSH PRIVILEGES;
+mysql&gt;QUIT
+</code></pre></li>
+</ul>
+<p><strong>2.2 安装python-mysql模块：MySQL-python-1.2.5.win32-py2.7</strong></p>
+<ul>
+<li><p>前往<a href="https://www.python.org/" target="_blank" rel="external">Python官网</a>–&gt;PyPI–&gt;search MySQL-python，下载MySQL-python-1.2.5.win32-py2.7.exe，下一步下一步安装。</p>
+</li>
+<li><p><em>安装MySQL-python-1.2.5.win32-py2.7报错</em></p>
+<p>  报错：Python version 2.7 required,which was not found in the registry.<br>  解决办法：下载<a href="https://github.com/fed0ra/python-oamad" target="_blank" rel="external">registry.py脚本</a>，把脚本放到任意一盘中执行，运行–&gt;cmd，执行<code>python registry.py</code><br>  例：registry.py脚本在F:\MySQL\data目录下</p>
+<pre><code>&gt;f:    \\F盘
+&gt;cd MySQL/data \\切换到脚本所在路径
+&gt;python registry.py \\执行脚本
+python 2.7 is already registered    \\OK
+</code></pre></li>
+</ul>
+<p><strong>2.3安装WindowsMySQL数据库管理工具：Navicat_for_MySQL</strong></p>
+<ul>
+<li>Navicat数据库管理工具，搜索引擎搜索Navicat，下载安装，过程简单，略。</li>
+</ul>
+<p><strong>2.4总结</strong></p>
+<p>至此，Linux和Windows所需要的环境均安装完成</p>
+<p>环境各自安装完成后，导入MySQLdb测试是否安装成功,如果没报错证明安装成功。</p>
+<ol>
+<li><p>虚拟机安装Ubuntu系统，Ubuntu安装MySQL数据库和python的MySQL模块，命令：</p>
+<pre><code>$ apt-get install mysql-server python-mysqldb
+</code></pre></li>
+<li><p>Windows上，安装MySQL数据库和python的MySQL模块。</p>
+</li>
+</ol>
+<ol>
+<li><p>导入MySQLdb测试MySQL模块是否安装成功，Windows(Linux同)：</p>
+<pre><code>C:\Users\my-pc&gt;python
+Python 2.7.10 (default, May 23 2015, 09:44:00) [MSC v.1500 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import MySQLdb
+&gt;&gt;&gt;
+</code></pre></li>
+</ol>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="四、Python的easy-install和pip"><a href="#四、Python的easy-install和pip" class="headerlink" title="四、Python的easy_install和pip"></a><span id="四">四、Python的easy_install和pip</span></h2><ul>
+<li>为什么要装easy_install?</li>
+</ul>
+<p>easy_install和pip都是用来下载安装Python一个公共资源库PyPI的相关资源包的，那它是干什么的？</p>
+<p>正常情况下，我们要给Python安装第三方的扩展包，我们必须下载压缩包，解压缩到一个目录，然后命令行或者终端打开这个目录，然后执行<code>python setup.py install</code>来进行安装。</p>
+<p>这样很繁琐，如果我们直接命令行执行<code>easy_install 包名</code>就把最新版的包装上去了，是不是很方便。</p>
+<p>所以easy_install就是为了我们安装第三方扩展包更容易而应运而生的。pip同</p>
+<ul>
+<li>如何找到easy_install？</li>
+</ul>
+<p>前往<a href="https://www.python.org/" target="_blank" rel="external">Python官网</a>–&gt;PyPI–&gt;搜索ez_setup或setuptools，就能找到它。</p>
+<ul>
+<li><p>首先安装easy_install</p>
+<p>  $ wget <a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a> -O - | sudo python</p>
+</li>
+<li><p>安装pip：可以通过east_install  pip安装</p>
+<p>  $ easy_install pip</p>
+</li>
+</ul>
+<p>pip改善了不少easy_install的缺点，如此说來pip应该是略胜一筹，不过它还不能够完全取代对方，因為目前有很多套件还是得用easy_install安裝</p>
+<pre><code>easy_install：
+安裝：easy_install PackageName
+更新：easy_install -U PackageName
+移除：easy_install -m PackageName
+帮助：easy_install --showhelp
+pip：
+安裝：pip install PackageName
+更新：pip install -U PackageName
+移除：pip uninstall PackageName
+查找：pip search PackageName
+帮助：pip help
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="五、Windows结合Linux开发环境（samba-映射磁盘）"><a href="#五、Windows结合Linux开发环境（samba-映射磁盘）" class="headerlink" title="五、Windows结合Linux开发环境（samba+映射磁盘）"></a><span id="五">五、Windows结合Linux开发环境（samba+映射磁盘）</span></h2><p>Linux运维开发人员要做自动化，很多时候代码是不能在eclipse上执行的，而是要放到Linux系统下运行，而每次运行代码，都需要先登陆服务器，再将代码上传到虚拟机上，然后运行的做法，麻烦而又效率低。</p>
+<h4 id="在windows-eclipse上开发，代码Linux下运行的方法："><a href="#在windows-eclipse上开发，代码Linux下运行的方法：" class="headerlink" title="在windows eclipse上开发，代码Linux下运行的方法："></a>在windows eclipse上开发，代码Linux下运行的方法：</h4><h4 id="1-需要一个安装好的Ubuntu系统，初始化呢完毕的虚拟机，并安装好samba服务"><a href="#1-需要一个安装好的Ubuntu系统，初始化呢完毕的虚拟机，并安装好samba服务" class="headerlink" title="1. 需要一个安装好的Ubuntu系统，初始化呢完毕的虚拟机，并安装好samba服务"></a>1. 需要一个安装好的Ubuntu系统，初始化呢完毕的虚拟机，并安装好samba服务</h4><p>samba的安装配置使用搜索引擎可以办到，不多说，贴几行命令：</p>
+<pre><code>$ sudo su -
+$ sudo apt-get insall samba
+$ sudo apt-get install smbfs
+$ sudo mkdir -p /home/share/
+$ sudo chmod 777 /home/share/
+$ suco cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
+$ sudo vim /etc/samba/smb.conf
+</code></pre><p>在smb.conf最后添加</p>
+<pre><code>[share]
+  comment = Ubuntu share
+  browseable = yes
+  public = yes
+  path =  /home/share
+  writable = yes
+  guest ok = yes
+</code></pre><h4 id="2-登录samba目录"><a href="#2-登录samba目录" class="headerlink" title="2. 登录samba目录"></a>2. 登录samba目录</h4><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/%E8%AE%BF%E9%97%AEsamba.png" alt="访问samba"><br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/login%20samba.png" alt="login"></p>
+<h4 id="3-登录进去后，右键点击共享目录-share-，点击映射网络驱动器映射个盘符Z"><a href="#3-登录进去后，右键点击共享目录-share-，点击映射网络驱动器映射个盘符Z" class="headerlink" title="3. 登录进去后，右键点击共享目录(share)，点击映射网络驱动器映射个盘符Z"></a>3. 登录进去后，右键点击共享目录(share)，点击映射网络驱动器映射个盘符Z</h4><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/%E6%98%A0%E5%B0%84%E7%BD%91%E7%BB%9C%E9%A9%B1%E5%8A%A8%E5%99%A8.png" alt="映射网络驱动器"></p>
+<h4 id="4-现在可以在我的电脑中找到Z盘符"><a href="#4-现在可以在我的电脑中找到Z盘符" class="headerlink" title="4. 现在可以在我的电脑中找到Z盘符"></a>4. 现在可以在我的电脑中找到Z盘符</h4><h4 id="5-打开eclipse，会有选择workspace的界面，选中映射的磁盘"><a href="#5-打开eclipse，会有选择workspace的界面，选中映射的磁盘" class="headerlink" title="5. 打开eclipse，会有选择workspace的界面，选中映射的磁盘"></a>5. 打开eclipse，会有选择workspace的界面，选中映射的磁盘</h4><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%20default%20workbase%201.png" alt="eclipse default workbase 1"></p>
+<h4 id="6-如果没有这个界面，就是之前勾选了Use-this-the-default-and-do-not-ask-again，在不关闭eclipse前提下，打开第二个eclipse，它会重新让你选择workspace，再选择workspace为映射的盘符，注意这次不要勾选Use-this-the-default-and-do-not-ask-again了"><a href="#6-如果没有这个界面，就是之前勾选了Use-this-the-default-and-do-not-ask-again，在不关闭eclipse前提下，打开第二个eclipse，它会重新让你选择workspace，再选择workspace为映射的盘符，注意这次不要勾选Use-this-the-default-and-do-not-ask-again了" class="headerlink" title="6. 如果没有这个界面，就是之前勾选了Use this the default and do not ask again，在不关闭eclipse前提下，打开第二个eclipse，它会重新让你选择workspace，再选择workspace为映射的盘符，注意这次不要勾选Use this the default and do not ask again了"></a>6. 如果没有这个界面，就是之前勾选了<code>Use this the default and do not ask again</code>，在不关闭eclipse前提下，打开第二个eclipse，它会重新让你选择workspace，再选择workspace为映射的盘符，注意这次不要勾选<code>Use this the default and do not ask again</code>了</h4><h4 id="7-最后，在打开eclipse的中，映射python解释器，具体做法在上面文章中给Eclipse安装PyDev插件的第5小步骤配置PyDev插件中涉及到："><a href="#7-最后，在打开eclipse的中，映射python解释器，具体做法在上面文章中给Eclipse安装PyDev插件的第5小步骤配置PyDev插件中涉及到：" class="headerlink" title="7. 最后，在打开eclipse的中，映射python解释器，具体做法在上面文章中给Eclipse安装PyDev插件的第5小步骤配置PyDev插件中涉及到："></a>7. 最后，在打开eclipse的中，映射python解释器，具体做法在上面文章中<code>给Eclipse安装PyDev插件</code>的第5小步骤<code>配置PyDev插件</code>中涉及到：</h4><ul>
+<li>在<code>Window</code>菜单中选<code>Preference</code></li>
+<li><code>PyDev-&gt;Interpreter - Python</code>，New一个Python解释器，填上解释器名字和路径，路径选相应的python.exe。 </li>
+</ul>
+<p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/" data-id="cikp93a8f00030cgs431gpp3x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/02/16/ELKstack/ELKstack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ELKstack</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/02/16/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建（一步到位）（持续更新。。。）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/16/ELKstack/ELKstack/">ELKstack</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/16/Hexo/high/">High 一下</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/16/git-guide/">git guide</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/16/Hexo/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+		  <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

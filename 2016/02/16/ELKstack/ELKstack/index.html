@@ -6,33 +6,24 @@
   <title>ELKstack | Fed0ra&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-日志收集分析系统（题外话）日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:
-
-根据关键字查询日志详情
-监控系统的运行状况
-统计分析，比如接口的调用次数、执行时间、成功率等
-异常数据自动触发消">
+一、日志收集分析系统（题外话）
+二、LEK介绍
+三、安装部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELKstack">
-<meta property="og:url" content="http://fed0ra.github.io/2016/02/15/ELKstack/index.html">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/16/ELKstack/ELKstack/index.html">
 <meta property="og:site_name" content="Fed0ra's blog">
 <meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-日志收集分析系统（题外话）日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:
-
-根据关键字查询日志详情
-监控系统的运行状况
-统计分析，比如接口的调用次数、执行时间、成功率等
-异常数据自动触发消">
-<meta property="og:updated_time" content="2016-02-15T05:56:40.100Z">
+一、日志收集分析系统（题外话）
+二、LEK介绍
+三、安装部署">
+<meta property="og:updated_time" content="2016-02-16T09:05:22.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELKstack">
 <meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-日志收集分析系统（题外话）日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:
-
-根据关键字查询日志详情
-监控系统的运行状况
-统计分析，比如接口的调用次数、执行时间、成功率等
-异常数据自动触发消">
+一、日志收集分析系统（题外话）
+二、LEK介绍
+三、安装部署">
   
     <link rel="alternate" href="/atom.xml" title="Fed0ra&#39;s blog" type="application/atom+xml">
   
@@ -240,10 +231,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-ELKstack" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-ELKstack/ELKstack" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/15/ELKstack/" class="article-date">
-  <time datetime="2016-02-15T05:56:40.100Z" itemprop="datePublished">2016-02-15</time>
+    <a href="/2016/02/16/ELKstack/ELKstack/" class="article-date">
+  <time datetime="2016-02-16T10:06:25.290Z" itemprop="datePublished">2016-02-16</time>
 </a>
     
   </div>
@@ -262,8 +253,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="日志收集分析系统（题外话）"><a href="#日志收集分析系统（题外话）" class="headerlink" title="日志收集分析系统（题外话）"></a><em>日志收集分析系统（题外话）</em></h2><p>日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:</p>
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、日志收集分析系统（题外话）</a></p>
+<p><a href="#二">二、LEK介绍</a></p>
+<p><a href="#三">三、安装部署</a></p>
+<hr>
+<a id="more"></a>
+<h2 id="一、日志收集分析系统（题外话）"><a href="#一、日志收集分析系统（题外话）" class="headerlink" title="一、日志收集分析系统（题外话）"></a><span id="一">一、日志收集分析系统（题外话）</span></h2><p>日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:</p>
 <ul>
 <li>根据关键字查询日志详情</li>
 <li>监控系统的运行状况</li>
@@ -271,7 +267,6 @@
 <li>异常数据自动触发消息通知</li>
 <li>基于日志的数据挖掘</li>
 </ul>
-<a id="more"></a>
 <p>很多团队在日志方面可能遇到的一些问题有:</p>
 <ul>
 <li>开发人员不能登录线上服务器查看详细日志，经过运维周转费时费力</li>
@@ -288,7 +283,9 @@
 <li>storm</li>
 </ul>
 <p>这些项目功能强大，但对于很多团队来说过于复杂，配置和部署比较麻烦，在系统规模大到一定程度前推荐轻量级下载即用的方案；<br>比如logstash+elasticsearch+kibana(LEK)组合；<br>对于日志来说，最常见的需求就是收集、查询、显示，正对应logstash、elasticsearch、kibana的功能。</p>
-<h2 id="LEK介绍"><a href="#LEK介绍" class="headerlink" title="LEK介绍"></a><strong>LEK介绍</strong></h2><h4 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h4><ul>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、LEK介绍"><a href="#二、LEK介绍" class="headerlink" title="二、LEK介绍"></a><span id="二">二、LEK介绍</span></h2><h4 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h4><ul>
 <li><p>logstash部署简单，下载一个jar就可以用了，对日志的处理逻辑也很简单，就是一个pipeline的过程：</p>
 <p>  inputs &gt;&gt; codecs &gt;&gt; filters &gt;&gt; outputs.</p>
 </li>
@@ -307,7 +304,9 @@
 <li>restful api</li>
 </ul>
 <h4 id="kibana"><a href="#kibana" class="headerlink" title="kibana"></a>kibana</h4><p>kibana是一个功能强大的elasticsearch数据显示客户端，logstash已经内置了kibana；<br>你也可以单独部署kibana，最新版的kibana3是纯html+js客户端，可以很方便的部署到Apache、Nginx等Http服务器。</p>
-<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a><strong>安装部署</strong></h2><h4 id="1、安装java-推荐1-7-版本"><a href="#1、安装java-推荐1-7-版本" class="headerlink" title="1、安装java(推荐1.7+版本)"></a>1、安装java(推荐1.7+版本)</h4><pre><code>$ java -version
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、安装部署"><a href="#三、安装部署" class="headerlink" title="三、安装部署"></a><span id="三">三、安装部署</span></h2><h4 id="1、安装java-推荐1-7-版本"><a href="#1、安装java-推荐1-7-版本" class="headerlink" title="1、安装java(推荐1.7+版本)"></a>1、安装java(推荐1.7+版本)</h4><pre><code>$ java -version
 </code></pre><p>安装略</p>
 <h4 id="2、安装redis"><a href="#2、安装redis" class="headerlink" title="2、安装redis"></a>2、安装redis</h4><pre><code>$ wget http://download.redis.io/releases/redis-3.0.6.tar.gz
 $ tar xf redis-3.0.6.tar.gz
@@ -325,7 +324,9 @@ $ redis&gt; set foo bar
 OK
 $ redis&gt; get foo
 &quot;bar&quot;
-</code></pre><h4 id="3、安装Elasticsearch-2-1-1"><a href="#3、安装Elasticsearch-2-1-1" class="headerlink" title="3、安装Elasticsearch 2.1.1"></a><strong>3、安装Elasticsearch 2.1.1</strong></h4><p>下载解压、建立软连接：</p>
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h4 id="3、安装Elasticsearch-2-1-1"><a href="#3、安装Elasticsearch-2-1-1" class="headerlink" title="3、安装Elasticsearch 2.1.1"></a><strong>3、安装Elasticsearch 2.1.1</strong></h4><p>下载解压、建立软连接：</p>
 <pre><code>$ cd /usr/local/src/
 $ wget https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.1.1/elasticsearch-2.1.1.tar.gz
 $ tar xf elasticsearch-2.1.1.tar.gz
@@ -392,7 +393,9 @@ $ cd /usr/local/elasticsearch/bin/service
 </code></pre><p>设置es启动管理工具的配置文件，通过service启动</p>
 <pre><code>$ vim elasticsearch.conf
 $ service elasticsearch status
-</code></pre><h4 id="4、安装Logstash-2-1-1"><a href="#4、安装Logstash-2-1-1" class="headerlink" title="4、安装Logstash 2.1.1"></a>4、安装Logstash 2.1.1</h4><p>下载Logstash 2.1.1，建立软连接</p>
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h4 id="4、安装Logstash-2-1-1"><a href="#4、安装Logstash-2-1-1" class="headerlink" title="4、安装Logstash 2.1.1"></a>4、安装Logstash 2.1.1</h4><p>下载Logstash 2.1.1，建立软连接</p>
 <pre><code>$ cd /usr/local/src/
 $ wget https://download.elastic.co/logstash/logstash/logstash-2.1.1.tar.gz
 $ tar xf logstash-2.1.1.tar.gz
@@ -483,7 +486,9 @@ output {
         codec =&gt; rubydebug
     }
 }
-</code></pre><h4 id="5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x"><a href="#5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x" class="headerlink" title="5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)"></a>5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)</h4><p>下载安装kibana4.3.1</p>
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h4 id="5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x"><a href="#5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x" class="headerlink" title="5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)"></a>5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)</h4><p>下载安装kibana4.3.1</p>
 <pre><code>$ cd /usr/local/src/
 $ wget https://download.elastic.co/kibana/kibana/kibana-4.3.1-linux-x64.tar.gz
 $ tar xf kibana-4.3.1-linux-x64.tar.gz
@@ -541,11 +546,12 @@ $ ll /usr/local/nginx/conf/kibana.auth
 $ /usr/sbin/nginx -s reload
 </code></pre><p>访问nginx</p>
 <pre><code>http://kibana.example.com
-</code></pre>
+</code></pre><p><a href="#top">返回目录</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://fed0ra.github.io/2016/02/15/ELKstack/" data-id="cikotpyd9000020gsy0e9vsp2" class="article-share-link">Share</a>
+      <a data-url="http://fed0ra.github.io/2016/02/16/ELKstack/ELKstack/" data-id="cikp93a7g00000cgsrtoadllo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -554,19 +560,19 @@ $ /usr/sbin/nginx -s reload
     
 <nav id="article-nav">
   
-    <a href="/2016/02/16/git-guide/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/02/16/Python/Python运维自动化环境搭建/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          git guide
+          Python运维自动化开发环境搭建（一步到位）（持续更新。。。）
         
       </div>
     </a>
   
   
-    <a href="/2016/02/15/fed0ra.github.io/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/02/16/Hexo/high/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Windows下使用 GitHub Pages + Hexo搭建博客</div>
+      <div class="article-nav-title">High 一下</div>
     </a>
   
 </nav>
@@ -603,7 +609,15 @@ $ /usr/sbin/nginx -s reload
       <ul>
         
           <li>
-            <a href="/2016/02/16/high/">High 一下</a>
+            <a href="/2016/02/16/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建（一步到位）（持续更新。。。）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/16/ELKstack/ELKstack/">ELKstack</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/16/Hexo/high/">High 一下</a>
           </li>
         
           <li>
@@ -611,15 +625,7 @@ $ /usr/sbin/nginx -s reload
           </li>
         
           <li>
-            <a href="/2016/02/15/ELKstack/">ELKstack</a>
-          </li>
-        
-          <li>
-            <a href="/2016/02/15/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
-          </li>
-        
-          <li>
-            <a href="/2016/02/15/hello-world/">Hello World</a>
+            <a href="/2016/02/16/Hexo/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
           </li>
         
       </ul>
