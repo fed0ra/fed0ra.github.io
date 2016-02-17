@@ -6,19 +6,13 @@
   <title>Python运维自动化开发环境搭建（更新。。。） | Fed0ra&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-一、Eclipse+PyDev插件搭建Python开发环境
-二、Eclipse报错问题
-三、MySQL和Python模块
-四、Python的easy_install和pip">
+一、Eclipse+PyDev插件搭建Python开发环境二、Eclipse报错问题三、MySQL和Python模块四、Python的easy_install和pip五、Windows结合Linux开发环境（samba+映射磁盘）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python运维自动化开发环境搭建（更新。。。）">
-<meta property="og:url" content="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/index.html">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/17/Python/Python运维自动化环境搭建/index.html">
 <meta property="og:site_name" content="Fed0ra's blog">
 <meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-一、Eclipse+PyDev插件搭建Python开发环境
-二、Eclipse报错问题
-三、MySQL和Python模块
-四、Python的easy_install和pip">
+一、Eclipse+PyDev插件搭建Python开发环境二、Eclipse报错问题三、MySQL和Python模块四、Python的easy_install和pip五、Windows结合Linux开发环境（samba+映射磁盘）">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%201.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%202.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80.png">
@@ -26,14 +20,11 @@
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/login%20samba.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E6%98%A0%E5%B0%84%E7%BD%91%E7%BB%9C%E9%A9%B1%E5%8A%A8%E5%99%A8.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%20default%20workbase%201.png">
-<meta property="og:updated_time" content="2016-02-16T10:13:42.537Z">
+<meta property="og:updated_time" content="2016-02-17T02:08:04.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python运维自动化开发环境搭建（更新。。。）">
 <meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-一、Eclipse+PyDev插件搭建Python开发环境
-二、Eclipse报错问题
-三、MySQL和Python模块
-四、Python的easy_install和pip">
+一、Eclipse+PyDev插件搭建Python开发环境二、Eclipse报错问题三、MySQL和Python模块四、Python的easy_install和pip五、Windows结合Linux开发环境（samba+映射磁盘）">
   
     <link rel="alternate" href="/atom.xml" title="Fed0ra&#39;s blog" type="application/atom+xml">
   
@@ -243,8 +234,8 @@
       <div class="outer">
         <section id="main"><article id="post-Python/Python运维自动化环境搭建" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/16/Python/Python运维自动化环境搭建/" class="article-date">
-  <time datetime="2016-02-16T10:13:42.537Z" itemprop="datePublished">2016-02-16</time>
+    <a href="/2016/02/17/Python/Python运维自动化环境搭建/" class="article-date">
+  <time datetime="2016-02-17T02:08:04.960Z" itemprop="datePublished">2016-02-17</time>
 </a>
     
   </div>
@@ -264,11 +255,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<p><a href="#一">一、Eclipse+PyDev插件搭建Python开发环境</a></p>
-<p><a href="#二">二、Eclipse报错问题</a></p>
-<p><a href="#三">三、MySQL和Python模块</a></p>
-<p><a href="#四">四、Python的easy_install和pip</a><br><a id="more"></a><br><a href="#五">五、Windows结合Linux开发环境（samba+映射磁盘）</a></p>
+<p><a href="#一">一、Eclipse+PyDev插件搭建Python开发环境</a><br><a href="#二">二、Eclipse报错问题</a><br><a href="#三">三、MySQL和Python模块</a><br><a href="#四">四、Python的easy_install和pip</a><br><a href="#五">五、Windows结合Linux开发环境（samba+映射磁盘）</a></p>
 <hr>
+<a id="more"></a>
 <h2 id="一、Eclipse-PyDev插件搭建Python开发环境"><a href="#一、Eclipse-PyDev插件搭建Python开发环境" class="headerlink" title="一、Eclipse+PyDev插件搭建Python开发环境"></a><span id="一">一、Eclipse+PyDev插件搭建Python开发环境</span></h2><p><strong>编辑器: Eclipse + pydev插件</strong></p>
 <ol>
 <li>Eclipse是写JAVA的IDE， 这样就可以通用了,学习代价小。  学会了Eclipse, 以后写Python或者JAVA 都可以。</li>
@@ -276,70 +265,38 @@
 <li>Eclipse跨平台， 可以在Mac上和Windows运行</li>
 </ol>
 <h4 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h4><ul>
-<li>下载Python</li>
+<li>下载Python<br>下载地址：<code>http://www.python.org/</code><br>Python有Python2和Python3两个版本，语法有些区别。保险起见,我安装Python 2.7.6  </li>
+<li>下载JAVA JDK<br>下载地址：<code>http://www.oracle.com/technetwork/java/javase/downloads/index.html</code><br>Eclipse 需要这个安装好JAVA JDK后才能运行</li>
+<li>下载Eclipse<br>下载地址：<code>http://www.eclipse.org/downloads/</code><br>下载完后，解压就可以直接使用，Eclipse不需要安装。</li>
+<li>pydev插件介绍<br>pydev插件的官方网站: <code>http://www.pydev.org/</code>（不需要下载）</li>
 </ul>
-<p>下载地址：<code>http://www.python.org/</code></p>
-<p>Python有Python2和Python3两个版本，语法有些区别。保险起见,我安装Python 2.7.6</p>
-<ul>
-<li>下载JAVA JDK</li>
-</ul>
-<p>下载地址：<code>http://www.oracle.com/technetwork/java/javase/downloads/index.html</code></p>
-<p>Eclipse 需要这个安装好JAVA JDK后才能运行</p>
-<ul>
-<li>下载Eclipse</li>
-</ul>
-<p>下载地址：<code>http://www.eclipse.org/downloads/</code></p>
-<p>下载完后，解压就可以直接使用，Eclipse不需要安装。</p>
-<ul>
-<li>pydev插件介绍</li>
-</ul>
-<p>pydev插件的官方网站: <code>http://www.pydev.org/</code>（不需要下载）</p>
 <h4 id="2-安装JDK6"><a href="#2-安装JDK6" class="headerlink" title="2.安装JDK6"></a>2.安装JDK6</h4><p>JDK的安装很容易的，一般一直点下一步即可。多数教程都说，安装完JDK需要设置环境变量，但如今的IDE已经不再通过环境变量来查找JDK的路径了，所以这个不设也罢。 </p>
 <h4 id="3-安装Eclipse和Python"><a href="#3-安装Eclipse和Python" class="headerlink" title="3.安装Eclipse和Python"></a>3.安装Eclipse和Python</h4><p>Eclipse是绿色软件，找个地方解压一下就OK了 。Python的安装就更不用说了，一般点下一步即可。</p>
-<h4 id="4-给Eclipse安装PyDev插件"><a href="#4-给Eclipse安装PyDev插件" class="headerlink" title="4.给Eclipse安装PyDev插件"></a>4.给Eclipse安装PyDev插件</h4><p>启用Eclipse，如果前面的步骤都正确无误的话，那么Eclipse就该能够正常启动了。 第一次启动会让你选择一个工作空间，按缺省设置，勾选一下不再提醒，就可以了。</p>
-<p>如果启动Eclipse打开出现<code>“no java virtual machine was found....&quot;</code>，或Eclipse无法打开<code>“Failed to load the JNI shared library”</code>看文章第二部分</p>
-<p><strong>方法一：（PyDev的更新地址不好确定，一般使用方法二）</strong></p>
-<p>启动Eclipse后，在<code>Help</code>菜单中，选择<code>Install New Software···</code>， 选择<code>Add</code>按钮，<code>Name：PyDev</code>（这个随便起），<code>Location：http://pydev.org/updates</code>（PyDev的更新地址），OK</p>
-<p>选择<code>PyDev</code>下的<code>PyDev for Eclipse</code>，别的都不要选，否则依赖检查那关过不去。点下一步，下一步安装。中间会问你是否信任Aptana、Pydev什么的，信任就可以了。</p>
-<p>最后重启Eclipse</p>
-<p><strong>方法二：</strong></p>
-<p>在<code>Window</code>菜单中选<code>Help -&gt; Eclipse Marketplace -&gt; Search - PyDev - Installed</code>，等待。</p>
-<p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%201.png" alt="python env 1"><br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%202.png" alt="python env 2"></p>
+<h4 id="4-给Eclipse安装PyDev插件"><a href="#4-给Eclipse安装PyDev插件" class="headerlink" title="4.给Eclipse安装PyDev插件"></a>4.给Eclipse安装PyDev插件</h4><p>启用Eclipse，如果前面的步骤都正确无误的话，那么Eclipse就该能够正常启动了。 第一次启动会让你选择一个工作空间，按缺省设置，勾选一下不再提醒，就可以了。<br>如果启动Eclipse打开出现<code>“no java virtual machine was found....&quot;</code>，或Eclipse无法打开<code>“Failed to load the JNI shared library”</code>看文章第二部分</p>
+<p><strong>方法一：（PyDev的更新地址不好确定，一般使用方法二）</strong><br>　　启动Eclipse后，在<code>Help</code>菜单中，选择<code>Install New Software···</code>， 选择<code>Add</code>按钮，<code>Name：PyDev</code>（这个随便起），<code>Location：http://pydev.org/updates</code>（PyDev的更新地址），OK<br>　　选择<code>PyDev</code>下的<code>PyDev for Eclipse</code>，别的都不要选，否则依赖检查那关过不去。点下一步，下一步安装。中间会问你是否信任Aptana、Pydev什么的，信任就可以了。<br>　　最后重启Eclipse</p>
+<p><strong>方法二：</strong><br>在<code>Window</code>菜单中选<code>Help -&gt; Eclipse Marketplace -&gt; Search - PyDev - Installed</code>，等待。<br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%201.png" alt="python env 1"><br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%202.png" alt="python env 2"></p>
 <h4 id="5-配置PyDev插件"><a href="#5-配置PyDev插件" class="headerlink" title="5.配置PyDev插件"></a>5.配置PyDev插件</h4><p>在<code>Window</code>菜单中选<code>Preference</code></p>
 <ul>
-<li><code>PyDev-&gt;Interpreter - Python</code>，New一个Python解释器，填上解释器名字和路径，路径选相应的python.exe。 </li>
-</ul>
-<p>　　以下几步Python 3.x必选，Python2随意。比较习惯Unicode，所以一次性在这儿设定了。</p>
-<ul>
+<li><code>PyDev-&gt;Interpreter - Python</code>，New一个Python解释器，填上解释器名字和路径，路径选相应的python.exe。<br>以下几步Python 3.x必选，Python2随意。比较习惯Unicode，所以一次性在这儿设定了。  </li>
 <li><code>General-&gt;Editors-&gt;Text Editors-&gt;Spelling</code>，Encoding改成<code>Other:UTF-8</code></li>
 <li><code>General-&gt;Workspace</code>，Text file encoding改成<code>Other:UTF-8</code></li>
-<li>找到安装目录下的<code>\plugins\org.python.pydev.debug_x.x.x.yyyymmddhh\pysrc\pydevd.py</code></li>
+<li>找到安装目录下的<code>\plugins\org.python.pydev.debug_x.x.x.yyyymmddhh\pysrc\pydevd.py</code><br>920行的<code>encoding = Non</code>改成<code>encoding = &quot;UTF-8&quot;</code>，保存。  </li>
 </ul>
-<p>　　920行的<code>encoding = Non</code>改成<code>encoding = &quot;UTF-8&quot;</code>，保存。</p>
 <p>至此，PyDev的配置就完成了。</p>
-<h4 id="6-测试"><a href="#6-测试" class="headerlink" title="6.测试"></a>6.测试</h4><p>File-&gt;New-&gt;Project，选PyDev下的PyDev Project，Grammer和Interpreter选相应的版本，Finish。 </p>
-<p>在PyDev Package Explorer的项目上右键，New-&gt;PyDev Module，随便写个名字，Finish。</p>
-<p>然后随便写几行代码，Run</p>
-<p>在弹出的对话框中选择Python Run</p>
-<p>OK</p>
+<h4 id="6-测试"><a href="#6-测试" class="headerlink" title="6.测试"></a>6.测试</h4><p>File-&gt;New-&gt;Project，选PyDev下的PyDev Project，Grammer和Interpreter选相应的版本，Finish。<br>在PyDev Package Explorer的项目上右键，New-&gt;PyDev Module，随便写个名字，Finish。<br>然后随便写几行代码，Run<br>在弹出的对话框中选择Python Run<br>OK</p>
 <h4 id="7-注释"><a href="#7-注释" class="headerlink" title="7.注释"></a>7.注释</h4><p>注1：这里说明一下，JDK和Eclispse好像得同为32位或者64位的，否则有可能遇到问题。我第一次尝试是用的64位JDK+32位Eclipse的组合，就碰到了和这里<code>http://superuser.com/questions/186001/eclipse-failed-to-load-the-jni-shared-library</code>一样的问题，于是换了32位JDK。 </p>
 <p>注2：我想做GAE的开发，所以选了版本2.6.6，一般情况下选最新版即可。</p>
 <p>注3：PyDev Mylyn Integration (optional)：这个依赖于PyDev for Eclipse，你得装完后者就可以装了。 PyDev Django Templates Editor：这个需要Aptana Studio 3。</p>
 <p><a href="#top">返回目录</a></p>
 <hr>
-<h2 id="二、Eclipse报错问题"><a href="#二、Eclipse报错问题" class="headerlink" title="二、Eclipse报错问题"></a><span id="二">二、Eclipse报错问题</span></h2><p><strong>1.Eclipse打开出现no java virtual machine was found</strong></p>
-<p>这个错误一般是环境变量设置错误导致</p>
-<p>在点击计算机开始–&gt;运行后输入<code>cmd</code>出现的窗口里面输入<code>java -version</code>看有没有版本的提示？有的话说明你的JDK是对的，那么就是Eclipse的问题了。</p>
-<p>否则你就要设置环境变量信息了：</p>
-<p>依次点击：“我的电脑”－(右键)“属性”－“高级”－“环境变量”，弹出Windows的“环境变量”配置卡。</p>
-<p>在“系统变量”栏下执行三项操作：</p>
+<h2 id="二、Eclipse报错问题"><a href="#二、Eclipse报错问题" class="headerlink" title="二、Eclipse报错问题"></a><span id="二">二、Eclipse报错问题</span></h2><p><strong>1.Eclipse打开出现no java virtual machine was found</strong><br>这个错误一般是环境变量设置错误导致：<br>在点击计算机开始–&gt;运行后输入<code>cmd</code>出现的窗口里面输入<code>java -version</code>看有没有版本的提示？有的话说明你的JDK是对的，那么就是Eclipse的问题了。</p>
+<p>否则你就要设置环境变量信息了：<br>依次点击：“我的电脑”－(右键)“属性”－“高级”－“环境变量”，弹出Windows的“环境变量”配置卡。<br>在“系统变量”栏下执行三项操作：</p>
 <ol>
 <li>新建“JAVA_HOME”，值：JDK所在的绝对路径(例如<code>D:\Program Files\Java\jdk1.6.0_43</code>)。</li>
 <li>新建“CLASSPATH”(如果已有，则直接编辑)，值：<code>.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar</code>(若值中原来有内容，用分号与之隔开)。</li>
 <li>新建“PATH”(如果已有，则直接编辑),值：<code>%JAVA_HOME%\bin\;%JAVA_HOME%\jre\bin</code>;(若值中原来有内容，用分号与之隔开)。</li>
 </ol>
-<p><strong>2.Eclipse无法打开“Failed to load the JNI shared library”</strong></p>
-<p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80.png" alt="eclipse error01"></p>
+<p><strong>2.Eclipse无法打开“Failed to load the JNI shared library”</strong><br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80.png" alt="eclipse error01"></p>
 <p><em>这是因为64的操作系统安装了32位的JDK(或者是32位的eclipse)导致的，换成64位的即可！</em></p>
 <p><a href="#top">返回目录</a></p>
 <hr>
@@ -349,8 +306,7 @@
 <pre><code>$ apt-get install mysql-server python-mysqldb    \\提示输入mysql密码
 </code></pre></li>
 </ul>
-<h4 id="2-Windows环境"><a href="#2-Windows环境" class="headerlink" title="2. Windows环境"></a><strong>2. Windows环境</strong></h4><p><strong>2.1 安装mysql：</strong></p>
-<p>方法一：下载安装包</p>
+<h4 id="2-Windows环境"><a href="#2-Windows环境" class="headerlink" title="2. Windows环境"></a><strong>2. Windows环境</strong></h4><p><strong>2.1 安装mysql：</strong><br>方法一：下载安装包</p>
 <ul>
 <li>MySQL官网<a href="http://dev.mysql.com/downloads/installer/" target="_blank" rel="external">下载安装包</a><code>mysql_installer_community_V5.6.21.1_setup.1415604646.msi</code>，一步步安装</li>
 </ul>
@@ -402,7 +358,7 @@ mysql&gt;QUIT
 <ul>
 <li><p>前往<a href="https://www.python.org/" target="_blank" rel="external">Python官网</a>–&gt;PyPI–&gt;search MySQL-python，下载MySQL-python-1.2.5.win32-py2.7.exe，下一步下一步安装。</p>
 </li>
-<li><p><em>安装MySQL-python-1.2.5.win32-py2.7报错</em></p>
+<li><p>安装MySQL-python-1.2.5.win32-py2.7报错</p>
 <p>  报错：Python version 2.7 required,which was not found in the registry.<br>  解决办法：下载<a href="https://github.com/fed0ra/python-oamad" target="_blank" rel="external">registry.py脚本</a>，把脚本放到任意一盘中执行，运行–&gt;cmd，执行<code>python registry.py</code><br>  例：registry.py脚本在F:\MySQL\data目录下</p>
 <pre><code>&gt;f:    \\F盘
 &gt;cd MySQL/data \\切换到脚本所在路径
@@ -414,17 +370,13 @@ python 2.7 is already registered    \\OK
 <ul>
 <li>Navicat数据库管理工具，搜索引擎搜索Navicat，下载安装，过程简单，略。</li>
 </ul>
-<p><strong>2.4总结</strong></p>
-<p>至此，Linux和Windows所需要的环境均安装完成</p>
-<p>环境各自安装完成后，导入MySQLdb测试是否安装成功,如果没报错证明安装成功。</p>
+<p><strong>2.4总结</strong><br>至此，Linux和Windows所需要的环境均安装完成<br>环境各自安装完成后，导入MySQLdb测试是否安装成功,如果没报错证明安装成功。</p>
 <ol>
 <li><p>虚拟机安装Ubuntu系统，Ubuntu安装MySQL数据库和python的MySQL模块，命令：</p>
 <pre><code>$ apt-get install mysql-server python-mysqldb
 </code></pre></li>
-<li><p>Windows上，安装MySQL数据库和python的MySQL模块。</p>
+<li><p>Windows上，安装MySQL数据库和python的MySQL模块。  </p>
 </li>
-</ol>
-<ol>
 <li><p>导入MySQLdb测试MySQL模块是否安装成功，Windows(Linux同)：</p>
 <pre><code>C:\Users\my-pc&gt;python
 Python 2.7.10 (default, May 23 2015, 09:44:00) [MSC v.1500 64 bit (AMD64)] on win32
@@ -438,15 +390,10 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <h2 id="四、Python的easy-install和pip"><a href="#四、Python的easy-install和pip" class="headerlink" title="四、Python的easy_install和pip"></a><span id="四">四、Python的easy_install和pip</span></h2><ul>
 <li>为什么要装easy_install?</li>
 </ul>
-<p>easy_install和pip都是用来下载安装Python一个公共资源库PyPI的相关资源包的，那它是干什么的？</p>
-<p>正常情况下，我们要给Python安装第三方的扩展包，我们必须下载压缩包，解压缩到一个目录，然后命令行或者终端打开这个目录，然后执行<code>python setup.py install</code>来进行安装。</p>
-<p>这样很繁琐，如果我们直接命令行执行<code>easy_install 包名</code>就把最新版的包装上去了，是不是很方便。</p>
-<p>所以easy_install就是为了我们安装第三方扩展包更容易而应运而生的。pip同</p>
+<p>easy_install和pip都是用来下载安装Python一个公共资源库PyPI的相关资源包的，那它是干什么的？<br>正常情况下，我们要给Python安装第三方的扩展包，我们必须下载压缩包，解压缩到一个目录，然后命令行或者终端打开这个目录，然后执行<code>python setup.py install</code>来进行安装。<br>这样很繁琐，如果我们直接命令行执行<code>easy_install 包名</code>就把最新版的包装上去了，是不是很方便。<br>所以easy_install就是为了我们安装第三方扩展包更容易而应运而生的。pip同</p>
 <ul>
-<li>如何找到easy_install？</li>
-</ul>
-<p>前往<a href="https://www.python.org/" target="_blank" rel="external">Python官网</a>–&gt;PyPI–&gt;搜索ez_setup或setuptools，就能找到它。</p>
-<ul>
+<li><p>如何找到easy_install？<br>前往<a href="https://www.python.org/" target="_blank" rel="external">Python官网</a>–&gt;PyPI–&gt;搜索ez_setup或setuptools，就能找到它。</p>
+</li>
 <li><p>首先安装easy_install</p>
 <p>  $ wget <a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a> -O - | sudo python</p>
 </li>
@@ -497,7 +444,7 @@ $ sudo vim /etc/samba/smb.conf
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/" data-id="cikp95uv70003ekgs0ebo78oh" class="article-share-link">Share</a>
+      <a data-url="http://fed0ra.github.io/2016/02/17/Python/Python运维自动化环境搭建/" data-id="cikq7bc9g0003usgsg7mbgbu2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -507,7 +454,7 @@ $ sudo vim /etc/samba/smb.conf
 <nav id="article-nav">
   
   
-    <a href="/2016/02/16/ELKstack/ELKstack/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/02/17/ELKstack/ELKstack/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">ELKstack</div>
     </a>
@@ -546,23 +493,23 @@ $ sudo vim /etc/samba/smb.conf
       <ul>
         
           <li>
-            <a href="/2016/02/16/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建（更新。。。）</a>
+            <a href="/2016/02/17/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建（更新。。。）</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/ELKstack/ELKstack/">ELKstack</a>
+            <a href="/2016/02/17/ELKstack/ELKstack/">ELKstack</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/Hexo/high/">High 一下</a>
+            <a href="/2016/02/17/Hexo/high/">High 一下</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/git-guide/">git guide</a>
+            <a href="/2016/02/17/git-guide/">git guide</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/Hexo/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
+            <a href="/2016/02/17/Hexo/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
           </li>
         
       </ul>

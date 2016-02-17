@@ -6,24 +6,24 @@
   <title>ELKstack | Fed0ra&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-一、日志收集分析系统（题外话）
-二、LEK介绍
-三、安装部署">
+一、日志收集分析系统（题外话）二、LEK介绍三、安装部署
+
+一、日志收集分析系统（题外话）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELKstack">
-<meta property="og:url" content="http://fed0ra.github.io/2016/02/16/ELKstack/ELKstack/index.html">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/17/ELKstack/ELKstack/index.html">
 <meta property="og:site_name" content="Fed0ra's blog">
 <meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-一、日志收集分析系统（题外话）
-二、LEK介绍
-三、安装部署">
-<meta property="og:updated_time" content="2016-02-16T09:05:22.536Z">
+一、日志收集分析系统（题外话）二、LEK介绍三、安装部署
+
+一、日志收集分析系统（题外话）">
+<meta property="og:updated_time" content="2016-02-17T01:58:11.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELKstack">
 <meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-一、日志收集分析系统（题外话）
-二、LEK介绍
-三、安装部署">
+一、日志收集分析系统（题外话）二、LEK介绍三、安装部署
+
+一、日志收集分析系统（题外话）">
   
     <link rel="alternate" href="/atom.xml" title="Fed0ra&#39;s blog" type="application/atom+xml">
   
@@ -233,8 +233,8 @@
       <div class="outer">
         <section id="main"><article id="post-ELKstack/ELKstack" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/16/ELKstack/ELKstack/" class="article-date">
-  <time datetime="2016-02-16T10:06:25.290Z" itemprop="datePublished">2016-02-16</time>
+    <a href="/2016/02/17/ELKstack/ELKstack/" class="article-date">
+  <time datetime="2016-02-17T01:58:11.316Z" itemprop="datePublished">2016-02-17</time>
 </a>
     
   </div>
@@ -254,12 +254,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<p><a href="#一">一、日志收集分析系统（题外话）</a></p>
-<p><a href="#二">二、LEK介绍</a></p>
-<p><a href="#三">三、安装部署</a></p>
+<p><a href="#一">一、日志收集分析系统（题外话）</a><br><a href="#二">二、LEK介绍</a><br><a href="#三">三、安装部署</a></p>
 <hr>
-<a id="more"></a>
-<h2 id="一、日志收集分析系统（题外话）"><a href="#一、日志收集分析系统（题外话）" class="headerlink" title="一、日志收集分析系统（题外话）"></a><span id="一">一、日志收集分析系统（题外话）</span></h2><p>日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:</p>
+<h2 id="一、日志收集分析系统（题外话）"><a href="#一、日志收集分析系统（题外话）" class="headerlink" title="一、日志收集分析系统（题外话）"></a><span id="一">一、日志收集分析系统（题外话）</span></h2><a id="more"></a>
+<p>日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:</p>
 <ul>
 <li>根据关键字查询日志详情</li>
 <li>监控系统的运行状况</li>
@@ -286,11 +284,8 @@
 <p><a href="#top">返回目录</a></p>
 <hr>
 <h2 id="二、LEK介绍"><a href="#二、LEK介绍" class="headerlink" title="二、LEK介绍"></a><span id="二">二、LEK介绍</span></h2><h4 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h4><ul>
-<li><p>logstash部署简单，下载一个jar就可以用了，对日志的处理逻辑也很简单，就是一个pipeline的过程：</p>
-<p>  inputs &gt;&gt; codecs &gt;&gt; filters &gt;&gt; outputs.</p>
-</li>
-<li><p>logstash支持常见的日志类型，与其他监控系统的整合也很方便，可以将数据输出到zabbix、nagios、email等。</p>
-</li>
+<li>logstash部署简单，下载一个jar就可以用了，对日志的处理逻辑也很简单，就是一个pipeline的过程：<br><code>inputs &gt;&gt; codecs &gt;&gt; filters &gt;&gt; outputs.</code></li>
+<li>logstash支持常见的日志类型，与其他监控系统的整合也很方便，可以将数据输出到zabbix、nagios、email等。</li>
 <li>推荐用redis作为输入缓冲队列。</li>
 <li>你还可以把数据统计后输出到graphite，实现统计数据的可视化显示。(metrics demo,statsd,graphite)</li>
 </ul>
@@ -371,8 +366,7 @@ Content-Length: 98
     &quot;failed&quot; : 0
   }
 }
-</code></pre><p>安装es管理监控插件，实现通过web界面和es交互</p>
-<p>Install Marvel into Elasticsearch:</p>
+</code></pre><p>安装es管理监控插件，实现通过web界面和es交互<br>Install Marvel into Elasticsearch:</p>
 <pre><code>$ /usr/local/elasticsearch/bin/plugin install license
 $ /usr/local/elasticsearch/bin/plugin install marvel-agent
 #IP:9200/_plugin/marvel
@@ -419,8 +413,7 @@ $ &gt;hello world
 </code></pre><p>通过浏览器访问elasticsearch，查看logstash key下是否有新插入的数据：IP:9200/_plugin/head</p>
 <p>通过-f参数指定配置文件启动</p>
 <pre><code>$ /opt/logstash/bin/logstash -f /etc/logstash.conf
-</code></pre><p>编写配置文件配置文件（例）</p>
-<p>cat /etc/logstash.conf</p>
+</code></pre><p>编写配置文件配置文件（例）<br>cat /etc/logstash.conf</p>
 <pre><code>#输入
 input {
     file {
@@ -496,7 +489,7 @@ $ mv kibana-4.3.1-linux-x64/ /usr/local/
 $ ln -s /usr/local/kibana-4.3.1-linux-x64/ /usr/local/kibana
 </code></pre><p>修改启动文件中elasticsearch的url地址</p>
 <pre><code>$ vim /usr/local/kibana/config/kibana.yml
-</code></pre><p>elasticsearch.url: “<a href="http://192.168.2.42:9200" target="_blank" rel="external">http://192.168.2.42:9200</a>“</p>
+</code></pre><p>elasticsearch.url: <code>&quot;http://192.168.2.42:9200&quot;</code></p>
 <p>启动kibana</p>
 <pre><code>$ screen kibana
 $ cd kibana-4.3.1-linux-x64/bin
@@ -504,14 +497,11 @@ $ ./kibana
 $ #nohup ./kibana &amp;
 </code></pre><p>查看启动是否成功</p>
 <pre><code>$ netstat -lntup | grep 5601
-</code></pre><p>浏览器访问kibana：</p>
-<p><a href="http://192.168.2.42:5601/" target="_blank" rel="external">http://192.168.2.42:5601/</a></p>
-<p>nginx代理kibana配置验证：</p>
-<p>生成用户认证的用户名和密码</p>
+</code></pre><p>浏览器访问kibana：<code>http://192.168.2.42:5601/</code></p>
+<p>nginx代理kibana配置验证：<br>生成用户认证的用户名和密码</p>
 <pre><code>$ htpasswd -c /usr/local/nginx/conf/kibana.auth admin
 $ ll /usr/local/nginx/conf/kibana.auth
-</code></pre><p>为Nginx添加auth认证配置</p>
-<p>编辑nginx配置文件：</p>
+</code></pre><p>为Nginx添加auth认证配置:<br>编辑nginx配置文件：</p>
 <pre><code>$ vim /etc/nginx/nginx.conf
 </code></pre><p>添加如下：</p>
 <pre><code>include extra/kibana.conf;
@@ -551,7 +541,7 @@ $ /usr/sbin/nginx -s reload
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://fed0ra.github.io/2016/02/16/ELKstack/ELKstack/" data-id="cikp95uum0000ekgsr3gwps4n" class="article-share-link">Share</a>
+      <a data-url="http://fed0ra.github.io/2016/02/17/ELKstack/ELKstack/" data-id="cikq7bc870000usgsv26f3isz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -560,7 +550,7 @@ $ /usr/sbin/nginx -s reload
     
 <nav id="article-nav">
   
-    <a href="/2016/02/16/Python/Python运维自动化环境搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/02/17/Python/Python运维自动化环境搭建/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -570,7 +560,7 @@ $ /usr/sbin/nginx -s reload
     </a>
   
   
-    <a href="/2016/02/16/Hexo/high/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/02/17/Hexo/high/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">High 一下</div>
     </a>
@@ -609,23 +599,23 @@ $ /usr/sbin/nginx -s reload
       <ul>
         
           <li>
-            <a href="/2016/02/16/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建（更新。。。）</a>
+            <a href="/2016/02/17/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建（更新。。。）</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/ELKstack/ELKstack/">ELKstack</a>
+            <a href="/2016/02/17/ELKstack/ELKstack/">ELKstack</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/Hexo/high/">High 一下</a>
+            <a href="/2016/02/17/Hexo/high/">High 一下</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/git-guide/">git guide</a>
+            <a href="/2016/02/17/git-guide/">git guide</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/Hexo/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
+            <a href="/2016/02/17/Hexo/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
           </li>
         
       </ul>
