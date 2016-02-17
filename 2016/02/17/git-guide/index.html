@@ -3,26 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>git guide | Fed0ra&#39;s blog</title>
+  <title>git guide | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-Pull Request在Forking工作流中使用示例适用于小团队的开发协作和第三方开发者向开源项目的贡献。示例中，A是个开发，B是项目维护者。各自有一个公开的github仓库，而B的仓库包含了正式工程
-A fork正式项目A先要fork">
+#Git学习备忘
+1. 流程及分支流程在本地文件夹建立一个名为example的repo，并做一些初始化配置。
+$ git init example">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git guide">
 <meta property="og:url" content="http://fed0ra.github.io/2016/02/17/git-guide/index.html">
-<meta property="og:site_name" content="Fed0ra's blog">
+<meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-Pull Request在Forking工作流中使用示例适用于小团队的开发协作和第三方开发者向开源项目的贡献。示例中，A是个开发，B是项目维护者。各自有一个公开的github仓库，而B的仓库包含了正式工程
-A fork正式项目A先要fork">
-<meta property="og:updated_time" content="2016-02-17T01:52:09.612Z">
+#Git学习备忘
+1. 流程及分支流程在本地文件夹建立一个名为example的repo，并做一些初始化配置。
+$ git init example">
+<meta property="og:updated_time" content="2016-02-17T05:47:26.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git guide">
 <meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
-Pull Request在Forking工作流中使用示例适用于小团队的开发协作和第三方开发者向开源项目的贡献。示例中，A是个开发，B是项目维护者。各自有一个公开的github仓库，而B的仓库包含了正式工程
-A fork正式项目A先要fork">
+#Git学习备忘
+1. 流程及分支流程在本地文件夹建立一个名为example的repo，并做一些初始化配置。
+$ git init example">
   
-    <link rel="alternate" href="/atom.xml" title="Fed0ra&#39;s blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -43,7 +46,7 @@ A fork正式项目A先要fork">
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Fed0ra&#39;s blog</a>
+        <a href="/" id="logo">Fedor&#39;s blog</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -231,7 +234,7 @@ A fork正式项目A先要fork">
         <section id="main"><article id="post-git-guide" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/02/17/git-guide/" class="article-date">
-  <time datetime="2016-02-17T01:52:09.612Z" itemprop="datePublished">2016-02-17</time>
+  <time datetime="2016-02-17T05:47:26.077Z" itemprop="datePublished">2016-02-17</time>
 </a>
     
   </div>
@@ -251,12 +254,40 @@ A fork正式项目A先要fork">
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Pull-Request在Forking工作流中使用示例"><a href="#Pull-Request在Forking工作流中使用示例" class="headerlink" title="Pull Request在Forking工作流中使用示例"></a><strong>Pull Request在Forking工作流中使用示例</strong></h2><p>适用于小团队的开发协作和第三方开发者向开源项目的贡献。<br>示例中，A是个开发，B是项目维护者。各自有一个公开的<code>github</code>仓库，而B的仓库包含了正式工程</p>
-<h4 id="A-fork正式项目"><a href="#A-fork正式项目" class="headerlink" title="A fork正式项目"></a><strong>A fork正式项目</strong></h4><p>A先要<code>fork</code>B的<code>github</code>t仓库，开始项目的开发。A登陆<code>github</code>，浏览到B的仓库页面，点<code>Fork</code>按钮。<br><a id="more"></a></p>
+<p>#Git学习备忘</p>
+<h2 id="1-流程及分支"><a href="#1-流程及分支" class="headerlink" title="1. 流程及分支"></a>1. 流程及分支</h2><h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>在本地文件夹建立一个名为example的repo，并做一些初始化配置。</p>
+<pre><code>$ git init example
+</code></pre><a id="more"></a>
+<p>在本地文件夹加入或删除文件后，需要用以下命令更新staged area。后者临时保存用户所提交的更改（如 add/rm），以备下一步的commit。</p>
+<pre><code>$ git add file1
+$ git add .
+$ git rm file2
+</code></pre><p>把staged area中所保存的file1的更新信息删除，恢复之前的样子。</p>
+<pre><code>$ git reset file1
+</code></pre><p>把上一步 staged area 中所保存的更改进行整理，更新本地的repo（准确的说，是本地repo的master分支），以备后面的push。</p>
+<pre><code>$ git commit -m &apos;Add a new file&apos;
+$ git checkout --file1    \\把本地 repo 中 file1的更新还原到之前的状态。
+</code></pre><p>添加服务器端的repo地址，取名为origin（可以随意命名），以备稍后提交本地的repo到这个服务器端的repo。</p>
+<pre><code>$　git remote add origin https://[服务器端 repo 地址]
+</code></pre><p>把本地repo的master分支提交到刚才添加的那个服务器端分支origin。-u表示记住后面的参数，以后 push 的时候直接用git push命令即可。</p>
+<pre><code>$ git push -u origin master
+</code></pre><h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><p>创建并切换到new-branch分支，删除new-branch分支，这个分支可以用来修复master中代码的bug，然后在merge（合并）到master。</p>
+<pre><code>$ git checkout -b new-branch
+$ git branch -d new-branch
+</code></pre><p>切换回master分支，然后把刚才新分支(new-branch)对代码所做的更改合并(merge)进来。</p>
+<pre><code>$ git checkout master
+$ git merge new-branch
+$ git push origin master
+</code></pre><p>提交至服务器</p>
+<pre><code>$ git commit -a -m “Add first draft of new branch”
+$ git push
+</code></pre><p><a href="#top">返回顶部</a></p>
+<hr>
+<h2 id="2-Pull-Request在Forking工作流中使用示例"><a href="#2-Pull-Request在Forking工作流中使用示例" class="headerlink" title="2. Pull Request在Forking工作流中使用示例"></a>2. Pull Request在Forking工作流中使用示例</h2><p>适用于小团队的开发协作和第三方开发者向开源项目的贡献。<br>示例中，A是个开发，B是项目维护者。各自有一个公开的<code>github</code>仓库，而B的仓库包含了正式工程</p>
+<h4 id="A-fork正式项目"><a href="#A-fork正式项目" class="headerlink" title="A fork正式项目"></a><strong>A fork正式项目</strong></h4><p>A先要<code>fork</code>B的<code>github</code>t仓库，开始项目的开发。A登陆<code>github</code>，浏览到B的仓库页面，点<code>Fork</code>按钮。</p>
 <h4 id="A克隆自己的github仓库"><a href="#A克隆自己的github仓库" class="headerlink" title="A克隆自己的github仓库"></a><strong>A克隆自己的github仓库</strong></h4><p>A克隆自己刚才<code>fork</code>出来的<code>github</code>仓库，以在本机上准备出工作拷贝。<br><code>git clone</code>会自动创建<code>origin</code>远程别名，是指向之前<code>fork</code>出来的仓库。命令如下：</p>
 <pre><code>$ git clone https://user@bitbucket.org/user/repo.git
-</code></pre><h4 id="A开发新功能"><a href="#A开发新功能" class="headerlink" title="A开发新功能"></a><strong>A开发新功能</strong></h4><p>改代码前，A要为新功能先新建一个新分支,用这个分支作为Pull Request的源分支。</p>
-<p>创建并切换分支，命令如下：</p>
+</code></pre><h4 id="A开发新功能"><a href="#A开发新功能" class="headerlink" title="A开发新功能"></a><strong>A开发新功能</strong></h4><p>改代码前，A要为新功能先新建一个新分支,用这个分支作为Pull Request的源分支。<br>创建并切换分支，命令如下：</p>
 <pre><code>$ git checkout -b new-branch
 
 *编辑代码，开发新功能*
@@ -272,7 +303,7 @@ $ git commit -a -m “Add first draft of some feature”
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://fed0ra.github.io/2016/02/17/git-guide/" data-id="cikq7bc9c0002usgsot8zu8xw" class="article-share-link">Share</a>
+      <a data-url="http://fed0ra.github.io/2016/02/17/git-guide/" data-id="cikqezknz0002nggste7fsc34" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,19 +312,10 @@ $ git commit -a -m “Add first draft of some feature”
     
 <nav id="article-nav">
   
-    <a href="/2016/02/17/Hexo/high/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          High 一下
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/02/17/Hexo/fed0ra.github.io/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/02/17/Python/Python运维自动化环境搭建/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Windows下使用 GitHub Pages + Hexo搭建博客</div>
+      <div class="article-nav-title">Python运维自动化开发环境搭建（更新。。。）</div>
     </a>
   
 </nav>
@@ -330,6 +352,10 @@ $ git commit -a -m “Add first draft of some feature”
       <ul>
         
           <li>
+            <a href="/2016/02/17/git-guide/">git guide</a>
+          </li>
+        
+          <li>
             <a href="/2016/02/17/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建（更新。。。）</a>
           </li>
         
@@ -339,10 +365,6 @@ $ git commit -a -m “Add first draft of some feature”
         
           <li>
             <a href="/2016/02/17/Hexo/high/">High 一下</a>
-          </li>
-        
-          <li>
-            <a href="/2016/02/17/git-guide/">git guide</a>
           </li>
         
           <li>
