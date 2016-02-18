@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Fedor&#39;s blog</title>
+  <title>Archives: 2016/1 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Devops">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fedor's blog">
-<meta property="og:url" content="http://fed0ra.github.io/index.html">
+<meta property="og:url" content="http://fed0ra.github.io/archives/2016/01/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Devops">
 <meta name="twitter:card" content="summary">
@@ -236,318 +236,55 @@
     <div class="outer">
       <section id="main">
   
-    <article id="post-Nginx/Nginx 403 forbidden " class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/17/Nginx/Nginx 403 forbidden /" class="article-date">
-  <time datetime="2016-02-16T16:00:00.000Z" itemprop="datePublished">2016-02-17</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/01/21/ELKstack/ELKstack/" class="archive-article-date">
+  <time datetime="2016-01-20T16:00:00.000Z" itemprop="datePublished">1月 21</time>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+      
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/17/Nginx/Nginx 403 forbidden /">访问Nginx出现状态码为403 forbidden原因</a>
+      <a class="archive-article-title" href="/2016/01/21/ELKstack/ELKstack/">ELKstack</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<p>1)nginx配置文件里不配置默认首页参数或者首页文件在站点目录下没有</p>
-<p>2)模拟站点目录下没有配置文件里指定的首页文件<code>index.php index.html index.htm</code>。</p>
-<pre><code># rm -f ../../html/www/index.html#&lt;==删除物理首页文件
-# curl -I -s 10.0.0.8|head-1
-HTTP/1.1 403 Forbidden
-</code></pre><p>3)站点目录或内部的程序文件没有Nginx用户访问权限。</p>
-<p>4)Nginx配置文件中设置allow、deny等权限控制，导致客户端没有没权限访问。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://fed0ra.github.io/2016/02/17/Nginx/Nginx 403 forbidden /" data-id="cikryjfl8000d1kgsh2r9ikds" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://fed0ra.github.io/2016/02/17/Nginx/Nginx 403 forbidden /#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
 </article>
-
-
   
-    <article id="post-Hexo/high" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/17/Hexo/high/" class="article-date">
-  <time datetime="2016-02-16T16:00:00.000Z" itemprop="datePublished">2016-02-17</time>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/01/20/hello-world/" class="archive-article-date">
+  <time datetime="2016-01-19T16:00:00.000Z" itemprop="datePublished">1月 20</time>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+      
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/17/Hexo/high/">High 一下</a>
+      <a class="archive-article-title" href="/2016/01/20/hello-world/">Hello World</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
-<p>页面右上角的「High一下」功能<br>hexo用户，在<code>themes\landscape\layout\_partial\header.ejs</code>中的相应位置增加一对<code>&lt;li&gt;</code>标签（视情况而定），并把下面代码拷贝进去：<br>
-        
-          <p class="article-more-link">
-            <a href="/2016/02/17/Hexo/high/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://fed0ra.github.io/2016/02/17/Hexo/high/" data-id="cikryjflc000g1kgsbehpljcu" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://fed0ra.github.io/2016/02/17/Hexo/high/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
 </article>
-
-
-  
-    <article id="post-Python/Python运维自动化环境搭建" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/16/Python/Python运维自动化环境搭建/" class="article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2016-02-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/16/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
-<p><a href="#一">一、Eclipse+PyDev插件搭建Python开发环境</a><br><a href="#二">二、Eclipse报错问题</a><br><a href="#三">三、MySQL和Python模块</a><br><a href="#四">四、Python的easy_install和pip</a><br><a href="#五">五、Windows结合Linux开发环境（samba+映射磁盘）</a></p>
-<hr>
-        
-          <p class="article-more-link">
-            <a href="/2016/02/16/Python/Python运维自动化环境搭建/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/" data-id="cikryjfl300081kgs5c3vpke8" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自动化/">自动化</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Hexo/fed0ra.github.io" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/16/Hexo/fed0ra.github.io/" class="article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2016-02-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/16/Hexo/fed0ra.github.io/">Windows下使用 GitHub Pages + Hexo搭建博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
-<p><a href="#零">零、为什么选择GitHub Pages</a><br><a href="#一">一、首先你需要准备什么</a><br><a href="#二">二、环境安装</a><br><a href="#三">三、使用Hexo生成博客的静态页面</a><br><a href="#四">四、将本地文件部署到 GitHub</a></p>
-<hr>
-        
-          <p class="article-more-link">
-            <a href="/2016/02/16/Hexo/fed0ra.github.io/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://fed0ra.github.io/2016/02/16/Hexo/fed0ra.github.io/" data-id="cikryjfli000j1kgsrcb9rfmw" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://fed0ra.github.io/2016/02/16/Hexo/fed0ra.github.io/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-git-guide" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/15/git-guide/" class="article-date">
-  <time datetime="2016-02-14T16:00:00.000Z" itemprop="datePublished">2016-02-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/15/git-guide/">git guide</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
-<h2 id="Git学习备忘"><a href="#Git学习备忘" class="headerlink" title="Git学习备忘"></a>Git学习备忘</h2><h2 id="1-流程及分支"><a href="#1-流程及分支" class="headerlink" title="1. 流程及分支"></a>1. 流程及分支</h2><h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>在本地文件夹建立一个名为example的repo，并做一些初始化配置。</p>
-<pre><code>$ git init example
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2016/02/15/git-guide/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://fed0ra.github.io/2016/02/15/git-guide/" data-id="cikryjfky00051kgsdsuveshh" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://fed0ra.github.io/2016/02/15/git-guide/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ELKstack/ELKstack" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/01/21/ELKstack/ELKstack/" class="article-date">
-  <time datetime="2016-01-20T16:00:00.000Z" itemprop="datePublished">2016-01-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/21/ELKstack/ELKstack/">ELKstack</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
-<p><a href="#一">一、日志收集分析系统（题外话）</a><br><a href="#二">二、LEK介绍</a><br><a href="#三">三、安装部署</a></p>
-<hr>
-<h2 id="一、日志收集分析系统（题外话）"><a href="#一、日志收集分析系统（题外话）" class="headerlink" title="一、日志收集分析系统（题外话）"></a><span id="一">一、日志收集分析系统（题外话）</span></h2>
-        
-          <p class="article-more-link">
-            <a href="/2016/01/21/ELKstack/ELKstack/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://fed0ra.github.io/2016/01/21/ELKstack/ELKstack/" data-id="cikryjfjw00001kgs39ewltp5" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://fed0ra.github.io/2016/01/21/ELKstack/ELKstack/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELKstack/">ELKstack</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+    </div></section>
   
 </section>
       
