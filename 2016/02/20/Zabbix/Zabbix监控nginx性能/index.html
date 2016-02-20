@@ -4,17 +4,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Python | Fedor&#39;s blog</title>
+  <title>Zabbix监控nginx性能 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Devops">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fedor's blog">
-<meta property="og:url" content="http://fed0ra.github.io/tags/Python/index.html">
+  <meta name="description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+一、启用nginx status配置二、zabbix客户端配置三、zabbix_get获取数据四、zabbix web端配置  
+
+需要使用zabbix监控nginx，首先nginx需要配置ngx_status">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zabbix监控nginx性能">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/20/Zabbix/Zabbix监控nginx性能/index.html">
 <meta property="og:site_name" content="Fedor's blog">
-<meta property="og:description" content="Devops">
+<meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+一、启用nginx status配置二、zabbix客户端配置三、zabbix_get获取数据四、zabbix web端配置  
+
+需要使用zabbix监控nginx，首先nginx需要配置ngx_status">
+<meta property="og:updated_time" content="2016-02-20T01:18:47.022Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fedor's blog">
-<meta name="twitter:description" content="Devops">
+<meta name="twitter:title" content="Zabbix监控nginx性能">
+<meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+一、启用nginx status配置二、zabbix客户端配置三、zabbix_get获取数据四、zabbix web端配置  
+
+需要使用zabbix监控nginx，首先nginx需要配置ngx_status">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -234,39 +244,157 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/16/Python/Python运维自动化环境搭建/" class="archive-article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2月 16</time>
+      <section id="main"><article id="post-Zabbix/Zabbix监控nginx性能" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/20/Zabbix/Zabbix监控nginx性能/" class="article-date">
+  <time datetime="2016-02-19T16:00:00.000Z" itemprop="datePublished">2016-02-20</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建</a>
+    <h1 class="article-title" itemprop="name">
+      Zabbix监控nginx性能
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、启用nginx status配置</a><br><a href="#二">二、zabbix客户端配置</a><br><a href="#三">三、zabbix_get获取数据</a><br><a href="#四">四、zabbix web端配置</a>  </p>
+<hr>
+<p>需要使用zabbix监控nginx，首先nginx需要配置ngx_status<br><a id="more"></a><br>nginx和php-fpm一样内建了一个状态页，对于想了解nginx的状态以及监控nginx非常有帮助。为了后续的zabbix监控，我们需要先了解nginx状态页是怎么回事。</p>
+<h2 id="一、启用nginx-status配置"><a href="#一、启用nginx-status配置" class="headerlink" title="一、启用nginx status配置"></a><span id="一">一、启用nginx status配置</span></h2><h4 id="1-启用nginx-status配置"><a href="#1-启用nginx-status配置" class="headerlink" title="1.启用nginx status配置"></a>1.启用nginx status配置</h4><p>在默认主机里面加上<code>location</code>或者你希望能访问到的主机里面。</p>
+<pre><code>server {
+    listen  *:80 default_server;
+    server_name _;
+    location /ngx_status 
+    {
+        stub_status on;
+        access_log off;
+        #allow 127.0.0.1;
+        #deny all;
+    }
+}
+</code></pre><h4 id="2-重启nginx"><a href="#2-重启nginx" class="headerlink" title="2.重启nginx"></a>2.重启nginx</h4><pre><code>/usr/sbin/nginx -t
+/usr/sbin/nginx -s reload
+echo $?
+</code></pre><h4 id="3-打开status页面-查看nginx-status信息"><a href="#3-打开status页面-查看nginx-status信息" class="headerlink" title="3.打开status页面,查看nginx status信息"></a>3.打开status页面,查看nginx status信息</h4><pre><code># curl http://127.0.0.1/ngx_status
+Active connections: 11921 
+server accepts handled requests
+ 11989 11989 11991 
+Reading: 0 Writing: 7 Waiting: 42
+</code></pre><h4 id="4-nginx-status详解"><a href="#4-nginx-status详解" class="headerlink" title="4.nginx status详解"></a>4.nginx status详解</h4><ul>
+<li>active connections – 活跃的连接数量</li>
+<li>server accepts handled requests — 总共处理了11989个连接 , 成功创建11989次握手, 总共处理了11991个请求</li>
+<li>reading — 读取客户端的连接数.</li>
+<li>writing — 响应数据到客户端的数量</li>
+<li>waiting — 开启 keep-alive 的情况下,这个值等于 active – (reading+writing), 意思就是 Nginx 已经处理完正在等候下一次请求指令的驻留连接.</li>
+</ul>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、zabbix客户端配置"><a href="#二、zabbix客户端配置" class="headerlink" title="二、zabbix客户端配置"></a><span id="二">二、zabbix客户端配置</span></h2><h4 id="1-编写客户端脚本"><a href="#1-编写客户端脚本" class="headerlink" title="1.编写客户端脚本"></a>1.编写客户端脚本</h4><p>编辑配置文件</p>
+<pre><code># vim /server/scripts/ngx_status.sh
+</code></pre><p>内容如下：</p>
+<pre><code>#!/bin/bash
+# DateTime: 2015-12-2
+# AUTHOR：fedor
+# Description：zabbix监控nginx性能以及进程状态
+# Note：此脚本需要配置在被监控端，否则ping检测将会得到不符合预期的结果
+
+HOST=&quot;127.0.0.1&quot;
+PORT=&quot;80&quot;
+
+# 检测nginx进程是否存在
+function ping {
+    /sbin/pidof nginx | wc -l 
+}
+# 检测nginx性能
+function active {
+    /usr/bin/curl &quot;http://$HOST:$PORT/ngx_status/&quot; 2&gt;/dev/null| grep &apos;Active&apos; | awk &apos;{print $NF}&apos;
+}
+function reading {
+    /usr/bin/curl &quot;http://$HOST:$PORT/ngx_status/&quot; 2&gt;/dev/null| grep &apos;Reading&apos; | awk &apos;{print $2}&apos;
+}
+function writing {
+    /usr/bin/curl &quot;http://$HOST:$PORT/ngx_status/&quot; 2&gt;/dev/null| grep &apos;Writing&apos; | awk &apos;{print $4}&apos;
+}
+function waiting {
+    /usr/bin/curl &quot;http://$HOST:$PORT/ngx_status/&quot; 2&gt;/dev/null| grep &apos;Waiting&apos; | awk &apos;{print $6}&apos;
+}
+function accepts {
+    /usr/bin/curl &quot;http://$HOST:$PORT/ngx_status/&quot; 2&gt;/dev/null| awk NR==3 | awk &apos;{print $1}&apos;
+}
+function handled {
+    /usr/bin/curl &quot;http://$HOST:$PORT/ngx_status/&quot; 2&gt;/dev/null| awk NR==3 | awk &apos;{print $2}&apos;
+}
+function requests {
+    /usr/bin/curl &quot;http://$HOST:$PORT/ngx_status/&quot; 2&gt;/dev/null| awk NR==3 | awk &apos;{print $3}&apos;
+}
+# 执行function
+$1
+</code></pre><h4 id="2-将自定义的UserParameter加入配置文件，然后重启agentd"><a href="#2-将自定义的UserParameter加入配置文件，然后重启agentd" class="headerlink" title="2.将自定义的UserParameter加入配置文件，然后重启agentd"></a>2.将自定义的UserParameter加入配置文件，然后重启agentd</h4><p>编辑配置文件：</p>
+<pre><code># vim /etc/zabbix/zabbix_agentd.d/ngx_status.conf
+</code></pre><p>加入：</p>
+<pre><code>UserParameter=nginx.status[*],/server/scripts/ngx_status.sh $1
+</code></pre><p>重启agentd</p>
+<pre><code>/etc/init.d/zabbix-agent restart
+#killall zabbix_agentd
+#/usr/local/zabbix-3.0.0/sbin/zabbix_agentd
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、zabbix-get获取数据"><a href="#三、zabbix-get获取数据" class="headerlink" title="三、zabbix_get获取数据"></a><span id="三">三、zabbix_get获取数据</span></h2><p>使用以下命令获取数据：</p>
+<pre><code># zabbix_get -s 127.0.0.1  -k &apos;nginx.status[accepts]&apos;
+190
+# zabbix_get -s 127.0.0.1  -k &apos;nginx.status[ping]&apos;
+1
+</code></pre><hr>
+<h2 id="四、zabbix-web端配置"><a href="#四、zabbix-web端配置" class="headerlink" title="四、zabbix web端配置"></a><span id="四">四、zabbix web端配置</span></h2><p>####导入Template App NGINX模板<br>参考：<a href="">zabbix链接及解除模板链接</a></p>
+<h4 id="Link-NGINX模板"><a href="#Link-NGINX模板" class="headerlink" title="Link NGINX模板"></a>Link NGINX模板</h4><p>到了最后一个阶段，登陆zabbix管理端，link模板到nginx服务器：configuration-&gt;hosts-&gt;点击nginx所在服务器-&gt;点击template-&gt;Link new templates输入”Template App NGINX”-&gt;Add-&gt;最后点击update。</p>
+<p>模板附件：zabbix_monitor_nginx_template_ttlsa_com</p>
+<p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/02/20/Zabbix/Zabbix监控nginx性能/" data-id="cikug29ah0000tggstuel7f3a" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/02/20/Zabbix/Zabbix监控nginx性能/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/02/20/Zabbix/zabbix链接及解除模板链接/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">zabbix链接及解除模板链接</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/20/Zabbix/Zabbix监控nginx性能/" data-title="Zabbix监控nginx性能" data-url="http://fed0ra.github.io/2016/02/20/Zabbix/Zabbix监控nginx性能/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">

@@ -4,17 +4,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Python | Fedor&#39;s blog</title>
+  <title>zabbix链接及解除模板链接 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Devops">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fedor's blog">
-<meta property="og:url" content="http://fed0ra.github.io/tags/Python/index.html">
+  <meta name="description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+一、zabbix主机链接模板二、实体唯一性规则三、多台主机批量link模板四、编辑link实体五、Unlinking模板">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zabbix链接及解除模板链接">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/20/Zabbix/zabbix链接及解除模板链接/index.html">
 <meta property="og:site_name" content="Fedor's blog">
-<meta property="og:description" content="Devops">
+<meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+一、zabbix主机链接模板二、实体唯一性规则三、多台主机批量link模板四、编辑link实体五、Unlinking模板">
+<meta property="og:updated_time" content="2016-02-20T01:28:52.676Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fedor's blog">
-<meta name="twitter:description" content="Devops">
+<meta name="twitter:title" content="zabbix链接及解除模板链接">
+<meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+一、zabbix主机链接模板二、实体唯一性规则三、多台主机批量link模板四、编辑link实体五、Unlinking模板">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -234,39 +238,101 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/16/Python/Python运维自动化环境搭建/" class="archive-article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2月 16</time>
+      <section id="main"><article id="post-Zabbix/zabbix链接及解除模板链接" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/20/Zabbix/zabbix链接及解除模板链接/" class="article-date">
+  <time datetime="2016-02-19T16:00:00.000Z" itemprop="datePublished">2016-02-20</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建</a>
+    <h1 class="article-title" itemprop="name">
+      zabbix链接及解除模板链接
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、zabbix主机链接模板</a><br><a href="#二">二、实体唯一性规则</a><br><a href="#三">三、多台主机批量link模板</a><br><a href="#四">四、编辑link实体</a><br><a href="#五">五、Unlinking模板</a>  </p>
+<hr>
+<a id="more"></a>
+<p>备注：模板只能被链接到host，不是链接到组里面。</p>
+<h2 id="一、zabbix主机链接模板"><a href="#一、zabbix主机链接模板" class="headerlink" title="一、zabbix主机链接模板"></a><span id="一">一、zabbix主机链接模板</span></h2><p>Configuration –Hosts–点击你需要链接模板的主机—-切换到templates（模板）选项，Link new templates的文本框里面输入你需要link的模板名称（关键词就可以了），选择你需要添加的模板，点击Add，最后save。最后，当前host便获得了模板所有的item，trigger，web等等实体。</p>
+<p>备注：主机link多个模板必须注意，模板们不能含有相同的item key。trigger和graphs中使用的items不能是来自多个模板。</p>
+<p>当实体 (items, triggers, graphs等等)添加之后，内部操作如下：<br>a)host原有的项目与模板的相同，那么host原有的监控项目将会被模板所有的覆盖<br>b)模板中的所有实体添加到主机中</p>
+<p>关于item列表<br>link模板之后，我们可以发现，item的名称也有些变化。凡是从模板带来的item，名称前缀带有灰色的模板名称。没有任何前缀的，那么表示这个item是在当前host里定义的。</p>
+<hr>
+<h2 id="二、实体唯一性规则"><a href="#二、实体唯一性规则" class="headerlink" title="二、实体唯一性规则"></a><span id="二">二、实体唯一性规则</span></h2><p>通过前面描述，我们可以了解到，zabbix link多个模板，这些模板不能有相同的实体。如果模板里的实体与当前host实体冲突，那么当前hosts的实体将会被覆盖，基于此，我们需要了解实体唯一性的规则由什么决定!</p>
+<ul>
+<li>a)items：item key</li>
+<li>b)trigger：trigger名称与表达式</li>
+<li>c)自定义图表：图表名称与它的items</li>
+<li>d)applications：application的名称</li>
+</ul>
+<hr>
+<h2 id="三、多台主机批量link模板"><a href="#三、多台主机批量link模板" class="headerlink" title="三、多台主机批量link模板"></a><span id="三">三、多台主机批量link模板</span></h2><h4 id="批量link主机的方法："><a href="#批量link主机的方法：" class="headerlink" title="批量link主机的方法："></a>批量link主机的方法：</h4><p>Configuration–Templates, 点击你需要选择的模板，Other|group 里面选择你的主机，点击? ,讲主机们添加到左边Hosts/templates，最后点击save即可，如果想移除主机，只需要点击?。</p>
+<h4 id="批量更新template："><a href="#批量更新template：" class="headerlink" title="批量更新template："></a>批量更新template：</h4><p>Configuration–Hosts–勾上你需要批量更新的主机，左下角下拉框选择Mass update，然后点击Go,切换到template，选择你需要的模板。最后点击update即可。</p>
+<h2 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h2><p>zabbix默认提供了很多模板，有什么不懂的可以参考他，但是不推荐你直接在自带的模板上修改，确实有修改修改，我倾向于让你去克隆一个模板。</p>
+<hr>
+<h2 id="四、编辑link实体"><a href="#四、编辑link实体" class="headerlink" title="四、编辑link实体"></a><span id="四">四、编辑link实体</span></h2><p>在host里面，点击zabbix实体，大部分文本框都是灰色/不可编辑状态，只有更新间隔等等少量内容可以修改。因为很多host使用同一个模板，一旦你修改了一个实体，所有host都会跟着变化，所以zabbix不允许直接修改link过来的实体类。如果你确实需要修改他，那么你只能去修改zabbix模板，不过记住，修改之前要谨记，所有link当前模板的host都会一起变动。</p>
+<h2 id="五、Unlinking模板"><a href="#五、Unlinking模板" class="headerlink" title="五、Unlinking模板"></a><span id="五">五、Unlinking模板</span></h2><p>Configuration–Hosts–切换到Templates选项–点击Unlink 或者Unlink and clear，最后点击save。<br>unlink与unlink and clear的区别：</p>
+<ul>
+<li>a)unlink：仅仅移除template，原先的实体会继续保留在host上</li>
+<li>b)unlink and clear：移除template，template所包含的实体也会一起移除，相对比较彻底。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/02/20/Zabbix/zabbix链接及解除模板链接/" data-id="cikug29bc0003tggsifusj153" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/02/20/Zabbix/zabbix链接及解除模板链接/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/20/Zabbix/Zabbix监控nginx性能/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Zabbix监控nginx性能
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/17/Nginx/Nginx 403 forbidden /" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">访问Nginx出现状态码为403 forbidden原因</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/20/Zabbix/zabbix链接及解除模板链接/" data-title="zabbix链接及解除模板链接" data-url="http://fed0ra.github.io/2016/02/20/Zabbix/zabbix链接及解除模板链接/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
