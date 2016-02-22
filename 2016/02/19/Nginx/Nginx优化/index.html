@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Nginx优化相关 | Fedor&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+1.隐藏nginx header里版本号信息2.更改源码隐藏软件名称及版本号3.更改nginx默认的用户和用户组4.配置nginx worker进程数5.根据CPU核数进行nginx进程优化6.nginx事件处理模型优化7.调整nginx单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx优化相关">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/19/Nginx/Nginx优化/index.html">
+<meta property="og:site_name" content="Fedor's blog">
+<meta property="og:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+1.隐藏nginx header里版本号信息2.更改源码隐藏软件名称及版本号3.更改nginx默认的用户和用户组4.配置nginx worker进程数5.根据CPU核数进行nginx进程优化6.nginx事件处理模型优化7.调整nginx单">
+<meta property="og:updated_time" content="2016-02-22T08:18:27.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx优化相关">
+<meta name="twitter:description" content="Welcome to fed0ra’s blog! If you found any problems, you can tell me on GitHub.
+1.隐藏nginx header里版本号信息2.更改源码隐藏软件名称及版本号3.更改nginx默认的用户和用户组4.配置nginx worker进程数5.根据CPU核数进行nginx进程优化6.nginx事件处理模型优化7.调整nginx单">
+  
+    <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fedor&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">keke</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+		
+		
+		
+		<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+		
+		
+		
+		
+		
+		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="fed0ra.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+    <div class="outer">
+      <section id="main"><article id="post-Nginx/Nginx优化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/19/Nginx/Nginx优化/" class="article-date">
+  <time datetime="2016-02-18T16:00:00.000Z" itemprop="datePublished">2016-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nginx优化相关
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">fed0ra’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#1">1.隐藏nginx header里版本号信息</a><br><a href="#2">2.更改源码隐藏软件名称及版本号</a><br><a href="#3">3.更改nginx默认的用户和用户组</a><br><a href="#4">4.配置nginx worker进程数</a><br><a href="#5">5.根据CPU核数进行nginx进程优化</a><br><a href="#6">6.nginx事件处理模型优化</a><br><a href="#7">7.调整nginx单个进程允许的客户端最大连接数</a><br><a id="more"></a><br><a href="#8">8.nginx每个进程打开的最大连接数(文件数)</a><br><a href="#9">9.优化服务器名字hash表的大小</a><br><a href="#10">10.开启高效的文件传输模式</a><br><a href="#11">11.设置连接的超时时间</a><br><a href="#12">12.上传文件大小限制(动态应用)</a><br><a href="#13">13.fastcgi调优(配合PHP引擎动态服务)</a><br><a href="#14">14.压缩</a><br><a href="#15">15.缓存</a><br><a href="#16">16.user-agent介绍及nginx服务防爬虫</a><br><a href="#17">17.nginx日志优化相关</a><br><a href="#18">18.最小化nginx目录及文件权限设置</a><br><a href="#19">19.nginx站点目录及文件URL访问控制</a>  </p>
+<hr>
+<h2 id="1-隐藏nginx-header里版本号信息"><a href="#1-隐藏nginx-header里版本号信息" class="headerlink" title="1.隐藏nginx header里版本号信息"></a><span id="1">1.隐藏nginx header里版本号信息</span></h2><p>查看nginx版本，执行如下命令</p>
+<pre><code># curl -I -s 192.168.174.10 | grep Server
+# curl -I 192.168.174.10 2&gt; /dev/null | grep Server
+</code></pre><p>编辑nginx配置文件在<code>http</code>标签加<code>server_tokens off</code><br>重启nginx</p>
+<pre><code>nginx -t
+ngins -s reload
+</code></pre><hr>
+<h2 id="2-更改源码隐藏软件名称及版本号"><a href="#2-更改源码隐藏软件名称及版本号" class="headerlink" title="2.更改源码隐藏软件名称及版本号"></a><span id="2">2.更改源码隐藏软件名称及版本号</span></h2><p>切换到nginx源码下</p>
+<pre><code># cd /usr/local/src/nginx-1.7.0/src/http/
+</code></pre><h4 id="a-编辑ngx-http-special-response-c"><a href="#a-编辑ngx-http-special-response-c" class="headerlink" title="a) 编辑ngx_http_special_response.c"></a>a) 编辑<code>ngx_http_special_response.c</code></h4><pre><code># vim ngx_http_special_response.c
+</code></pre><p>修改为：</p>
+<pre><code>28 static u_char ngx_http_error_tail[] =
+29 &quot;&lt;hr&gt;&lt;center&gt;apache&lt;/center&gt;&quot; CRLF
+</code></pre><h4 id="b-编辑ngx-http-header-filter-module-c"><a href="#b-编辑ngx-http-header-filter-module-c" class="headerlink" title="b) 编辑ngx_http_header_filter_module.c"></a>b) 编辑<code>ngx_http_header_filter_module.c</code></h4><pre><code># vim ngx_http_header_filter_module.c
+</code></pre><p>修改为：</p>
+<pre><code>49 static char ngx_http_server_string[] = &quot;Server: Apache&quot; CRLF;
+50 static char ngx_http_server_full_string[] = &quot;Server:Apache &quot; NGINX_VER CRLF;
+</code></pre><p>或使用以下命令：</p>
+<pre><code># grep &apos;Server: nginx&apos; ngx_http_header_filter_module.c
+# sed -i &apos;s#Server: nginx#Server: apache#&apos; ngx_http_header_filter_module.c
+</code></pre><h4 id="c-如果之前安装了nginx，查看nginx编译参数，重新编译，命令如下（没装过nginx编译安装）"><a href="#c-如果之前安装了nginx，查看nginx编译参数，重新编译，命令如下（没装过nginx编译安装）" class="headerlink" title="c) 如果之前安装了nginx，查看nginx编译参数，重新编译，命令如下（没装过nginx编译安装）"></a>c) 如果之前安装了nginx，查看nginx编译参数，重新编译，命令如下（没装过nginx编译安装）</h4><pre><code># /usr/local/nginx/sbin/nginx -V
+# ./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module
+# /etc/init.d/nginx stop
+# make &amp;&amp; make install
+# /etc/init.d/nginx start
+# curl -I -s 192.168.174.10 | grep Server
+</code></pre><hr>
+<h2 id="3-更改nginx默认的用户和用户组"><a href="#3-更改nginx默认的用户和用户组" class="headerlink" title="3.更改nginx默认的用户和用户组"></a><span id="3">3.更改nginx默认的用户和用户组</span></h2><p>查看nginx默认用户</p>
+<pre><code># grep &apos;#user&apos; nginx.conf.default
+</code></pre><p>创建用户</p>
+<pre><code># useradd -s /sbin/nologin -g www -M www
+</code></pre><p>编译时候需指定–user=www –group=www<br>编辑nginx配置文件在<code>main</code>标签修改<code>user</code>参数为<code>www</code></p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="4-配置nginx-worker进程数"><a href="#4-配置nginx-worker进程数" class="headerlink" title="4.配置nginx worker进程数"></a><span id="4">4.配置nginx worker进程数</span></h2><p>worker进程数大小按照CPU核数来确定，最好和CPU核数一致，先查看CPU合数：</p>
+<pre><code># grep &apos;physical id&apos; /proc/cpuinfo
+</code></pre><p>或使用<code>top</code>命令，后按数字键<code>1</code><br>修改使用如下命令：</p>
+<pre><code># sed -i &apos;s@worker_processes  1@worker_processes  2@g&apos; /usr/local/nginx/conf/nginx.conf
+</code></pre><hr>
+<h2 id="5-根据CPU核数进行nginx进程优化"><a href="#5-根据CPU核数进行nginx进程优化" class="headerlink" title="5.根据CPU核数进行nginx进程优化"></a><span id="5">5.根据CPU核数进行nginx进程优化</span></h2><p>为了避免资源分配不均</p>
+<p>编辑nginx配置文件在<code>main</code>标签添加：<br>四核CPU参数配置示例：</p>
+<pre><code>worker_cpu_affinity 0001 0010 0100 1000;
+</code></pre><p>八核CPU参数配置方法一示例：</p>
+<pre><code>worker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 01000000 10000000；
+</code></pre><p>八核CPU参数配置方法二示例：</p>
+<pre><code>worker_cpu_affinity 0001 0010 0100 1000 0001 0010 0100 1000；
+</code></pre><p>通过webbench压力测试，看CPU情况</p>
+<pre><code># webbench -c 20000 -t 180 http://192.168.174.10/
+</code></pre><p>另一种优化方法是用<code>taskset</code>，taskset让进程运行在指定的CPU，例</p>
+<pre><code># taskset -c 1,2,3 /etc/init.d/mysqld start
+</code></pre><p>taskset的使用请参考<a href="http://www.cnblogs.com/edwardlost/archive/2010/10/23/1858991.html" target="_blank" rel="external">edwardlost’ blog</a></p>
+<p>以下给出一些配置实例：</p>
+<pre><code>1、2核CPU，开启2个进程
+worker_processes  2;  
+worker_cpu_affinity 01 10;
+
+2、2核CPU，开启4进程
+worker_processes 4;
+worker_cpu_affinity 01 10 01 10;
+
+3、2核CPU，开启8进程
+worker_processes  8;  
+worker_cpu_affinity 01 10 01 10 01 10 01 10;
+
+4、8核CPU，开启2进程
+worker_processes  2;  
+worker_cpu_affinity 10101010 01010101;
+</code></pre><p>说明：10101010表示开启了第2,4,6,8内核，01010101表示开始了1,3,5,7内核<br>通过apache的ab测试查看nginx对CPU的使用状况：</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="6-nginx事件处理模型优化"><a href="#6-nginx事件处理模型优化" class="headerlink" title="6.nginx事件处理模型优化"></a><span id="6">6.nginx事件处理模型优化</span></h2><p>编辑nginx配置文件，在<code>events</code>标签中添加<code>use epoll;</code>，修改后如下：</p>
+<pre><code>events{
+use epoll;
+}
+</code></pre><hr>
+<h2 id="7-调整nginx单个进程允许的客户端最大连接数"><a href="#7-调整nginx单个进程允许的客户端最大连接数" class="headerlink" title="7.调整nginx单个进程允许的客户端最大连接数"></a><span id="7">7.调整nginx单个进程允许的客户端最大连接数</span></h2><p>编辑nginx配置文件，在<code>events</code>标签中添加<code>worker_connections</code>，修改后如下：</p>
+<pre><code>events {
+    worker_connections  1024;
+    #动态8192、4096已经很大了，三万已经很大了。
+}
+</code></pre><hr>
+<h2 id="8-nginx每个进程打开的最大连接数-文件数"><a href="#8-nginx每个进程打开的最大连接数-文件数" class="headerlink" title="8.nginx每个进程打开的最大连接数(文件数)"></a><span id="8">8.nginx每个进程打开的最大连接数(文件数)</span></h2><p>编辑nginx配置文件在<code>main</code>标签添加：</p>
+<pre><code>worker_rlimit_nofile 65535;
+</code></pre><hr>
+<h2 id="9-优化服务器名字hash表的大小"><a href="#9-优化服务器名字hash表的大小" class="headerlink" title="9.优化服务器名字hash表的大小"></a><span id="9">9.优化服务器名字hash表的大小</span></h2><p>编辑nginx配置文件在<code>http</code>标签添加：</p>
+<pre><code>server_names_hash_bucket_size 64;
+server_names_hash_max_size 512;
+</code></pre><hr>
+<h2 id="10-开启高效的文件传输模式"><a href="#10-开启高效的文件传输模式" class="headerlink" title="10.开启高效的文件传输模式"></a><span id="10">10.开启高效的文件传输模式</span></h2><p>编辑nginx配置文件在<code>http, server, location</code>标签添加：</p>
+<pre><code>sendfile        on;
+tcp_nopush on | off;
+</code></pre><hr>
+<h2 id="11-设置连接的超时时间"><a href="#11-设置连接的超时时间" class="headerlink" title="11.设置连接的超时时间"></a><span id="11">11.设置连接的超时时间</span></h2><p>编辑nginx配置文件在<code>http, server, location</code>标签添加：</p>
+<pre><code>keepalive_timeout  65;
+tcp_nodelay on;    #包含keepalve参数才有效
+client_header_timeout 15;
+client_body_timeout 15;
+send_timeout 15;
+</code></pre><p>php网站建议短连接，java网站建议连接</p>
+<hr>
+<h2 id="12-上传文件大小限制-动态应用"><a href="#12-上传文件大小限制-动态应用" class="headerlink" title="12.上传文件大小限制(动态应用)"></a><span id="12">12.上传文件大小限制(动态应用)</span></h2><p>编辑nginx配置文件在<code>http, server, location</code>标签添加：</p>
+<pre><code>client_max_body_size 10m;
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="13-fastcgi调优-配合PHP引擎动态服务"><a href="#13-fastcgi调优-配合PHP引擎动态服务" class="headerlink" title="13.fastcgi调优(配合PHP引擎动态服务)"></a><span id="13">13.fastcgi调优(配合PHP引擎动态服务)</span></h2><p>编辑nginx配置文件在<code>http, server, location</code>标签添加：</p>
+<pre><code>fastcgi_connect_timeout 60;#指定连接到后端fastcgi的超时时间
+fastcgi_send_timeout 60;#想fastcgi传送请求的超时时间，这个值指定已经完成两次握手后向fastcgi传送请求的超时时间
+fastcgi_read_timeout 60;#指定接收fastcgi应答的超时时间，这个值指定已经完成两次握手后接收fastcgi应答的超时时间
+fastcgi_buffer_size 64k;#指定读取fastcgi应答一部分需要用多大的缓存区，这个值表示使用1个64KB的缓冲区读取应答的第一部分(应答头)可以设置为fastcgi_buffers选项指定的缓冲区大小
+fastcgi_buffers 4 64k;#4个64k的缓冲区
+fastcgi_busy_buffers_size 128k;#建议为fastcgi_buffers的两倍
+fastcgi_temp_file_write_size 128k;#在写入fastcgi_temp_path是将用多大的数据块，默认值是fastcgi_buffers的两倍，设置上述数值设置太小时若负载上来时可能报502 Bad Gateway
+fastcgi_cache mean_nginx;#表示开启fastcgi缓存并为其指定一个名称，开启缓存非常有用，可以有效降低cpu负载，并且防止502错误发生，但是开启缓存也可能会引起其他问题，根据具体情况选择
+fastcgi_cache_valid 200 302 1h;#用来指定应答代码的缓存时间，实例中的值表示将200和302应答缓存1小时
+fastcgi_cache_valid 301     1d;#将301应答缓存1天
+fastcgi_cache_valid any      1m;#将其他应答缓存为1分钟
+fastcgi_cache_min_uses 1;#缓存fastcgi_cache_path指令inactive参数值时间内的最少使用次数
+</code></pre><hr>
+<h2 id="14-压缩"><a href="#14-压缩" class="headerlink" title="14.压缩"></a><span id="14">14.压缩</span></h2><p>优势：节省带宽；加快打开速度，提升用户体验。<br>劣势：消耗CPU,MEM。</p>
+<p>如何使用压缩：首先分析，哪些资源压缩比高，占用资源少。其次，文本文件(js,css,html)需要压缩</p>
+<p>压缩功能同apache的mod_deflate压缩功能，依赖nginx_http_gzip_module模块，默认已安装。<br>配置及解释如下如下：</p>
+<pre><code>gzip on;
+gzip_min_length 5k;#设置允许压缩的页面最小字节数，页面字节数从header同的Content-Length中获取。默认是0，不管页面多大都压缩。建议设置成大于1k。如果小于1K可能会越压越大。
+gzip_buffers 4 16k;#压缩缓冲区大小。表示申请4个单位为16k的内存作为压缩结果流缓存，默认值是申请与原始数据大小相同的内存空间来存储gzip压缩结果。
+#gzip_http_version 1.0;#压缩版本(默认1.1，前端为squid2.5时使用1.0)用于设置识别协议版本，默认1.1，目前大部分浏览器已经支持GZIP解压，使用默认即可。
+gzip_comp_level 2;#压缩比率。用来指定GZIP压缩比，1压缩比最小，处理速度最快，9压缩比最大，传输速度快，但处理最慢，也比较消耗cpu资源。
+gzip_types text/html/plain application/x-javascript text/css application/xml;
+gzip_types text/css text/xml application/javascript;#指定压缩的类型，“text/html”类型总是会被压缩。
+gzip_vary on;#vary header支持。该选项可以让前段的缓存服务器经过GZIP压缩的页面，例如用squid缓存经过nginx压缩的数据。
+</code></pre><p>完整配置如下：</p>
+<pre><code>gzip  on;
+gzip_min_length 1k;
+gzip_buffers 4 32k;
+gzip_http_version 1.1;
+gzip_comp_level 9;
+#gzip_types text/html/plain application/x-javascript text/css application/xml;
+gzip_types text/css text/xml application/javascript;
+gzip_vary on;
+</code></pre><p>提示：不同的nginx版本压缩类型有改变<br>如何查看压缩类型？</p>
+<pre><code># cd /usr/local/nginx/conf/
+# less mime.types
+</code></pre><p>最后我们使用火狐的slow插件来查看压缩情况。</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="15-缓存"><a href="#15-缓存" class="headerlink" title="15.缓存"></a><span id="15">15.缓存</span></h2><ul>
+<li>expires是网站元素在客户端过期的设置。</li>
+<li>作用：可以把大量的资源的文件存放到客户端，超过expires设定的时间久过期。在expires过期时间内，用户再访问网站，已经缓存的内容，就不会去网站下载了。</li>
+<li>优势：节省带宽，相同的东西客户端只下载一次。浏览加快，提升用户体验，很多图片文件在本地缓存了。减少服务器压力，支持并发高了。</li>
+<li>劣势：网站更新内容后，客户端还是旧的。测试的时候，希望是新的，总是看不到。广告，统计的代码，就不准确了。</li>
+<li>解决劣势：根据业务需求设置expires时间。图片更改(重新上传)1年–10年。广告，统计，不缓存。</li>
+<li>网站改版元素要改名，js，css</li>
+<li>缓存的cdn的资源怎么控制，首先清理源站图片，然后通过cdn提供的接口(api或web界面)发给cdn，让它清理对应缓存。</li>
+</ul>
+<p>配置如下：</p>
+<pre><code>#根据扩展名控制
+location ~ .*\.(gifp|jpg|jpeg|png|bmp|swf)$ {
+    expires    365d;
+}
+
+location ~ .*\.(js|css)$ {
+    expires    30d;
+}
+#根据目录进行控制
+location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+    expires    360d;
+}
+#根据单个文件控制
+location ~ (robots.txt) {
+log_not_found off;
+    expires    7d;
+break;
+}
+#为robots.txt为7天并不记录404错误
+</code></pre><p>robots.txt设置可以或禁止各种搜索引擎访问的资源，其缺点是暴露目录结构。</p>
+<hr>
+<h2 id="16-user-agent介绍及nginx服务防爬虫"><a href="#16-user-agent介绍及nginx服务防爬虫" class="headerlink" title="16.user-agent介绍及nginx服务防爬虫"></a><span id="16">16.user-agent介绍及nginx服务防爬虫</span></h2><pre><code>User-agent: Baiduspider
+Disallow: /
+
+User-agent: baiduspider
+Disallow: /
+</code></pre><p>假定一个场景：某个网站它可能不希望被网络爬虫抓取，例如测试环境不希望被抓取，以免对用户造成误导，那么需要在该网站中申明，本站不希望被抓取。有如下方法：</p>
+<h4 id="方法一：修改nginx-conf，禁止网络爬虫的ua，返回403。"><a href="#方法一：修改nginx-conf，禁止网络爬虫的ua，返回403。" class="headerlink" title="方法一：修改nginx.conf，禁止网络爬虫的ua，返回403。"></a>方法一：修改nginx.conf，禁止网络爬虫的ua，返回403。</h4><pre><code>server { 
+listen 80; 
+server_name 127.0.0.1; 
+#添加如下内容即可防止爬虫
+if ($http_user_agent ~* &quot;qihoobot|Baiduspider|Googlebot|Googlebot-Mobile|Googlebot-Image|Mediapartners-Google|Adsbot-Google|Feedfetcher-Google|Yahoo! Slurp|Yahoo! Slurp China|YoudaoBot|Sosospider|Sogou spider|Sogou web spider|MSNBot|ia_archiver|Tomato Bot&quot;) 
+{ 
+return 403; 
+} 
+</code></pre><h4 id="方法2：网站更目录下增加Robots-txt，放在站点根目录下。"><a href="#方法2：网站更目录下增加Robots-txt，放在站点根目录下。" class="headerlink" title="方法2：网站更目录下增加Robots.txt，放在站点根目录下。"></a>方法2：网站更目录下增加Robots.txt，放在站点根目录下。</h4><p>通过<a href="http://tool.chinaz.com/robots/" target="_blank" rel="external">robots文件生成</a>，站点可以针对现在的搜索引擎按照想要的规则生成robots.txt文件。</p>
+<p>知识扩展：<br>　　robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。robots.txt文件告诉蜘蛛程序在服务器上什么文件是可以被查看的。<br>　　当一个搜索蜘蛛访问一个站点时，它会首先检查该站点根目录下是否存在robots.txt，如果存在，搜索机器人就会按照该文件中的内容来确定访问的范围；如果该文件不存在，所有的搜索蜘蛛将能够访问网站上所有没有被口令保护的页面。百度官方建议，仅当您的网站包含不希望被搜索引擎收录的内容时，才需要使用robots.txt文件。如果您希望搜索引擎收录网站上所有内容，请勿建立robots.txt文件。<br>　　Robots协议是国际互联网界通行的道德规范，基于以下原则建立：<br>　　　　1、搜索技术应服务于人类，同时尊重信息提供者的意愿，并维护其隐私权；<br>　　　　2、网站有义务保护其使用者的个人信息和隐私不被侵犯。<br>　　当然，如果搜索引擎不遵守约定的Robots协议，那么通过在网站下增加robots.txt也是不起作用的。（在正式环境中，可以适当允许搜索引擎抓取收录）</p>
+<h4 id="禁止不同浏览器软件访问："><a href="#禁止不同浏览器软件访问：" class="headerlink" title="禁止不同浏览器软件访问："></a>禁止不同浏览器软件访问：</h4><pre><code>if ($http_use########################r_agent ~* &quot;Firefox|MSIE&quot;)
+{
+    return 403;
+}
+</code></pre><p>更多配置请参考博文<a href="http://blog.csdn.net/xifeijian/article/details/38615695" target="_blank" rel="external">Nginx防蜘蛛爬虫处理</a></p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="17-nginx日志优化相关"><a href="#17-nginx日志优化相关" class="headerlink" title="17.nginx日志优化相关"></a><span id="17">17.nginx日志优化相关</span></h2><p>略<br>日志切割脚本nginx_log_split.sh</p>
+<pre><code>#!/bin/bash
+#Date:          2013-01-28
+#Author:        Created by Fedor
+#Mail:
+#Version:       1.0
+#Function:      This script is cut nginx log 
+####This script run at 00:00
+####The Nginx logs path
+####clean log&apos;s  15 days ago
+
+#source function library
+#. /etc/init.d/functions
+
+logs_path=&quot;/usr/local/nginx/logs&quot;
+logs_path1=&quot;/opt/data/nginx/access_log&quot;
+nginx_pid=&quot;/usr/local/nginx/logs/nginx.pid&quot;
+host_ip=&quot;xx.xx.xx.xx&quot;
+
+#create log directory
+mkdir -p ${logs_path1}/$(date -d &quot;yesterday&quot; +&quot;%Y%m%d&quot;)/
+
+#move log to new directory
+mv ${logs_path}/access.log ${logs_path1}/$(date -d &quot;yesterday&quot; +&quot;%Y%m%d&quot;)/$host_ip-access.log
+mv ${logs_path}/error.log ${logs_path1}/$(date -d &quot;yesterday&quot; +&quot;%Y%m%d&quot;)/$host_ip-error.log
+
+#make new log
+kill -USR1 `cat ${nginx_pid}`
+</code></pre><p>将脚本添加到计划任务<code>crontab -e</code>：</p>
+<pre><code>#cut nginx access log by mean at 20150601
+00 00 * * * /bin/sh /server/scripts/nginx_log_split.sh &gt; /dev/null 2&gt;&amp;1
+00 00 * * * /usr/bin/find /opt/data/nginx/access_log/ -type d -mtime +15 | xargs rm -rf
+</code></pre><hr>
+<h2 id="18-最小化nginx目录及文件权限设置"><a href="#18-最小化nginx目录及文件权限设置" class="headerlink" title="18.最小化nginx目录及文件权限设置"></a><span id="18">18.最小化nginx目录及文件权限设置</span></h2><p>安全站点目录权限：</p>
+<ul>
+<li>站点内所有文件和目录的用户和组都应为root。</li>
+<li>站点内所有目录权限为755。不能往目录放文件</li>
+<li>站点内所有文件权限是默认的644。不能改文件<br>注意：网站服务的程序使用的用户不能用root</li>
+</ul>
+<p>以上权限设置可以做到防止黑客上传木马，以及修改站点文件，但是，合理的用户上传的内容也被拒之门外。<br>如何解决可以让合法的用户传文件又不至于被黑客利用攻击<br>解决方案：</p>
+<ul>
+<li>大多数网站做法chown -R nginx.nginx /data（站点目录），比较危险。</li>
+<li>所有站点777，最危险的???</li>
+<li>找到上传目录，授权nginx可以访问，比较安全的做法。</li>
+<li>架构上解决。</li>
+<li>mount安全优化或者放到/etc/fstab。mount -o nosuid,noexec,nodev</li>
+</ul>
+<hr>
+<h2 id="19-nginx站点目录及文件URL访问控制"><a href="#19-nginx站点目录及文件URL访问控制" class="headerlink" title="19.nginx站点目录及文件URL访问控制"></a><span id="19">19.nginx站点目录及文件URL访问控制</span></h2><p>nginx配置限制指定目录下的php程序被解析</p>
+<pre><code>location ~ ^/images/.*\.(php|php5)$ {
+    deny all;
+}
+location ~ ^/static/.*\.(php|php5)$ {
+    deny all;
+}
+location ~* ^/data/(attachment|avatar)/.*\.(php|php5)$ {
+    deny all;
+}
+
+#这些目录限制必须要配置在一下配置的前面
+location ~ .*\.(php|php5)?$ {
+    #root           html;
+    fastcgi_pass   127.0.0.1:9000;
+    fastcgi_index  index.php;
+    #fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    include        fastcgi_params;
+}
+
+#禁止访问*.txt文件
+location ~* \.(txt|doc)$ {
+    if (-f $request_filename) {
+root /data/www/www
+#rewrite ……可以重定向到某个URL
+break;
+}
+}
+
+
+#禁止访问指定目录下所有的文件和目录
+
+#单目录
+location ~ ^/(static)/ {
+    deny all;
+}
+location ~ ^/static {
+    deny all;
+}
+#多目录
+location ~ ^/(static|js) {
+    deny all;
+}
+
+#禁止访问目录并返回指定的http状态码
+location /admin/ { return 403; }
+</code></pre><p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/02/19/Nginx/Nginx优化/" data-id="cikxppo1y000jw8gsgep7xe15" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/02/19/Nginx/Nginx优化/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/20/Zabbix/Zabbix监控nginx性能/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Zabbix监控nginx性能
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/17/Hexo/High一下/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">High一下</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/19/Nginx/Nginx优化/" data-title="Nginx优化相关" data-url="http://fed0ra.github.io/2016/02/19/Nginx/Nginx优化/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Nginx/" style="font-size: 20px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Zabbix/" style="font-size: 20px;">Zabbix</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/02/22/Redis/Redis部署配置与维护/">Redis部署配置与维护</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/20/Zabbix/zabbix链接及解除模板链接/">zabbix链接及解除模板链接</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/20/Zabbix/Zabbix监控nginx性能/">Zabbix监控nginx性能</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/19/Nginx/Nginx优化/">Nginx优化相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/Hexo/High一下/">High一下</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://explainshell.com" target="_blank">explainshell</a>
+          </li>
+        
+          <li>
+            <a href="http://linux.51yip.com" target="_blank">linux命令手册</a>
+          </li>
+        
+          <li>
+            <a href="http://tool.oschina.net" target="_blank">tool.oschina</a>
+          </li>
+        
+          <li>
+            <a href="http://www.bootcss.com" target="_blank">Bootcss</a>
+          </li>
+        
+          <li>
+            <a href="http://www.gycc.com" target="_blank">google替代品</a>
+          </li>
+        
+          <li>
+            <a href="http://www.clipconverter.cc" target="_blank">Youtube downloader</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 LiMY<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  -
+	  produce by <a href="http://fed0ra.github.io/" target="_blank">Fedor</a>
+	  -
+	  网站托管于 <a href="https://pages.github.com/" target="_blank">github pages</a>
+	  -
+	  图片托管于 <a href="http://www.qiniu.com/" target="_blank">七牛</a>
+      -
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+	  -
+	  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>  
+    </div>
+  </div>
+</footer>
+
+
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fed0ra"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+</div>
+</body>
+</html>

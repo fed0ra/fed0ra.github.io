@@ -4,27 +4,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>访问Nginx出现状态码为403 forbidden原因 | Fedor&#39;s blog</title>
+  <title>Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-1)nginx配置文件里不配置默认首页参数或者首页文件在站点目录下没有
-2)模拟站点目录下没有配置文件里指定的首页文件index.php index.html index.htm。
-# rm -f ../../html/www/index.h">
-<meta property="og:type" content="article">
-<meta property="og:title" content="访问Nginx出现状态码为403 forbidden原因">
-<meta property="og:url" content="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /index.html">
+  <meta name="description" content="Devops">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fedor's blog">
+<meta property="og:url" content="http://fed0ra.github.io/page/2/index.html">
 <meta property="og:site_name" content="Fedor's blog">
-<meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-1)nginx配置文件里不配置默认首页参数或者首页文件在站点目录下没有
-2)模拟站点目录下没有配置文件里指定的首页文件index.php index.html index.htm。
-# rm -f ../../html/www/index.h">
-<meta property="og:updated_time" content="2016-02-22T05:12:48.869Z">
+<meta property="og:description" content="Devops">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="访问Nginx出现状态码为403 forbidden原因">
-<meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-1)nginx配置文件里不配置默认首页参数或者首页文件在站点目录下没有
-2)模拟站点目录下没有配置文件里指定的首页文件index.php index.html index.htm。
-# rm -f ../../html/www/index.h">
+<meta name="twitter:title" content="Fedor's blog">
+<meta name="twitter:description" content="Devops">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -244,10 +234,12 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main"><article id="post-Nginx/访问Nginx出现状态码为403 forbidden原因 " class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main">
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" class="article-date">
-  <time datetime="2016-02-16T16:00:00.000Z" itemprop="datePublished">2016-02-17</time>
+    <a href="/2016/01/20/hello-world/" class="article-date">
+  <time datetime="2016-01-19T16:00:00.000Z" itemprop="datePublished">2016-01-20</time>
 </a>
     
   </div>
@@ -257,8 +249,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      访问Nginx出现状态码为403 forbidden原因
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/20/hello-world/">Hello World</a>
     </h1>
   
 
@@ -266,59 +258,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<p>1)nginx配置文件里不配置默认首页参数或者首页文件在站点目录下没有</p>
-<p>2)模拟站点目录下没有配置文件里指定的首页文件<code>index.php index.html index.htm</code>。</p>
-<pre><code># rm -f ../../html/www/index.html#&lt;==删除物理首页文件
-# curl -I -s 10.0.0.8|head-1
-HTTP/1.1 403 Forbidden
-</code></pre><p>3)站点目录或内部的程序文件没有Nginx用户访问权限。</p>
-<p>4)Nginx配置文件中设置allow、deny等权限控制，导致客户端没有没权限访问。</p>
-
+        <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a><br>
+        
+          <p class="article-more-link">
+            <a href="/2016/01/20/hello-world/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" data-id="cikxppo1q000gw8gsahssvb4y" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/01/20/hello-world/" data-id="cikxppo130004w8gs47wrftvf" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/01/20/hello-world/#ds-thread" class="article-comment-link">评论</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
-
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/02/17/Hexo/High一下/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          High一下
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/02/16/Python/Python运维自动化环境搭建/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">Python运维自动化开发环境搭建</div>
-    </a>
-  
-</nav>
-
   
 </article>
 
 
-  <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" data-title="访问Nginx出现状态码为403 forbidden原因" data-url="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /"></div>
-  </section>
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 </section>
       
       <aside id="sidebar">
