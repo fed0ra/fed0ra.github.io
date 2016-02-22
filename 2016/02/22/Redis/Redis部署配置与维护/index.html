@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Redis部署配置与维护 | Fedor&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Linux上安装redis二、redis用户验证设置三、redis作为缓存服务器的配置四、监控Redis状态五、redis的配置文件内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis部署配置与维护">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/22/Redis/Redis部署配置与维护/index.html">
+<meta property="og:site_name" content="Fedor's blog">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Linux上安装redis二、redis用户验证设置三、redis作为缓存服务器的配置四、监控Redis状态五、redis的配置文件内容">
+<meta property="og:image" content="https://raw.githubusercontent.com/junegunn/redis-stat/master/screenshots/redis-stat-web.png">
+<meta property="og:updated_time" content="2016-02-22T06:56:59.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis部署配置与维护">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Linux上安装redis二、redis用户验证设置三、redis作为缓存服务器的配置四、监控Redis状态五、redis的配置文件内容">
+  
+    <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fedor&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">keke</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+		
+		
+		
+		<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+		
+		
+		
+		
+		
+		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="fed0ra.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+    <div class="outer">
+      <section id="main"><article id="post-Redis/Redis部署配置与维护" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/22/Redis/Redis部署配置与维护/" class="article-date">
+  <time datetime="2016-02-21T16:00:00.000Z" itemprop="datePublished">2016-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis部署配置与维护
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、Linux上安装redis</a><br><a href="#二">二、redis用户验证设置</a><br><a href="#三">三、redis作为缓存服务器的配置</a><br><a href="#四">四、监控Redis状态</a><br><a href="#五">五、redis的配置文件内容</a>  </p>
+<hr>
+<a id="more"></a>
+<h2 id="一、Linux上安装部署redis"><a href="#一、Linux上安装部署redis" class="headerlink" title="一、Linux上安装部署redis"></a><span id="一">一、Linux上安装部署redis</span></h2><h4 id="1-下载redis"><a href="#1-下载redis" class="headerlink" title="1.下载redis"></a>1.下载redis</h4><pre><code># wget http://download.redis.io/releases/redis-3.0.7.tar.gz
+</code></pre><h4 id="2-解压编译安装"><a href="#2-解压编译安装" class="headerlink" title="2.解压编译安装"></a>2.解压编译安装</h4><pre><code># tar xzf redis-3.0.7.tar.gz
+# cd redis-3.0.7/src
+# make
+# make install
+</code></pre><p>此时可以看到src文件夹下多出现了一些绿色的文件，这些文件就是我们以后需要用到的命令文件。</p>
+<h3 id="3-为了便于管理，所有源代码安装的软件都安装在-usr-local-redis下"><a href="#3-为了便于管理，所有源代码安装的软件都安装在-usr-local-redis下" class="headerlink" title="3.为了便于管理，所有源代码安装的软件都安装在/usr/local/redis下"></a>3.为了便于管理，所有源代码安装的软件都安装在/usr/local/redis下</h3><p>创建<code>bin,etc,var三个</code>文件夹（bin用于存放命令，etc拥有存放配置文件，var用于存放日志文件）<br>将redis-3.0.7源码文件夹下的redis.conf复制到/usr/local/redis/etc/下<br>将src目录下的7个命令文件（绿色的），移动到/usr/local/redis/bin/下</p>
+<pre><code># mkdir -p /usr/local/redis/{bin,etc,var}
+# /bin/cp ./{redis-benchmark,redis-check-aof,redis-check-dump,redis-cli,redis-sentinel,redis-server} /usr/local/redis/bin/
+# cd ../
+# cp ./redis.conf /usr/local/redis/etc/
+# ln -s /usr/local/redis/bin/* /usr/local/bin/
+# cd ..
+# rm -rf redis-3.0.7
+</code></pre><h4 id="4-启动Redis服务"><a href="#4-启动Redis服务" class="headerlink" title="4.启动Redis服务"></a>4.启动Redis服务</h4><p>直接执行命令<code>redis-server</code></p>
+<pre><code>[root@CentOS-Server01 var]# redis-server
+1441:C 22 Feb 19:46:42.905 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+1441:M 22 Feb 19:46:42.906 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+                _._                                                  
+           _.-``__ &apos;&apos;-._                                             
+      _.-``    `.  `_.  &apos;&apos;-._           Redis 3.0.7 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ &apos;&apos;-._                                   
+ (    &apos;      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|&apos;` _.-&apos;|     Port: 6379
+ |    `-._   `._    /     _.-&apos;    |     PID: 1441
+  `-._    `-._  `-./  _.-&apos;    _.-&apos;                                   
+ |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|                                  
+ |    `-._`-._        _.-&apos;_.-&apos;    |           http://redis.io        
+  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;                                   
+ |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|                                  
+ |    `-._`-._        _.-&apos;_.-&apos;    |                                  
+  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;                                   
+      `-._    `-.__.-&apos;    _.-&apos;                                       
+          `-._        _.-&apos;                                           
+              `-.__.-&apos;                                               
+
+1441:M 22 Feb 19:46:42.907 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+1441:M 22 Feb 19:46:42.907 # Server started, Redis version 3.0.7
+1441:M 22 Feb 19:46:42.907 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add &apos;vm.overcommit_memory = 1&apos; to /etc/sysctl.conf and then reboot or run the command &apos;sysctl vm.overcommit_memory=1&apos; for this to take effect.
+1441:M 22 Feb 19:46:42.907 * DB loaded from disk: 0.000 seconds
+1441:M 22 Feb 19:46:42.908 * The server is now ready to accept connections on port 6379
+</code></pre><p>这样启动没有用到<code>etc</code>下的配置文件，并且服务是在前台运行。  </p>
+<p><strong>通过配置文件后台启动redis</strong><br>ctrl+C停止服务。<br>修改redis配置文件，如果需要在后台运行，修改<code>daemonize</code>参数改为<code>yes</code>，修改命令如下：</p>
+<pre><code>sed -i &apos;s@pidfile.*@pidfile /var/run/redis.pid@&apos; /usr/local/redis/etc/redis.conf
+sed -i &quot;s@logfile.*@logfile $redis_install_dir/var/redis.log@&quot; /usr/local/redis/etc/redis.conf
+sed -i &quot;s@^dir.*@dir $redis_install_dir/var@&quot; /usr/local/redis/etc/redis.conf
+sed -i &apos;s@daemonize no@daemonize yes@&apos; /usr/local/redis/etc/redis.conf
+</code></pre><p>启动redis</p>
+<pre><code># redis-server /usr/local/redis/etc/redis.conf
+</code></pre><p>查看是否启动成功：</p>
+<pre><code># netstat -lntup | grep 6379
+</code></pre><h4 id="5-客户端登录"><a href="#5-客户端登录" class="headerlink" title="5.客户端登录"></a>5.客户端登录</h4><p>执行命令</p>
+<pre><code># redis-cli 
+</code></pre><h4 id="6-关闭redis服务"><a href="#6-关闭redis服务" class="headerlink" title="6.关闭redis服务"></a>6.关闭redis服务</h4><p>可以使用pkill命令</p>
+<pre><code># pkill redis-server
+# netstat -lntup | grep 6379
+# pstree -p | grep redis
+</code></pre><p>关闭之后，发现6379就不再被占用了，redis的进程也都没有了。<br>也可以使用客户端命令redis-cli</p>
+<pre><code># redis-cli shutdown
+# netstat -lntup | grep 6379
+# pstree -p | grep redis
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、redis用户验证设置"><a href="#二、redis用户验证设置" class="headerlink" title="二、redis用户验证设置"></a><span id="二">二、redis用户验证设置</span></h2><h4 id="1-设置验证密码方法一："><a href="#1-设置验证密码方法一：" class="headerlink" title="1.设置验证密码方法一："></a>1.设置验证密码方法一：</h4><pre><code># vim /usr/local/redis/etc/redis.conf
+</code></pre><p>修改配置文件redis.conf，设置如下</p>
+<pre><code># Warning: since Redis is pretty fast an outside user can try up to
+# 150k passwords per second against a good box. This means that you should
+# use a very strong password otherwise it will be very easy to break.
+#
+requirepass 123456
+</code></pre><h4 id="2-设置验证密码方法二："><a href="#2-设置验证密码方法二：" class="headerlink" title="2.设置验证密码方法二："></a>2.设置验证密码方法二：</h4><p>通过config命令可以设置密码以及获取当前用户密码</p>
+<pre><code>127.0.0.1:6379&gt; config set requirepass 123456
+OK
+127.0.0.1:6379&gt; config get requirepass 
+1) &quot;requirepass&quot;
+2) &quot;123456&quot;
+127.0.0.1:6379&gt; 
+</code></pre><p>设置验证密码之后，redis服务关闭需要密码验证通过之后才能关闭，命令如下：</p>
+<pre><code># redis-cli –a 123456 shutdown
+</code></pre><p>登录使用<code>-a</code>参数，命令如下：</p>
+<pre><code># redis-cli -a 123456
+</code></pre><p>来自：<a href="http://blog.csdn.net/vtopqx/article/details/46833099" target="_blank" rel="external">http://blog.csdn.net/vtopqx/article/details/46833099</a></p>
+<hr>
+<h2 id="三、redis作为缓存服务器的配置"><a href="#三、redis作为缓存服务器的配置" class="headerlink" title="三、redis作为缓存服务器的配置"></a><span id="三">三、redis作为缓存服务器的配置</span></h2><p>用redis作为缓存服务器配置时候需要注意几点：</p>
+<ul>
+<li><p>作为缓存服务器，如果不加以限制内存的话，很可能出现将服务器内存都耗光的情况，可以编辑redis配置文件修改<code>maxmemory</code>参数的大小限制内存：</p>
+<pre><code># In short... if you have slaves attached it is suggested that you set a lower
+# limit for maxmemory so that there is some free RAM on the system for slave
+# output buffers (but this is not needed if the policy is &apos;noeviction&apos;).
+# 限定最多使用1.5GB内存
+maxmemory 1536mb
+</code></pre></li>
+<li><p>如果内存到达了指定的上限，还要往redis里面添加更多的缓存内容，需要设置清理内容的策略：</p>
+<pre><code># MAXMEMORY POLICY: how Redis will select what to remove when maxmemory
+# is reached. You can select among five behaviors:
+#
+# volatile-lru -&gt; remove the key with an expire set using an LRU algorithm
+# allkeys-lru -&gt; remove any key according to the LRU algorithm
+# volatile-random -&gt; remove a random key with an expire set
+# allkeys-random -&gt; remove a random key, any key
+# volatile-ttl -&gt; remove the key with the nearest expire time (minor TTL)
+# noeviction -&gt; don&apos;t expire at all, just return an error on write operations
+#
+# Note: with any of the above policies, Redis will return an error on write
+#       operations, when there are no suitable keys for eviction.
+#
+#       At the date of writing these commands are: set setnx setex append
+#       incr decr rpush lpush rpushx lpushx linsert lset rpoplpush sadd
+#       sinter sinterstore sunion sunionstore sdiff sdiffstore zadd zincrby
+#       zunionstore zinterstore hset hsetnx hmset hincrby incrby decrby
+#       getset mset msetnx exec sort
+#
+# The default is:
+#
+maxmemory-policy allkeys-lru
+</code></pre><p>清理策略有多种，上边贴出的配置文件里有介绍<br>redis的官方文档也有说明： <a href="http://redis.io/topics/lru-cache" target="_blank" rel="external">http://redis.io/topics/lru-cache</a></p>
+</li>
+</ul>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="四、监控Redis状态"><a href="#四、监控Redis状态" class="headerlink" title="四、监控Redis状态"></a><span id="四">四、监控Redis状态</span></h2><p>redis提供了INFO命令，能够监控redis服务器的状态<br>telnet到对应服务器的端口，执行命令：</p>
+<pre><code>[root@CentOS-Server01 src]# telnet localhost 6379
+Trying ::1...
+Connected to localhost.
+Escape character is &apos;^]&apos;.
+info
+-NOAUTH Authentication required.
+auth 123456
++OK
+info
+$1953
+# Server
+redis_version:3.0.7
+redis_git_sha1:00000000
+redis_git_dirty:0
+</code></pre><p>如果需要验证，输入<code>auth password</code>即可</p>
+<p>也可以通过以下命令获取memory usage信息和hits信息</p>
+<pre><code># redis-cli -a 123456 info memory
+# redis-cli -a 123456 info stats
+</code></pre><p>在输出的信息里面有这几项和缓存的状态比较有关系：</p>
+<pre><code>keyspace_hits:14414110
+keyspace_misses:3228654
+used_memory:433264648
+expired_keys:1333536
+evicted_keys:1547380
+</code></pre><p>通过hits和miss，可以得到缓存的命中率：14414110 / (14414110 + 3228654)=81% ，一个缓存失效机制，和过期时间设计良好的系统，命中率可以做到95%以上,对于整体性能提升是很大的。<br>used_memory,expired_keys,evicted_keys这3个信息的具体含义，redis的官方说明：<a href="http://redis.io/commands/info" target="_blank" rel="external">http://redis.io/commands/info</a></p>
+<p>有个ruby gem叫redis-stat，它利用INFO命令展现出更直观的信息报表，项目地址：<a href="https://github.com/junegunn/redis-stat" target="_blank" rel="external">https://github.com/junegunn/redis-stat</a><br><img src="https://raw.githubusercontent.com/junegunn/redis-stat/master/screenshots/redis-stat-web.png" alt="redis-stat-web.png"></p>
+<p>来自：<a href="https://ruby-china.org/topics/22761#reply7" target="_blank" rel="external">https://ruby-china.org/topics/22761#reply7</a></p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="五、redis的配置文件内容"><a href="#五、redis的配置文件内容" class="headerlink" title="五、redis的配置文件内容"></a><span id="五">五、redis的配置文件内容</span></h2><p>redis的配置文件内容：</p>
+<pre><code>daemonize 如果需要在后台运行，把该项改为yes
+pidfile 配置多个pid的地址 默认在/var/run/redis.pid
+bind 绑定ip，设置后只接受来自该ip的请求
+port 监听端口，默认是6379
+loglevel 分为4个等级：debug verbose notice warning
+logfile 用于配置log文件地址
+databases 设置数据库个数，默认使用的数据库为0
+save 设置redis进行数据库镜像的频率。
+rdbcompression 在进行镜像备份时，是否进行压缩
+dbfilename 镜像备份文件的文件名
+Dir 数据库镜像备份的文件放置路径
+Slaveof 设置数据库为其他数据库的从数据库
+Masterauth 主数据库连接需要的密码验证
+Requriepass 设置 登陆时需要使用密码
+Maxclients 限制同时使用的客户数量
+Maxmemory 设置redis能够使用的最大内存
+Appendonly 开启append only模式
+Appendfsync 设置对appendonly.aof文件同步的频率（对数据进行备份的第二种方式）
+vm-enabled 是否开启虚拟内存支持   （vm开头的参数都是配置虚拟内存的）
+vm-swap-file 设置虚拟内存的交换文件路径
+vm-max-memory 设置redis使用的最大物理内存大小
+vm-page-size 设置虚拟内存的页大小
+vm-pages 设置交换文件的总的page数量
+vm-max-threads 设置VM IO同时使用的线程数量
+Glueoutputbuf 把小的输出缓存存放在一起
+hash-max-zipmap-entries 设置hash的临界值
+Activerehashing 重新hash
+</code></pre><p>来自：<a href="http://www.open-open.com/lib/view/open1426468117367.html" target="_blank" rel="external">http://www.open-open.com/lib/view/open1426468117367.html</a></p>
+<p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/02/22/Redis/Redis部署配置与维护/" data-id="cikxmx8iy000a9cgsgkkijcb4" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/02/22/Redis/Redis部署配置与维护/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/02/20/Zabbix/zabbix链接及解除模板链接/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">zabbix链接及解除模板链接</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/22/Redis/Redis部署配置与维护/" data-title="Redis部署配置与维护" data-url="http://fed0ra.github.io/2016/02/22/Redis/Redis部署配置与维护/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Zabbix/" style="font-size: 20px;">Zabbix</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/02/22/Redis/Redis部署配置与维护/">Redis部署配置与维护</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/20/Zabbix/zabbix链接及解除模板链接/">zabbix链接及解除模板链接</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/20/Zabbix/Zabbix监控nginx性能/">Zabbix监控nginx性能</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /">访问Nginx出现状态码为403 forbidden原因</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/Hexo/High一下/">High一下</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://explainshell.com" target="_blank">explainshell</a>
+          </li>
+        
+          <li>
+            <a href="http://linux.51yip.com" target="_blank">linux命令手册</a>
+          </li>
+        
+          <li>
+            <a href="http://tool.oschina.net" target="_blank">tool.oschina</a>
+          </li>
+        
+          <li>
+            <a href="http://www.bootcss.com" target="_blank">Bootcss</a>
+          </li>
+        
+          <li>
+            <a href="http://www.gycc.com" target="_blank">google替代品</a>
+          </li>
+        
+          <li>
+            <a href="http://www.clipconverter.cc" target="_blank">Youtube downloader</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 LiMY<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  -
+	  produce by <a href="http://fed0ra.github.io/" target="_blank">Fedor</a>
+	  -
+	  网站托管于 <a href="https://pages.github.com/" target="_blank">github pages</a>
+	  -
+	  图片托管于 <a href="http://www.qiniu.com/" target="_blank">七牛</a>
+      -
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+	  -
+	  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>  
+    </div>
+  </div>
+</footer>
+
+
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fed0ra"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+</div>
+</body>
+</html>
