@@ -1,0 +1,5 @@
+---
+title: fedor's blog
+---
+
+This is fedor's blog where i will  update with about the linux,Operations automation and anything
