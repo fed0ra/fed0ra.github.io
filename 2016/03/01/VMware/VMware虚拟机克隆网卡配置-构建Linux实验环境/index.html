@@ -8,13 +8,13 @@
   <title>VMware虚拟机克隆网卡配置-构建Linux实验环境 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、创建虚拟机并安装操作系统二、编辑虚拟机配置三、四、">
+一、创建虚拟机并安装操作系统二、编辑虚拟机配置三、初始化系统配置网卡四、克隆虚拟机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VMware虚拟机克隆网卡配置-构建Linux实验环境">
 <meta property="og:url" content="http://fed0ra.github.io/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、创建虚拟机并安装操作系统二、编辑虚拟机配置三、四、">
+一、创建虚拟机并安装操作系统二、编辑虚拟机配置三、初始化系统配置网卡四、克隆虚拟机">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E5%91%BD%E5%90%8D%E8%99%9A%E6%8B%9F%E6%9C%BA.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E7%BC%96%E8%BE%91%E8%99%9A%E6%8B%9F%E6%9C%BA.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8.png">
@@ -24,11 +24,11 @@
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/image%E7%BC%96%E8%BE%91.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imageVMnet1.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imageVMnet8.png">
-<meta property="og:updated_time" content="2016-03-01T09:57:26.268Z">
+<meta property="og:updated_time" content="2016-03-01T10:28:17.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VMware虚拟机克隆网卡配置-构建Linux实验环境">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、创建虚拟机并安装操作系统二、编辑虚拟机配置三、四、">
+一、创建虚拟机并安装操作系统二、编辑虚拟机配置三、初始化系统配置网卡四、克隆虚拟机">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -271,7 +271,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<p><a href="#一">一、创建虚拟机并安装操作系统</a><br><a href="#二">二、编辑虚拟机配置</a><br><a href="#三">三、</a><br><a href="#四">四、</a>  </p>
+<p><a href="#一">一、创建虚拟机并安装操作系统</a><br><a href="#二">二、编辑虚拟机配置</a><br><a href="#三">三、初始化系统配置网卡</a><br><a href="#四">四、克隆虚拟机</a>  </p>
 <hr>
 <a id="more"></a>
 <h2 id="一、创建虚拟机并安装操作系统"><a href="#一、创建虚拟机并安装操作系统" class="headerlink" title="一、创建虚拟机并安装操作系统"></a><span id="一">一、创建虚拟机并安装操作系统</span></h2><h4 id="1-新建虚拟机"><a href="#1-新建虚拟机" class="headerlink" title="1.新建虚拟机"></a>1.新建虚拟机</h4><p>自定义新建一个虚拟机<br>–&gt;选择虚拟机兼容性（默认即可）<br>–&gt;按住客户机操作系统（我们选稍后安装操作系统）<br>–&gt;选择客户机操作系统（使Linux系统，选择Linux，版本根据镜像，镜像是centos 6 64位，则选择<code>CentOS 64位</code>）<br>–&gt;命令虚拟机，自定义，位置存放在一个统一路径下，（<code>F:\Virtual Machines\CentOS-Server-01</code>）如图：<br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/%E5%91%BD%E5%90%8D%E8%99%9A%E6%8B%9F%E6%9C%BA.png" alt="命令虚拟机"><br>–&gt;处理器配置，自定义<br>–&gt;虚拟机内存，根据物理机和情况自定义（512M）<br>–&gt;网络类型（暂时默认，后为配置）<br>–&gt;I/O控制器类型和磁盘类型自定义，也可默认<br>–&gt;选择磁盘（创建新虚拟磁盘）<br>–&gt;指定磁盘容量（10G，用多少占用多少，不会分配10G后立刻占用硬盘10G空间的）<br>–&gt;指定磁盘文件默认下一步，完成创建虚拟机</p>
@@ -324,7 +324,7 @@ HOSTNAME=CentOS-Server01.example.com
 # yum update -y &amp;&amp; reboot
 </code></pre><p><a href="#top">返回目录</a></p>
 <hr>
-<h2 id="三、克隆虚拟机"><a href="#三、克隆虚拟机" class="headerlink" title="三、克隆虚拟机"></a><span id="三">三、克隆虚拟机</span></h2><h4 id="1-删除udev下的文件："><a href="#1-删除udev下的文件：" class="headerlink" title="1.删除udev下的文件："></a>1.删除udev下的文件：</h4><pre><code># rm -rf /etc/udev/rules.d/70-persistent-net.rules
+<h2 id="四、克隆虚拟机"><a href="#四、克隆虚拟机" class="headerlink" title="四、克隆虚拟机"></a><span id="四">四、克隆虚拟机</span></h2><h4 id="1-删除udev下的文件："><a href="#1-删除udev下的文件：" class="headerlink" title="1.删除udev下的文件："></a>1.删除udev下的文件：</h4><pre><code># rm -rf /etc/udev/rules.d/70-persistent-net.rules
 </code></pre><h4 id="2-关闭客户机"><a href="#2-关闭客户机" class="headerlink" title="2.关闭客户机"></a>2.关闭客户机</h4><p>初始化好后最好先做个快照。<br>右键点击客户机–&gt;管理–&gt;克隆，弹出克隆虚拟机使用向导，下一步<br>–&gt;选择克隆源，可以使用当前状态，也可用做好快照来进行克隆<br>–&gt;创建完整克隆</p>
 <p>至此完毕，以后需要直接从快照克隆一台新的虚拟机，修改IP地址即可。</p>
 <p><a href="#top">返回目录</a></p>
