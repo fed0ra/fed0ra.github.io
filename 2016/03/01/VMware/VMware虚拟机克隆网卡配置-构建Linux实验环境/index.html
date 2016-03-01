@@ -5,17 +5,30 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>Archives: 2016/1 | Fedor&#39;s blog</title>
+  <title>VMware虚拟机克隆网卡配置-构建Linux实验环境 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Devops">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fedor's blog">
-<meta property="og:url" content="http://fed0ra.github.io/archives/2016/01/index.html">
+  <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、创建虚拟机并安装操作系统二、编辑虚拟机配置三、四、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VMware虚拟机克隆网卡配置-构建Linux实验环境">
+<meta property="og:url" content="http://fed0ra.github.io/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/index.html">
 <meta property="og:site_name" content="Fedor's blog">
-<meta property="og:description" content="Devops">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、创建虚拟机并安装操作系统二、编辑虚拟机配置三、四、">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E5%91%BD%E5%90%8D%E8%99%9A%E6%8B%9F%E6%9C%BA.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E7%BC%96%E8%BE%91%E8%99%9A%E6%8B%9F%E6%9C%BA.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/image%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A801.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/image%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A802.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/image%E4%BB%A5%E5%A4%AA%E7%BD%91.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/image%E7%BC%96%E8%BE%91.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imageVMnet1.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imageVMnet8.png">
+<meta property="og:updated_time" content="2016-03-01T09:57:26.268Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fedor's blog">
-<meta name="twitter:description" content="Devops">
+<meta name="twitter:title" content="VMware虚拟机克隆网卡配置-构建Linux实验环境">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、创建虚拟机并安装操作系统二、编辑虚拟机配置三、四、">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -235,58 +248,122 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/01/21/ELKstack/ELKstack/" class="archive-article-date">
-  <time datetime="2016-01-20T16:00:00.000Z" itemprop="datePublished">1月 21</time>
+      <section id="main"><article id="post-VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/" class="article-date">
+  <time datetime="2016-02-29T16:00:00.000Z" itemprop="datePublished">2016-03-01</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/21/ELKstack/ELKstack/">ELKstack</a>
+    <h1 class="article-title" itemprop="name">
+      VMware虚拟机克隆网卡配置-构建Linux实验环境
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/01/20/hello-world/" class="archive-article-date">
-  <time datetime="2016-01-19T16:00:00.000Z" itemprop="datePublished">1月 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/20/hello-world/">Hello World</a>
-    </h1>
-  
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、创建虚拟机并安装操作系统</a><br><a href="#二">二、编辑虚拟机配置</a><br><a href="#三">三、</a><br><a href="#四">四、</a>  </p>
+<hr>
+<a id="more"></a>
+<h2 id="一、创建虚拟机并安装操作系统"><a href="#一、创建虚拟机并安装操作系统" class="headerlink" title="一、创建虚拟机并安装操作系统"></a><span id="一">一、创建虚拟机并安装操作系统</span></h2><h4 id="1-新建虚拟机"><a href="#1-新建虚拟机" class="headerlink" title="1.新建虚拟机"></a>1.新建虚拟机</h4><p>自定义新建一个虚拟机<br>–&gt;选择虚拟机兼容性（默认即可）<br>–&gt;按住客户机操作系统（我们选稍后安装操作系统）<br>–&gt;选择客户机操作系统（使Linux系统，选择Linux，版本根据镜像，镜像是centos 6 64位，则选择<code>CentOS 64位</code>）<br>–&gt;命令虚拟机，自定义，位置存放在一个统一路径下，（<code>F:\Virtual Machines\CentOS-Server-01</code>）如图：<br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/%E5%91%BD%E5%90%8D%E8%99%9A%E6%8B%9F%E6%9C%BA.png" alt="命令虚拟机"><br>–&gt;处理器配置，自定义<br>–&gt;虚拟机内存，根据物理机和情况自定义（512M）<br>–&gt;网络类型（暂时默认，后为配置）<br>–&gt;I/O控制器类型和磁盘类型自定义，也可默认<br>–&gt;选择磁盘（创建新虚拟磁盘）<br>–&gt;指定磁盘容量（10G，用多少占用多少，不会分配10G后立刻占用硬盘10G空间的）<br>–&gt;指定磁盘文件默认下一步，完成创建虚拟机</p>
+<h4 id="2-安装操作系统"><a href="#2-安装操作系统" class="headerlink" title="2.安装操作系统"></a>2.安装操作系统</h4><p>这里安装centos 6 64位系统，安装过程略。</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、编辑虚拟机配置"><a href="#二、编辑虚拟机配置" class="headerlink" title="二、编辑虚拟机配置"></a><span id="二">二、编辑虚拟机配置</span></h2><h4 id="这里使用双网卡，Host-only（仅主机模式）-NAT模式。"><a href="#这里使用双网卡，Host-only（仅主机模式）-NAT模式。" class="headerlink" title="这里使用双网卡，Host-only（仅主机模式） + NAT模式。"></a>这里使用双网卡，Host-only（仅主机模式） + NAT模式。</h4><p>####仅主机模式的网卡用于远程连接，NAT的网卡用于上网，即使IP地址段改变也不用修改虚拟机网卡配置。</p>
+<h4 id="1-在创建好的虚拟机界面，打开编辑虚拟机设置，如下图："><a href="#1-在创建好的虚拟机界面，打开编辑虚拟机设置，如下图：" class="headerlink" title="1.在创建好的虚拟机界面，打开编辑虚拟机设置，如下图："></a>1.在创建好的虚拟机界面，打开编辑虚拟机设置，如下图：</h4><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/%E7%BC%96%E8%BE%91%E8%99%9A%E6%8B%9F%E6%9C%BA.png" alt="编辑虚拟机配置"></p>
+<h4 id="2-添加一个网络适配器"><a href="#2-添加一个网络适配器" class="headerlink" title="2.添加一个网络适配器"></a>2.添加一个网络适配器</h4><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8.png" alt="添加网络适配器"></p>
+<h4 id="3-将第一块网卡修改成仅主机模式，第二块网卡修改成NAT模式，确定保存，如下两图："><a href="#3-将第一块网卡修改成仅主机模式，第二块网卡修改成NAT模式，确定保存，如下两图：" class="headerlink" title="3.将第一块网卡修改成仅主机模式，第二块网卡修改成NAT模式，确定保存，如下两图："></a>3.将第一块网卡修改成仅主机模式，第二块网卡修改成NAT模式，确定保存，如下两图：</h4><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/image%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A801.png" alt="网卡1"><br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/image%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A802.png" alt="网卡2"><br><a href="#top">返回目录</a></p>
+<h4 id="4-物理机共享网络配置"><a href="#4-物理机共享网络配置" class="headerlink" title="4.物理机共享网络配置"></a>4.物理机共享网络配置</h4><p>在网络管理中，右键物理网卡–&gt;属性–&gt;共享，勾选<code>允许其他网络用户通过此计算机的Internet连接来连接</code>，并选择<code>VMnet8</code>，即<code>以太网3</code>，之后会给VMnet8分配一个IP地址，这里分配的是192.168.26.2，记住之后配置虚拟机上网时会用此IP作为网关<br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/image%E4%BB%A5%E5%A4%AA%E7%BD%91.png" alt="以太网"></p>
+<h4 id="5-在VMware工具栏中点击编辑–-gt-虚拟网络编辑"><a href="#5-在VMware工具栏中点击编辑–-gt-虚拟网络编辑" class="headerlink" title="5.在VMware工具栏中点击编辑–&gt;虚拟网络编辑"></a>5.在VMware工具栏中点击编辑–&gt;虚拟网络编辑</h4><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/image%E7%BC%96%E8%BE%91.png" alt="虚拟网络编辑"></p>
+<h4 id="6-打开虚拟网络编辑器后，会出现多块虚拟网卡相关信息，找到VMnet1和VMnet8，修改VMnet8的网段为你物理机网络连接中VMnet8的网段，即192-168-26-0"><a href="#6-打开虚拟网络编辑器后，会出现多块虚拟网卡相关信息，找到VMnet1和VMnet8，修改VMnet8的网段为你物理机网络连接中VMnet8的网段，即192-168-26-0" class="headerlink" title="6.打开虚拟网络编辑器后，会出现多块虚拟网卡相关信息，找到VMnet1和VMnet8，修改VMnet8的网段为你物理机网络连接中VMnet8的网段，即192.168.26.0"></a>6.打开虚拟网络编辑器后，会出现多块虚拟网卡相关信息，找到VMnet1和VMnet8，修改VMnet8的网段为你<code>物理机网络连接</code>中VMnet8的网段，即192.168.26.0</h4><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imageVMnet1.png" alt="VMnet1"><br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imageVMnet8.png" alt="VMnet8"></p>
+<h2 id="三、初始化系统配置网卡"><a href="#三、初始化系统配置网卡" class="headerlink" title="三、初始化系统配置网卡"></a><span id="三">三、初始化系统配置网卡</span></h2><h4 id="1-网卡配置"><a href="#1-网卡配置" class="headerlink" title="1.网卡配置"></a>1.网卡配置</h4><p>备份eth0网卡，修改其配置文件：</p>
+<pre><code># cp /etc/sysconfig/network-scripts/ifcfg-eth0{,.bak}
+# cd /etc/sysconfig/network-scripts/
+# cat ifcfg-eth0
+DEVICE=eth0
+TYPE=Ethernet
+ONBOOT=yes
+NM_CONTROLLED=yes
+BOOTPROTO=none
+IPADDR=192.168.174.10
+NETMASK=255.255.255.0
+</code></pre><p>IP地址使用仅主机模式网段</p>
+<p>拷贝<code>eth0</code>，命名为<code>eth1</code>，编辑<code>eth1</code></p>
+<pre><code># cp ifcfg-eth0 ifcfg-eth1
+# cat ifcfg-eth1
+DEVICE=eth1
+TYPE=Ethernet
+ONBOOT=yes
+NM_CONTROLLED=yes
+BOOTPROTO=none
+IPADDR=192.168.26.10
+GATEWAY=192.168.26.2
+NETMASK=255.255.255.0
+</code></pre><p>IP地址使用NAT模式，即VMnet8网段，网关设置成物理机VMnet8的IP地址，即192.168.26.2。</p>
+<h4 id="注：为了克隆虚拟机后网络没有问题，去掉网卡配置中的UUID"><a href="#注：为了克隆虚拟机后网络没有问题，去掉网卡配置中的UUID" class="headerlink" title="注：为了克隆虚拟机后网络没有问题，去掉网卡配置中的UUID"></a>注：为了克隆虚拟机后网络没有问题，去掉网卡配置中的<code>UUID</code></h4><p>重启网卡：</p>
+<pre><code># /etc/init.d/network restart
+# ping g.cn
+</code></pre><h4 id="2-设置主机名"><a href="#2-设置主机名" class="headerlink" title="2.设置主机名"></a>2.设置主机名</h4><pre><code># cat /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=CentOS-Server01.example.com
+</code></pre><h4 id="3-设置主机名让它可以解析，长短域名都可以解析"><a href="#3-设置主机名让它可以解析，长短域名都可以解析" class="headerlink" title="3.设置主机名让它可以解析，长短域名都可以解析"></a>3.设置主机名让它可以解析，长短域名都可以解析</h4><pre><code># cat /etc/hosts
+192.168.174.10 CentOS-Server01 CentOS-Server01.example.com
+</code></pre><h4 id="4-关闭防火墙和selinux"><a href="#4-关闭防火墙和selinux" class="headerlink" title="4.关闭防火墙和selinux"></a>4.关闭防火墙和selinux</h4><pre><code># /etc/init.d/iptables stop
+# chkconfig iptables off
+# sed -i &apos;s@SELINUX=enforcing@SELINUX=disabled@&apos; /etc/selinux/config
+</code></pre><h4 id="5-安装基础工具"><a href="#5-安装基础工具" class="headerlink" title="5.安装基础工具"></a>5.安装基础工具</h4><pre><code># yum install screen tree lrzsz gcc glibc gcc-c++ make pathch openssl-devel
+# yum update -y &amp;&amp; reboot
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、克隆虚拟机"><a href="#三、克隆虚拟机" class="headerlink" title="三、克隆虚拟机"></a><span id="三">三、克隆虚拟机</span></h2><h4 id="1-删除udev下的文件："><a href="#1-删除udev下的文件：" class="headerlink" title="1.删除udev下的文件："></a>1.删除udev下的文件：</h4><pre><code># rm -rf /etc/udev/rules.d/70-persistent-net.rules
+</code></pre><h4 id="2-关闭客户机"><a href="#2-关闭客户机" class="headerlink" title="2.关闭客户机"></a>2.关闭客户机</h4><p>初始化好后最好先做个快照。<br>右键点击客户机–&gt;管理–&gt;克隆，弹出克隆虚拟机使用向导，下一步<br>–&gt;选择克隆源，可以使用当前状态，也可用做好快照来进行克隆<br>–&gt;创建完整克隆</p>
+<p>至此完毕，以后需要直接从快照克隆一台新的虚拟机，修改IP地址即可。</p>
+<p><a href="#top">返回目录</a></p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/" data-id="cil98s82d0007ysgsaj4hc3hs" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMware/">VMware</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/02/26/SaltStack/SaltStack批量管理工具实战（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">SaltStack批量管理工具实战（二）</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/" data-title="VMware虚拟机克隆网卡配置-构建Linux实验环境" data-url="http://fed0ra.github.io/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
