@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
+  <meta charset="utf-8">
+  
+  <title>KVM虚拟化（一）Linux上KVM虚拟机安装 | Fedor&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、虚拟化环境准备二、KVM虚拟机安装三、KVM联网与配置iptables端口转发 
+
+一、虚拟化环境准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVM虚拟化（一）Linux上KVM虚拟机安装">
+<meta property="og:url" content="http://fed0ra.github.io/2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/index.html">
+<meta property="og:site_name" content="Fedor's blog">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、虚拟化环境准备二、KVM虚拟机安装三、KVM联网与配置iptables端口转发 
+
+一、虚拟化环境准备">
+<meta property="og:updated_time" content="2016-04-14T02:18:51.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KVM虚拟化（一）Linux上KVM虚拟机安装">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、虚拟化环境准备二、KVM虚拟机安装三、KVM联网与配置iptables端口转发 
+
+一、虚拟化环境准备">
+  
+    <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fedor&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">keke</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+		
+		
+		
+		<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+		
+		
+		
+		
+		
+		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="fed0ra.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+    <div class="outer">
+      <section id="main"><article id="post-KVM/KVM虚拟化（一）Linux上KVM虚拟机安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/" class="article-date">
+  <time datetime="2016-04-04T16:00:00.000Z" itemprop="datePublished">2016-04-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      KVM虚拟化（一）Linux上KVM虚拟机安装
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、虚拟化环境准备</a><br><a href="#二">二、KVM虚拟机安装</a><br><a href="#三">三、KVM联网与配置iptables端口转发</a> </p>
+<hr>
+<h2 id="一、虚拟化环境准备"><a href="#一、虚拟化环境准备" class="headerlink" title="一、虚拟化环境准备"></a><span id="一">一、虚拟化环境准备</span></h2><a id="more"></a>
+<h4 id="1、修改内核模式为兼容内核启动"><a href="#1、修改内核模式为兼容内核启动" class="headerlink" title="1、修改内核模式为兼容内核启动"></a>1、修改内核模式为兼容内核启动</h4><pre><code>#查看系统版本，
+# cat /etc/redhat-release
+#查看内核版本，内核版本在2.6.20以下需要升级。在2.6.20以后KVM成为Linux的一个内核模块
+# uname -a
+</code></pre><h4 id="2、关闭selinux和防火墙"><a href="#2、关闭selinux和防火墙" class="headerlink" title="2、关闭selinux和防火墙"></a>2、关闭selinux和防火墙</h4><pre><code># /etc/init.d/iptables stop
+# chkconfig iptables off
+# cp /etc/selinux/config /etc/selinux/config.`date +&quot;%Y-%m-%d_%H:%M:%S&quot;`
+# sed -i &apos;s@SELINUX=enforcing@SELINUX=disabled@&apos; /etc/selinux/config
+# setenforce 0
+# reboot
+</code></pre><h4 id="3、虚拟化环境安装"><a href="#3、虚拟化环境安装" class="headerlink" title="3、虚拟化环境安装"></a>3、虚拟化环境安装</h4><p>(1)查看是否支持虚拟化。半虚拟化是不能运行与安装KVM虚拟机的。若实际环境没有, 需要到主板BIOS中开启Virtual Technolege(VT, 虚拟化技术)。使用命令查看，含有红色vmx字样则支持虚拟化。</p>
+<pre><code># egrep &apos;(vmx|svm)&apos; --color=always /proc/cpuinfo
+</code></pre><p>注：interl的VT技术在cpu的功能标签里叫vmx，AMD的AMD-V技术叫svm</p>
+<p>(2)配置yum</p>
+<pre><code># rpm -ivh http://mirrors.ustc.edu.cn/fedora/epel//6/x86_64/epel-release-6-8.noarch.rpm
+</code></pre><p>(3)安装kvm软件包和kvm虚拟化一些管理工具包(libguestfs-tools)</p>
+<pre><code>#yum -y install kvm qemu-kvm python-virtinst  virt-manager qemu-kvm-tools libvirt libvirt-python tunctl bridge-utils virt-viewer virt-v2v libguestfs-tools gcc* numactl-devel
+</code></pre><p>注：安装qemu-kvm会加载kvm模块，<code>cat /etc/sysconfig/modules/kvm.modules</code>中代码有写到。</p>
+<h4 id="4、查看虚拟化环境"><a href="#4、查看虚拟化环境" class="headerlink" title="4、查看虚拟化环境"></a>4、查看虚拟化环境</h4><p>(1)查看kvm模块支持</p>
+<pre><code># lsmod |grep kvm
+kvm_intel              55624  0
+kvm                   338535  1 kvm_intel
+</code></pre><p>(2)启动libvirtd，查看虚拟机环境</p>
+<pre><code># /etc/init.d/libvirtd start
+# virsh list --all
+Id    Name                           State
+</code></pre><p>(3)查看虚拟工具版本</p>
+<pre><code># virsh –version
+# virt-install --version
+# ln -s /usr/libexec/qemu-kvm /usr/bin/qemu-kvm
+# qemu-kvm -version
+</code></pre><p><em>启动libvirtd报错</em></p>
+<pre><code># /etc/init.d/libvirtd start
+启动 libvirtd 守护进程：libvirtd: relocation error: libvirtd: symbol numa_nodes_ptr, version libnuma_1.2 not defined in file libnuma.so.1 with link time reference
+#解决办法
+#yum install -y numactl-devel
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、KVM虚拟机安装"><a href="#二、KVM虚拟机安装" class="headerlink" title="二、KVM虚拟机安装"></a><span id="二">二、KVM虚拟机安装</span></h2><h4 id="1、上传ISO文件，CentOS-6-6-x86-64-bin-DVD1-iso"><a href="#1、上传ISO文件，CentOS-6-6-x86-64-bin-DVD1-iso" class="headerlink" title="1、上传ISO文件，CentOS-6.6-x86_64-bin-DVD1.iso"></a>1、上传ISO文件，CentOS-6.6-x86_64-bin-DVD1.iso</h4><pre><code># ll /data/CentOS-6.6-x86_64-bin-DVD1.iso
+</code></pre><h4 id="2、开始安装Centos6-6-X64"><a href="#2、开始安装Centos6-6-X64" class="headerlink" title="2、开始安装Centos6.6 X64"></a>2、开始安装Centos6.6 X64</h4><h4 id="1-raw格式磁盘"><a href="#1-raw格式磁盘" class="headerlink" title="(1)raw格式磁盘"></a>(1)raw格式磁盘</h4><p>使用qemu-img创建kvm硬盘，raw代表裸硬盘，裸设备文件系统特性是分多大占用多大</p>
+<pre><code># qemu-img create -f raw /data/img/kvm_ctest2.img 5G
+</code></pre><p>查看磁盘信息，以后所有磁盘的操作都用qemu-img进行操作</p>
+<pre><code># cd /date/img
+# ls -lh    #查看大小
+# qemu-img info /data/img/kvm_ctest2.img
+</code></pre><p>用KVM创建虚拟机</p>
+<pre><code># virt-install --virt-type kvm --name centos2 --ram 512 --vcpus=1 --cdrom=/data/CentOS-6.6-x86_64-bin-DVD1.iso --network network=default --graphics vnc,port=5912,listen=0.0.0.0 --noautoconsole --os-type=linux --os-variant=rhel6 --disk path=/data/img/kvm_centos2.img
+</code></pre><p>也可以将命令写入脚本，更直观，然后执行脚本创建虚拟机</p>
+<pre><code># cat create_kvm.sh
+virt-install \
+--virt-type kvm \
+--name centos2 \
+--ram 512 \
+--vcpus=1 \
+--cdrom=/data/CentOS-6.6-x86_64-bin-DVD1.iso \
+--network network=default \
+--graphics vnc,port=5912,listen=0.0.0.0 --noautoconsole --os-type=linux \
+--os-variant=rhel6 \
+--disk path=/data/img/kvm_centos2.img
+
+# sh create_kvm.sh
+# echo $?   #0
+# virsh list --all
+</code></pre><p>注:每行”\”后面不要带有空格。<br>参数说明:<br>–name指定虚拟机名称<br>–ram分配内存大小（默认大小MB）<br>–vcpus分配CPU核心数，最大与实体机CPU核心数相同<br>–disk指定虚拟机镜像，size指定分配大小单位为G。<br>–network网络类型，一般用的应该是bridge桥接。<br>–accelerate加速<br>–cdrom指定安装镜像iso<br>–vnc启用VNC远程管理，一般安装系统都要启用。<br>–vncport指定VNC监控端口，默认端口为5900，端口不能重复。<br>–vnclisten指定VNC绑定IP，默认绑定127.0.0.1，这里改为0.0.0.0。<br>–os-type=linux,windows<br>–os-variant=  </p>
+<h4 id="raw格式磁盘转换成qcow2格式："><a href="#raw格式磁盘转换成qcow2格式：" class="headerlink" title="raw格式磁盘转换成qcow2格式："></a>raw格式磁盘转换成qcow2格式：</h4><p>虚拟机处于关闭状态</p>
+<pre><code># cd /data/img/
+# qemu-img convert -c -f raw -O qcow2 kvm_ctest2.img kvm_ctest2-qcow2.img
+# ll -lh        #查看新格式大小
+</code></pre><p>-f  源镜像的格式<br>-O 目标镜像的格式  </p>
+<p>修改xml文件，然后启动</p>
+<pre><code># cd /etc/libvirt/qemu
+# virsh edit centos2    #不带后缀`.xml`，直接vim修改`xml`文件不生效的，必须用`virsh edit`
+Domain centos2 XML configuration edited.
+
+&lt;driver name=&apos;qemu&apos; type=&apos;raw&apos; cache=&apos;none&apos;/&gt;
+&lt;source file=&apos;/data/img/kvm_ctest2.img&apos;/&gt;改成
+&lt;driver name=&apos;qemu&apos; type=&apos;qcow2&apos; cache=&apos;none&apos;/&gt;
+&lt;source file=&apos;/data/img/kvm_ctest2-qcow2.img&apos;/&gt;
+# virsh list --all
+# virsh destroy centos2    #修改xml后reboot不生效，必须关闭
+# virsh start centos2
+</code></pre><p>查看进程，看是否用的是修改过的磁盘</p>
+<pre><code># ps -ef | grep kvm
+</code></pre><h4 id="2-qcow2格式-空间动态增长-，生产环境建议用qcow2，裸设备-即raw-出问题不好处理"><a href="#2-qcow2格式-空间动态增长-，生产环境建议用qcow2，裸设备-即raw-出问题不好处理" class="headerlink" title="(2)qcow2格式(空间动态增长)，生产环境建议用qcow2，裸设备(即raw)出问题不好处理"></a>(2)qcow2格式(空间动态增长)，生产环境建议用qcow2，裸设备(即raw)出问题不好处理</h4><p>创建qcow2格式虚拟磁盘</p>
+<pre><code># qemu-img create -f qcow2 /data/img/centos3.img 3G
+# echo $?
+</code></pre><p>用KVM创建虚拟机</p>
+<pre><code># cat create_qcow_kvm.sh
+virt-install \
+--virt-type kvm \
+--name centos3 \
+--ram 512 \
+--vcpus=1 \
+--cdrom=/data/CentOS-6.6-x86_64-bin-DVD1.iso \
+--network network=default \
+--accelerate \
+--graphics vnc,port=5913,listen=0.0.0.0 --noautoconsole --os-type=linux \
+--os-variant=rhel6 \
+--disk path=/data/img/centos3.img,format=qcow2
+
+# sh create_qcow_kvm.sh
+# echo $?
+# virsh list --all
+</code></pre><h4 id="3-开始通过VNC进行连接，进行安装过程"><a href="#3-开始通过VNC进行连接，进行安装过程" class="headerlink" title="(3)开始通过VNC进行连接，进行安装过程"></a>(3)开始通过VNC进行连接，进行安装过程</h4><p>IP:5912<br>IP:5913<br>安装步骤过程略</p>
+<p>注：连接VNC自然一闪而过解决办法：<br>设置VNC，vnc-options，expert-colourlevel改为full即可。</p>
+<p>安装完成后，登录主机修改主机名和IP<br><em>注意：以下需要在kvm虚拟机中操作</em></p>
+<pre><code>#修改主机名
+# hostname centos2
+# vi /etc/sysconfig/network
+HOSTNAME=centos2
+
+#修改IP，自动获取IP
+# vi /etc/sysconfig/network-scripts/ifcfg-eth0
+# /etc/init.d/network restart
+# ip a
+</code></pre><p>清空iptables规则, 通过sshd登录该主机</p>
+<pre><code># iptables -F
+# iptables -X
+# /etc/init.d/iptables restart
+</code></pre><h4 id="4-安装完成后，可以登录操作系统查看"><a href="#4-安装完成后，可以登录操作系统查看" class="headerlink" title="(4)安装完成后，可以登录操作系统查看"></a>(4)安装完成后，可以登录操作系统查看</h4><p>查看虚拟机列表。安装完操作系统自动关闭, 需要手动启动</p>
+<pre><code># virsh start centos2 centos3 started
+# virsh list --all
+# ps qux | grep kvm
+</code></pre><p>修改内存，可通过以下命令，虽然有修改内存的参数但不可以修改。</p>
+<pre><code># virsh setmem centos2 512
+</code></pre><h4 id="5-安装电源服务"><a href="#5-安装电源服务" class="headerlink" title="(5)安装电源服务"></a>(5)安装电源服务</h4><pre><code># yum -y install acpid
+# /etc/init.d/acpid start
+# chkconfig acpid on
+</code></pre><p>至此Centos 6.6 X64KVM虚拟机安装完毕</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、KVM联网与配置iptables端口转发"><a href="#三、KVM联网与配置iptables端口转发" class="headerlink" title="三、KVM联网与配置iptables端口转发"></a><span id="三">三、KVM联网与配置iptables端口转发</span></h2><p>上述操作安装好VM后，VM通过NAT网络获取的IP地址无法与其他网段的服务器进行通信。</p>
+<h4 id="1、KVM联网问题"><a href="#1、KVM联网问题" class="headerlink" title="1、KVM联网问题"></a>1、KVM联网问题</h4><p>切换到KVM服务器，编辑文件开启KVM服务器的IP转发功能。</p>
+<pre><code># vim /etc/stsctl.conf
+</code></pre><p>把其中的net.ipv4.ip_forward = 0修为net.ipv4.ip_forward = 1</p>
+<pre><code># sysctl –p
+</code></pre><p>使用以下命令开启KVM服务器的IPtables的转发功能。</p>
+<pre><code># iptables -t nat -A POSTROUTING -o em1 -j MASQUERADE
+</code></pre><p>em1根据情况修改，通过em1联网，一般为相当于eth1，这里是em1。<br>尝试使用virbr0（自动生成的网卡）但连不上网。</p>
+<p>最后，切换到虚拟机中ping一下查看网络情况，此时虚拟机可以与服务器外网正常通信。</p>
+<h4 id="2、为VM配置iptables端口转发"><a href="#2、为VM配置iptables端口转发" class="headerlink" title="2、为VM配置iptables端口转发"></a>2、为VM配置iptables端口转发</h4><p>因为有些业务是在公网的，有时候为了资金考虑不得不尽量节省公网IP的个数。比如现在想管理KVM中的VM，通过SSH方式。但是KVM服务器对外只有一个公网IP，而且KVM服务器是在IDC机房中。<br>如果要达到上述的要求，只能在KVM服务器为VM配置IPtables端口转发。</p>
+<h4 id="1、通过iptables端口转发实现ssh远程登录虚拟机"><a href="#1、通过iptables端口转发实现ssh远程登录虚拟机" class="headerlink" title="1、通过iptables端口转发实现ssh远程登录虚拟机"></a>1、通过iptables端口转发实现ssh远程登录虚拟机</h4><p>以上述VM为例，目前该KVM的公网IP为192.168.2.99，VM的IP为192.168.122.11，现在我要求通过访问KVM的8011端口访问VM的22端口。  </p>
+<p>设置如下IPtables规则：</p>
+<pre><code># iptables -t nat -A PREROUTING -d 192.168.2.99 -p tcp -m tcp --dport 8011 -j DNAT --to-destination 192.168.122.11:22
+</code></pre><p>把所有访问192.168.2.99:8011的请求转发到192.168.122.11:22的端口上。</p>
+<pre><code># iptables -t nat -A POSTROUTING -s 192.168.122.0/255.255.255.0 -d 192.168.122.11 -p tcp -m tcp --dport 22 -j SNAT --to-source 192.168.122.1
+</code></pre><p>把所有来自192.168.122.0/255.255.255.0网段访问192.168.122.11:22的数据全部通过192.168.122.1这个网关转发出去。</p>
+<pre><code># ssh -p 8011 root@192.168.2.99
+</code></pre><p>远程登录后使用ifconfig命令查看ip是否是VM的ip192.168.122.11</p>
+<h4 id="2、通过iptables端口转发实现访问虚拟机的web网站"><a href="#2、通过iptables端口转发实现访问虚拟机的web网站" class="headerlink" title="2、通过iptables端口转发实现访问虚拟机的web网站"></a>2、通过iptables端口转发实现访问虚拟机的web网站</h4><p>在虚拟机192.168.122.11中搭建web网站，通过KVM的IPtables端口转发下，公网就可以访问了。</p>
+<pre><code># iptables -t nat -A PREROUTING -d 192.168.2.99 -p tcp -m tcp --dport 8020 -j DNAT --to-destination 192.168.122.11:80
+# iptables -t nat -A POSTROUTING -s 192.168.122.0/255.255.255.0 -d 192.168.122.11 -p tcp -m tcp --dport 80 -j SNAT --to-source 192.168.122.1
+</code></pre><p>浏览器访问192.168.2.99:8020，就可以访问到虚拟机192.168.122.11的web服务器。</p>
+<pre><code># /etc/init.d/iptables save
+# more /etc/sysconfig/iptables
+</code></pre><p>保存防火墙规则，使重启KVM服务器后防火墙依然生效。</p>
+<h4 id="3、其他"><a href="#3、其他" class="headerlink" title="3、其他"></a>3、其他</h4><p>iptables做端口转发后生效问题？<br>一般来讲，iptables做端口转发后可以立即生效，但取决于内网IP是否更换觉得，意思就是如果你内网更换IP后，DNS将同步所以转发的IP地址，此时需要同步时间，如果你的DNS设置一个小时，那么你在做IPTABLES后可能会在1个小时以后可以访问，如果你的DNS大于1小时，当然你的iptables生效可能会在1个小时以后，仅供参考</p>
+<p>linux iptables端口转发问题<br>内网用户访问外网的web服务器的80端口都转换为内网代理服务器squid的默认端口3128。只要代理服务器能够访问互联网，内网用户也就可以访问互联网。格式：</p>
+<pre><code># iptables –t nat –A PREROUTING –s 子网地址/子网掩码 -p tcp --dport 80 -j REDIRECT – –to-posts 3128
+</code></pre><p>参考文章：<a href="http://www.bkjia.com/Linuxjc/877147.html" target="_blank" rel="external">http://www.bkjia.com/Linuxjc/877147.html</a></p>
+<p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/" data-id="cimzq0tod000vawgsaxelzvau" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/KVM/">KVM</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          KVM虚拟化（二）KVM虚拟机克隆
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/30/Nginx/Nginx记录响应与POST请求日志/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">nginx记录响应与POST请求日志</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/" data-title="KVM虚拟化（一）Linux上KVM虚拟机安装" data-url="http://fed0ra.github.io/2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 15px;">KVM</a> <a href="/tags/Nginx/" style="font-size: 20px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 15px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 15px;">Zabbix</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/">KVM虚拟化（二）KVM虚拟机克隆</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/">KVM虚拟化（一）Linux上KVM虚拟机安装</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/30/Nginx/Nginx记录响应与POST请求日志/">nginx记录响应与POST请求日志</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/">VMware虚拟机克隆网卡配置-构建Linux实验环境</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/26/SaltStack/SaltStack批量管理工具实战（二）/">SaltStack批量管理工具实战（二）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://explainshell.com" target="_blank">explainshell</a>
+          </li>
+        
+          <li>
+            <a href="http://linux.51yip.com" target="_blank">linux命令手册</a>
+          </li>
+        
+          <li>
+            <a href="http://tool.oschina.net" target="_blank">tool.oschina</a>
+          </li>
+        
+          <li>
+            <a href="http://www.bootcss.com" target="_blank">Bootcss</a>
+          </li>
+        
+          <li>
+            <a href="http://www.gycc.com" target="_blank">google替代品</a>
+          </li>
+        
+          <li>
+            <a href="http://www.clipconverter.cc" target="_blank">Youtube downloader</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 LiMY<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+
+		&nbsp;&nbsp;|&nbsp;&nbsp;produce by <a href="http://fed0ra.github.io/" target="_blank">Fedor</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;网站托管于 <a href="https://pages.github.com/" target="_blank">github pages</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;图片托管于 <a href="http://www.qiniu.com/" target="_blank">七牛</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+
+    </div>
+  </div>
+  <div class="outer">
+    <div id="footer-info" class="inner">	
+		<span><a href="/sitemap.xml">Google网站地图</a></span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span>
+
+		<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_uv">您是第<span id="busuanzi_value_site_uv"></span>位访客</span>
+
+		<script>
+		(function(){
+			var bp = document.createElement('script');
+			bp.src = '//push.zhanzhang.baidu.com/push.js';
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(bp, s);
+		})();
+		</script>
+            
+			
+    </div>
+  </div>
+</footer>
+
+
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fed0ra"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+</div>
+</body>
+</html>

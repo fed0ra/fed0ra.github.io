@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>http://fed0ra.github.io/2016/04/06/KVM/KVM%E8%99%9A%E6%8B%9F%E5%8C%96%EF%BC%88%E4%BA%8C%EF%BC%89KVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/</loc>
+    <lastmod>2016-04-14T03:21:33.789Z</lastmod>
+    <data>
+        <display>
+        <title>KVM虚拟化（二）KVM虚拟机克隆</title>
+        <pubTime>2016-04-05T16:00:00.000Z</pubTime>
+        
+        <tag>KVM</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://fed0ra.github.io/2016/04/05/KVM/KVM%E8%99%9A%E6%8B%9F%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89Linux%E4%B8%8AKVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2016-04-14T02:18:51.300Z</lastmod>
+    <data>
+        <display>
+        <title>KVM虚拟化（一）Linux上KVM虚拟机安装</title>
+        <pubTime>2016-04-04T16:00:00.000Z</pubTime>
+        
+        <tag>KVM</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://fed0ra.github.io/2016/03/30/Nginx/Nginx%E8%AE%B0%E5%BD%95%E5%93%8D%E5%BA%94%E4%B8%8EPOST%E8%AF%B7%E6%B1%82%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2016-03-30T05:04:12.362Z</lastmod>
     <data>
