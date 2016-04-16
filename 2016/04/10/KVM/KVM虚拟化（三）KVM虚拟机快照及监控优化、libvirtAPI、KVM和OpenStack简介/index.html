@@ -5,24 +5,21 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>Git guide | Fedor&#39;s blog</title>
+  <title>KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-Git学习备忘1. 流程及分支流程在本地文件夹建立一个名为example的repo，并做一些初始化配置。
-$ git init example">
+一、API二、通过控制台登录KVM虚拟机三、KVM快照四、KVM监控五、KVM优化六、KVM和OpenStack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git guide">
-<meta property="og:url" content="http://fed0ra.github.io/2016/02/15/Git/Git-guide/index.html">
+<meta property="og:title" content="KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介">
+<meta property="og:url" content="http://fed0ra.github.io/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-Git学习备忘1. 流程及分支流程在本地文件夹建立一个名为example的repo，并做一些初始化配置。
-$ git init example">
-<meta property="og:updated_time" content="2016-02-22T08:43:54.821Z">
+一、API二、通过控制台登录KVM虚拟机三、KVM快照四、KVM监控五、KVM优化六、KVM和OpenStack">
+<meta property="og:updated_time" content="2016-04-16T09:22:54.001Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git guide">
+<meta name="twitter:title" content="KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-Git学习备忘1. 流程及分支流程在本地文件夹建立一个名为example的repo，并做一些初始化配置。
-$ git init example">
+一、API二、通过控制台登录KVM虚拟机三、KVM快照四、KVM监控五、KVM优化六、KVM和OpenStack">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -242,10 +239,10 @@ $ git init example">
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main"><article id="post-Git/Git-guide" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/15/Git/Git-guide/" class="article-date">
-  <time datetime="2016-02-14T16:00:00.000Z" itemprop="datePublished">2016-02-15</time>
+    <a href="/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/" class="article-date">
+  <time datetime="2016-04-09T16:00:00.000Z" itemprop="datePublished">2016-04-10</time>
 </a>
     
   </div>
@@ -256,7 +253,7 @@ $ git init example">
         
   
     <h1 class="article-title" itemprop="name">
-      Git guide
+      KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介
     </h1>
   
 
@@ -265,64 +262,108 @@ $ git init example">
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Git学习备忘"><a href="#Git学习备忘" class="headerlink" title="Git学习备忘"></a>Git学习备忘</h2><h2 id="1-流程及分支"><a href="#1-流程及分支" class="headerlink" title="1. 流程及分支"></a>1. 流程及分支</h2><h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>在本地文件夹建立一个名为example的repo，并做一些初始化配置。</p>
-<pre><code>$ git init example
-</code></pre><a id="more"></a>
-<p>在本地文件夹加入或删除文件后，需要用以下命令更新staged area。后者临时保存用户所提交的更改（如 add/rm），以备下一步的commit。</p>
-<pre><code>$ git add file1
-$ git add .
-$ git rm file2
-</code></pre><p>把staged area中所保存的file1的更新信息删除，恢复之前的样子。</p>
-<pre><code>$ git reset file1
-</code></pre><p>把上一步 staged area 中所保存的更改进行整理，更新本地的repo（准确的说，是本地repo的master分支），以备后面的push。</p>
-<pre><code>$ git commit -m &apos;Add a new file&apos;
-$ git checkout --file1    \\把本地 repo 中 file1的更新还原到之前的状态。
-</code></pre><p>添加服务器端的repo地址，取名为origin（可以随意命名），以备稍后提交本地的repo到这个服务器端的repo。</p>
-<pre><code>$　git remote add origin https://[服务器端 repo 地址]
-</code></pre><p>把本地repo的master分支提交到刚才添加的那个服务器端分支origin。-u表示记住后面的参数，以后 push 的时候直接用git push命令即可。</p>
-<pre><code>$ git push -u origin master
-</code></pre><h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><p>创建并切换到new-branch分支，删除new-branch分支，这个分支可以用来修复master中代码的bug，然后在merge（合并）到master。</p>
-<pre><code>$ git checkout -b new-branch
-$ git branch -d new-branch
-</code></pre><p>切换回master分支，然后把刚才新分支(new-branch)对代码所做的更改合并(merge)进来。</p>
-<pre><code>$ git checkout master
-$ git merge new-branch
-$ git push origin master
-</code></pre><p>提交至服务器</p>
-<pre><code>$ git commit -a -m “Add first draft of new branch”
-$ git push
-</code></pre><p><a href="#top">返回顶部</a></p>
+<p><a href="#一">一、API</a><br><a href="#二">二、通过控制台登录KVM虚拟机</a><br><a href="#三">三、KVM快照</a><br><a href="#四">四、KVM监控</a><br><a href="#五">五、KVM优化</a><br><a href="#六">六、KVM和OpenStack</a>  </p>
 <hr>
-<h2 id="2-Pull-Request在Forking工作流中使用示例"><a href="#2-Pull-Request在Forking工作流中使用示例" class="headerlink" title="2. Pull Request在Forking工作流中使用示例"></a>2. Pull Request在Forking工作流中使用示例</h2><p>适用于小团队的开发协作和第三方开发者向开源项目的贡献。<br>示例中，A是个开发，B是项目维护者。各自有一个公开的<code>github</code>仓库，而B的仓库包含了正式工程</p>
-<h4 id="A-fork正式项目"><a href="#A-fork正式项目" class="headerlink" title="A fork正式项目"></a><strong>A fork正式项目</strong></h4><p>A先要<code>fork</code>B的<code>github</code>t仓库，开始项目的开发。A登陆<code>github</code>，浏览到B的仓库页面，点<code>Fork</code>按钮。</p>
-<h4 id="A克隆自己的github仓库"><a href="#A克隆自己的github仓库" class="headerlink" title="A克隆自己的github仓库"></a><strong>A克隆自己的github仓库</strong></h4><p>A克隆自己刚才<code>fork</code>出来的<code>github</code>仓库，以在本机上准备出工作拷贝。<br><code>git clone</code>会自动创建<code>origin</code>远程别名，是指向之前<code>fork</code>出来的仓库。命令如下：</p>
-<pre><code>$ git clone https://user@bitbucket.org/user/repo.git
-</code></pre><h4 id="A开发新功能"><a href="#A开发新功能" class="headerlink" title="A开发新功能"></a><strong>A开发新功能</strong></h4><p>改代码前，A要为新功能先新建一个新分支,用这个分支作为Pull Request的源分支。<br>创建并切换分支，命令如下：</p>
-<pre><code>$ git checkout -b new-branch
+<a id="more"></a>
+<p><strong>libvirt分为两大块，libvirtd进程和API</strong></p>
+<p>保证libvirtd进程是开启的，才能进行管理</p>
+<pre><code># /etc/init.d/libvirtd status
+libvirtd (pid  1490) is running...
+</code></pre><h2 id="一、API"><a href="#一、API" class="headerlink" title="一、API"></a><span id="一">一、API</span></h2><p>编写python脚本，调用virsh list命令显示</p>
+<pre><code># cat demo.py
+#!/usr/bin/env python
+import libvirt
+conn = libvirt.open(&quot;qemu:///system&quot;)
+for id in conn.listDomainsID():
+    dom = conn.lookupByID(id)
+    infos = dom.info()
+    print &apos;&apos;
+    print &apos;ID = %d&apos; % id
+    print &apos;Name = %s&apos; % dom.name()
+    print &apos;State = %d&apos; % infos[0]
+    print &apos;&apos;
+</code></pre><p>conn创建一个连接<br>for循环从连接中取数</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、通过控制台登录KVM虚拟机"><a href="#二、通过控制台登录KVM虚拟机" class="headerlink" title="二、通过控制台登录KVM虚拟机"></a><span id="二">二、通过控制台登录KVM虚拟机</span></h2><p>类似xen虚拟机一样通过virsh console一样采用字符界面进入linux虚拟机控制台，默认情况下该命令是不起作用，需要修改相关文件。</p>
+<h4 id="以下1、2、3步操作在KVM虚拟机中进行："><a href="#以下1、2、3步操作在KVM虚拟机中进行：" class="headerlink" title="以下1、2、3步操作在KVM虚拟机中进行："></a>以下1、2、3步操作在KVM虚拟机中进行：</h4><h4 id="1、添加ttyS0的许可，允许root登录"><a href="#1、添加ttyS0的许可，允许root登录" class="headerlink" title="1、添加ttyS0的许可，允许root登录"></a>1、添加ttyS0的许可，允许root登录</h4><pre><code># echo &quot;ttyS0&quot; &gt;&gt; /etc/securetty
+</code></pre><h4 id="2、修改-etc-grub-conf文件，加入console-ttyS0"><a href="#2、修改-etc-grub-conf文件，加入console-ttyS0" class="headerlink" title="2、修改/etc/grub.conf文件，加入console=ttyS0"></a>2、修改/etc/grub.conf文件，加入<code>console=ttyS0</code></h4><pre><code># vi /etc/grub.conf
 
-*编辑代码，开发新功能*
-</code></pre><p>提交，命令如下：</p>
-<pre><code>$ git add .
-$ git add --update .
-$ git commit -a -m “Add first draft of some feature”
-</code></pre><h4 id="A-push功能到她的github仓库中"><a href="#A-push功能到她的github仓库中" class="headerlink" title="A push功能到她的github仓库中"></a><strong>A push功能到她的github仓库中</strong></h4><p>A完成了功能后，<code>push</code>功能到她自己的<code>github</code>仓库中（不是正式仓库），用下面简单的命令：</p>
-<pre><code>$ git push origin new-branch
-</code></pre><h4 id="A发起Pull-Request-and-B-review-Pull-Request"><a href="#A发起Pull-Request-and-B-review-Pull-Request" class="headerlink" title="A发起Pull Request and B review Pull Request"></a><strong>A发起Pull Request and B review Pull Request</strong></h4><p>New pull request…略</p>
-<p><a href="#top">返回顶部</a></p>
+splashimage=(hd0,0)/grub/splash.xpm.gz
+hiddenmenu
+title CentOS 6 (2.6.32-504.el6.x86_64)
+        root (hd0,0)
+        kernel /vmlinuz-2.6.32-504.el6.x86_64 ro root=/dev/mapper/VolGroup-lv_roo
+ot rd_NO_LUKS LANG=en_US.UTF-8 rd_NO_MD rd_LVM_LV=VolGroup/lv_swap SYSFONT=latarr
+cyrheb-sun16 crashkernel=auto rd_LVM_LV=VolGroup/lv_root  KEYBOARDTYPE=pc KEYTABB
+LE=us rd_NO_DM rhgb quiet console=ttyS0
+        initrd /initramfs-2.6.32-504.el6.x86_64.img
+</code></pre><h4 id="3、修改-etc-inittab文件，重启"><a href="#3、修改-etc-inittab文件，重启" class="headerlink" title="3、修改/etc/inittab文件，重启"></a>3、修改/etc/inittab文件，重启</h4><pre><code># vi /etc/inittab
+#最后一行加入以下
+S0:12345:respawn:/sbin/agetty ttyS0 115200
+#重启
+# reboot
+</code></pre><h4 id="4、回到KVM服务器，通过virsh-console命令管理虚拟机"><a href="#4、回到KVM服务器，通过virsh-console命令管理虚拟机" class="headerlink" title="4、回到KVM服务器，通过virsh console命令管理虚拟机"></a>4、回到KVM服务器，通过virsh console命令管理虚拟机</h4><pre><code># virsh console centos1
+#输入用户密码
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、KVM快照"><a href="#三、KVM快照" class="headerlink" title="三、KVM快照"></a><span id="三">三、KVM快照</span></h2><h4 id="1、查看磁盘格式，只有qcow2格式的磁盘才可做快照，raw格式需转换成qcow2，再进行快照。"><a href="#1、查看磁盘格式，只有qcow2格式的磁盘才可做快照，raw格式需转换成qcow2，再进行快照。" class="headerlink" title="1、查看磁盘格式，只有qcow2格式的磁盘才可做快照，raw格式需转换成qcow2，再进行快照。"></a>1、查看磁盘格式，只有qcow2格式的磁盘才可做快照，raw格式需转换成qcow2，再进行快照。</h4><pre><code># qemu-img info /opt/kvm/img/centos1.img 
+</code></pre><p>关闭虚拟机</p>
+<pre><code># virsh shutdown centos1
+</code></pre><h4 id="2、使用qemu-img-snapshot对centos1创建快照，不稳定，经常报错，建议使用接下来介绍的virsh-snapshot-create-as命令方法。"><a href="#2、使用qemu-img-snapshot对centos1创建快照，不稳定，经常报错，建议使用接下来介绍的virsh-snapshot-create-as命令方法。" class="headerlink" title="2、使用qemu-img snapshot对centos1创建快照，不稳定，经常报错，建议使用接下来介绍的virsh snapshot-create-as命令方法。"></a>2、使用qemu-img snapshot对centos1创建快照，不稳定，经常报错，建议使用接下来介绍的<code>virsh snapshot-create-as命令</code>方法。</h4><pre><code>#创建快照
+# qemu-img snapshot -c backup /opt/kvm/img/centos1.img
+#查看快照
+# qemu-img snapshot -l /opt/kvm/img/centos1.img
+#删除快照
+# qemu-img snapshot -d backup centos1.img
+</code></pre><h4 id="3、virsh-snapshot-create-as命令创建快照"><a href="#3、virsh-snapshot-create-as命令创建快照" class="headerlink" title="3、virsh snapshot-create-as命令创建快照"></a>3、virsh snapshot-create-as命令创建快照</h4><pre><code>#为虚拟机centos1创建快照，快照名称为centos1_init
+# virsh snapshot-create-as centos1 centos1_init
+
+#查看虚拟机镜像快照的版本
+# virsh snapshot-list centos1
+
+#查看当前虚拟机镜像快照的版本
+# virsh snapshot-info centos1 centos1_init
+
+#删除虚拟机快照
+#查看虚拟机快照
+# qemu-img info /opt/kvm/img/centos1.img
+#删除指定快照，cnetos1-init为快照名字
+# virsh snapshot-delete centos1 centos1_init
+
+#恢复快照
+#恢复快照须关闭虚拟机
+# virsh shutdown centos1
+#查看快照的版本，确认需要恢复的快照的时间点，恢复到centos1_init
+# virsh snapshot-list centos1
+#恢复
+# virsh snapshot-revert centos1 centos1_init
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="四、KVM监控"><a href="#四、KVM监控" class="headerlink" title="四、KVM监控"></a><span id="四">四、KVM监控</span></h2><h4 id="1、libvirt监控工具（不准确）"><a href="#1、libvirt监控工具（不准确）" class="headerlink" title="1、libvirt监控工具（不准确）"></a>1、libvirt监控工具（不准确）</h4><pre><code># yum install -y virt-top
+</code></pre><h4 id="2、KVM虚拟机中装zabbix监控，使用salt、openstack管理"><a href="#2、KVM虚拟机中装zabbix监控，使用salt、openstack管理" class="headerlink" title="2、KVM虚拟机中装zabbix监控，使用salt、openstack管理"></a>2、KVM虚拟机中装zabbix监控，使用salt、openstack管理</h4><hr>
+<h2 id="五、KVM优化"><a href="#五、KVM优化" class="headerlink" title="五、KVM优化"></a><span id="五">五、KVM优化</span></h2><h4 id="1、优化包括：让KVM更高效使用CPU、MEM大小的优化、I-O包括Stroage（缓存和调用策略）和Network（网卡的优化）、virtio、vt-d（直接把硬件分配给虚拟机）"><a href="#1、优化包括：让KVM更高效使用CPU、MEM大小的优化、I-O包括Stroage（缓存和调用策略）和Network（网卡的优化）、virtio、vt-d（直接把硬件分配给虚拟机）" class="headerlink" title="1、优化包括：让KVM更高效使用CPU、MEM大小的优化、I/O包括Stroage（缓存和调用策略）和Network（网卡的优化）、virtio、vt-d（直接把硬件分配给虚拟机）"></a>1、优化包括：让KVM更高效使用CPU、MEM大小的优化、I/O包括Stroage（缓存和调用策略）和Network（网卡的优化）、virtio、vt-d（直接把硬件分配给虚拟机）</h4><h4 id="2、CUP"><a href="#2、CUP" class="headerlink" title="2、CUP"></a>2、CUP</h4><p>CPU存在用户态和内核态两种模式，跑了虚拟机后，存在虚拟机的用户态、内核态、物理机的用户态、内核态。在bios中打开Intel-VT技术，AMD-V技术。<br>CPU缓存，lscpu -p查看缓存，优化：把某一个qemu进程绑定在某一CPU上，可以通过taskset命令绑定</p>
+<h4 id="3、内存"><a href="#3、内存" class="headerlink" title="3、内存"></a>3、内存</h4><p>在bios中打开Inter-EPT,AMD-RVI技术。<br>DMA：直接内存访问。CUP把总线控制权交给DMA控制器，加快了内存访问。<br>NUMA架构：内存分区，每个CPU管理一定的内存，每个CPU尽量调用自己管理的内存，尽量不跨越。<br>ksm：/etc/init.d/ksm status，内存合并，减小内存使用，做公有云尽量关闭。<br>降低swap使用率：cat /proc/sys/vm/swappiness，调小一点儿。<br>设置大页内存等。</p>
+<h4 id="4、I-O"><a href="#4、I-O" class="headerlink" title="4、I/O"></a>4、I/O</h4><p>virtio框架，半虚拟化，使用virtio优化I/O，默认用的都是virtio，<code>ps aux | grep kvm</code>查看<code>virtio=blk-pci</code>。<br>I/O的调度算法：针对磁盘的，默认四种，查看调度算法<code>cat /sys/block/sda/queue/scheduler</code>，默认<code>[cfq]</code>，完全公平的保证平均；在存在虚拟机的情况下使用默认的<code>[cfq]</code>，因为不能确定有些CPU是否吃CPU；deadline，一起用，主要用在数据库；noop，没有任何算法，上ssd的时候使用；anticipatory很少使用，写性能好。</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="六、KVM和OpenStack"><a href="#六、KVM和OpenStack" class="headerlink" title="六、KVM和OpenStack"></a><span id="六">六、KVM和OpenStack</span></h2><h4 id="1、KVM和OpenStack"><a href="#1、KVM和OpenStack" class="headerlink" title="1、KVM和OpenStack"></a>1、KVM和OpenStack</h4><p>OpenStack是云计算、云管理的平台，OpenStack是没有虚拟化的功能，是KVM提供虚拟化功能，OpenStack通过libvirt API调用管理虚拟机。<br>使用OpenStack创建的虚拟机，修改其xml文件是没有用的，是OpenStack自动生成的，重启虚拟机后OpenStack会还原。</p>
+<h4 id="2、OpenStack添加其他物理机"><a href="#2、OpenStack添加其他物理机" class="headerlink" title="2、OpenStack添加其他物理机"></a>2、OpenStack添加其他物理机</h4><p>一般OpenStack有两个控制节点主备，多个计算节点，计算节点只跑两个服务，nova和neutron。<br>操作步骤：<br>1.<code>计算节点</code>安装nova、neutron。<br>2.拷贝控制节点的两个配置文件<code>/etc/nova</code>和<code>/etc/neutron</code>到计算节点。<br>3.修改一个配置文件中的vnc地址为本地地址，<code>vim /etc/nova/nova.conf</code>，即，<code>vncserver_proxyclient_address=计算节点ip</code>。<br>4.启动服务。<br>5.在OpenStack服务器上执行<code>nova host-list</code>，会看到新添加的conpute计算节点。</p>
+<p><a href="#top">返回目录</a></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/15/Git/Git-guide/" data-id="cin2xsur30016m8gs2ej1vhxv" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/" data-id="cin2xsuqf000vm8gsrr027uw7" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/02/15/Git/Git-guide/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/#ds-thread" class="article-comment-link">评论</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/KVM/">KVM</a></li></ul>
 
     </footer>
   </div>
@@ -330,19 +371,10 @@ $ git commit -a -m “Add first draft of some feature”
     
 <nav id="article-nav">
   
-    <a href="/2016/02/16/Python/Python运维自动化环境搭建/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          Python运维自动化开发环境搭建（一）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/01/21/ELKstack/ELKstack/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">ELKstack</div>
+      <div class="article-nav-title">KVM虚拟化（二）KVM虚拟机克隆</div>
     </a>
   
 </nav>
@@ -352,7 +384,7 @@ $ git commit -a -m “Add first draft of some feature”
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/15/Git/Git-guide/" data-title="Git guide" data-url="http://fed0ra.github.io/2016/02/15/Git/Git-guide/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/" data-title="KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介" data-url="http://fed0ra.github.io/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/"></div>
   </section>
 </section>
       
