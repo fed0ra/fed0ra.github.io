@@ -272,11 +272,62 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/20/Zabbix/Zabbix监控nginx性能/" data-id="cin2xsuor0005m8gskw9tg8le" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/20/Zabbix/Zabbix监控nginx性能/" data-id="ciomhwc710007lcgs3berecok" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
         <a href="http://fed0ra.github.io/2016/02/20/Zabbix/Zabbix监控nginx性能/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Zabbix/Zabbix链接及解除模板链接" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/20/Zabbix/Zabbix链接及解除模板链接/" class="article-date">
+  <time datetime="2016-02-19T16:00:00.000Z" itemprop="datePublished">2016-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/20/Zabbix/Zabbix链接及解除模板链接/">Zabbix链接及解除模板链接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
+<p><a href="#一">一、zabbix主机链接模板</a><br><a href="#二">二、实体唯一性规则</a><br><a href="#三">三、多台主机批量link模板</a><br><a href="#四">四、编辑link实体</a><br><a href="#五">五、Unlinking模板</a>  </p>
+<hr>
+        
+          <p class="article-more-link">
+            <a href="/2016/02/20/Zabbix/Zabbix链接及解除模板链接/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/02/20/Zabbix/Zabbix链接及解除模板链接/" data-id="ciomhwc6v0005lcgsxnwp4eaj" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/02/20/Zabbix/Zabbix链接及解除模板链接/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -322,7 +373,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/19/Nginx/Nginx优化/" data-id="cin2xsuq4000qm8gsptucznjn" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/19/Nginx/Nginx优化/" data-id="ciomhwc89000slcgs0vx72gve" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -331,6 +382,148 @@
 
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Zabbix/zabbix使用自带模板监控mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/" class="article-date">
+  <time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2016-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/">zabbix使用自带模板监控mysql</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<hr>
+<h4 id="zabbix使用自带模板监控mysql"><a href="#zabbix使用自带模板监控mysql" class="headerlink" title="zabbix使用自带模板监控mysql"></a>zabbix使用自带模板监控mysql</h4><p>1、创建mysql性能监控脚本，内容如下：<br>修改脚本中用户名、密码、主机IP、端口号等。</p>
+<pre><code># cat /server/scripts/check_mysql.sh
+
+#!/bin/bash
+# -------------------------------------------------------------------------------
+# FileName:    check_mysql.sh
+# Revision:    1.0
+# Date:        2015/06/09
+# Author:      mean
+
+# 用户名
+MYSQL_USER=&apos;user&apos;     
+# 密码
+MYSQL_PWD=&apos;password&apos;     
+# 主机地址/IP
+MYSQL_HOST=&apos;127.0.0.1&apos;     
+# 端口
+MYSQL_PORT=&apos;3306&apos;
+
+# 数据连接
+MYSQL_CONN=&quot;/usr/bin/mysqladmin -u${MYSQL_USER} -p${MYSQL_PWD} -h${MYSQL_HOST} -P${MYSQL_PORT}&quot;
+
+# 参数是否正确
+if [ $# -ne &quot;1&quot; ];then 
+    echo &quot;arg error!&quot; 
+fi 
+
+# 获取数据
+case $1 in 
+    Uptime) 
+        result=`${MYSQL_CONN} status|cut -f2 -d&quot;:&quot;|cut -f1 -d&quot;T&quot;` 
+        echo $result 
+        ;; 
+    Com_update) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_update&quot;|cut -d&quot;|&quot; -f3` 
+        echo $result 
+        ;; 
+    Slow_queries) 
+        result=`${MYSQL_CONN} status |cut -f5 -d&quot;:&quot;|cut -f1 -d&quot;O&quot;` 
+        echo $result 
+        ;; 
+    Com_select) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_select&quot;|cut -d&quot;|&quot; -f3` 
+        echo $result 
+                ;; 
+    Com_rollback) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_rollback&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Questions) 
+        result=`${MYSQL_CONN} status|cut -f4 -d&quot;:&quot;|cut -f1 -d&quot;S&quot;` 
+                echo $result 
+                ;; 
+    Com_insert) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_insert&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Com_delete) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_delete&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Com_commit) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_commit&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Bytes_sent) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Bytes_sent&quot; |cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Bytes_received) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Bytes_received&quot; |cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Com_begin) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_begin&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+
+        *) 
+        echo &quot;Usage:$0(Uptime|Com_update|Slow_queries|Com_select|Com_rollback|Questions|Com_insert|Com_delete|Com_commit|Bytes_sent|Bytes_received|Com_begin)&quot; 
+        ;; 
+esac
+</code></pre><p>2、在zabbix的web访问页面中为主机添加mysql监控模板（默认的MYSQL template name为：Template App MySQL）。</p>
+<p>3、自定义客户端配置文件，内容如下：</p>
+<pre><code># cat /etc/zabbix/zabbix_agentd.d/check_mysql.conf
+
+# 获取mysql版本
+UserParameter=mysql.version,mysql -V
+# 获取mysql性能指标,这个是上面定义好的脚本
+UserParameter=mysql.status[*],/server/scripts/check_mysql.sh $1
+# 获取mysql运行状态
+UserParameter=mysql.ping,mysqladmin -uroot -pGrwlZHYJpro89758 -P3306 -h127.0.0.1  ping | grep -c alive
+</code></pre><p>4、重启agent</p>
+<pre><code># /etc/init.d/zabbix-agent restart
+</code></pre><p>监控页面等待一会即会刷新数据。</p>
+<p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/" data-id="ciomhwc6m0002lcgsv8gxq8v8" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
 
     </footer>
   </div>
@@ -374,7 +567,7 @@ HTTP/1.1 403 Forbidden
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" data-id="cin2xsupp000lm8gsramogl6q" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" data-id="ciomhwc7z000nlcgslneavzzg" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -424,7 +617,7 @@ HTTP/1.1 403 Forbidden
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/17/Hexo/High一下/" data-id="cin2xsuqv0012m8gssit81wpm" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/17/Hexo/High一下/" data-id="ciomhwc910014lcgsq9cwo3v6" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -475,7 +668,7 @@ HTTP/1.1 403 Forbidden
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/" data-id="cin2xsuqo000zm8gsuaxoa01u" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/" data-id="ciomhwc8t0011lcgsaxdetuek" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -526,7 +719,7 @@ HTTP/1.1 403 Forbidden
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/" data-id="cin2xsupj000im8gsuhwe3sby" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/" data-id="ciomhwc7u000klcgs1xjzqh9h" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -578,7 +771,7 @@ HTTP/1.1 403 Forbidden
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/15/Git/Git-guide/" data-id="cin2xsur30016m8gs2ej1vhxv" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/15/Git/Git-guide/" data-id="ciomhwc980018lcgszt5hme9h" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -630,7 +823,7 @@ HTTP/1.1 403 Forbidden
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/01/21/ELKstack/ELKstack/" data-id="cin2xsur80019m8gsrk2ij2l0" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/01/21/ELKstack/ELKstack/" data-id="ciomhwc9c001blcgsa18wlrt3" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -647,58 +840,9 @@ HTTP/1.1 403 Forbidden
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/01/20/hello-world/" class="article-date">
-  <time datetime="2016-01-19T16:00:00.000Z" itemprop="datePublished">2016-01-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/20/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a><br>
-        
-          <p class="article-more-link">
-            <a href="/2016/01/20/hello-world/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://fed0ra.github.io/2016/01/20/hello-world/" data-id="cin2xsuo20001m8gsd3pvfgov" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://fed0ra.github.io/2016/01/20/hello-world/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -711,7 +855,7 @@ HTTP/1.1 403 Forbidden
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -720,7 +864,7 @@ HTTP/1.1 403 Forbidden
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 20px;">KVM</a> <a href="/tags/Nginx/" style="font-size: 20px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 15px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 15px;">Zabbix</a>
+      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 20px;">KVM</a> <a href="/tags/Nginx/" style="font-size: 20px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 15px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 20px;">Zabbix</a>
     </div>
   </div>
 
@@ -729,7 +873,7 @@ HTTP/1.1 403 Forbidden
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -739,6 +883,10 @@ HTTP/1.1 403 Forbidden
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/05/20/Docker/CentOS 6.x内核升级（2.6.32-3.10.101）/">CentOS 6.x内核升级（2.6.32-3.10.101）</a>
+          </li>
         
           <li>
             <a href="/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/">KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介</a>
@@ -754,10 +902,6 @@ HTTP/1.1 403 Forbidden
         
           <li>
             <a href="/2016/03/30/Nginx/Nginx记录响应与POST请求日志/">nginx记录响应与POST请求日志</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/">VMware虚拟机克隆网卡配置-构建Linux实验环境</a>
           </li>
         
       </ul>

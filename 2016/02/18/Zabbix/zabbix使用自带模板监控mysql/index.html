@@ -5,17 +5,36 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>Tag: ELKstack | Fedor&#39;s blog</title>
+  <title>zabbix使用自带模板监控mysql | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Devops">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fedor's blog">
-<meta property="og:url" content="http://fed0ra.github.io/tags/ELKstack/index.html">
+  <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+
+zabbix使用自带模板监控mysql1、创建mysql性能监控脚本，内容如下：修改脚本中用户名、密码、主机IP、端口号等。
+# cat /server/scripts/check_mysql.sh
+
+#!/bin/bash
+# -----">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zabbix使用自带模板监控mysql">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/index.html">
 <meta property="og:site_name" content="Fedor's blog">
-<meta property="og:description" content="Devops">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+
+zabbix使用自带模板监控mysql1、创建mysql性能监控脚本，内容如下：修改脚本中用户名、密码、主机IP、端口号等。
+# cat /server/scripts/check_mysql.sh
+
+#!/bin/bash
+# -----">
+<meta property="og:updated_time" content="2016-05-06T02:39:32.521Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fedor's blog">
-<meta name="twitter:description" content="Devops">
+<meta name="twitter:title" content="zabbix使用自带模板监控mysql">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+
+zabbix使用自带模板监控mysql1、创建mysql性能监控脚本，内容如下：修改脚本中用户名、密码、主机IP、端口号等。
+# cat /server/scripts/check_mysql.sh
+
+#!/bin/bash
+# -----">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -235,39 +254,171 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/01/21/ELKstack/ELKstack/" class="archive-article-date">
-  <time datetime="2016-01-20T16:00:00.000Z" itemprop="datePublished">1月 21</time>
+      <section id="main"><article id="post-Zabbix/zabbix使用自带模板监控mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/" class="article-date">
+  <time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2016-02-18</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/21/ELKstack/ELKstack/">ELKstack</a>
+    <h1 class="article-title" itemprop="name">
+      zabbix使用自带模板监控mysql
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<hr>
+<h4 id="zabbix使用自带模板监控mysql"><a href="#zabbix使用自带模板监控mysql" class="headerlink" title="zabbix使用自带模板监控mysql"></a>zabbix使用自带模板监控mysql</h4><p>1、创建mysql性能监控脚本，内容如下：<br>修改脚本中用户名、密码、主机IP、端口号等。</p>
+<pre><code># cat /server/scripts/check_mysql.sh
+
+#!/bin/bash
+# -------------------------------------------------------------------------------
+# FileName:    check_mysql.sh
+# Revision:    1.0
+# Date:        2015/06/09
+# Author:      mean
+
+# 用户名
+MYSQL_USER=&apos;user&apos;     
+# 密码
+MYSQL_PWD=&apos;password&apos;     
+# 主机地址/IP
+MYSQL_HOST=&apos;127.0.0.1&apos;     
+# 端口
+MYSQL_PORT=&apos;3306&apos;
+
+# 数据连接
+MYSQL_CONN=&quot;/usr/bin/mysqladmin -u${MYSQL_USER} -p${MYSQL_PWD} -h${MYSQL_HOST} -P${MYSQL_PORT}&quot;
+
+# 参数是否正确
+if [ $# -ne &quot;1&quot; ];then 
+    echo &quot;arg error!&quot; 
+fi 
+
+# 获取数据
+case $1 in 
+    Uptime) 
+        result=`${MYSQL_CONN} status|cut -f2 -d&quot;:&quot;|cut -f1 -d&quot;T&quot;` 
+        echo $result 
+        ;; 
+    Com_update) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_update&quot;|cut -d&quot;|&quot; -f3` 
+        echo $result 
+        ;; 
+    Slow_queries) 
+        result=`${MYSQL_CONN} status |cut -f5 -d&quot;:&quot;|cut -f1 -d&quot;O&quot;` 
+        echo $result 
+        ;; 
+    Com_select) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_select&quot;|cut -d&quot;|&quot; -f3` 
+        echo $result 
+                ;; 
+    Com_rollback) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_rollback&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Questions) 
+        result=`${MYSQL_CONN} status|cut -f4 -d&quot;:&quot;|cut -f1 -d&quot;S&quot;` 
+                echo $result 
+                ;; 
+    Com_insert) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_insert&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Com_delete) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_delete&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Com_commit) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_commit&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Bytes_sent) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Bytes_sent&quot; |cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Bytes_received) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Bytes_received&quot; |cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+    Com_begin) 
+        result=`${MYSQL_CONN} extended-status |grep -w &quot;Com_begin&quot;|cut -d&quot;|&quot; -f3` 
+                echo $result 
+                ;; 
+
+        *) 
+        echo &quot;Usage:$0(Uptime|Com_update|Slow_queries|Com_select|Com_rollback|Questions|Com_insert|Com_delete|Com_commit|Bytes_sent|Bytes_received|Com_begin)&quot; 
+        ;; 
+esac
+</code></pre><p>2、在zabbix的web访问页面中为主机添加mysql监控模板（默认的MYSQL template name为：Template App MySQL）。</p>
+<p>3、自定义客户端配置文件，内容如下：</p>
+<pre><code># cat /etc/zabbix/zabbix_agentd.d/check_mysql.conf
+
+# 获取mysql版本
+UserParameter=mysql.version,mysql -V
+# 获取mysql性能指标,这个是上面定义好的脚本
+UserParameter=mysql.status[*],/server/scripts/check_mysql.sh $1
+# 获取mysql运行状态
+UserParameter=mysql.ping,mysqladmin -uroot -pGrwlZHYJpro89758 -P3306 -h127.0.0.1  ping | grep -c alive
+</code></pre><p>4、重启agent</p>
+<pre><code># /etc/init.d/zabbix-agent restart
+</code></pre><p>监控页面等待一会即会刷新数据。</p>
+<p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/" data-id="ciomhwc6m0002lcgsv8gxq8v8" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/19/Nginx/Nginx优化/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Nginx优化相关
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">访问Nginx出现状态码为403 forbidden原因</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/18/Zabbix/zabbix使用自带模板监控mysql/" data-title="zabbix使用自带模板监控mysql" data-url="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
