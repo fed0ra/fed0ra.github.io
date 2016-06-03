@@ -5,27 +5,30 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>ELKstack | Fedor&#39;s blog</title>
+  <title>CentOS 6.X下yum快速升级内核（2.6.32-3.10.101） | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、日志收集分析系统（题外话）二、LEK介绍三、安装部署
 
-一、日志收集分析系统（题外话）">
+一、准备工作3条命令搞定内核升级，亲测CentOS 6.7下没问题。
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ELKstack">
-<meta property="og:url" content="http://fed0ra.github.io/2016/01/21/ELKstack/ELKstack/index.html">
+<meta property="og:title" content="CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）">
+<meta property="og:url" content="http://fed0ra.github.io/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、日志收集分析系统（题外话）二、LEK介绍三、安装部署
 
-一、日志收集分析系统（题外话）">
-<meta property="og:updated_time" content="2016-02-22T05:12:32.511Z">
+一、准备工作3条命令搞定内核升级，亲测CentOS 6.7下没问题。
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo">
+<meta property="og:updated_time" content="2016-06-02T02:08:28.934Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ELKstack">
+<meta name="twitter:title" content="CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、日志收集分析系统（题外话）二、LEK介绍三、安装部署
 
-一、日志收集分析系统（题外话）">
+一、准备工作3条命令搞定内核升级，亲测CentOS 6.7下没问题。
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -245,10 +248,10 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main"><article id="post-ELKstack/ELKstack" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/01/21/ELKstack/ELKstack/" class="article-date">
-  <time datetime="2016-01-20T16:00:00.000Z" itemprop="datePublished">2016-01-21</time>
+    <a href="/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/" class="article-date">
+  <time datetime="2016-05-19T16:00:00.000Z" itemprop="datePublished">2016-05-20</time>
 </a>
     
   </div>
@@ -259,7 +262,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ELKstack
+      CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）
     </h1>
   
 
@@ -268,303 +271,38 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<p><a href="#一">一、日志收集分析系统（题外话）</a><br><a href="#二">二、LEK介绍</a><br><a href="#三">三、安装部署</a></p>
 <hr>
-<h2 id="一、日志收集分析系统（题外话）"><a href="#一、日志收集分析系统（题外话）" class="headerlink" title="一、日志收集分析系统（题外话）"></a><span id="一">一、日志收集分析系统（题外话）</span></h2><a id="more"></a>
-<p>日志的分析和监控在系统开发中占非常重要的地位，系统越复杂，日志的分析和监控就越重要，常见的需求有:</p>
-<ul>
-<li>根据关键字查询日志详情</li>
-<li>监控系统的运行状况</li>
-<li>统计分析，比如接口的调用次数、执行时间、成功率等</li>
-<li>异常数据自动触发消息通知</li>
-<li>基于日志的数据挖掘</li>
-</ul>
-<p>很多团队在日志方面可能遇到的一些问题有:</p>
-<ul>
-<li>开发人员不能登录线上服务器查看详细日志，经过运维周转费时费力</li>
-<li>日志数据分散在多个系统，难以查找</li>
-<li>日志数据量大，查询速度慢</li>
-<li>一个调用会涉及多个系统，难以在这些系统的日志中快速定位数据</li>
-<li>数据不够实时</li>
-</ul>
-<p>常见的一些重量级的开源Trace系统有:</p>
-<ul>
-<li>facebook scribe</li>
-<li>cloudera flume</li>
-<li>twitter zipkin</li>
-<li>storm</li>
-</ul>
-<p>这些项目功能强大，但对于很多团队来说过于复杂，配置和部署比较麻烦，在系统规模大到一定程度前推荐轻量级下载即用的方案；<br>比如logstash+elasticsearch+kibana(LEK)组合；<br>对于日志来说，最常见的需求就是收集、查询、显示，正对应logstash、elasticsearch、kibana的功能。</p>
-<p><a href="#top">返回目录</a></p>
-<hr>
-<h2 id="二、LEK介绍"><a href="#二、LEK介绍" class="headerlink" title="二、LEK介绍"></a><span id="二">二、LEK介绍</span></h2><h4 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h4><ul>
-<li>logstash部署简单，下载一个jar就可以用了，对日志的处理逻辑也很简单，就是一个pipeline的过程：<br><code>inputs &gt;&gt; codecs &gt;&gt; filters &gt;&gt; outputs.</code></li>
-<li>logstash支持常见的日志类型，与其他监控系统的整合也很方便，可以将数据输出到zabbix、nagios、email等。</li>
-<li>推荐用redis作为输入缓冲队列。</li>
-<li>你还可以把数据统计后输出到graphite，实现统计数据的可视化显示。(metrics demo,statsd,graphite)</li>
-</ul>
-<h4 id="elasticsearch"><a href="#elasticsearch" class="headerlink" title="elasticsearch"></a>elasticsearch</h4><p>elasticsearch是基于lucene的开源搜索引擎，近年来发展比较快，主要的特点有:</p>
-<ul>
-<li>real time</li>
-<li>distributed</li>
-<li>high availability</li>
-<li>document oriented</li>
-<li>schema free</li>
-<li>restful api</li>
-</ul>
-<h4 id="kibana"><a href="#kibana" class="headerlink" title="kibana"></a>kibana</h4><p>kibana是一个功能强大的elasticsearch数据显示客户端，logstash已经内置了kibana；<br>你也可以单独部署kibana，最新版的kibana3是纯html+js客户端，可以很方便的部署到Apache、Nginx等Http服务器。</p>
-<p><a href="#top">返回目录</a></p>
-<hr>
-<h2 id="三、安装部署"><a href="#三、安装部署" class="headerlink" title="三、安装部署"></a><span id="三">三、安装部署</span></h2><h4 id="1、安装java-推荐1-7-版本"><a href="#1、安装java-推荐1-7-版本" class="headerlink" title="1、安装java(推荐1.7+版本)"></a>1、安装java(推荐1.7+版本)</h4><pre><code>$ java -version
-</code></pre><p>安装略</p>
-<h4 id="2、安装redis"><a href="#2、安装redis" class="headerlink" title="2、安装redis"></a>2、安装redis</h4><pre><code>$ wget http://download.redis.io/releases/redis-3.0.6.tar.gz
-$ tar xf redis-3.0.6.tar.gz
-$ cd redis-3.0.6
-$ make
-$ make install
-</code></pre><p>可以通过redis源代码里utils/install_server下的脚本简化配置工作</p>
-<pre><code>$ cd utils
-$ sudo ./install_server.sh
-</code></pre><p>install_server.sh在问你几个问题后会把redis安装为开机启动的服务，可以通过下面的命令行来启动/停止服务</p>
-<pre><code>$ /etc/init.d/redis_6379 start/stop
-</code></pre><p>启动redis客户端来验证安装</p>
-<pre><code>$ redis-cli
-$ redis&gt; set foo bar
-OK
-$ redis&gt; get foo
-&quot;bar&quot;
-</code></pre><p><a href="#top">返回目录</a></p>
-<hr>
-<h4 id="3、安装Elasticsearch-2-1-1"><a href="#3、安装Elasticsearch-2-1-1" class="headerlink" title="3、安装Elasticsearch 2.1.1"></a><strong>3、安装Elasticsearch 2.1.1</strong></h4><p>下载解压、建立软连接：</p>
-<pre><code>$ cd /usr/local/src/
-$ wget https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.1.1/elasticsearch-2.1.1.tar.gz
-$ tar xf elasticsearch-2.1.1.tar.gz
-$ mv elasticsearch-2.1.1 /usr/local/
-$ cd /usr/local/
-$ ln -s /usr/local/elasticsearch-2.1.1/ /usr/local/elasticsearch
-</code></pre><p>修改配置文件：</p>
-<pre><code>$ cd elasticsearch/config
-$ vim elasticsearch.yml
-</code></pre><p>配置文件内容如下：</p>
-<pre><code>cluster.name: my-application
-node.name: node-1
-bootstrap.mlockall: true
-network.host: 192.168.2.42
-http.port: 9200
-</code></pre><p>启动elasticsearch</p>
-<pre><code>$ cd elasticsearch-2.1.1/bin/
-$ nohup ./elasticsearch &amp;
-</code></pre><p>or</p>
-<pre><code>$ /usr/local/elasticsearch/bin/elasticsearch -d
-</code></pre><p>查看elasticsearch启动是否成功</p>
-<pre><code>$ curl -X GET http://192.168.2.42:9200
-$ netstat -lntup | grep 9200
-</code></pre><h4 id="3-1、elasticsearch使用"><a href="#3-1、elasticsearch使用" class="headerlink" title="3.1、elasticsearch使用"></a><strong>3.1、elasticsearch使用</strong></h4><p>使用curl和es交互测试，查询里边有多少文档</p>
-<pre><code>[root@AY140627165949601290Z ~]# curl -i -XGET &apos;http://192.168.2.42:9200/_count?pretty&apos; -d &apos;
-&gt; 
-&gt; {
-&gt;   &quot;query&quot;:{
-&gt;     &quot;match_all&quot;:{}
-&gt;   }
-&gt; }
-&gt; &apos;
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-Content-Length: 98
-
-{
-  &quot;count&quot; : 1315,
-  &quot;_shards&quot; : {
-    &quot;total&quot; : 3,
-    &quot;successful&quot; : 3,
-    &quot;failed&quot; : 0
-  }
-}
-</code></pre><p>安装es管理监控插件，实现通过web界面和es交互<br>Install Marvel into Elasticsearch:</p>
-<pre><code>$ /usr/local/elasticsearch/bin/plugin install license
-$ /usr/local/elasticsearch/bin/plugin install marvel-agent
-#IP:9200/_plugin/marvel
-</code></pre><p>安装head插件：</p>
-<pre><code>$ /opt/elasticsearch/bin/plugin install mobz/elasticsearch-head
-</code></pre><p>通过浏览器访问：192.168.2.42:9200/_plugin/head</p>
-<p>关闭集群命令：</p>
-<pre><code>$ http://192.168.2.42:9200/_cluster/nodes/_shutdown
-</code></pre><p>查看集群健康：</p>
-<pre><code>$ http://192.168.2.42:9200/_cluster/health
-</code></pre><p>安装启动管理工具，地址github.com/elastic/elasticsearch-servicewrapper.git（停止维护？）</p>
-<pre><code>$ git clone https://github.com/elastic/elasticsearch-servicewrapper.git
-$ cd elasticsearch-servicewrapper/
-$ mv service/ /usr/local/elasticsearch/bin/
-$ /usr/local/elasticsearch/bin/service/elasticsearch install
-$ cat /etc/init.d/elasticsearch
-$ cd /usr/local/elasticsearch/bin/service
-</code></pre><p>设置es启动管理工具的配置文件，通过service启动</p>
-<pre><code>$ vim elasticsearch.conf
-$ service elasticsearch status
-</code></pre><p><a href="#top">返回目录</a></p>
-<hr>
-<h4 id="4、安装Logstash-2-1-1"><a href="#4、安装Logstash-2-1-1" class="headerlink" title="4、安装Logstash 2.1.1"></a>4、安装Logstash 2.1.1</h4><p>下载Logstash 2.1.1，建立软连接</p>
-<pre><code>$ cd /usr/local/src/
-$ wget https://download.elastic.co/logstash/logstash/logstash-2.1.1.tar.gz
-$ tar xf logstash-2.1.1.tar.gz
-$ mv logstash-2.1.1 /usr/local/
-$ cd /usr/local/
-$ ln -s /usr/local/logstash-2.1.1 /usr/local/logstash
-</code></pre><p>通过service启动logstash，启动文件项目地址<a href="https://github.com/unixhot/elk-config" target="_blank" rel="external">https://github.com/unixhot/elk-config</a></p>
-<pre><code>$ git clone https://github.com/unixhot/elk-config.git
-$ cd elk-config
-$ cp logstash.init /etc/init.d/logstash
-$ chmod +x /etc/init.d/logstash
-</code></pre><p>编辑配置文件，根据环境修改</p>
-<pre><code>$ vim /etc/logstash.conf
-$ /usr/local/logstash/bin/logstash -f /etc/logstash.conf --configtest
-$ /etc/init.d/logstash start
-</code></pre><p>测试logstash</p>
-<pre><code>$ /opt/logstash/bin/logstash -e &apos;input { stdin{} } output { stdout{ codec =&gt; rubydebug} }&apos;
-$ &gt;hello world
-</code></pre><p>logstash把数据写入es中</p>
-<pre><code>$ /opt/logstash/bin/logstash -e &apos;input { stdin{} } output {  elasticsearch { hosts =&gt; &quot;your ip address&quot;  }  stdout{} }&apos;
-</code></pre><p>通过浏览器访问elasticsearch，查看logstash key下是否有新插入的数据：IP:9200/_plugin/head</p>
-<p>通过-f参数指定配置文件启动</p>
-<pre><code>$ /opt/logstash/bin/logstash -f /etc/logstash.conf
-</code></pre><p>编写配置文件配置文件（例）<br>cat /etc/logstash.conf</p>
-<pre><code>#输入
-input {
-    file {
-        path =&gt; &quot;/path/to/your/logs/*&quot;
-        type =&gt; &quot;type_1&quot;
-        #start_position =&gt; &quot;beginning&quot;
-        #multiline多行，用于java日志
-        codec =&gt; multiline {
-            pattern =&gt; &quot;^\[&quot;
-            negate =&gt; true
-            what =&gt; previous
-        }
-    }
-    file { 
-        path =&gt; &quot;/path/to/your/logs2/*&quot;
-        type =&gt; &quot;type_2&quot;
-        codec =&gt; multiline {
-            pattern =&gt; &quot;^%{TIMESTAMP_ISO8601}&quot;
-            negate =&gt; true
-            what =&gt; previous
-        }
-    }
-
-}
-
-#输出
-output {
-    #根据key类型判断，写入到elasticsearch的哪一个key中
-    if [type] == &quot;type_1&quot;  {
-        elasticsearch {
-            hosts =&gt; &quot;192.168.2.42&quot;
-            index =&gt; &quot;type_1-%{+YYYY-MM}&quot;
-        }
-    }
-    if [type] == &quot;type_2&quot;  {
-        elasticsearch {
-            hosts =&gt; &quot;192.168.2.42&quot;
-            index =&gt; &quot;type_2-%{+YYYY-MM}&quot;
-        } 
-    }
-
-}
-</code></pre><p>测试：匹配分、时、[</p>
-<pre><code>input {
-    stdin {
-        type =&gt; &quot;test01&quot;
-        #start_position =&gt; &quot;beginning&quot;
-        codec =&gt; multiline {
-            pattern =&gt; &quot;^[0-1][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]|^\[&quot;
-            negate =&gt; true
-            what =&gt; previous
-        }
-    }
- }
-output {
-    if [type] == &quot;test01&quot;  {
-        elasticsearch {
-            hosts =&gt; &quot;192.168.2.42&quot;
-             index =&gt; &quot;test01-%{+YYYY-MM}&quot;
-         }
-    }
-    stdout {
-        codec =&gt; rubydebug
-    }
-}
-</code></pre><p><a href="#top">返回目录</a></p>
-<hr>
-<h4 id="5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x"><a href="#5、安装Kibana-4-3-1-Compatible-with-Elasticsearch-2-1-x" class="headerlink" title="5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)"></a>5、安装Kibana 4.3.1(Compatible with Elasticsearch 2.1.x)</h4><p>下载安装kibana4.3.1</p>
-<pre><code>$ cd /usr/local/src/
-$ wget https://download.elastic.co/kibana/kibana/kibana-4.3.1-linux-x64.tar.gz
-$ tar xf kibana-4.3.1-linux-x64.tar.gz
-$ mv kibana-4.3.1-linux-x64/ /usr/local/
-$ ln -s /usr/local/kibana-4.3.1-linux-x64/ /usr/local/kibana
-</code></pre><p>修改启动文件中elasticsearch的url地址</p>
-<pre><code>$ vim /usr/local/kibana/config/kibana.yml
-</code></pre><p>elasticsearch.url: <code>&quot;http://192.168.2.42:9200&quot;</code></p>
-<p>启动kibana</p>
-<pre><code>$ screen kibana
-$ cd kibana-4.3.1-linux-x64/bin
-$ ./kibana
-$ #nohup ./kibana &amp;
-</code></pre><p>查看启动是否成功</p>
-<pre><code>$ netstat -lntup | grep 5601
-</code></pre><p>浏览器访问kibana：<code>http://192.168.2.42:5601/</code></p>
-<p>nginx代理kibana配置验证：<br>生成用户认证的用户名和密码</p>
-<pre><code>$ htpasswd -c /usr/local/nginx/conf/kibana.auth admin
-$ ll /usr/local/nginx/conf/kibana.auth
-</code></pre><p>为Nginx添加auth认证配置:<br>编辑nginx配置文件：</p>
-<pre><code>$ vim /etc/nginx/nginx.conf
-</code></pre><p>添加如下：</p>
-<pre><code>include extra/kibana.conf;
-</code></pre><p>编辑nginx配置文件：</p>
-<pre><code>$ vim /etc/nginx/extra/kibana.conf
-</code></pre><p>添加如下：</p>
-<pre><code>server {
-    listen    80;
-    server_name    kibana.example.com;
-    access_log    /var/log/nginx/kibana.srv-log-dev.log;
-    error_log    /var/log/nginx/kibana.srv-log-dev.error.log;
-
-    #ssl    on;
-    #ssl_certificate    /etc/nginx/ssl/all.crt;
-    #ssl_certificate_key    /etc/nginx/ssl/server_nopass.key;
-
-    location / {
-    #location ~ ^/kibana4/.* {
-        proxy_pass    http://kibana4;
-        rewrite ^/kibana4/(.*) /$1 break;
-        auth_basic &quot;Authorized users only,for search...&quot;;
-        auth_basic_user_file    /usr/local/nginx/conf/kibana.auth;
-        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header    Host $host;
-        #auth_basic    &quot;Restricted&quot;;
-        #auth_basic_user_file    /etc/nginx/conf.d/kibana.myhost.org.htpasswd;
-    }
-
-}
-</code></pre><p>重启nginx</p>
-<pre><code>$ /usr/sbin/nginx -t
-$ /usr/sbin/nginx -s reload
-</code></pre><p>访问nginx</p>
-<pre><code>http://kibana.example.com
+<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a><span id="一">一、准备工作</span></h2><p>3条命令搞定内核升级，亲测CentOS 6.7下没问题。</p>
+<pre><code>rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm
+yum --enablerepo=elrepo-kernel install kernel-lt -y &amp;&amp; reboot
+</code></pre><h4 id="Step1-确认内核版本"><a href="#Step1-确认内核版本" class="headerlink" title="Step1: 确认内核版本"></a>Step1: 确认内核版本</h4><pre><code>[root@CentOS-Server02 ~]# uname -r
+2.6.32-573.18.1.el6.x86_64
+[root@CentOS-Server02 ~]# cat /etc/centos-release 
+CentOS release 6.7 (Final)
+</code></pre><h4 id="Step-2-导入public-key"><a href="#Step-2-导入public-key" class="headerlink" title="Step 2: 导入public key"></a>Step 2: 导入public key</h4><pre><code>[root@CentOS-Server02 ~]# rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+</code></pre><p>导入失败，但执行后面命令依然升级成功。</p>
+<h4 id="Step-3-安装ELRepo"><a href="#Step-3-安装ELRepo" class="headerlink" title="Step 3: 安装ELRepo"></a>Step 3: 安装ELRepo</h4><pre><code>[root@CentOS-Server02 ~]# rpm -Uvh http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm
+</code></pre><h4 id="Step-4-安装长期支持版本"><a href="#Step-4-安装长期支持版本" class="headerlink" title="Step 4: 安装长期支持版本"></a>Step 4: 安装长期支持版本</h4><pre><code>[root@CentOS-Server02 ~]# yum --enablerepo=elrepo-kernel install kernel-lt -y
+</code></pre><h4 id="Step-5-编辑grub-conf文件，修改Grub引导顺序"><a href="#Step-5-编辑grub-conf文件，修改Grub引导顺序" class="headerlink" title="Step 5: 编辑grub.conf文件，修改Grub引导顺序"></a>Step 5: 编辑grub.conf文件，修改Grub引导顺序</h4><p>新装的内核位置为0，所以将default修改为0，保存退出重启。<br>    [root@CentOS-Server02 ~]# vi /etc/grub.conf<br>    default=0</p>
+<pre><code>[root@CentOS-Server02 ~]# reboot 
+</code></pre><h4 id="Step-6-检查内核版本"><a href="#Step-6-检查内核版本" class="headerlink" title="Step 6: 检查内核版本"></a>Step 6: 检查内核版本</h4><pre><code>[root@CentOS-Server02 ~]# uname -r
+3.10.101-1.el6.elrepo.x86_64
 </code></pre><p><a href="#top">返回目录</a></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/01/21/ELKstack/ELKstack/" data-id="ciozan4ik001bdwgsb9pa6ru8" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/" data-id="ciozan4iz001jdwgs1vvnayzn" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/01/21/ELKstack/ELKstack/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/#ds-thread" class="article-comment-link">评论</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELKstack/">ELKstack</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
 
     </footer>
   </div>
@@ -572,19 +310,19 @@ $ /usr/sbin/nginx -s reload
     
 <nav id="article-nav">
   
-    <a href="/2016/02/15/Git/Git-guide/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/20/Docker/CentOS 6.x内核升级（2.6.32-3.10.101）/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          Git guide
+          CentOS 6.x内核升级（2.6.32-3.10.101）
         
       </div>
     </a>
   
   
-    <a href="/2016/01/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介</div>
     </a>
   
 </nav>
@@ -594,7 +332,7 @@ $ /usr/sbin/nginx -s reload
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/01/21/ELKstack/ELKstack/" data-title="ELKstack" data-url="http://fed0ra.github.io/2016/01/21/ELKstack/ELKstack/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/" data-title="CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）" data-url="http://fed0ra.github.io/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/"></div>
   </section>
 </section>
       

@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
+  <meta charset="utf-8">
+  
+  <title>Docker学习笔记(一)Docker入门 | Fedor&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Docker技术原理二、Docker基本概念三、Docker部署安装四、Docker配置文件五、Docker基础命令六、Docker资源控制/环境隔离与镜像  
+
+云计算：通过网络按需索取来获取资源、获取各种服务的一种模式。IAAS：基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker学习笔记(一)Docker入门">
+<meta property="og:url" content="http://fed0ra.github.io/2016/05/23/Docker/Docker学习笔记(一)Docker入门/index.html">
+<meta property="og:site_name" content="Fedor's blog">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Docker技术原理二、Docker基本概念三、Docker部署安装四、Docker配置文件五、Docker基础命令六、Docker资源控制/环境隔离与镜像  
+
+云计算：通过网络按需索取来获取资源、获取各种服务的一种模式。IAAS：基础">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imagedocker%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imageDocker%E9%95%9C%E5%83%8F%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imageDocker%E7%8E%AF%E5%A2%83%E9%9A%94%E7%A6%BB.png">
+<meta property="og:updated_time" content="2016-06-03T05:30:09.365Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker学习笔记(一)Docker入门">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Docker技术原理二、Docker基本概念三、Docker部署安装四、Docker配置文件五、Docker基础命令六、Docker资源控制/环境隔离与镜像  
+
+云计算：通过网络按需索取来获取资源、获取各种服务的一种模式。IAAS：基础">
+  
+    <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fedor&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">keke</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+		
+		
+		
+		<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+		
+		
+		
+		
+		
+		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="fed0ra.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+    <div class="outer">
+      <section id="main"><article id="post-Docker/Docker学习笔记(一)Docker入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/23/Docker/Docker学习笔记(一)Docker入门/" class="article-date">
+  <time datetime="2016-05-22T16:00:00.000Z" itemprop="datePublished">2016-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker学习笔记(一)Docker入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、Docker技术原理</a><br><a href="#二">二、Docker基本概念</a><br><a href="#三">三、Docker部署安装</a><br><a href="#四">四、Docker配置文件</a><br><a href="#五">五、Docker基础命令</a><br><a href="#六">六、Docker资源控制/环境隔离与镜像</a>  </p>
+<hr>
+<p>云计算：通过网络按需索取来获取资源、获取各种服务的一种模式。<br>IAAS：基础设施级服务。<br>PAAS：平台级服务。<br>SAAS：软件级服务。</p>
+<p>老一代PAAS平台的局限性和困境<br>主要提供应用的部署和托管，针对应用开发者，仅支持特定的IaaS基础语言呢，支持单重开发语言和框架，支持特定的服务，比如自定义的数据存储APIs，没有很好地解决常用中间件的部署问题，难以解决应用和资源的隔离问题。</p>
+<p>新一代PASS平台：<br>实现全方位的应用生命周期的管理，关注开放性、应用的可移植性和云间相互操作性，包括Cloud Foundry，OpenShift，Docker,Heroku，MoPaaS等PaaS技术和服务。</p>
+<p>Docker被称之为第三代Pass平台。</p>
+<a id="more"></a>
+<h2 id="一、Docker技术原理"><a href="#一、Docker技术原理" class="headerlink" title="一、Docker技术原理"></a><span id="一">一、Docker技术原理</span></h2><p>Docker是虚拟化的轻量级替代技术，是一个依赖于linux内核的技术。Docker容器技术不依赖任何语言、框架或系统，可以将App编程一种标准化的、可移植的、自管理的组件，并脱离服务器硬件在任何主流系统中开发、调试运行。</p>
+<p>简单地说就是，在Linux系统上迅速创建一个容器，类似虚拟机，并在容器上部署和运行应用程序，并通过配置文件可以轻松实现应用程序的自动化安装、部署和升级。因为使用了容器，所以可以很方便的吧生产环境和开发环境分开，互补影响。</p>
+<h4 id="Docker核心技术：LXC、cgroups、AUFS等。"><a href="#Docker核心技术：LXC、cgroups、AUFS等。" class="headerlink" title="Docker核心技术：LXC、cgroups、AUFS等。"></a>Docker核心技术：LXC、cgroups、AUFS等。</h4><p><strong>Docker相关核心技术cgroups：</strong><br>Linux系统中经常有个需求就是希望能够限制某个或某些进程的分配资源，cgroup就是controller group，在这个group中，有分配好的特定的比例的cpu时间，IO时间，可用内存大小等。把任何程序进行分组花管理。<br>cgroups中的“子系统”，即资源控制器，每种子系统就是一个资源分配器，比如cpu子系统就是控制cpu时间分配的，先挂载这些子系统，才能<br>定义cgroup节点，，在这个节点中，将需要控制进程的id写入，并将控制的属性写入，就完成了内存的资源限制。<br>croups几乎可以控制所有资源，CPU、内存、IO、IO贷款、网络、磁盘存储。</p>
+<p><strong>Docker相关核心技术LXC：</strong><br>LXC是Linux containers的简称，是一种基于容器的操作系统层级的虚拟化技术。借助于namespace的隔离机制和cgroups限额功能。namespace是命名空间，类似平行空间，每个平行空间互不干扰。</p>
+<p><strong>Docker相关核心技术AUFS：</strong><br>AUFS是一个能透明覆盖一或多个现有文件系统的曾庄文件系统。好处，可以再新的的一层加一些东西，而不会影响到原有层，原有层是可以共享的。</p>
+<p><strong>Dcoker原理之App打包：</strong></p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、Docker基本概念"><a href="#二、Docker基本概念" class="headerlink" title="二、Docker基本概念"></a><span id="二">二、Docker基本概念</span></h2><h4 id="1、Docker-Image"><a href="#1、Docker-Image" class="headerlink" title="1、Docker Image"></a>1、Docker Image</h4><ul>
+<li>Docker Image是一个极度精简版的Linux程序运行环境，比如像vi这种基本的工具没有，官网的java镜像暴多的东西更少，除非是镜像叠加方式的，如Centos+java7。</li>
+<li>Docker Image是需要定制化build的一个“安装包”，包括基础镜像+应用的二进制部署包。</li>
+<li>Docker Image内不建议只运行一个程序，但几个进程放入一个docker也很常见方便管理。</li>
+<li>Docker Image不建议有运行期需要修改的配置文件。</li>
+<li>Dockerfile用来创建一个自定义的image，包含了用户指定的软件依赖等，目前目录下包含Dockerfile，使用命令build来创建新的image。</li>
+<li>Docker Image尽量重用和使用网上公开的基础镜像，不要自己打一个非标准的。</li>
+</ul>
+<h4 id="2、Docker-Container"><a href="#2、Docker-Container" class="headerlink" title="2、Docker Container"></a>2、Docker Container</h4><ul>
+<li>Docker Container是Docker Image的实力，共享内核。</li>
+<li>Docker Container里可以运行不同OS的image，比如ubuntu的或者centos。</li>
+<li>Docker Container不建议内部开启一个sshd服务，1.3版本后新增了docker exec命令进入容器排查问题。</li>
+<li>Docker Container没有IP地址，通常不会有服务器端口暴露，是一个封闭的盒子。</li>
+<li>Docker Container的生命周期</li>
+</ul>
+<h4 id="3、Docker-Daemon"><a href="#3、Docker-Daemon" class="headerlink" title="3、Docker Daemon"></a>3、Docker Daemon</h4><ul>
+<li>Docker Daemon是创建运行container的Linux守护进程，也是Docker最主要的核心组件。</li>
+<li>Docker Daemon可以理解为Docker Container的Container</li>
+<li>Docker Daemon可以绑定本地端口并提供Rest API服务，用来远程访问和控制。</li>
+</ul>
+<h4 id="4、Docker-Registry-Hub"><a href="#4、Docker-Registry-Hub" class="headerlink" title="4、Docker Registry/Hub"></a>4、Docker Registry/Hub</h4><h4 id="5、Docker核心组件及关系"><a href="#5、Docker核心组件及关系" class="headerlink" title="5、Docker核心组件及关系"></a>5、Docker核心组件及关系</h4><p>Docker<br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imagedocker%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB.png" alt="docker核心组件关系"></p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、Docker部署安装"><a href="#三、Docker部署安装" class="headerlink" title="三、Docker部署安装"></a><span id="三">三、Docker部署安装</span></h2><p>Docker采用Linux(内核)技术，所以只能运行在Linux上，Linux kernel在3.8以上。</p>
+<p>Boot2Docker是一个专为Docker而设计的轻量级Linux发型包，开发、测试环境(个人)。</p>
+<p>标准方式是通过Docker Native的进程在物理机/Cloud Node上运行(目前主流操作系统CentoOS、Ubuntu、CoreOS、Atomic、More)</p>
+<h4 id="1、基于CentOS6-Dcoker部署安装"><a href="#1、基于CentOS6-Dcoker部署安装" class="headerlink" title="1、基于CentOS6 Dcoker部署安装"></a>1、基于CentOS6 Dcoker部署安装</h4><p>centos6基本就是1.7</p>
+<h4 id="官方脚本一键安装"><a href="#官方脚本一键安装" class="headerlink" title="官方脚本一键安装"></a>官方脚本一键安装</h4><pre><code>#curl –fsSL https://get.docker.com/ | sh
+</code></pre><p>一键安装，支持后续的版本升级，网络不是很稳定，需要考虑翻墙。</p>
+<h4 id="epel安装"><a href="#epel安装" class="headerlink" title="epel安装"></a>epel安装</h4><p>Fedora epel源<a href="https://fedoraproject.org/wiki/EPEL/zh-cn" target="_blank" rel="external">https://fedoraproject.org/wiki/EPEL/zh-cn</a></p>
+<pre><code># wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+# rpm -ivh epel-release-6-8.noarch.rpm
+# yum install docker-io -y
+# docker version
+</code></pre><p>yum源国内镜像很多，速度有保证，也适合公司内使用<br>启动docker报错：</p>
+<pre><code># service docker start
+Starting cgconfig service: Error: cannot mount memory to /cgroup/memory: No such file or directory
+/sbin/cgconfigparser; error loading /etc/cgconfig.conf: Cgroup mounting failed
+Failed to parse /etc/cgconfig.conf or /etc/cgconfig.d      [FAILED]
+Starting docker:                                       [  OK  ]
+</code></pre><p>检查cgconfig：</p>
+<pre><code># /etc/init.d/cgconfig restart
+Stopping cgconfig service:                                 [  OK  ]
+Starting cgconfig service: Error: cannot mount memory to /cgroup/memory: No such file or directory
+/sbin/cgconfigparser; error loading /etc/cgconfig.conf: Cgroup mounting failed
+Failed to parse /etc/cgconfig.conf or /etc/cgconfig.d      [FAILED]
+# yum list installed |grep libcgroup
+libcgroup.x86_64                     0.40.rc1-17.el6_7                @base     
+# ls /cgroup/
+blkio  cpu  cpuacct  cpuset  devices  freezer  memory  net_cls
+</code></pre><p>memory是有的，但就是出错，需要修改<code>/etc/cgconfig.conf</code>，注释掉<code>memory</code>：</p>
+<pre><code># vim /etc/cgconfig.conf
+mount {
+        cpuset  = /cgroup/cpuset;
+        cpu     = /cgroup/cpu;
+        cpuacct = /cgroup/cpuacct;
+#       memory  = /cgroup/memory;
+        devices = /cgroup/devices;
+        freezer = /cgroup/freezer;
+        net_cls = /cgroup/net_cls;
+        blkio   = /cgroup/blkio;
+}
+</code></pre><p>查看启动日志：</p>
+<pre><code># cat /var/log/docker 
+\nThu Jun  2 13:36:18 CST 2016\n
+time=&quot;2016-06-02T13:36:18.583721887+08:00&quot; level=warning msg=&quot;/!\\ DON&apos;T BIND ON ANY IP ADDRESS WITHOUT setting -tlsverify IF YOU DON&apos;T KNOW WHAT YOU&apos;RE DOING /!\\&quot; 
+time=&quot;2016-06-02T13:36:18.626479009+08:00&quot; level=info msg=&quot;Listening for HTTP on tcp (0.0.0.0:4000)&quot; 
+time=&quot;2016-06-02T13:36:18.627500682+08:00&quot; level=info msg=&quot;Listening for HTTP on unix (/var/run/docker.sock)&quot; 
+</code></pre><h4 id="2、基于CentOS7-Dcoker1-8部署安装"><a href="#2、基于CentOS7-Dcoker1-8部署安装" class="headerlink" title="2、基于CentOS7 Dcoker1.8部署安装"></a>2、基于CentOS7 Dcoker1.8部署安装</h4><p>升Dcoker1.8要考虑好基础运维能不能跟上，另外就是，docker1.8以后每个版本都多少有卡住的情况，最好提前看看哪个版本问题多，直接别用。<br>比如1.8和1.9都有docker pull，docker ps命令啥的直接卡住的问题，不得不重启daemon才能解决。</p>
+<p>使用CentOS7，采用Redhat官方yum源和Docker RPM包安装，会安装1.7系列。<br><strong>Docker1.8后对CentOS6彻底不支持。</strong><br>配置yum源：</p>
+<pre><code>cat &gt; /etc/yum.repos.d/docker.repo &lt;&lt; EOF
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+EOF
+</code></pre><p>安装：</p>
+<pre><code>yum install docker-engine
+</code></pre><p>换回默认的iptables服务，并启动。iptables不可关闭，如果关闭，docker里的端口映射的规则就无法启动：</p>
+<pre><code>systemctl disable firewalld
+yum -y install iptables-services
+systemctl enable iptables
+systemctl start iptables
+</code></pre><p>设置开机启动Docker Daemon进程：</p>
+<pre><code>systemctl start docker.service
+systemctl enable docker.service
+systemctl grep docker
+
+docker info
+dcoker version
+</code></pre><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="四、Docker配置文件"><a href="#四、Docker配置文件" class="headerlink" title="四、Docker配置文件"></a><span id="四">四、Docker配置文件</span></h2><h4 id="1、Docker配置文件"><a href="#1、Docker配置文件" class="headerlink" title="1、Docker配置文件"></a>1、Docker配置文件</h4><ul>
+<li>CentOS：/etc/sysconfig/docker</li>
+<li>Ubuntu：/etc/default/docker</li>
+<li>其他系统可以参考Docker启动脚本</li>
+<li>docker daemon –-help 显示所有配置参数，帮助根据版本问题，命令会有变化，如下：</li>
+<li>或docker -d –help或者docker -D –help</li>
+</ul>
+<p><code>/etc/sysconfig/docker</code>配置示例，配置参数解释见下文：</p>
+<pre><code># /etc/sysconfig/docker
+#
+# Other arguments to pass to the docker daemon process
+# These will be parsed by the sysv initscript and appended
+# to the arguments list passed to docker -d
+
+other_args=
+DOCKER_CERT_PATH=/etc/docker
+
+# Resolves: rhbz#1176302 (docker issue #407)
+DOCKER_NOWARN_KERNEL_VERSION=1
+
+# Location used for temporary files, such as those created by
+# # docker load and build operations. Default is /var/lib/docker/tmp
+# # Can be overriden by setting the following environment variable.
+# # DOCKER_TMPDIR=/var/tmp
+
+
+##加速器地址
+##Centos下
+#other_args=&quot;$other_args --registry-mirror xxxxxx&quot;
+##Ubuntu
+#DOCKER_OPTS=&quot;$DOCKER_OPTS --registry-mirror xxxxxx&quot;
+
+##Centos下变量是`other_args`，Ubuntu下为`DOCKER_OPTS`，此为固定的
+
+##代理配置，同步镜像比较卡、慢，需要翻墙 
+#export http_proxy=xxxxx:8080
+#export http_proxys=xxxxxx:8080
+
+##Use other_args to modify the daemon startup options.dns的配置
+#other_args=&quot;--dns 8.8.8.8&quot;
+#other_args=&quot;--dns 202.106.196.115&quot;
+
+##This is also a handy place to tweak where Docker&apos;s temporary files go.
+export DOCKER_TMPDIR=&quot;/mnt/dockerdrive/docker-tmp&quot;
+other_args=&quot;$other_args -H tcp://0.0.0.0:4000 -H unix:///var/run/docker.sock&quot;
+other_args=&quot;$other_args --default-ulimit nofile=65535&quot;
+other_args=&quot;$other_args -g /data/docker/disk&quot;
+</code></pre><h4 id="2、常见配置问题"><a href="#2、常见配置问题" class="headerlink" title="2、常见配置问题"></a>2、常见配置问题</h4><p>镜像加速器：（一些国内Docker镜像加速器见下文）</p>
+<pre><code>--registry-mirror 加速器地址
+
+#CentOS修改/etc/sysconfig/docker，添加如下：
+other_args=“$other_args --registry-mirror xxxxxx”
+
+#Ubuntu修改/etc/default/docker，添加如下：
+DOCKER_OPTS=“$DOCKER_OPTS --registry-mirror xxxxxx”
+</code></pre><p>使用“私服”：</p>
+<pre><code>--insecure-registry your_repo_domain
+#只要不是官方的镜像仓库，都会出现这个问题，唯一的解决途径是加上这个参数
+</code></pre><p>容器内句柄数太少：</p>
+<pre><code>--default-ulimit nofile=65535
+#其他ulimit配置也可以设置
+#适用于所有容器的配置，建议直接添加上
+</code></pre><p>更换存储目录：</p>
+<pre><code>-g /data/docker/disk
+#默认是/var/lib/docker
+#根据实际分区情况调整，Docker的镜像，容器，日志等内容全存放在这里。
+</code></pre><p>tcp端口：</p>
+<pre><code>-H tcp://0.0.0.0:4000
+#默认不会开启tcp端口，是unix domain socket
+#如开启端口，一定要记得配置tls，如下。
+</code></pre><p>配置开启daemon tls：</p>
+<pre><code>openssl genrsa -aes256 -out ca-key.pem 4096
+openssl req -new -x509 -days 3650 -key ca-key.pem -sha256 -out ca.pem
+openssl genrsa -out server-key.pem 4096
+openssl req -subj &quot;/CN=example.com&quot; -sha256 -new -key server-key.pem -out server.csr
+
+echo subjectAltName = DNS:*.example.com &gt; extfile.cnf
+openssl x509 -req -days 3650 -sha256 -in server.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out server-cert.pem -extfile extfile.cnf
+
+openssl genrsa -out key.pem 4096
+openssl req -subj &apos;/CN=client&apos; -new -key key.pem -out client.csr
+echo extendedKeyUsage = clientAuth &gt; extfile.cnf
+openssl x509 -req -days 3650 -sha256 -in client.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out cert.pem -extfile extfile.cnf
+
+rm -v client.csr server.csr
+chmod -v 0400 ca-key.pem key.pem server-key.pem
+chmod -v 0444 ca.pem server-cert.pem cert.pem
+
+other_args=&quot;$other_args --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server-cert.pem --tlskey=/etc/docker/server-key.pem&quot;
+TCP端口随意，记得重启daemon
+</code></pre><p>log driver：</p>
+<pre><code>--log-driver XXXX
+#默认是json-log，可以改成syslog等。
+#生产上会配合其他驱动，收集日志。
+</code></pre><p>dns server：</p>
+<pre><code>--dns XXXX
+#创建容器都会使用此配置，建议根据内网环境配置
+</code></pre><h4 id="3、重要参数解释：OPTIONS-用来控制Docker-Daemon进程参数。"><a href="#3、重要参数解释：OPTIONS-用来控制Docker-Daemon进程参数。" class="headerlink" title="3、重要参数解释：OPTIONS 用来控制Docker Daemon进程参数。"></a>3、重要参数解释：OPTIONS 用来控制Docker Daemon进程参数。</h4><ul>
+<li>-H 表示Docker Daemon绑定的地址， -H=unix:///var/run/docker.sock -H=tcp://0.0.0.0:2375</li>
+<li>–registry-mirror表示Docker Registry的镜像地址</li>
+<li>–registry-mirror=<a href="http://4bc5abeb.m.daocloud.io" target="_blank" rel="external">http://4bc5abeb.m.daocloud.io</a></li>
+<li>–insecure-registry表示（本地）私有Docker Registry的地址， –insecure-registry ${pivateRegistyHost}:5000</li>
+<li>–selinux-enabled是否开启SELinux，默认开启 –selinux-enabled=true</li>
+<li>–bip 表示网桥docker0使用指定CIDR网络地址， –bip=172.17.42.1</li>
+<li><p>-b 表示采用已经创建好的网桥， -b=xxx</p>
+</li>
+<li><p>OPTIONS=-H=unix:///var/run/docker.sock -H=tcp://0.0.0.0:2375 –registrymirror=<a href="http://4bc5abeb.m.daocloud.io" target="_blank" rel="external">http://4bc5abeb.m.daocloud.io</a> –selinux-enabled=true</p>
+</li>
+</ul>
+<p>下面是代理的设置</p>
+<ul>
+<li>http_proxy=xxxxx:8080</li>
+<li>https_proxy=xxxxxx:8080</li>
+</ul>
+<h4 id="4、国内Docker镜像加速器"><a href="#4、国内Docker镜像加速器" class="headerlink" title="4、国内Docker镜像加速器"></a>4、国内Docker镜像加速器</h4><ul>
+<li>DaoCloud<br>官网地址：<a href="http://www.daocloud.io/" target="_blank" rel="external">http://www.daocloud.io/</a><br>免费的加速器，需要注册账号，登陆到控制台才能看到加速器的内容</li>
+<li>灵雀云（Alauda）<br>官网地址：<a href="http://www.alauda.cn/" target="_blank" rel="external">http://www.alauda.cn/</a><br>同样需要注册账号才能使用，免费的。</li>
+<li>时速云（Tenxcloud）<br>官网地址： <a href="https://www.tenxcloud.com/" target="_blank" rel="external">https://www.tenxcloud.com/</a><br>同样需要注册账号才能使用，免费的。</li>
+<li>阿里百川<br>文档地址：<a href="http://baichuan.taobao.com/doc2/detail.htm?articleId=103049&amp;docType=1&amp;treeId=null" target="_blank" rel="external">http://baichuan.taobao.com/doc2/detail.htm?articleId=103049&amp;docType=1&amp;treeId=null</a></li>
+</ul>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="五、Docker基础命令"><a href="#五、Docker基础命令" class="headerlink" title="五、Docker基础命令"></a><span id="五">五、Docker基础命令</span></h2><ul>
+<li>入门常用命令&amp;问题</li>
+<li>镜像相关命令</li>
+<li>容器相关命令</li>
+<li>备份相关命令</li>
+<li>运维相关命令</li>
+</ul>
+<h4 id="1、入门常用命令-amp-问题"><a href="#1、入门常用命令-amp-问题" class="headerlink" title="1、入门常用命令&amp;问题"></a>1、入门常用命令&amp;问题</h4><h5 id="docker-search——搜索镜像，默认搜索hub-docker-com，也能搜索自己的私服"><a href="#docker-search——搜索镜像，默认搜索hub-docker-com，也能搜索自己的私服" class="headerlink" title="docker search——搜索镜像，默认搜索hub.docker.com，也能搜索自己的私服"></a>docker search——搜索镜像，默认搜索hub.docker.com，也能搜索自己的私服</h5><pre><code># docker search
+# docker search nginx #搜索包含nginx的所有结果
+NAME                      DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+nginx                     Official build of Nginx.                        3111      [OK]       
+jwilder/nginx-proxy       Automated Nginx reverse proxy for docker c...   652                  [OK]
+richarvey/nginx-php-fpm   Container running Nginx + PHP-FPM capable ...   201                  [OK]
+million12/nginx-php       Nginx + PHP-FPM 5.5, 5.6, 7.0 (NG), CentOS...   63                   [OK]
+maxexcloo/nginx-php       Docker framework container with Nginx and ...   57                   [OK]
+</code></pre><p>OFFICIAL下有<code>OK</code>的是属于官方镜像，其他的都是个人打的。<br>但是docker search没有提供搜索tag的功能，所以如果下载镜像的时候我们不知道镜像的版本，所以想搜索tag需要去<code>hub.docker.com</code>的官网上去找。tag是什么见下。</p>
+<h5 id="docker-pull——下载镜像到本地，tag用来区分镜像的版本，不建议使用latest镜像"><a href="#docker-pull——下载镜像到本地，tag用来区分镜像的版本，不建议使用latest镜像" class="headerlink" title="docker pull——下载镜像到本地，tag用来区分镜像的版本，不建议使用latest镜像"></a>docker pull——下载镜像到本地，tag用来区分镜像的版本，不建议使用latest镜像</h5><pre><code># docker pull
+# docker pull java #省略了latest tag，默认下载了latest的这个tag，表示是最新的版本，不建议使用
+# docker pull java:8 #建议打一个确定的版本号，比如指定tag是8，表示下载jdk8
+# docker pull -a java #下载全部tag的java镜像
+#也可以用DaoCloud的镜像加速器
+# dao pull nginx:stable    #下载nginx，tag为stable
+# dao pull jetty:9.2.17    #下载jetty，tag为9.2.17
+# dao pull alpine:3.2
+
+# docker images    #通过docker images可以查看刚下载的镜像
+REPOSITORY                              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+nginx                                   stable              dd064fa82528        21 hours ago        182.7 MB
+jetty                                   9.2.17              9afdf1e527f5        5 days ago          322.5 MB
+alpine                                  3.2                 cd1c228c7ba9        3 weeks ago         5.252 MB
+daocloud.io/daocloud/daocloud-toolset   latest              8cc6587213d8        5 weeks ago         150.2 MB
+</code></pre><p>上文提到，tag版本只能去<code>hub.docker.com</code>的官网上去找，也可以去DaoCloud提供的一个镜像仓库中去找。</p>
+<h5 id="Docker镜像命名规则"><a href="#Docker镜像命名规则" class="headerlink" title="Docker镜像命名规则:"></a>Docker镜像命名规则:</h5><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imageDocker%E9%95%9C%E5%83%8F%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99.png" alt="Docker镜像命名规则"></p>
+<ul>
+<li>index.docker.io是官方registry的域名，类似内网写上自己的域名。</li>
+<li>library是USERNAME即镜像空间，自己命令</li>
+</ul>
+<h5 id="docker-push——上传镜像到仓库"><a href="#docker-push——上传镜像到仓库" class="headerlink" title="docker push——上传镜像到仓库"></a>docker push——上传镜像到仓库</h5><pre><code># docker push
+# docker push fedor/java #tag和pull相同，可以不写latest tag
+# docker push fedor/java:8 #指定tag
+# push常与tag命令搭配使用：
+# docker tag &lt;image_id&gt; fedor/java
+# docker push fedor/java
+</code></pre><p>如果想把刚才下载的jetty的这个镜像上传自己公司内部的源里，假设公司内部的地址是<code>docker.corp.example.com</code>：操作如下：</p>
+<pre><code>#通过下面的命令，把IMAGE ID对应的这个jetty镜像重新命名
+# docker tag 9afdf1e527f5 docker.corp.example.com/opsdev/jetty:9.2
+# docker images
+REPOSITORY                              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+nginx                                   stable              dd064fa82528        21 hours ago        182.7 MB
+jetty                                   9.2.17              9afdf1e527f5        5 days ago          322.5 MB
+docker.corp.example.com/opsdev/jetty    9.2                 9afdf1e527f5        5 days ago          322.5 MB
+alpine                                  3.2                 cd1c228c7ba9        3 weeks ago         5.252 MB
+daocloud.io/daocloud/daocloud-toolset   latest              8cc6587213d8        5 weeks ago         150.2 MB
+#上传到内部源中
+# docker push docker.corp.example.com/opsdev/jetty:9.2
+</code></pre><p>带着<code>docker.corp.example.com</code>域名，docker默认去这上面去找这个服务</p>
+<h5 id="docker-run——创建并运行容器"><a href="#docker-run——创建并运行容器" class="headerlink" title="docker run——创建并运行容器"></a>docker run——创建并运行容器</h5><pre><code># docker run
+# docker run -it ubuntu /bin/bash    #例子
+
+#运行上文pull的nginx，把docker的80端口映射成
+# docker run -d -p 8080:80 nginx:stable
+596094d6e0f45b770d406a907bc32f7085b0cbb9fdc283de9a786a7b44b5cf50
+# docker ps
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                           NAMES
+596094d6e0f4        nginx:stable        &quot;nginx -g &apos;daemon of   8 seconds ago       Up 6 seconds        443/tcp, 0.0.0.0:8080-&gt;80/tcp   serene_turing       
+</code></pre><p>现在就可以访问<code>192.168.174.12:8080</code>来访问nginx了，我虚拟机ip为<code>192.168.174.12</code></p>
+<h5 id="入门常见问题"><a href="#入门常见问题" class="headerlink" title="入门常见问题:"></a>入门常见问题:</h5><ul>
+<li>pull/push私有仓库镜像报错：docker默认非index.dpcler.io域名是非法的，所以需要加<code>--insecure-registry</code>参数，把错误跳过。</li>
+<li>官方镜像pull慢，或者无法下载：直接配一个镜像加速器，或者用公司内部私服的镜像。</li>
+<li>查找镜像的tag：去hub.docker.com去搜索，DaoCloud镜像仓库，可以搜索到官网的镜像。</li>
+<li>run启动容器后自动推出：不是docker本身的问题，是运行的命令或者程序的问题，类似运行一个shell，dir或者pwd的命令，它运行完后程序就退出了，run一个docker容器也是一个原理，所以要确定运行的命令是否能一直运行在前台，类似<code>tial -f</code>，如果不能，容器自然就退出了。</li>
+<li>容器内网络ping不通：DNS问题，没配DNS。另一个很小的可能是公司内部针对网络有ACL限制。</li>
+<li>设置/etc/profile变量，但是容器内读取不到：因为docker内核是提前加载的，不会读/<code>etc/profile</code>，解决办法，<code>docker run -e</code>把环境变量传进去，或者在打docker镜像的时候通过<code>env</code>固化到镜像里，这两种方式。</li>
+</ul>
+<h4 id="2、镜像相关命令"><a href="#2、镜像相关命令" class="headerlink" title="2、镜像相关命令"></a>2、镜像相关命令</h4><h5 id="docker-pull-push-tag-search-（参考入门命令）"><a href="#docker-pull-push-tag-search-（参考入门命令）" class="headerlink" title="docker pull/push/tag/search （参考入门命令）"></a>docker pull/push/tag/search （参考入门命令）</h5><h5 id="docker-images-rmi——列出本地镜像-删除本地镜像"><a href="#docker-images-rmi——列出本地镜像-删除本地镜像" class="headerlink" title="docker images/rmi——列出本地镜像/删除本地镜像"></a>docker images/rmi——列出本地镜像/删除本地镜像</h5><pre><code># docker images
+# docker rmi $(docker images -q) #删除所有镜像
+# docker rmi $(docker images --filter &quot;dangling=true&quot; -q) # 删除没tag的镜像
+
+# docker images
+REPOSITORY                              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+nginx                                   stable              dd064fa82528        21 hours ago        182.7 MB
+nginx                                   latest              6685b2154893        21 hours ago        182.7 MB
+jetty                                   9.2.17              9afdf1e527f5        5 days ago          322.5 MB
+docker.corp.example.com/opsdev/jetty    9.2                 9afdf1e527f5        5 days ago          322.5 MB
+daocloud.io/daocloud/daocloud-toolset   latest              8cc6587213d8        5 weeks ago         150.2 MB
+# docker rmi 6685b2154893    #加IMAGE ID，删除tag为latest的nginx
+Untagged: nginx:latest
+Deleted: 6685b215489379f00c1b399db75a4e4aa6546e4f2a3519145c14a2c7d5612be7
+Deleted: f3bf4daa2ff24f73b6fc9acae1626ba9a23ab8c14af5fcbb06c2284773fd7629
+Deleted: f3b2532b03016417772325817c7c7b6e44fe4396442ff88f49e9d17411a53976
+Deleted: 755b4eb93a9e13712e221b01e0206dbdc31827b1dc6a6d2a51c13baeb51fb9c7
+</code></pre><p>每一个<code>Deleted</code>代表删除一层镜像。</p>
+<h5 id="docker-commit——提交容器的变更，并创建新镜像"><a href="#docker-commit——提交容器的变更，并创建新镜像" class="headerlink" title="docker commit——提交容器的变更，并创建新镜像"></a>docker commit——提交容器的变更，并创建新镜像</h5><pre><code># docker commit &lt;container_id&gt; # 生成一个名字和tag都是none的image
+
+#先run一个docker镜像，`alpine`是一个嵌入式的linux，拿这个linux做docker base image的非常多，`alpine`非常小
+# docker run -it alpine:3.2 /bin/sh 
+/ # ls
+bin      dev      etc      home     lib      linuxrc  media    mnt      proc     root     run      sbin     sys      tmp      usr      var
+/ # touch fedor
+/ # ls
+bin      dev      etc      fedor    home     lib      linuxrc  media    mnt      proc     root     run      sbin     sys      tmp      usr      var
+/ # export DCOKER=fedor
+#创建一个`fedor`文件，并`export`一个环境变量
+</code></pre><p>打开另一个终端，查看运行中的容器，<code>docker commit</code>一下:</p>
+<pre><code># docker ps
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                           NAMES
+57a998494488        alpine:3.2          &quot;/bin/sh&quot;              5 minutes ago       Up 5 minutes                                        boring_jones        
+596094d6e0f4        nginx:stable        &quot;nginx -g &apos;daemon of   About an hour ago   Up About an hour    443/tcp, 0.0.0.0:8080-&gt;80/tcp   serene_turing       
+# docker commit 57a998494488
+435813648a5875af18dd85cfa8c4d32e3dbf8aff7907aaa9f3ff61b90e7aa9fe
+# docker images        #多出了一个名字为`none`的镜像，这个就是刚才通过`docker commit`生成的镜像
+REPOSITORY                              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+&lt;none&gt;                                  &lt;none&gt;              435813648a58        3 minutes ago       5.252 MB
+nginx                                   stable              dd064fa82528        21 hours ago        182.7 MB
+jetty                                   9.2.17              9afdf1e527f5        5 days ago          322.5 MB
+docker.corp.example.com/opsdev/jetty    9.2                 9afdf1e527f5        5 days ago          322.5 MB
+alpine                                  3.2                 cd1c228c7ba9        3 weeks ago         5.252 MB
+daocloud.io/daocloud/daocloud-toolset   latest              8cc6587213d8        5 weeks ago         150.2 MB
+
+#打个标签名为`fedor`，然后运行这个容器。
+# docker tag 46e1877bfe7e fedor
+# docker run -it fedor /bin/sh
+/ # ls
+bin      dev      etc      fedor    home     lib      linuxrc  media    mnt      proc     root     run      sbin     sys      tmp      usr      var
+/ # echo $DOCKER
+
+/ # 
+</code></pre><p>查看一下存在<code>fedor的文件</code>，但<code>DOCKER</code>环境这个环境变量却为空，而不是之前export进去的<code>fedor</code>。<br>因为<code>docker commit</code>能带走的只有文件，真正落到系统里的东西可以带走，但export一个变量，它不是一个文件，所以不能把<code>export</code>的变量给写到镜像里</p>
+<p>删除没有tag的镜像:</p>
+<pre><code># docker rmi $(docker images --filter &quot;dangling=true&quot; -q)
+Deleted: 435813648a5875af18dd85cfa8c4d32e3dbf8aff7907aaa9f3ff61b90e7aa9fe
+# docker images
+REPOSITORY                              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+nginx                                   stable              dd064fa82528        21 hours ago        182.7 MB
+jetty                                   9.2.17              9afdf1e527f5        5 days ago          322.5 MB
+docker.corp.example.com/opsdev/jetty    9.2                 9afdf1e527f5        5 days ago          322.5 MB
+alpine                                  3.2                 cd1c228c7ba9        3 weeks ago         5.252 MB
+daocloud.io/daocloud/daocloud-toolset   latest              8cc6587213d8        5 weeks ago         150.2 MB
+</code></pre><p>用途：build调试，容器的snapshot</p>
+<h5 id="docker-build——commit的自动化版本"><a href="#docker-build——commit的自动化版本" class="headerlink" title="docker build——commit的自动化版本"></a>docker build——commit的自动化版本</h5><pre><code># docker build -t xxxx --build-arg yyyy    #需要搭配Dockerfile使用（后面详细讲）
+</code></pre><h4 id="3、容器相关命令"><a href="#3、容器相关命令" class="headerlink" title="3、容器相关命令"></a>3、容器相关命令</h4><h5 id="docker-run-（下一章节单独讲解相应的资源控制等内容）"><a href="#docker-run-（下一章节单独讲解相应的资源控制等内容）" class="headerlink" title="docker run （下一章节单独讲解相应的资源控制等内容）"></a>docker run （下一章节单独讲解相应的资源控制等内容）</h5><h5 id="docker-start-create——启动-创建容器"><a href="#docker-start-create——启动-创建容器" class="headerlink" title="docker start/create——启动/创建容器"></a>docker start/create——启动/创建容器</h5><p>通过<code>docker stop</code>停止的容器，再通过<code>docker start</code>重启已经停止的容器，保持容器id和配置不变<br><code>docker start</code>和<code>docker create</code>两者的结合体是<code>docker run</code></p>
+<h5 id="docker-stop——停止容器"><a href="#docker-stop——停止容器" class="headerlink" title="docker stop——停止容器"></a>docker stop——停止容器</h5><p>如果需要把容器内跑着的服务进程停掉，只有通过<code>docker stop</code>或<code>docker kill</code>两个手段。</p>
+<p><code>docker stop</code>分两个步骤：先发送<code>kill -15 pid</code>，去杀容器内的进程，默认等十秒钟，如果十秒钟这个进程还在，相当于容器没有被停掉，它直接发送<code>kill -9 pid</code>，把容器杀死。</p>
+<p>问题：程序处理订单问题，容器内的进程拿到这个订单，有人触发了一个<code>docker stop</code>，接收到了<code>kill -15</code>的信号量，但程序没有做处理，过了一会还没有挺，直接<code>kill -9</code>杀掉了，但服务外部的展示情况是，这个服务把订单拿走了，但是它没有通知这个订单的处理情况是成功还是失败了，所以这个订单别的程序就不会拿走了，相当于这个订单丢失了，类似相同的场景。</p>
+<p>解决八法：通过上面的问题，针对容器来开发代码的情况下，程序要做一些改动，要注意，如果收到了<code>SIG TERMINAL</code>这个信号量，必须针对这个信号量接收以后，拒绝新的请求过来，把自己内部的服务能处理的处理，处理不了的保存，或者把里面的数据重新会退给上层的应用，这些动作，做完这些后，等待kill -9把进程杀死。</p>
+<p>等待时间是可以调整的，可以通过以下参数，把时间延长到20秒，让程序有时间做清理善后工作：</p>
+<pre><code># docker stop -t 20 &lt;container&gt;
+</code></pre><h5 id="docker-kill——kill容器内的主进程"><a href="#docker-kill——kill容器内的主进程" class="headerlink" title="docker kill——kill容器内的主进程"></a>docker kill——kill容器内的主进程</h5><p>默认相当于是<code>kill -9 pid</code>，也可以发其他的信号给容器内的主进程，比如SIGINT。</p>
+<p>例如容器内启动了两个进程，<code>kill -9</code>后发现只有主进程被干掉了，另起的进程没有被干掉，所以要做到，容器内如果启动多个服务，一定要确保这些服务的父ID都是通过一个shell或者其他什么东西给拉起来的，这样才能保证<code>kill -9</code>过来的时候，SIG KILL这个信号量发给主进程，主进程退出，它所有的子进程也退出了。</p>
+<p>否则，如果启动一个A进程，又启动了一个B进程，而它们没有相同的父进程，导致kill完A进程，它退出了，但B进程还挂着呢，导致这个容器退步出去。</p>
+<pre><code># docker kill -s 2 docker_signal    #通过-s传一些其他变量
+</code></pre><h5 id="docker-ps-rm——列出本地容器-删除本地容器"><a href="#docker-ps-rm——列出本地容器-删除本地容器" class="headerlink" title="docker ps/rm——列出本地容器/删除本地容器"></a>docker ps/rm——列出本地容器/删除本地容器</h5><pre><code># docker rm $(docker ps -aq) #删除全部容器
+# docker rm $(docker ps --filter status=exited -q) # 删除已经停止的容器
+</code></pre><h5 id="docker-attach——挂载容器的标准输入输出上stdin-stdout-stderr"><a href="#docker-attach——挂载容器的标准输入输出上stdin-stdout-stderr" class="headerlink" title="docker attach——挂载容器的标准输入输出上stdin/stdout/stderr"></a>docker attach——挂载容器的标准输入输出上stdin/stdout/stderr</h5><pre><code># docker attach --no-stdin &lt;container_id&gt;
+</code></pre><p>通过这种方式，看一个容器内的运行状况，但attach默认是也把标准输入给挂载上了，容易导致，在一边输入一些东西，会干扰另一边，容易造成混乱，所以建议加上<code>--no-stdin</code>做成只读attach，上去去抓日志或者其他什么。<br>可以作为收集日志的方式之一</p>
+<h4 id="4、备份相关命令"><a href="#4、备份相关命令" class="headerlink" title="4、备份相关命令"></a>4、备份相关命令</h4><h5 id="docker-export-import——针对容器，tar包形式"><a href="#docker-export-import——针对容器，tar包形式" class="headerlink" title="docker export/import——针对容器，tar包形式"></a>docker export/import——针对容器，tar包形式</h5><h5 id="docker-save-load——针对镜像，tar包形式"><a href="#docker-save-load——针对镜像，tar包形式" class="headerlink" title="docker save/load——针对镜像，tar包形式"></a>docker save/load——针对镜像，tar包形式</h5><p>在没有内网registry镜像仓库时，slave/load也是一种可以采用的镜像分发方式。<br>wget ftp_server -O xx.tar.gz<br>docker load xx.tar.gz  </p>
+<h4 id="5、运维相关命令"><a href="#5、运维相关命令" class="headerlink" title="5、运维相关命令"></a>5、运维相关命令</h4><ul>
+<li>docker top：类似linux的top，用它查看进程，它针对容器内的进程统计。</li>
+<li>docker stats：显示当前docker的资源使用情况，实现有问题，不得不重启机器，做docker监控不会用它。</li>
+<li>docker inspect：查看镜像或容器对应的描述json文件的信息。</li>
+<li>docker info：打印daemon信息</li>
+<li>docker version：打印client和daemo的版本信息，用来发现docker问题，需要向docker求助时候，用info和version命令把信息贴到问题里，好定位。</li>
+<li>docker exec：运维常用，exec直接把当前运行的命令，加到运行的容器的namespace和cgroups里，相当于运行在同一个容器内来做一些事情。可以当做轻量级的ssh服务，一般run一个docker容器，一般不需要再启动一个sshd的服务的，通过exec就能实现相同的功能。所以，一般不会开发ssh服务，都是走exec。另外，nsenter软件也可以进入docker的namespace进行操作。</li>
+<li>docker logs：查看当前容器输出的日志。</li>
+<li>docker cp：启动一个容器，不确定里面更新的内容是不是期望的，可以通过docker cp把容器内的一个文件或目录完整的拷贝出来，查看一下。高版本docker可以通过<code>docker cp</code>把本地的文件拷贝的容器里。类似容器到宿主机的文件共享一类的功能，类似scp。</li>
+<li>docker attach：基于docker做运维系统attach和events很好用，抓屏，通过attach把日志抓出来。</li>
+<li>docker events：监听<code>docker daemon</code>发生的所有状态。</li>
+</ul>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="六、Docker资源控制-环境隔离与镜像"><a href="#六、Docker资源控制-环境隔离与镜像" class="headerlink" title="六、Docker资源控制/环境隔离与镜像"></a><span id="六">六、Docker资源控制/环境隔离与镜像</span></h2><h4 id="1、Docker资源控制"><a href="#1、Docker资源控制" class="headerlink" title="1、Docker资源控制"></a>1、Docker资源控制</h4><p>正常docker利用cgroups做资源控制只有CPU、MEM、块设备的IO这三个。</p>
+<h5 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h5><pre><code>#限制cpu使用率（绝对值），比如限定在20%，cpu百分比以1000位单位。
+# docker run --cpu-quota 20000 xxxx
+#相应的cgroups文件，ubuntu在下面的路径里，2000被echo这个文件中。
+#如果做动态扩容的动作，低版本的docker没有提供`docker upadte`的接口，高版本有，去更新运行容器的cpu、内存的限制，可以找到对应的cgroups文件，直接echo 20000到文件里就会立即生效。
+/sys/fs/cgroup/cpu/docker/xxxxx/cpu.cfs_quota_us
+
+#多任务按比例分享cpu，做CPU的估算比较难的时候，通过`cpu-shares`设置比例。
+A：docker run --cpu-shares 1024 xxxx  
+B：docker run --cpu-shares 1024 yyyy  
+C：docker run --cpu-shares 2048 zzzz  
+#A:B:C的cpu比例为1:1:2
+#对应的cgroups文件如下
+/sys/fs/cgroup/cpu/docker/xxx/cpu.shares
+
+#限制cpu使用的核，0,1,3表示第0个1个3个核，跟`cat /proc/cpuinfo`里面的编号，或者`top`按1出来的编号一样的。对外系统提供pass平台，可以根据自己cpu资源以绑定的方式分配给对应的程序，配合cpu-shares动态调整cpu的比例。
+# docker run --cpuset-cpus 0,1,3 xxxx
+#对应的cgroups文件如下
+/sys/fs/cgroup/cpuset/docker/xxx/cpuset.cpus
+</code></pre><h4 id="MEM"><a href="#MEM" class="headerlink" title="MEM"></a>MEM</h4><pre><code>#限制内存使用量
+# docker run -m 32m xxxx
+#对应的cgroups文件如下
+/sys/fs/cgroup/memory/memory.limit_in_bytes
+
+#Docker利用memory cgroup控制内存的使用情况，需要注意的是，超过了内存限制的进程会被kill，这意味着你的程序在设计时需要考虑这种情况。
+#它跑到32m的内存量，会触发linux里有一个omq一个机制，直接发`kill -9`把进程直接kill
+#所以一旦是因为cgroups它的内存超额导致触发kill，这个时候直接是`kill -9`，不会有任何信号量的手段知道自己被kill了。
+#所以程序和周边系统的沟通上要有一定的容错力，即使`kill -9`被干掉了，重启起来以后还能继续工作
+#而且保证这个系统不会出现脏数据的污染，所以跟整体系统结构有关系。
+</code></pre><h4 id="BLKIO"><a href="#BLKIO" class="headerlink" title="BLKIO"></a>BLKIO</h4><pre><code>#限制设备IO
+#通过dd bs=512k if=/dev/zero of=test conv=fsync模拟写IO
+# docker run --device-write-bps /dev/sdb1:1mb xxxx
+#对应的cgroups文件如下：
+/sys/fs/cgroup/blkio/docker/xxx/blkio.throttle.write_bps_device
+
+#blkio限制的是设备（device），而非分区，要么整个盘几个分区都限制，要么都不限制。
+#使用场景，在一台机器上，既部署着mysql也有tomcat，这种混合部署的情况，会有几个程序像数据库会用磁盘往里写东西。
+#这个时候通过BLKIO去限制，比如mysql进程写一个盘，一个设备最大iops只能达到100，写入速度只能达到10M/s。
+</code></pre><h4 id="2、Docker环境隔离"><a href="#2、Docker环境隔离" class="headerlink" title="2、Docker环境隔离"></a>2、Docker环境隔离</h4><p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imageDocker%E7%8E%AF%E5%A2%83%E9%9A%94%E7%A6%BB.png" alt="Docker环境隔离"><br>mount info的隔离<br>UTS主机名隔离<br>IPC进程间通信隔离<br>PID隔离<br>Network网络隔离<br>User隔离</p>
+<p>用docker发挥它全部功能必须要有3.10以上的内核，是因为在3.10以上内核User namespace才和并进去的，所以2.6的内核有的namespace是用不了的。</p>
+<ul>
+<li>run启动的容器默认带着上面的namespace，run时候可以通过参数控制namespace的开关</li>
+<li>去掉PID namespace：–pid host，表示容器的pid的namespace用和宿主机相同的，不做隔离了，容器内的pid号的计算方式、生成方式都和宿主机相同的。下同。</li>
+<li>去掉NET namespace：–net host，好处，如果容器用了宿主机的network模式的话dns不用配，用宿主机的，网络效率是最高的，因为它相当于原生的宿主机的网络栈，它不需要从新开一个网络栈加上端口转发之类的一系列操作。</li>
+<li>去掉UTS namespace：–uts host</li>
+<li>去掉User namespace：–userns host</li>
+</ul>
+<h5 id="3、常见问题"><a href="#3、常见问题" class="headerlink" title="3、常见问题"></a>3、常见问题</h5><ul>
+<li>程序逻辑尽量不要依赖PID生成唯一序列。所有通过同一个镜像run起来的容器生成的PID都是一样的，如果程序用pid来生成一些ID的话，这个时候容器一定要把PID的namespace给干掉，否则生成的ID号是重复的。</li>
+<li>UID/GID映射问题，配合volume使用会产生权限的冲突</li>
+<li>网络隔离产生的固定IP问题</li>
+</ul>
+<p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/05/23/Docker/Docker学习笔记(一)Docker入门/" data-id="ciozan4ip001edwgs7j0ke609" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/05/23/Docker/Docker学习笔记(一)Docker入门/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/20/Docker/CentOS 6.x内核升级（2.6.32-3.10.101）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">CentOS 6.x内核升级（2.6.32-3.10.101）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/05/23/Docker/Docker学习笔记(一)Docker入门/" data-title="Docker学习笔记(一)Docker入门" data-url="http://fed0ra.github.io/2016/05/23/Docker/Docker学习笔记(一)Docker入门/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 20px;">KVM</a> <a href="/tags/Nginx/" style="font-size: 20px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 15px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 20px;">Zabbix</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/23/Docker/Docker学习笔记(一)Docker入门/">Docker学习笔记(一)Docker入门</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/20/Docker/CentOS 6.x内核升级（2.6.32-3.10.101）/">CentOS 6.x内核升级（2.6.32-3.10.101）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/">CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/">KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/">KVM虚拟化（二）KVM虚拟机克隆</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://explainshell.com" target="_blank">explainshell</a>
+          </li>
+        
+          <li>
+            <a href="http://linux.51yip.com" target="_blank">linux命令手册</a>
+          </li>
+        
+          <li>
+            <a href="http://tool.oschina.net" target="_blank">tool.oschina</a>
+          </li>
+        
+          <li>
+            <a href="http://www.bootcss.com" target="_blank">Bootcss</a>
+          </li>
+        
+          <li>
+            <a href="http://www.gycc.com" target="_blank">google替代品</a>
+          </li>
+        
+          <li>
+            <a href="http://www.clipconverter.cc" target="_blank">Youtube downloader</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 LiMY<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+
+		&nbsp;&nbsp;|&nbsp;&nbsp;produce by <a href="http://fed0ra.github.io/" target="_blank">Fedor</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;网站托管于 <a href="https://pages.github.com/" target="_blank">github pages</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;图片托管于 <a href="http://www.qiniu.com/" target="_blank">七牛</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+
+    </div>
+  </div>
+  <div class="outer">
+    <div id="footer-info" class="inner">	
+		<span><a href="/sitemap.xml">Google网站地图</a></span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span>
+
+		<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_uv">您是第<span id="busuanzi_value_site_uv"></span>位访客</span>
+
+		<script>
+		(function(){
+			var bp = document.createElement('script');
+			bp.src = '//push.zhanzhang.baidu.com/push.js';
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(bp, s);
+		})();
+		</script>
+            
+			
+    </div>
+  </div>
+</footer>
+
+
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fed0ra"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+</div>
+</body>
+</html>
