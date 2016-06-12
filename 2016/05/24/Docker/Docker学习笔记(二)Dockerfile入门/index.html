@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
+  <meta charset="utf-8">
+  
+  <title>Docker学习笔记(二)Dockerfile入门 | Fedor&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Dockerfile关键字二、Dockerfile最佳实践三、docker build自动化构建镜像
+
+弄明白Docker是怎么回事以后，接下来是如何自建image，有两个方法：
+
+方法一：就是上篇文章中提到的，下载一个官方image，然">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker学习笔记(二)Dockerfile入门">
+<meta property="og:url" content="http://fed0ra.github.io/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/index.html">
+<meta property="og:site_name" content="Fedor's blog">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Dockerfile关键字二、Dockerfile最佳实践三、docker build自动化构建镜像
+
+弄明白Docker是怎么回事以后，接下来是如何自建image，有两个方法：
+
+方法一：就是上篇文章中提到的，下载一个官方image，然">
+<meta property="og:updated_time" content="2016-06-07T05:30:41.425Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker学习笔记(二)Dockerfile入门">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Dockerfile关键字二、Dockerfile最佳实践三、docker build自动化构建镜像
+
+弄明白Docker是怎么回事以后，接下来是如何自建image，有两个方法：
+
+方法一：就是上篇文章中提到的，下载一个官方image，然">
+  
+    <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fedor&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">keke</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+		
+		
+		
+		<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+		
+		
+		
+		
+		
+		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="fed0ra.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+    <div class="outer">
+      <section id="main"><article id="post-Docker/Docker学习笔记(二)Dockerfile入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/" class="article-date">
+  <time datetime="2016-05-23T16:00:00.000Z" itemprop="datePublished">2016-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker学习笔记(二)Dockerfile入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、Dockerfile关键字</a><br><a href="#二">二、Dockerfile最佳实践</a><br><a href="#三">三、docker build自动化构建镜像</a></p>
+<hr>
+<p>弄明白Docker是怎么回事以后，接下来是如何自建image，有两个方法：</p>
+<ul>
+<li>方法一：就是上篇文章中提到的，下载一个官方image，然后在里面run一些你需要的东西，然后通过commit命令把我们在容器的变更持久化下来，并做成一个新的镜像。所以通过commit方式自动化方面很麻烦，所以出现了第二种方法。</li>
+<li>方法二：使用Dockerfile。Dockerfile出现是为了解决自动化的问题，就是你执行过的操作的自动化脚本。</li>
+</ul>
+<p>但本质上两个方法是一样的，因为Dockerfile的内容不过是一堆的RUN命令而已，就是在docker容器了写的一些命令（如<code>yum install</code>、<code>export</code>之类），将这些命令做成一种特殊语法的脚本，docker可以解析这种脚本来做成一个新的镜像。<br>Dockerfile的文件名一般就叫做Dockerfile，这样比较方便，因为可以直接用来生成image。<br><a id="more"></a></p>
+<p>一般使用Dockerfile方法：</p>
+<ul>
+<li>启动一个容器，执行要做的那些命令，出问题开始解决，再重新执行，如果这些命令已经没有问题了，优化的已经很好了，然后把这些命令抄到Dockerfile中，最后用<code>docker build</code>去构建。</li>
+<li>构建：在Dockerfile文件的目录中执行命令：<code>docker build -t yourname/imagename:yourtagname .</code><br>注意最后是一个英文的句号<code>.</code>当前目录下</li>
+</ul>
+<p>下文中详细讲解<code>docker build使用Dockerfile创建镜像的方法</code></p>
+<h2 id="一、Dockerfile关键字"><a href="#一、Dockerfile关键字" class="headerlink" title="一、Dockerfile关键字"></a><span id="一">一、Dockerfile关键字</span></h2><p>在使用<code>docker build</code>命令根据Dockerfile的内容构建镜像之前，先介绍一下Dockerfile 的基本语法结构，Dockerfile有以下指令选项:</p>
+<ul>
+<li>FROM</li>
+<li>MAINTAINER</li>
+<li>RUN</li>
+<li>EXPOSE</li>
+<li>ENV</li>
+<li>ADD &amp; COPY</li>
+<li>CMD &amp; ENTRYPOINT</li>
+<li>VOLUME</li>
+<li>USER</li>
+<li>WORKDIR</li>
+<li>ONBUILD</li>
+</ul>
+<h4 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h4><p>用法：</p>
+<blockquote>
+<p>FROM image</p>
+</blockquote>
+<ul>
+<li>FROM指定构建镜像的基础源镜像，如果本地没有指定的镜像，则会自动从Docker的公共库pull镜像下来。</li>
+<li>FROM必须是Dockerfile中非注释行的第一个指令，即一个Dockerfile从FROM语句开始。</li>
+<li>FROM可以在一个Dockerfile中出现多次，如果有需求在一个Dockerfil 中创建多个镜像。</li>
+<li>如果FROM语句没有指定镜像标签，则默认使用latest标签。不建议base image的tag是latest，容易导致每次build都重新pull镜像。</li>
+</ul>
+<h4 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h4><p>用法：</p>
+<blockquote>
+<p>MAINTAINER name</p>
+</blockquote>
+<ul>
+<li>指定创建镜像的用户</li>
+</ul>
+<h4 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h4><p>两种使用方法：</p>
+<blockquote>
+<p>RUN<br>RUN “executable”, “param1”, “param2”</p>
+</blockquote>
+<ul>
+<li>每条RUN指令将在当前镜像基础上执行指定命令，并提交为新的镜像，后续的RUN都在之前RUN提交后的镜像为基础，镜像是分层的，可以通过一个镜像的任何一个历史提交点来创建，类似源码的版本控制。</li>
+<li>RUN产生的缓存在下一次构建的时候是不会失效的，会被重用，可以使用–no-cache选项，即docker build –no-cache，如此便不会缓存。</li>
+<li>建议合并多个命令，减少层(layer)的数量。docker每RUN一次就是一层，docker的镜像分层(layer)目前能支持的layer数上线是127，超过127层docker就会报错，所以层不要超过127层，而且层越多会导致查一个文件越慢，所以尽量把层尽量控制在非常少的水平线，不建议写很多RUN，建议通过&amp;&amp;把多个命令写到一个RUN下。 </li>
+</ul>
+<p>例如：</p>
+<pre><code>#不建议
+RUN yum update
+RUN yum install vim
+RUN touch /etc/my.cnf
+#建议
+RUN yum update &amp;&amp; yum install vim &amp;&amp; touch /etc/my.cnf
+</code></pre><h4 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h4><p>用法：</p>
+<blockquote>
+<p>EXPOSE port</p>
+</blockquote>
+<ul>
+<li>告诉Docker服务端容器对外映射的本地端口，需要在<code>docker run</code>的时候使用<code>-p</code>或者<code>-P</code>选项生效。</li>
+</ul>
+<h4 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h4><p>用法：</p>
+<blockquote>
+<p>ENV key value       # 只能设置一个变量<br>ENV key=value …   # 允许一次设置多个变量</p>
+</blockquote>
+<ul>
+<li>指定一个环节变量，会被后续RUN指令使用，并在容器运行时保留。</li>
+</ul>
+<p>例如：</p>
+<pre><code>ENV myName=&quot;fodor&quot; DIRPATH=&quot;/path&quot;
+#等同于
+ENV myName=&quot;fodor&quot;
+ENV DIRPATH=&quot;/path&quot;
+</code></pre><h4 id="ADD-vs-COPY"><a href="#ADD-vs-COPY" class="headerlink" title="ADD vs COPY"></a>ADD vs COPY</h4><p>用法：</p>
+<blockquote>
+<p>ADD src… dest<br>COPY src… dest</p>
+</blockquote>
+<ul>
+<li>我们要加一个二进制包，或者加一些代码到docker容器内这种情况，这些文件是在我们本地的，这时候用ADD或者COPY命令，来从本地往容器内拷贝。</li>
+<li>ADD复制本地主机文件、目录或者远程文件URLS从本地添加到容器指定路径中 。</li>
+<li>COPY复制新文件或者目录从本地并且添加到容器指定路径中 。用法同ADD，唯一的不同是不能指定远程文件 URLS。</li>
+<li>ADD比COPY多了两个功能：下载URL(通过ftp下载或者其他方式)&amp;解压(ADD一个tar包进去会自动解压)，其他情况两者的使用是一样的。</li>
+<li>dest目录（目标目录）不存在会自动创建。</li>
+</ul>
+<h4 id="CMD-vs-ENTRYPOINT"><a href="#CMD-vs-ENTRYPOINT" class="headerlink" title="CMD vs ENTRYPOINT"></a>CMD vs ENTRYPOINT</h4><p>1.CMD三种使用方法：</p>
+<blockquote>
+<p>CMD “executable”,”param1”,”param2”<br>CMD “param1”,”param2”<br>CMD command param1 param2 (shell form) </p>
+</blockquote>
+<ul>
+<li>CMD一般放到最下面的一句话，镜像启动变成一个容器以后要执行的命令，这个命令写到CMD里。</li>
+<li>CMD指定在Dockerfile中只能使用一次，如果有多个，则只有最后一个会生效。</li>
+<li>CMD的目的是为了在启动容器时提供一个默认的命令执行选项。</li>
+<li>CMD容易被run指定的命令覆盖。就是如果用户通过<code>docker run</code>命令启动容器时候，指定了一个运行命令会把CMD给覆盖掉。</li>
+</ul>
+<p>注意：CMD会在启动容器的时候执行，build时不执行，而RUN只是在构建镜像的时候执行，后续镜像构建完成之后，启动容器就与RUN无关了，这个初学者容易弄混这个概念，这里简单注解一下。</p>
+<p>2.ENTRYPOINT两种使用方法：</p>
+<blockquote>
+<p>ENTRYPOINT “executable”, “param1”, “param2”<br>ENTRYPOINT command param1 param2 (shell form)</p>
+</blockquote>
+<ul>
+<li>镜像中如果只写一个CMD，会导致别人在执行的时候有可能把指定的CMD覆盖掉，容器想要达到的预期效果就没有了，所以一般推荐用<code>ENTRYPOINT</code>。</li>
+<li>配置容器启动后执行的命令，并且不可被<code>docker run</code>提供的参数覆盖，而CMD是可以被覆盖的。如果需要覆盖，则可以使用<code>docker run --entrypoint</code>选项。</li>
+<li>每个Dockerfile中只能有一个ENTRYPOINT，当指定多个时，只有最后一个生效。</li>
+</ul>
+<p>复杂逻辑推荐放在ENTRYPOINT中，CMD传入启动参数。<br>ENTRYPOINT的时间点优于cmd，晚于run，执行顺序：RUN&gt;ENTRYPOINT&gt;CMD。所以一般会把逻辑写到ENTRYPOINT里，通过CMD传入参数来控制ENTRYPOINT里执行的策略。</p>
+<h4 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h4><p>用法：</p>
+<blockquote>
+<p>VOLUME [“/data”]</p>
+</blockquote>
+<p>创建一个可以从本地主机或其他容器挂载的挂载点，后续具体介绍。</p>
+<h4 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h4><p>用法：</p>
+<blockquote>
+<p>USER daemon</p>
+</blockquote>
+<p>指定运行容器时的用户名或UID，后续的RUN、ENTRYPOINT、CMD也会使用指定用户。</p>
+<h4 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h4><p>用法：</p>
+<blockquote>
+<p>WORKDIR /path/to/workdir</p>
+</blockquote>
+<ul>
+<li>为后续的RUN、CMD、ENTRYPOINT指令配置工作目录。</li>
+<li>可以使用多个WORKDIR指令，后续命令如果参数是相对路径，则会基于之前命令指定的路径。</li>
+</ul>
+<p>例：</p>
+<pre><code>WORKDIR /a
+WORKDIR b
+WORKDIR c
+RUN pwd
+</code></pre><p>最终路径是/a/b/c。<br>WORKDIR指令可以在ENV设置变量之后调用环境变量：</p>
+<pre><code>ENV DIRPATH /path
+WORKDIR $DIRPATH/$DIRNAME
+</code></pre><p>最终路径则为 /path/$DIRNAME。</p>
+<h4 id="ONBUILD"><a href="#ONBUILD" class="headerlink" title="ONBUILD"></a>ONBUILD</h4><p>用法：</p>
+<blockquote>
+<p>ONBUILD [INSTRUCTION]</p>
+</blockquote>
+<ul>
+<li>配置当所创建的镜像作为其它新创建镜像的基础镜像时，所执行的操作指令。</li>
+</ul>
+<p>例：</p>
+<pre><code>[...]
+ONBUILD ADD . /app/src
+ONBUILD RUN /usr/local/bin/python-build --dir /app/src
+[...]
+</code></pre><p>如果基于<code>image-A</code>创建新的镜像时，新的Dockerfile中使用<code>FROM image-A</code>指定基础镜像时，会自动执行 ONBUILD指令内容，等价于在后面添加了两条指令。</p>
+<pre><code># Automatically run the following
+ADD . /app/src
+RUN /usr/local/bin/python-build --dir /app/src
+</code></pre><p>使用ONBUILD指令的镜像，推荐在标签中注明，例如：nginx:1.7-onbuild。</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、Dockerfile最佳实践"><a href="#二、Dockerfile最佳实践" class="headerlink" title="二、Dockerfile最佳实践"></a><span id="二">二、Dockerfile最佳实践</span></h2><h4 id="使用-dockerignore文件"><a href="#使用-dockerignore文件" class="headerlink" title="使用.dockerignore文件"></a>使用.dockerignore文件</h4><p>类似.gitignore的功能，建议大家在自己的工程中使用一个<code>.dockerignore</code>文件用来明确的指定哪些文件/文件夹不需要一起打包，减少压缩和网络传输的消耗</p>
+<h4 id="避免安装不必要的软件包"><a href="#避免安装不必要的软件包" class="headerlink" title="避免安装不必要的软件包"></a>避免安装不必要的软件包</h4><p>为了降低复杂性、依赖性、文件大小以及构建时间，应该避免安装额外的或不必要的包。例如，不需要在一个数据库镜像中安装一个文本编辑器。</p>
+<h4 id="每个容器都跑一个进程"><a href="#每个容器都跑一个进程" class="headerlink" title="每个容器都跑一个进程"></a>每个容器都跑一个进程</h4><p>尽量做到在大多数情况下，一个容器应该只单独跑一个程序，解耦应用到多个容器使其更容易横向扩展和重用。</p>
+<h4 id="最小化层"><a href="#最小化层" class="headerlink" title="最小化层"></a>最小化层</h4><p>我们知道每执行一个指令，都会有一次镜像的提交，镜像是分层的结构，对于Dockerfile，应该找到可读性和最小化层之间的平衡。前文提到过。</p>
+<h4 id="多行参数排序"><a href="#多行参数排序" class="headerlink" title="多行参数排序"></a>多行参数排序</h4><p>如果可能，RUN时通过字母顺序来排序，这样可以避免安装包的重复并且更容易更新列表，另外可读性也会更强，添加一个空行使用\换行。前文提到过。</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、docker-build自动化构建镜像"><a href="#三、docker-build自动化构建镜像" class="headerlink" title="三、docker build自动化构建镜像"></a><span id="三">三、docker build自动化构建镜像</span></h2><pre><code># docker build --help    #运行命令查看帮助
+
+Usage:    docker build [OPTIONS] PATH | URL | -
+
+Build an image from a Dockerfile
+
+  --build-arg=[]                  Set build-time variables
+  --cpu-shares=0                  CPU shares (relative weight)
+  --cgroup-parent=                Optional parent cgroup for the container
+  --cpu-period=0                  Limit the CPU CFS (Completely Fair Scheduler) period
+  --cpu-quota=0                   Limit the CPU CFS (Completely Fair Scheduler) quota
+  --cpuset-cpus=                  CPUs in which to allow execution (0-3, 0,1)
+  --cpuset-mems=                  MEMs in which to allow execution (0-3, 0,1)
+  --disable-content-trust=true    Skip image verification
+  -f, --file=                     Name of the Dockerfile (Default is &apos;PATH/Dockerfile&apos;)
+  --force-rm=false                Always remove intermediate containers
+  --help=false                    Print usage
+  -m, --memory=                   Memory limit
+  --memory-swap=                  Total memory (memory + swap), &apos;-1&apos; to disable swap
+  --no-cache=false                Do not use cache when building the image
+  --pull=false                    Always attempt to pull a newer version of the image
+  -q, --quiet=false               Suppress the verbose output generated by the containers
+  --rm=true                       Remove intermediate containers after a successful build
+  -t, --tag=                      Repository name (and optionally a tag) for the image
+  --ulimit=[]                     Ulimit options
+</code></pre><p>在Dockerfile文件的目录中执行命令：</p>
+<pre><code># docker build -t yourname/imagename:yourtagname .
+</code></pre><p>创建新的image,并命名为yourname/imagename:yourtagname，其中yourtagname是可以省略的，默认是latest。build完成以后会按Dockerfile的内容生成一个新的image。<br>注意最后是一个英文的句号<code>.</code>当前目录下</p>
+<p>参考：<a href="http://www.open-open.com/lib/view/open1423703640748.html" target="_blank" rel="external">http://www.open-open.com/lib/view/open1423703640748.html</a></p>
+<p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/" data-id="cipc597h0001e58gsplhzzw2y" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/23/Docker/Docker学习笔记(一)Docker入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Docker学习笔记(一)Docker入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/" data-title="Docker学习笔记(二)Dockerfile入门" data-url="http://fed0ra.github.io/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 16.67px;">KVM</a> <a href="/tags/Nginx/" style="font-size: 16.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 13.33px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 16.67px;">Zabbix</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/">Docker学习笔记(二)Dockerfile入门</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/23/Docker/Docker学习笔记(一)Docker入门/">Docker学习笔记(一)Docker入门</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/">CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/20/Docker/CentOS 6.x内核升级（2.6.32-3.10.101）/">CentOS 6.x内核升级（2.6.32-3.10.101）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/">KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://explainshell.com" target="_blank">explainshell</a>
+          </li>
+        
+          <li>
+            <a href="http://linux.51yip.com" target="_blank">linux命令手册</a>
+          </li>
+        
+          <li>
+            <a href="http://tool.oschina.net" target="_blank">tool.oschina</a>
+          </li>
+        
+          <li>
+            <a href="http://www.bootcss.com" target="_blank">Bootcss</a>
+          </li>
+        
+          <li>
+            <a href="http://www.gycc.com" target="_blank">google替代品</a>
+          </li>
+        
+          <li>
+            <a href="http://www.clipconverter.cc" target="_blank">Youtube downloader</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 LiMY<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+
+		&nbsp;&nbsp;|&nbsp;&nbsp;produce by <a href="http://fed0ra.github.io/" target="_blank">Fedor</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;网站托管于 <a href="https://pages.github.com/" target="_blank">github pages</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;图片托管于 <a href="http://www.qiniu.com/" target="_blank">七牛</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+
+    </div>
+  </div>
+  <div class="outer">
+    <div id="footer-info" class="inner">	
+		<span><a href="/sitemap.xml">Google网站地图</a></span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span>
+
+		<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_uv">您是第<span id="busuanzi_value_site_uv"></span>位访客</span>
+
+		<script>
+		(function(){
+			var bp = document.createElement('script');
+			bp.src = '//push.zhanzhang.baidu.com/push.js';
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(bp, s);
+		})();
+		</script>
+            
+			
+    </div>
+  </div>
+</footer>
+
+
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fed0ra"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+</div>
+</body>
+</html>
