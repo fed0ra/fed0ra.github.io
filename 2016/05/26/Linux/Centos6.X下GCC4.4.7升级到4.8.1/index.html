@@ -5,17 +5,33 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>Archives: 2016/2 | Fedor&#39;s blog</title>
+  <title>Centos6.X下GCC4.4.7升级到4.8.1 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Devops">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fedor's blog">
-<meta property="og:url" content="http://fed0ra.github.io/archives/2016/02/index.html">
+  <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+
+查看gcc版本# gcc -v
+Using built-in specs.
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos6.X下GCC4.4.7升级到4.8.1">
+<meta property="og:url" content="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/index.html">
 <meta property="og:site_name" content="Fedor's blog">
-<meta property="og:description" content="Devops">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+
+查看gcc版本# gcc -v
+Using built-in specs.
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/">
+<meta property="og:updated_time" content="2016-07-08T06:19:15.232Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fedor's blog">
-<meta name="twitter:description" content="Devops">
+<meta name="twitter:title" content="Centos6.X下GCC4.4.7升级到4.8.1">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+
+查看gcc版本# gcc -v
+Using built-in specs.
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -235,267 +251,96 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/26/SaltStack/SaltStack批量管理工具实战（二）/" class="archive-article-date">
-  <time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished">2月 26</time>
+      <section id="main"><article id="post-Linux/Centos6.X下GCC4.4.7升级到4.8.1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" class="article-date">
+  <time datetime="2016-05-25T16:00:00.000Z" itemprop="datePublished">2016-05-26</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/26/SaltStack/SaltStack批量管理工具实战（二）/">SaltStack批量管理工具实战（二）</a>
+    <h1 class="article-title" itemprop="name">
+      Centos6.X下GCC4.4.7升级到4.8.1
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/24/SaltStack/SaltStack批量管理工具实战（一）/" class="archive-article-date">
-  <time datetime="2016-02-23T16:00:00.000Z" itemprop="datePublished">2月 24</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/24/SaltStack/SaltStack批量管理工具实战（一）/">SaltStack批量管理工具实战（一）</a>
-    </h1>
-  
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<hr>
+<h4 id="查看gcc版本"><a href="#查看gcc版本" class="headerlink" title="查看gcc版本"></a>查看gcc版本</h4><pre><code># gcc -v
+Using built-in specs.
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC)
+</code></pre><a id="more"></a>
+<h4 id="下载源码包，及编译所需依赖"><a href="#下载源码包，及编译所需依赖" class="headerlink" title="下载源码包，及编译所需依赖"></a>下载源码包，及编译所需依赖</h4><pre><code># wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-4.8.1/gcc-4.8.1.tar.gz
+# tar -zxvf gcc-4.8.1.tar.gz
+# cd gcc-4.8.1
+# ./contrib/download_prerequisites
+</code></pre><h4 id="建立编译输出目录"><a href="#建立编译输出目录" class="headerlink" title="建立编译输出目录"></a>建立编译输出目录</h4><pre><code># mkdir gcc-build-4.8.1
+</code></pre><h4 id="进入此目录，生成makefile文件"><a href="#进入此目录，生成makefile文件" class="headerlink" title="进入此目录，生成makefile文件"></a>进入此目录，生成makefile文件</h4><pre><code># cd gcc-build-4.8.1/
+# ../../gcc-4.8.1/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib
+</code></pre><h4 id="编译，j后面的是核心数，编译速度会比较快"><a href="#编译，j后面的是核心数，编译速度会比较快" class="headerlink" title="编译，j后面的是核心数，编译速度会比较快"></a>编译，j后面的是核心数，编译速度会比较快</h4><pre><code># make -j2
+</code></pre><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code># make install
+</code></pre><h4 id="切换到GCC4-8-1"><a href="#切换到GCC4-8-1" class="headerlink" title="切换到GCC4.8.1"></a>切换到GCC4.8.1</h4><p>确定新安装的GCC的路径,一般默认在/usr/local/bin下</p>
+<pre><code># ls /usr/local/bin | grep gcc
+</code></pre><p>添加新GCC到可选项，倒数第三个是名字，倒数第二个参数为新GCC路径，最后一个参数100为优先级，设大一些之后就自动使用新版了。<br>install参数用于添加一个命令的link值，相当于添加一个可用值。<br>config参数用于给某个命令选择一个link值，相当于在可用值之中进行切换，install已经添加了一个link值，config可以看到4.8.1的link，交互输入其编号即可。  </p>
+<pre><code># update-alternatives --install /usr/bin/gcc gcc /usr/local/bin/x86_64-unknown-linux-gnu-gcc-4.8.1 100
+# update-alternatives --config gcc
+</code></pre><h4 id="退出终端，重新连接然后查看gcc版本。"><a href="#退出终端，重新连接然后查看gcc版本。" class="headerlink" title="退出终端，重新连接然后查看gcc版本。"></a>退出终端，重新连接然后查看gcc版本。</h4><pre><code># gcc -v
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/4.8.1/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: ../../gcc-4.8.1/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib
+Thread model: posix
+gcc version 4.8.1 (GCC)
+</code></pre><p><a href="#top">返回目录</a></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/22/Redis/Redis部署配置与维护/" class="archive-article-date">
-  <time datetime="2016-02-21T16:00:00.000Z" itemprop="datePublished">2月 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/22/Redis/Redis部署配置与维护/">Redis部署配置与维护</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/21/Hexo/Hexo landscape主题优化/" class="archive-article-date">
-  <time datetime="2016-02-20T16:00:00.000Z" itemprop="datePublished">2月 21</time>
-</a>
+    </div>
+    <footer class="article-footer">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/21/Hexo/Hexo landscape主题优化/">Hexo landscape主题优化</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/20/Zabbix/Zabbix链接及解除模板链接/" class="archive-article-date">
-  <time datetime="2016-02-19T16:00:00.000Z" itemprop="datePublished">2月 20</time>
-</a>
+        <a data-url="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" data-id="ciqdhus74000u8cgs7ysut8mz" class="article-share-link" data-share="baidu">分享到</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/20/Zabbix/Zabbix链接及解除模板链接/">Zabbix链接及解除模板链接</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/20/Zabbix/Zabbix监控nginx性能/" class="archive-article-date">
-  <time datetime="2016-02-19T16:00:00.000Z" itemprop="datePublished">2月 20</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/20/Zabbix/Zabbix监控nginx性能/">Zabbix监控nginx性能</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/19/Nginx/Nginx优化/" class="archive-article-date">
-  <time datetime="2016-02-18T16:00:00.000Z" itemprop="datePublished">2月 19</time>
-</a>
+        <a href="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/#ds-thread" class="article-comment-link">评论</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/19/Nginx/Nginx优化/">Nginx优化相关</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/" class="archive-article-date">
-  <time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2月 18</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/">zabbix使用自带模板监控mysql</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/17/Hexo/High一下/" class="archive-article-date">
-  <time datetime="2016-02-16T16:00:00.000Z" itemprop="datePublished">2月 17</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/17/Hexo/High一下/">High一下</a>
-    </h1>
   
+    <a href="/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Docker学习笔记(二)Dockerfile入门</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" class="archive-article-date">
-  <time datetime="2016-02-16T16:00:00.000Z" itemprop="datePublished">2月 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /">访问Nginx出现状态码为403 forbidden原因</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/" class="archive-article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2月 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/">Windows下使用GitHub Pages+Hexo搭建博客</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/16/Python/Python运维自动化环境搭建/" class="archive-article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2月 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/Python/Python运维自动化环境搭建/">Python运维自动化开发环境搭建（一）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/15/Git/Git-guide/" class="archive-article-date">
-  <time datetime="2016-02-14T16:00:00.000Z" itemprop="datePublished">2月 15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/15/Git/Git-guide/">Git guide</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" data-title="Centos6.X下GCC4.4.7升级到4.8.1" data-url="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
