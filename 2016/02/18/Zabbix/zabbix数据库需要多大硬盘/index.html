@@ -5,21 +5,24 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>Windows下使用GitHub Pages+Hexo搭建博客 | Fedor&#39;s blog</title>
+  <title>zabbix数据库需要多大硬盘 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-零、为什么选择GitHub Pages一、首先你需要准备什么二、环境安装三、使用Hexo生成博客的静态页面四、将本地文件部署到 GitHub">
+
+本文讲解zabbix数据库硬盘容量的计算方法，我想看完本节大家就可以知道自己的zabbix到底要多大的硬盘。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows下使用GitHub Pages+Hexo搭建博客">
-<meta property="og:url" content="http://fed0ra.github.io/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/index.html">
+<meta property="og:title" content="zabbix数据库需要多大硬盘">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix数据库需要多大硬盘/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-零、为什么选择GitHub Pages一、首先你需要准备什么二、环境安装三、使用Hexo生成博客的静态页面四、将本地文件部署到 GitHub">
-<meta property="og:updated_time" content="2016-02-22T05:12:08.111Z">
+
+本文讲解zabbix数据库硬盘容量的计算方法，我想看完本节大家就可以知道自己的zabbix到底要多大的硬盘。">
+<meta property="og:updated_time" content="2016-08-15T06:26:09.195Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows下使用GitHub Pages+Hexo搭建博客">
+<meta name="twitter:title" content="zabbix数据库需要多大硬盘">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-零、为什么选择GitHub Pages一、首先你需要准备什么二、环境安装三、使用Hexo生成博客的静态页面四、将本地文件部署到 GitHub">
+
+本文讲解zabbix数据库硬盘容量的计算方法，我想看完本节大家就可以知道自己的zabbix到底要多大的硬盘。">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -239,10 +242,10 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main"><article id="post-Hexo/Windows下使用GitHub Pages+Hexo搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Zabbix/zabbix数据库需要多大硬盘" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/" class="article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2016-02-16</time>
+    <a href="/2016/02/18/Zabbix/zabbix数据库需要多大硬盘/" class="article-date">
+  <time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2016-02-18</time>
 </a>
     
   </div>
@@ -253,7 +256,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Windows下使用GitHub Pages+Hexo搭建博客
+      zabbix数据库需要多大硬盘
     </h1>
   
 
@@ -262,102 +265,31 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<p><a href="#零">零、为什么选择GitHub Pages</a><br><a href="#一">一、首先你需要准备什么</a><br><a href="#二">二、环境安装</a><br><a href="#三">三、使用Hexo生成博客的静态页面</a><br><a href="#四">四、将本地文件部署到 GitHub</a></p>
 <hr>
+<p>本文讲解zabbix数据库硬盘容量的计算方法，我想看完本节大家就可以知道自己的zabbix到底要多大的硬盘。 </p>
 <a id="more"></a>
-<h3 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a><em>版权声明</em></h3><pre><code>严重参考（照抄）http://www.jianshu.com/p/985d07d88ef4#
-http://www.chinaz.com/web/2016/0105/491998.shtml
-</code></pre><h2 id="零、为什么选择GitHub-Pages"><a href="#零、为什么选择GitHub-Pages" class="headerlink" title="零、为什么选择GitHub Pages"></a><span id="零">零、为什么选择GitHub Pages</span></h2><ul>
-<li>1 GitHub Pages 有300M免费空间，资料自己管理，保存可靠；</li>
-<li>2 学着用 GitHub ，享受 GitHub 的便利，上面有很多大牛，眼界会开阔很多；</li>
-<li>3 顺便看看 GitHub 工作原理，最好的团队协作流程；</li>
-<li>4 GitHub 是趋势；</li>
-<li>5 你不觉得一个文科生用 GitHub 很geek吗？瞬间跻身技术界；</li>
-<li>6 就算 GitHub 被墙了，我可以搬到国内的 GitCafe 中去。</li>
-</ul>
-<h2 id="一、首先你需要准备什么"><a href="#一、首先你需要准备什么" class="headerlink" title="一、首先你需要准备什么"></a><span id="一">一、首先你需要准备什么</span></h2><ul>
-<li>一个github账户<br>访问：<a href="https://www.github.com" target="_blank" rel="external">https://www.github.com</a><br>注册十分简单，记住注册时使用的邮箱，过程略。  </li>
-<li>创建一个仓库<br>注册号账户后，在你的主页面点击New repository<br>Repository name仓库名字命名为yourname.github.io（yourname自定义，后面.github.io最后不变，我这里为fed0ra.github.io）<br>免费只能勾选public，下面勾选Initialize this repository with a README<br>点击Create repository就OK了<br>现在你访问你的yourname.github.io这个域名是404是正确的。</li>
-</ul>
-<p><a href="#top">返回目录</a></p>
-<hr>
-<h2 id="二、环境安装"><a href="#二、环境安装" class="headerlink" title="二、环境安装"></a><span id="二">二、环境安装</span></h2><ul>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>（下载Windows版本后安装，安装过程一路向西）</li>
-<li><a href="http://git-scm.com/download" target="_blank" rel="external">git</a>（下载Windows版本后安装，安装过程同上）（不翻墙下载速度比较慢，也可以去百度下载<a href="http://rj.baidu.com/soft/detail/30195.html?ald" target="_blank" rel="external">git</a>）</li>
-</ul>
-<hr>
-<h2 id="三、使用Hexo生成博客的静态页面"><a href="#三、使用Hexo生成博客的静态页面" class="headerlink" title="三、使用Hexo生成博客的静态页面"></a><span id="三">三、使用Hexo生成博客的静态页面</span></h2><p>Hexo 是一个轻量的静态博客框架。通过Hexo可以快速生成一个静态博客框架,仅需要几条命令就可以完成,相当方便。</p>
-<h4 id="1、运行Node-js-command-prompt"><a href="#1、运行Node-js-command-prompt" class="headerlink" title="1、运行Node.js command prompt"></a>1、运行<em>Node.js command prompt</em></h4><p>安装好Node.js后，在桌面或开始菜单中找到<em>Node.js command prompt</em>的快捷方式，打开后输入命令</p>
-<pre><code>$ cd d:
-$ npm install hexo-cli -g
-</code></pre><p>cd d:是切换到nodejs安装路径，不必要操作看个人习惯</p>
-<h4 id="2、Hexo部署"><a href="#2、Hexo部署" class="headerlink" title="2、Hexo部署"></a>2、Hexo部署</h4><p>通过命令<em>hexo init [文件名]</em>生成</p>
-<pre><code>$ f:
-$ hexo init fed0ra.github.io
-</code></pre><p>cd f:切换到任意盘符下，这里切换到f盘下；fed0ra.github.io根据自己网站定义(yourname.github.com)，记下之后再github建库时候建成同名的库；回车后仔细看有没有报错，没有报错证明成功<br>这是你会在F盘根目录下，发现多出一个名字为fed0ra.github.io的文件夹，再输入以下命令安装依赖文件</p>
-<pre><code>$ cd fed0ra.github.io
-$ npm install
-</code></pre><p>回车后看是否报错。<br>经过以上方法后，Hexo会自动在目标文件夹建立博客网站所需要的所有文件。  </p>
-<p>此时可以通过输入以下命令在本地进行预览（在刚才创建的文件夹里）：</p>
-<pre><code>$ hexo generate (可以简写成: hexo g生成文件，出现一排排INFO表示成功)
-$ hexo server （启动服务，成功后显示一行INFO，本地浏览地址）
-</code></pre><p>此时打开浏览器，在浏览器地址栏输入 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> （默认端口为4000）便可以看到最原始的博客了（以后发表博文想先预览，也可以通过 hexo server 在本地先跑起来，看看效果，Ctrl+C停止服务，停止后本地就访问不了了）</p>
-<p>到目前为止博客的雏形已经有了。<br>在<em>Node.js command prompt</em>中按 Ctrl + C并输入y可以停止该服务（本地访问不了了）。</p>
-<p><a href="#top">返回目录</a></p>
-<hr>
-<h2 id="四、将本地文件部署到-GitHub"><a href="#四、将本地文件部署到-GitHub" class="headerlink" title="四、将本地文件部署到 GitHub"></a><span id="四">四、将本地文件部署到 GitHub</span></h2><h4 id="1、配置和使用-Github"><a href="#1、配置和使用-Github" class="headerlink" title="1、配置和使用 Github"></a>1、配置和使用 Github</h4><p>使用ssh keys让本地git项目与远程的github建立联系呢（等同于把上一步生成的页面文件，即F盘下的fed0ra.github.io文件夹的内容上传的github库）</p>
-<h4 id="第二部安装好git后会生成快捷方式Git-Bash，运行Git-Bash，在命令行操作"><a href="#第二部安装好git后会生成快捷方式Git-Bash，运行Git-Bash，在命令行操作" class="headerlink" title="第二部安装好git后会生成快捷方式Git Bash，运行Git Bash，在命令行操作"></a>第二部安装好git后会生成快捷方式Git Bash，运行Git Bash，在命令行操作</h4><h4 id="a）输入以下命令检查本机是否有ssh密钥："><a href="#a）输入以下命令检查本机是否有ssh密钥：" class="headerlink" title="a）输入以下命令检查本机是否有ssh密钥："></a>a）输入以下命令检查本机是否有ssh密钥：</h4><pre><code>$ cd ~/.ssh
-</code></pre><p>如果提示：No such file or directory 说明你是第一次使用git,还没有生成秘钥</p>
-<h4 id="b）输入以下命令生成新的SSH-Key："><a href="#b）输入以下命令生成新的SSH-Key：" class="headerlink" title="b）输入以下命令生成新的SSH Key："></a>b）输入以下命令生成新的SSH Key：</h4><pre><code>$ ssh-keygen -t rsa -C &quot;邮件地址@youremail.com&quot;
-</code></pre><p>一直回车。<br>注意: 此处的邮箱地址，你可以输入自己的邮箱地址;此处的「-C」的是大写的「C」</p>
-<h4 id="c）查看生成的秘钥"><a href="#c）查看生成的秘钥" class="headerlink" title="c）查看生成的秘钥"></a>c）查看生成的秘钥</h4><pre><code>$ cd ~/.ssh
-$ ls
-$ cat id_rsa.pub
-</code></pre><p>cd ~/.ssh进入生成秘钥的目录，ls查看，发现目录下有id_rsa和id_rsa.pub,id_rsa.pub就是我们需要的，cat id_rsa.pub查看文件里的内容，选中后已经复制好了，直接粘贴到其他文档中备用。</p>
-<h4 id="d）添加SSH-Key到GitHub"><a href="#d）添加SSH-Key到GitHub" class="headerlink" title="d）添加SSH Key到GitHub"></a>d）添加SSH Key到GitHub</h4><p>在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。<br>登陆github系统。点击右上角的Account Settings—&gt;SSH keys —&gt;new SSH key。<br>把你本地生成的密钥刚刚复制好的粘贴到里面(key文本框中)，点击add key就ok了。</p>
-<p>测试：<br>可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：</p>
-<pre><code>$ ssh -T git@github.com
-</code></pre><p>如果是下面的反馈：<br>The authenticity of host ‘github.com (207.97.227.239)’ can’t be established.<br>RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.<br>Are you sure you want to continue connecting (yes/no)?<br>不要紧张，输入yes就好，然后会看到：<br>Hi aierui! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
-<h4 id="e）最后一击，设置用户信息"><a href="#e）最后一击，设置用户信息" class="headerlink" title="e）最后一击，设置用户信息"></a>e）最后一击，设置用户信息</h4><p>现在你已经可以通过 SSH 链接到 GitHub 了，还有一些个人信息需要完善，否则后面本地文件上传github会出错。</p>
-<pre><code>$ git config --global user.name &quot;yourname&quot;//用户名
-$ git config --global user.email &quot;imland@outlook.com&quot;//填写自己的邮箱
-</code></pre><h4 id="2、修改-Hexo-中的-config-yml-文件"><a href="#2、修改-Hexo-中的-config-yml-文件" class="headerlink" title="2、修改 Hexo 中的 _config.yml 文件"></a>2、修改 Hexo 中的 _config.yml 文件</h4><p>在fed0ra.github.com文件夹下找到_config.yml文件<br>找到其中的 deploy 标签，改成如下所示，并保存：</p>
-<pre><code>deploy:
-  type: git
-  #repository: https://github.com/fed0ra/fed0ra.github.io
-  repository: ssh://git@github.com/fed0ra/fed0ra.github.io
-  branch: master
-  plugins: -hexo-generator-feed
-</code></pre><p>其中 branch 选项可以填写 master 或 gh-pages。如果你是为一个项目制作网站，那么需要把 branch 设置为 gh-pages 。若要绑定自定义域名也可以参考Hexo 或 Github Page 的帮助文档，制作一个 CNAME 文件。</p>
-<h4 id="3、将第三步Hexo生成博客的静态页面部署到github仓库"><a href="#3、将第三步Hexo生成博客的静态页面部署到github仓库" class="headerlink" title="3、将第三步Hexo生成博客的静态页面部署到github仓库"></a>3、将第三步Hexo生成博客的静态页面部署到github仓库</h4><p>运行Git Bash，输入以下命令：</p>
-<pre><code>$ cd f:    \\切换到F盘
-$ cd fed0ra.github.io    \\切换到博客目录
-$ hexo clean
-$ hexo generate
-$ hexo deploy
-</code></pre><p>如果出现ERROR Deployer not found: github，将deploy的type改成 git，然后再在Git Shell中运行以下命令：</p>
-<pre><code>$ npm install hexo-deployer-git --save
-</code></pre><p>再重新来一遍</p>
-<pre><code>$ hexo clean
-$ hexo generate
-$ hexo deploy
-</code></pre><p>运行没报错，出现INFO Deploy done: git则表示博客已经部署到github上了。</p>
-<p>去<a href="https://github.com/fed0ra/fed0ra.github.io仓库查看，文件已经上传上了。再访问http://fed0ra.github.io，显示初始博客页面，大功告成。" target="_blank" rel="external">https://github.com/fed0ra/fed0ra.github.io仓库查看，文件已经上传上了。再访问http://fed0ra.github.io，显示初始博客页面，大功告成。</a></p>
-<p><a href="#top">返回目录</a></p>
+<p>本次案例：100台服务器，每台服务器有30个监控项，每个监控项60秒刷新一次，需要多大的硬盘呢？<br>众所周知，zabbix基本都是通过web配置，这些配置数据也是存放到数据库里的，但是它对硬盘容量的要求基本可以忽略不计，zabbix对硬盘的决定性因素有4个，如下：</p>
+<h4 id="1-每秒处理的数据量"><a href="#1-每秒处理的数据量" class="headerlink" title="1. 每秒处理的数据量"></a>1. 每秒处理的数据量</h4><p>这个问题不说，大家也明白。这边的每秒只是一个平均值，例如我有3000个监控项，每60秒刷新一次，那么平均每秒有50（3000/60）个数据要处理。就是说每秒有50条数据要插入MySQL</p>
+<h4 id="2-历史记录保存时间"><a href="#2-历史记录保存时间" class="headerlink" title="2. 历史记录保存时间"></a>2. 历史记录保存时间</h4><p>zabbix对每个监控项的值都要记录下来，这些记录一般保留几周到几个月，具体看你的配置了。每个值都需要暂用硬盘空间。假如一个数据你要保留30天，而且每秒有50个值要保留，那我们一共有129，600，000（30天<em>24小时</em>3600秒）<em>50个值，一条记录多大，由你的数据库引擎和你存储的数据类型来决定（浮点型，整形，字符型等等），一般来说一条记录需要占用50个字节（一个大概值），在这个案例中129,600,000个记录大约需要（129600000</em>50字节）6.5G的硬盘空间</p>
+<h4 id="3-趋势数据保存时间"><a href="#3-趋势数据保存时间" class="headerlink" title="3. 趋势数据保存时间"></a>3. 趋势数据保存时间</h4><p>什么是趋势数据呢？当你查看一周或者一月的图表，图表上看到的MAX/MIN/AVG/COUNT都是取自趋势数据，趋势数据一小时获取一次，一般情况下，趋势数据一条记录大概占用128字节，如果我们想保存5年趋势数据，3000个监控线需要2.4GB（3000个<em>24小时</em>356天*128字节）每年，5年一共16.8G</p>
+<h4 id="4-事件记录保存时间"><a href="#4-事件记录保存时间" class="headerlink" title="4. 事件记录保存时间"></a>4. 事件记录保存时间</h4><p>报警、警告、恢复等等事情，一个事件大概占用130个字节，一般情况下不会太多，除非运维做的太糟糕，或者运维要求太严格，把阀值调的很低。假如这个运维今年本命年，既没拜佛有没烧香，更别说给服务器贴灵符，于是这一年每秒钟就有一个事件发生，那么事件这一年占用的数据空间为：1年<em>365天</em>24小时<em>3600秒</em>130字节大概为4.1G空间。</p>
+<h4 id="5-数据库空间计算公式"><a href="#5-数据库空间计算公式" class="headerlink" title="5. 数据库空间计算公式"></a>5. 数据库空间计算公式</h4><p>zabbix配置：固定大小，一般&lt;10MB<br>历史数据：天数<em>(监控项总数/刷新频率)</em>24小时<em>3600秒</em>50字节<br>趋势数据：天数<em>（监控项总数/3600）</em>24小时<em>3600秒</em>128字节<br>事件数据：天数<em>事件个数（大概值）</em>24小时<em>3600秒</em>130字节</p>
+<h4 id="6-最后"><a href="#6-最后" class="headerlink" title="6. 最后"></a>6. 最后</h4><p>看到这里，大家都心里有数据了，数据库硬盘空间=配置文件大小+历史记录+趋势记录+事件记录。虽然这个硬盘会不停的增长，但是总有一天会停止增长，空间一直保持不变。</p>
+<h5 id="转载自运维生存时间，原文链接：http-www-ttlsa-com-zabbix-zabbix-database-space-6-ttlsa"><a href="#转载自运维生存时间，原文链接：http-www-ttlsa-com-zabbix-zabbix-database-space-6-ttlsa" class="headerlink" title="转载自运维生存时间，原文链接：http://www.ttlsa.com/zabbix/zabbix-database-space-6-ttlsa/"></a>转载自运维生存时间，原文链接：<a href="http://www.ttlsa.com/zabbix/zabbix-database-space-6-ttlsa/" target="_blank" rel="external">http://www.ttlsa.com/zabbix/zabbix-database-space-6-ttlsa/</a></h5><p><a href="#top">返回目录</a></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/" data-id="cis8gc8om001arggs9w8z14w1" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix数据库需要多大硬盘/" data-id="cis8gc8mk0005rggsbh1tj1bk" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix数据库需要多大硬盘/#ds-thread" class="article-comment-link">评论</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
 
     </footer>
   </div>
@@ -365,19 +297,19 @@ $ hexo deploy
     
 <nav id="article-nav">
   
-    <a href="/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/02/18/Zabbix/zabbix使用自带模板监控mysql/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          访问Nginx出现状态码为403 forbidden原因
+          zabbix使用自带模板监控mysql
         
       </div>
     </a>
   
   
-    <a href="/2016/02/16/Python/Python运维自动化环境搭建/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/02/17/Hexo/High一下/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">Python运维自动化开发环境搭建（一）</div>
+      <div class="article-nav-title">High一下</div>
     </a>
   
 </nav>
@@ -387,7 +319,7 @@ $ hexo deploy
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/" data-title="Windows下使用GitHub Pages+Hexo搭建博客" data-url="http://fed0ra.github.io/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/18/Zabbix/zabbix数据库需要多大硬盘/" data-title="zabbix数据库需要多大硬盘" data-url="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix数据库需要多大硬盘/"></div>
   </section>
 </section>
       

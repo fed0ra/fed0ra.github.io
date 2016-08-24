@@ -277,7 +277,7 @@ gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" data-id="ciqdhus74000u8cgs7ysut8mz" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" data-id="cis8gc8o60010rggsgg6pke5y" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -334,7 +334,7 @@ gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/" data-id="ciqdhus8a001h8cgs8ae6clfu" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/" data-id="cis8gc8p6001nrggsxohb5fg1" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -377,9 +377,6 @@ gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC)
 <p><a href="#一">一、Docker技术原理</a><br><a href="#二">二、Docker基本概念</a><br><a href="#三">三、Docker部署安装</a><br><a href="#四">四、Docker配置文件</a><br><a href="#五">五、Docker基础命令</a><br><a href="#六">六、Docker资源控制/环境隔离与镜像</a>  </p>
 <hr>
 <p>云计算：通过网络按需索取来获取资源、获取各种服务的一种模式。<br>IAAS：基础设施级服务。<br>PAAS：平台级服务。<br>SAAS：软件级服务。</p>
-<p>老一代PAAS平台的局限性和困境<br>主要提供应用的部署和托管，针对应用开发者，仅支持特定的IaaS基础语言呢，支持单重开发语言和框架，支持特定的服务，比如自定义的数据存储APIs，没有很好地解决常用中间件的部署问题，难以解决应用和资源的隔离问题。</p>
-<p>新一代PASS平台：<br>实现全方位的应用生命周期的管理，关注开放性、应用的可移植性和云间相互操作性，包括Cloud Foundry，OpenShift，Docker,Heroku，MoPaaS等PaaS技术和服务。</p>
-<p>Docker被称之为第三代Pass平台。</p>
         
           <p class="article-more-link">
             <a href="/2016/05/23/Docker/Docker学习笔记(一)Docker入门/#more">Read More</a>
@@ -389,7 +386,7 @@ gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/05/23/Docker/Docker学习笔记(一)Docker入门/" data-id="ciqdhus8f001k8cgs2i15doj1" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/23/Docker/Docker学习笔记(一)Docker入门/" data-id="cis8gc8pc001qrggsrkuxkftm" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -428,31 +425,19 @@ gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
 <hr>
 <h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a><span id="一">一、准备工作</span></h2><p>3条命令搞定内核升级，亲测CentOS 6.7下没问题。</p>
-<pre><code>rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-rpm -Uvh http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm
-yum --enablerepo=elrepo-kernel install kernel-lt -y &amp;&amp; reboot
-</code></pre><h4 id="Step1-确认内核版本"><a href="#Step1-确认内核版本" class="headerlink" title="Step1: 确认内核版本"></a>Step1: 确认内核版本</h4><pre><code>[root@CentOS-Server02 ~]# uname -r
-2.6.32-573.18.1.el6.x86_64
-[root@CentOS-Server02 ~]# cat /etc/centos-release 
-CentOS release 6.7 (Final)
-</code></pre><h4 id="Step-2-导入public-key"><a href="#Step-2-导入public-key" class="headerlink" title="Step 2: 导入public key"></a>Step 2: 导入public key</h4><pre><code>[root@CentOS-Server02 ~]# rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-</code></pre><p>导入失败，但执行后面命令依然升级成功。</p>
-<h4 id="Step-3-安装ELRepo"><a href="#Step-3-安装ELRepo" class="headerlink" title="Step 3: 安装ELRepo"></a>Step 3: 安装ELRepo</h4><pre><code>[root@CentOS-Server02 ~]# rpm -Uvh http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm
-</code></pre><h4 id="Step-4-安装长期支持版本"><a href="#Step-4-安装长期支持版本" class="headerlink" title="Step 4: 安装长期支持版本"></a>Step 4: 安装长期支持版本</h4><pre><code>[root@CentOS-Server02 ~]# yum --enablerepo=elrepo-kernel install kernel-lt -y
-</code></pre><h4 id="Step-5-编辑grub-conf文件，修改Grub引导顺序"><a href="#Step-5-编辑grub-conf文件，修改Grub引导顺序" class="headerlink" title="Step 5: 编辑grub.conf文件，修改Grub引导顺序"></a>Step 5: 编辑grub.conf文件，修改Grub引导顺序</h4><p>新装的内核位置为0，所以将default修改为0，保存退出重启。<br>    [root@CentOS-Server02 ~]# vi /etc/grub.conf<br>    default=0</p>
-<pre><code>[root@CentOS-Server02 ~]# reboot 
-</code></pre><h4 id="Step-6-检查内核版本"><a href="#Step-6-检查内核版本" class="headerlink" title="Step 6: 检查内核版本"></a>Step 6: 检查内核版本</h4><pre><code>[root@CentOS-Server02 ~]# uname -r
-3.10.101-1.el6.elrepo.x86_64
-</code></pre><p><a href="#top">返回目录</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/" data-id="ciqdhus8n001o8cgs8x1ia0ha" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/20/Docker/CentOS 6.X下yum快速升级内核（2.6.32-3.10.101）/" data-id="cis8gc8pn001urggstmyqurb8" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -508,7 +493,7 @@ CentOS release 6.6 (Final)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/05/20/Docker/CentOS 6.x内核升级（2.6.32-3.10.101）/" data-id="ciqdhus8j001m8cgsto8nd2gu" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/20/Docker/CentOS 6.x内核升级（2.6.32-3.10.101）/" data-id="cis8gc8pj001srggsemq4yq8e" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -559,7 +544,7 @@ CentOS release 6.6 (Final)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/" data-id="ciqdhus7f00108cgsld0ztk37" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/" data-id="cis8gc8of0016rggsjdi8pmbh" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -614,7 +599,7 @@ CentOS release 6.6 (Final)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/" data-id="ciqdhus7a000x8cgs4albnm5m" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/" data-id="cis8gc8oa0013rggsxatv35mi" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -666,7 +651,7 @@ CentOS release 6.6 (Final)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/" data-id="ciqdhus7l00128cgsqwguep6l" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/" data-id="cis8gc8oj0018rggsqjsxwoqp" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -716,7 +701,7 @@ CentOS release 6.6 (Final)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/03/30/Nginx/Nginx记录响应与POST请求日志/" data-id="ciqdhus6t000q8cgsrd9dxra1" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/03/30/Nginx/Nginx记录响应与POST请求日志/" data-id="cis8gc8nz000wrggswsj5p6fg" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -733,10 +718,10 @@ CentOS release 6.6 (Final)
 
 
   
-    <article id="post-VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Zabbix/Zabbix3.0安装部署" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/" class="article-date">
-  <time datetime="2016-02-29T16:00:00.000Z" itemprop="datePublished">2016-03-01</time>
+    <a href="/2016/03/15/Zabbix/Zabbix3.0安装部署/" class="article-date">
+  <time datetime="2016-03-14T16:00:00.000Z" itemprop="datePublished">2016-03-15</time>
 </a>
     
   </div>
@@ -747,7 +732,7 @@ CentOS release 6.6 (Final)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/">VMware虚拟机克隆网卡配置-构建Linux实验环境</a>
+      <a class="article-title" href="/2016/03/15/Zabbix/Zabbix3.0安装部署/">Zabbix 3.0安装部署</a>
     </h1>
   
 
@@ -756,26 +741,27 @@ CentOS release 6.6 (Final)
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra">GitHub</a>.</p>
-<p><a href="#一">一、创建虚拟机并安装操作系统</a><br><a href="#二">二、编辑虚拟机配置</a><br><a href="#三">三、初始化系统配置网卡</a><br><a href="#四">四、克隆虚拟机</a><br><a href="#五">五、问题解决</a>  </p>
+<p><a href="#一">一、Zabbix的部署准备</a><br><a href="#二">二、Zabbix Server的安装</a><br><a href="#三">三、通过Web设置zabbix</a><br><a href="#四">四、客户端agentd安装</a>  </p>
 <hr>
+<h4 id="Zabbix简介"><a href="#Zabbix简介" class="headerlink" title="Zabbix简介"></a>Zabbix简介</h4><p>1、zabbix是一个基于WEB界面的，并提供分布式系统监视以及网络监视功能的企业级的开源解决方案。 zabbix能监视各种网络参数，保证服务器系统的安全运营；并提供柔软的通知机制以让运维人员能够快速定位。<br>
         
           <p class="article-more-link">
-            <a href="/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/#more">Read More</a>
+            <a href="/2016/03/15/Zabbix/Zabbix3.0安装部署/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/" data-id="ciqdhus5w00098cgsjarqvyq2" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0安装部署/" data-id="cis8gc8n3000drggsitmq5kpc" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0安装部署/#ds-thread" class="article-comment-link">评论</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMware/">VMware</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
 
     </footer>
   </div>
@@ -799,7 +785,7 @@ CentOS release 6.6 (Final)
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -808,7 +794,7 @@ CentOS release 6.6 (Final)
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 16.67px;">KVM</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 16.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 13.33px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 16.67px;">Zabbix</a>
+      <a href="/tags/Docker/" style="font-size: 17.5px;">Docker</a> <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 15px;">KVM</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 12.5px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 20px;">Zabbix</a>
     </div>
   </div>
 
@@ -817,7 +803,7 @@ CentOS release 6.6 (Final)
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 

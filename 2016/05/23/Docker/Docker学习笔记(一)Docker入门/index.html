@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imagedocker%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imageDocker%E9%95%9C%E5%83%8F%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imageDocker%E7%8E%AF%E5%A2%83%E9%9A%94%E7%A6%BB.png">
-<meta property="og:updated_time" content="2016-06-03T05:30:09.365Z">
+<meta property="og:updated_time" content="2016-08-15T06:23:52.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker学习笔记(一)Docker入门">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
@@ -274,10 +274,10 @@
 <p><a href="#一">一、Docker技术原理</a><br><a href="#二">二、Docker基本概念</a><br><a href="#三">三、Docker部署安装</a><br><a href="#四">四、Docker配置文件</a><br><a href="#五">五、Docker基础命令</a><br><a href="#六">六、Docker资源控制/环境隔离与镜像</a>  </p>
 <hr>
 <p>云计算：通过网络按需索取来获取资源、获取各种服务的一种模式。<br>IAAS：基础设施级服务。<br>PAAS：平台级服务。<br>SAAS：软件级服务。</p>
+<a id="more"></a>
 <p>老一代PAAS平台的局限性和困境<br>主要提供应用的部署和托管，针对应用开发者，仅支持特定的IaaS基础语言呢，支持单重开发语言和框架，支持特定的服务，比如自定义的数据存储APIs，没有很好地解决常用中间件的部署问题，难以解决应用和资源的隔离问题。</p>
 <p>新一代PASS平台：<br>实现全方位的应用生命周期的管理，关注开放性、应用的可移植性和云间相互操作性，包括Cloud Foundry，OpenShift，Docker,Heroku，MoPaaS等PaaS技术和服务。</p>
 <p>Docker被称之为第三代Pass平台。</p>
-<a id="more"></a>
 <h2 id="一、Docker技术原理"><a href="#一、Docker技术原理" class="headerlink" title="一、Docker技术原理"></a><span id="一">一、Docker技术原理</span></h2><p>Docker是虚拟化的轻量级替代技术，是一个依赖于linux内核的技术。Docker容器技术不依赖任何语言、框架或系统，可以将App编程一种标准化的、可移植的、自管理的组件，并脱离服务器硬件在任何主流系统中开发、调试运行。</p>
 <p>简单地说就是，在Linux系统上迅速创建一个容器，类似虚拟机，并在容器上部署和运行应用程序，并通过配置文件可以轻松实现应用程序的自动化安装、部署和升级。因为使用了容器，所以可以很方便的吧生产环境和开发环境分开，互补影响。</p>
 <h4 id="Docker核心技术：LXC、cgroups、AUFS等。"><a href="#Docker核心技术：LXC、cgroups、AUFS等。" class="headerlink" title="Docker核心技术：LXC、cgroups、AUFS等。"></a>Docker核心技术：LXC、cgroups、AUFS等。</h4><p><strong>Docker相关核心技术cgroups：</strong><br>Linux系统中经常有个需求就是希望能够限制某个或某些进程的分配资源，cgroup就是controller group，在这个group中，有分配好的特定的比例的cpu时间，IO时间，可用内存大小等。把任何程序进行分组花管理。<br>cgroups中的“子系统”，即资源控制器，每种子系统就是一个资源分配器，比如cpu子系统就是控制cpu时间分配的，先挂载这些子系统，才能<br>定义cgroup节点，，在这个节点中，将需要控制进程的id写入，并将控制的属性写入，就完成了内存的资源限制。<br>croups几乎可以控制所有资源，CPU、内存、IO、IO贷款、网络、磁盘存储。</p>
@@ -730,7 +730,7 @@ C：docker run --cpu-shares 2048 zzzz
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/05/23/Docker/Docker学习笔记(一)Docker入门/" data-id="ciqdhus8f001k8cgs2i15doj1" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/23/Docker/Docker学习笔记(一)Docker入门/" data-id="cis8gc8pc001qrggsrkuxkftm" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -780,7 +780,7 @@ C：docker run --cpu-shares 2048 zzzz
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -789,7 +789,7 @@ C：docker run --cpu-shares 2048 zzzz
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 16.67px;">KVM</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 16.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 13.33px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 16.67px;">Zabbix</a>
+      <a href="/tags/Docker/" style="font-size: 17.5px;">Docker</a> <a href="/tags/ELKstack/" style="font-size: 10px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 15px;">KVM</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 12.5px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 20px;">Zabbix</a>
     </div>
   </div>
 
@@ -798,7 +798,7 @@ C：docker run --cpu-shares 2048 zzzz
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
