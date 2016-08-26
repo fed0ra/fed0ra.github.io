@@ -20,7 +20,7 @@ Zabbix简介1、zabbix是一个基于WEB界面的，并提供分布式系统监�
 
 Zabbix简介1、zabbix是一个基于WEB界面的，并提供分布式系统监视以及网络监视功能的企业级的开源解决方案。">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imagezabbix%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B9%B3%E5%8F%B0%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E7%A1%AC%E4%BB%B6%E9%9C%80%E6%B1%82(%E5%AE%98%E6%96%B9">
-<meta property="og:updated_time" content="2016-08-24T05:17:07.728Z">
+<meta property="og:updated_time" content="2016-08-26T08:52:14.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix 3.0安装部署">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
@@ -381,11 +381,9 @@ chkconfig zabbix_agentd on
 <hr>
 <h2 id="四、客户端agentd安装"><a href="#四、客户端agentd安装" class="headerlink" title="四、客户端agentd安装"></a><span id="四">四、客户端agentd安装</span></h2><h4 id="1、装yum源"><a href="#1、装yum源" class="headerlink" title="1、装yum源"></a>1、装yum源</h4><pre><code># rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/6/x86_64/zabbix-release-3.0-1.el6.noarch.rpm
 </code></pre><h4 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h4><pre><code># yum install zabbix-agent -y
-</code></pre><h4 id="3、修改配置文件"><a href="#3、修改配置文件" class="headerlink" title="3、修改配置文件"></a>3、修改配置文件</h4><p><code>/etc/zabbix/zabbix_agentd.conf</code>是客户端配置文件，该文件需要修改如下四个条目：<br>1、Server=127.0.0.1 此处添加服务端的ip，如服务器不为本机，则需要填写远端zabbix_server的ip地址。<br>2、ServerActive=127.0.0.1 此处修改为服务端的ip，这里应该修改为该服务器对外的ip地址。<br>3、UnsafeUserParameters=0 默认是不启用自定义脚本功能的，要自定义key，需开启，设置为1。  </p>
-<pre><code># sed -i &quot;s/Server\=127.0.0.1/Server\=xx.xx.xx.xx/g&quot; /etc/zabbix/zabbix_agentd.conf 
-# sed -i &quot;s/ServerActive\=127.0.0.1/ServerActive\=xx.xx.xx.xx:10051/g&quot; /etc/zabbix/zabbix_agentd.conf
-# sed -i &quot;s@^# UnsafeUserParameters=0@UnsafeUserParameters=1@g&quot; /etc/zabbix/zabbix_agentd.conf
-</code></pre><h4 id="4、设置开机自己并启动zabbix-agent"><a href="#4、设置开机自己并启动zabbix-agent" class="headerlink" title="4、设置开机自己并启动zabbix-agent"></a>4、设置开机自己并启动zabbix-agent</h4><pre><code># chkconfig zabbix-agent on
+</code></pre><h4 id="3、修改配置文件"><a href="#3、修改配置文件" class="headerlink" title="3、修改配置文件"></a>3、修改配置文件</h4><p><code>/etc/zabbix/zabbix_agentd.conf</code>是客户端配置文件，该文件需要修改如下条目：<br>1、Server=127.0.0.1，zabbix server服务端的ip。<br>2、StartAgents=0，开启zabbix agent主动模式不需监听任何tcp端口，此项参数设置为0。<br>3、ServerActive=127.0.0.1，zabbix server端的ip，主动模式需此项参数。<br>4、Hostname=Zabbix server，zabbix server的主机名，主动模式需要。<br>5、UnsafeUserParameters=0，默认是不启用自定义脚本功能的，要自定义key，需开启，设置为1。</p>
+<p>开启zabbix agent的active主动模式：需注释掉掉1，开启第2项将参数为0，修改3项zabbix server ip地址，修改第4项zabbix server的主机名，如果需要自定义key需开启第5项。</p>
+<h4 id="4、设置开机自己并启动zabbix-agent"><a href="#4、设置开机自己并启动zabbix-agent" class="headerlink" title="4、设置开机自己并启动zabbix-agent"></a>4、设置开机自己并启动zabbix-agent</h4><pre><code># chkconfig zabbix-agent on
 # /etc/init.d/zabbix-agent start
 </code></pre><p><a href="#top">返回目录</a></p>
 
@@ -393,7 +391,7 @@ chkconfig zabbix_agentd on
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0安装部署/" data-id="cis8gc8n3000drggsitmq5kpc" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0安装部署/" data-id="cisbitto8000ddcgsff5oep4n" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
