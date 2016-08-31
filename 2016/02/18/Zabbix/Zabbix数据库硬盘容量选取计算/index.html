@@ -5,24 +5,24 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>Zabbix自动清理数据 | Fedor&#39;s blog</title>
+  <title>Zabbix数据库硬盘容量选取计算 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
 
-zabbix属于一个细度化的监控工具，其入库数据随着细度的增加相应的入库数据量也会较大，当数据量到一定时候的时候其反映速度会比较慢，监">
+本文讲解zabbix数据库硬盘容量的计算方法，我想看完本节大家就可以知道自己的zabbix到底要多大的硬盘。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zabbix自动清理数据">
-<meta property="og:url" content="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix自动清理数据/index.html">
+<meta property="og:title" content="Zabbix数据库硬盘容量选取计算">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/18/Zabbix/Zabbix数据库硬盘容量选取计算/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
 
-zabbix属于一个细度化的监控工具，其入库数据随着细度的增加相应的入库数据量也会较大，当数据量到一定时候的时候其反映速度会比较慢，监">
-<meta property="og:updated_time" content="2016-08-26T08:51:12.375Z">
+本文讲解zabbix数据库硬盘容量的计算方法，我想看完本节大家就可以知道自己的zabbix到底要多大的硬盘。">
+<meta property="og:updated_time" content="2016-08-31T03:09:40.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zabbix自动清理数据">
+<meta name="twitter:title" content="Zabbix数据库硬盘容量选取计算">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
 
-zabbix属于一个细度化的监控工具，其入库数据随着细度的增加相应的入库数据量也会较大，当数据量到一定时候的时候其反映速度会比较慢，监">
+本文讲解zabbix数据库硬盘容量的计算方法，我想看完本节大家就可以知道自己的zabbix到底要多大的硬盘。">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -242,9 +242,9 @@ zabbix属于一个细度化的监控工具，其入库数据随着细度的增�
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main"><article id="post-Zabbix/zabbix自动清理数据" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Zabbix/Zabbix数据库硬盘容量选取计算" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/18/Zabbix/zabbix自动清理数据/" class="article-date">
+    <a href="/2016/02/18/Zabbix/Zabbix数据库硬盘容量选取计算/" class="article-date">
   <time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2016-02-18</time>
 </a>
     
@@ -256,7 +256,7 @@ zabbix属于一个细度化的监控工具，其入库数据随着细度的增�
         
   
     <h1 class="article-title" itemprop="name">
-      Zabbix自动清理数据
+      Zabbix数据库硬盘容量选取计算
     </h1>
   
 
@@ -266,39 +266,26 @@ zabbix属于一个细度化的监控工具，其入库数据随着细度的增�
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
 <hr>
-<p>zabbix属于一个细度化的监控工具，其入库数据随着细度的增加相应的入<br>库数据量也会较大，当数据量到一定时候的时候其反映速度会比较慢，监<br><a id="more"></a><br>控服务在配置时可以指定数据的保存周期，以下脚本通过直接操作数据库清除数据：</p>
-<pre><code>#!/bin/bash
-User=&quot;root&quot;
-Passwd=&quot;xxx&quot;
-Date=`date -d $(date -d &quot;-30 day&quot; +%Y%m%d) +%s` #取30天之前的时间戳
-$(which mysql) -u${User} -p${Passwd} -e &quot;
-use zabbix;
-DELETE FROM history WHERE &apos;clock&apos; &lt; $Date;
-optimize table history;
-DELETE FROM history_str WHERE &apos;clock&apos; &lt; $Date;
-optimize table history_str;
-DELETE FROM history_uint WHERE &apos;clock&apos; &lt; $Date;
-optimize table history_uint;
-DELETE FROM  trends WHERE &apos;clock&apos; &lt; $Date;
-optimize table  trends;
-DELETE FROM trends_uint WHERE &apos;clock&apos; &lt; $Date;
-optimize table trends_uint;
-DELETE FROM events WHERE &apos;clock&apos; &lt; $Date;
-optimize table events;
-&quot;
-</code></pre><p>其中histroy是详细的历史数据，trends是图表趋势数据。一般情况下，根据自定义，会将histroy数据保留一周，trend数据保留一年。</p>
-<p>摘自：<a href="http://www.361way.com/delete-zabbix-histroy-data/3826.html" target="_blank" rel="external">http://www.361way.com/delete-zabbix-histroy-data/3826.html</a></p>
-<p><a href="#top">返回目录</a></p>
+<p>本文讲解zabbix数据库硬盘容量的计算方法，我想看完本节大家就可以知道自己的zabbix到底要多大的硬盘。 </p>
+<a id="more"></a>
+<p>本次案例：100台服务器，每台服务器有30个监控项，每个监控项60秒刷新一次，需要多大的硬盘呢？<br>众所周知，zabbix基本都是通过web配置，这些配置数据也是存放到数据库里的，但是它对硬盘容量的要求基本可以忽略不计，zabbix对硬盘的决定性因素有4个，如下：</p>
+<h4 id="1-每秒处理的数据量"><a href="#1-每秒处理的数据量" class="headerlink" title="1. 每秒处理的数据量"></a>1. 每秒处理的数据量</h4><p>这个问题不说，大家也明白。这边的每秒只是一个平均值，例如我有3000个监控项，每60秒刷新一次，那么平均每秒有50（3000/60）个数据要处理。就是说每秒有50条数据要插入MySQL</p>
+<h4 id="2-历史记录保存时间"><a href="#2-历史记录保存时间" class="headerlink" title="2. 历史记录保存时间"></a>2. 历史记录保存时间</h4><p>zabbix对每个监控项的值都要记录下来，这些记录一般保留几周到几个月，具体看你的配置了。每个值都需要暂用硬盘空间。假如一个数据你要保留30天，而且每秒有50个值要保留，那我们一共有129，600，000（30天<em>24小时</em>3600秒）<em>50个值，一条记录多大，由你的数据库引擎和你存储的数据类型来决定（浮点型，整形，字符型等等），一般来说一条记录需要占用50个字节（一个大概值），在这个案例中129,600,000个记录大约需要（129600000</em>50字节）6.5G的硬盘空间</p>
+<h4 id="3-趋势数据保存时间"><a href="#3-趋势数据保存时间" class="headerlink" title="3. 趋势数据保存时间"></a>3. 趋势数据保存时间</h4><p>什么是趋势数据呢？当你查看一周或者一月的图表，图表上看到的MAX/MIN/AVG/COUNT都是取自趋势数据，趋势数据一小时获取一次，一般情况下，趋势数据一条记录大概占用128字节，如果我们想保存5年趋势数据，3000个监控线需要2.4GB（3000个<em>24小时</em>356天*128字节）每年，5年一共16.8G</p>
+<h4 id="4-事件记录保存时间"><a href="#4-事件记录保存时间" class="headerlink" title="4. 事件记录保存时间"></a>4. 事件记录保存时间</h4><p>报警、警告、恢复等等事情，一个事件大概占用130个字节，一般情况下不会太多，除非运维做的太糟糕，或者运维要求太严格，把阀值调的很低。假如这个运维今年本命年，既没拜佛有没烧香，更别说给服务器贴灵符，于是这一年每秒钟就有一个事件发生，那么事件这一年占用的数据空间为：1年<em>365天</em>24小时<em>3600秒</em>130字节大概为4.1G空间。</p>
+<h4 id="5-数据库空间计算公式"><a href="#5-数据库空间计算公式" class="headerlink" title="5. 数据库空间计算公式"></a>5. 数据库空间计算公式</h4><p>zabbix配置：固定大小，一般&lt;10MB<br>历史数据：天数<em>(监控项总数/刷新频率)</em>24小时<em>3600秒</em>50字节<br>趋势数据：天数<em>（监控项总数/3600）</em>24小时<em>3600秒</em>128字节<br>事件数据：天数<em>事件个数（大概值）</em>24小时<em>3600秒</em>130字节</p>
+<h4 id="6-最后"><a href="#6-最后" class="headerlink" title="6. 最后"></a>6. 最后</h4><p>看到这里，大家都心里有数据了，数据库硬盘空间=配置文件大小+历史记录+趋势记录+事件记录。虽然这个硬盘会不停的增长，但是总有一天会停止增长，空间一直保持不变。</p>
+<h5 id="转载自运维生存时间，原文链接：http-www-ttlsa-com-zabbix-zabbix-database-space-6-ttlsa"><a href="#转载自运维生存时间，原文链接：http-www-ttlsa-com-zabbix-zabbix-database-space-6-ttlsa" class="headerlink" title="转载自运维生存时间，原文链接：http://www.ttlsa.com/zabbix/zabbix-database-space-6-ttlsa/"></a>转载自运维生存时间，原文链接：<a href="http://www.ttlsa.com/zabbix/zabbix-database-space-6-ttlsa/" target="_blank" rel="external">http://www.ttlsa.com/zabbix/zabbix-database-space-6-ttlsa/</a></h5><p><a href="#top">返回目录</a></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix自动清理数据/" data-id="cisibk2lp0002s0gsypa2zspk" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/18/Zabbix/Zabbix数据库硬盘容量选取计算/" data-id="cisibrjma0009kogsv54e17ed" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix自动清理数据/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/02/18/Zabbix/Zabbix数据库硬盘容量选取计算/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -310,19 +297,19 @@ optimize table events;
     
 <nav id="article-nav">
   
-    <a href="/2016/02/19/Nginx/Nginx优化/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/02/18/Zabbix/Zabbix定期自动清理数据库数据/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          Nginx优化相关
+          Zabbix定期自动清理数据库数据
         
       </div>
     </a>
   
   
-    <a href="/2016/02/18/Zabbix/zabbix数据库需要多大硬盘/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/02/18/Zabbix/Zabbix自带模板监控MySQL数据库/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">Zabbix数据库需要多大硬盘</div>
+      <div class="article-nav-title">Zabbix自带模板监控MySQL数据库</div>
     </a>
   
 </nav>
@@ -332,7 +319,7 @@ optimize table events;
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/18/Zabbix/zabbix自动清理数据/" data-title="Zabbix自动清理数据" data-url="http://fed0ra.github.io/2016/02/18/Zabbix/zabbix自动清理数据/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/18/Zabbix/Zabbix数据库硬盘容量选取计算/" data-title="Zabbix数据库硬盘容量选取计算" data-url="http://fed0ra.github.io/2016/02/18/Zabbix/Zabbix数据库硬盘容量选取计算/"></div>
   </section>
 </section>
       

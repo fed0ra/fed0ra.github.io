@@ -4,6 +4,57 @@
 
     
   <url>
+    <loc>http://fed0ra.github.io/2016/02/18/Zabbix/Zabbix%E5%AE%9A%E6%9C%9F%E8%87%AA%E5%8A%A8%E6%B8%85%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2016-08-31T03:09:55.951Z</lastmod>
+    <data>
+        <display>
+        <title>Zabbix定期自动清理数据库数据</title>
+        <pubTime>2016-02-17T16:00:00.000Z</pubTime>
+        
+        <tag>Zabbix</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://fed0ra.github.io/2016/02/18/Zabbix/Zabbix%E6%95%B0%E6%8D%AE%E5%BA%93%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F%E9%80%89%E5%8F%96%E8%AE%A1%E7%AE%97/</loc>
+    <lastmod>2016-08-31T03:09:40.044Z</lastmod>
+    <data>
+        <display>
+        <title>Zabbix数据库硬盘容量选取计算</title>
+        <pubTime>2016-02-17T16:00:00.000Z</pubTime>
+        
+        <tag>Zabbix</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://fed0ra.github.io/2016/02/18/Zabbix/Zabbix%E8%87%AA%E5%B8%A6%E6%A8%A1%E6%9D%BF%E7%9B%91%E6%8E%A7MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2016-08-31T03:09:12.755Z</lastmod>
+    <data>
+        <display>
+        <title>Zabbix自带模板监控MySQL数据库</title>
+        <pubTime>2016-02-17T16:00:00.000Z</pubTime>
+        
+        <tag>Zabbix</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://fed0ra.github.io/2016/03/18/Zabbix/Zabbix%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%91%E6%8E%A7%E4%B8%8E%E8%87%AA%E5%8A%A8%E5%8C%96%E7%9B%91%E6%8E%A7/</loc>
     <lastmod>2016-08-30T09:53:46.286Z</lastmod>
     <data>
@@ -27,57 +78,6 @@
         <display>
         <title>Zabbix 3.0安装部署</title>
         <pubTime>2016-03-14T16:00:00.000Z</pubTime>
-        
-        <tag>Zabbix</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://fed0ra.github.io/2016/02/18/Zabbix/zabbix%E8%87%AA%E5%8A%A8%E6%B8%85%E7%90%86%E6%95%B0%E6%8D%AE/</loc>
-    <lastmod>2016-08-26T08:51:12.375Z</lastmod>
-    <data>
-        <display>
-        <title>Zabbix自动清理数据</title>
-        <pubTime>2016-02-17T16:00:00.000Z</pubTime>
-        
-        <tag>Zabbix</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://fed0ra.github.io/2016/02/18/Zabbix/zabbix%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9C%80%E8%A6%81%E5%A4%9A%E5%A4%A7%E7%A1%AC%E7%9B%98/</loc>
-    <lastmod>2016-08-26T08:51:11.326Z</lastmod>
-    <data>
-        <display>
-        <title>Zabbix数据库需要多大硬盘</title>
-        <pubTime>2016-02-17T16:00:00.000Z</pubTime>
-        
-        <tag>Zabbix</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://fed0ra.github.io/2016/02/18/Zabbix/zabbix%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B8%A6%E6%A8%A1%E6%9D%BF%E7%9B%91%E6%8E%A7mysql/</loc>
-    <lastmod>2016-08-26T08:50:26.978Z</lastmod>
-    <data>
-        <display>
-        <title>Zabbix使用自带模板监控mysql</title>
-        <pubTime>2016-02-17T16:00:00.000Z</pubTime>
         
         <tag>Zabbix</tag>
          
