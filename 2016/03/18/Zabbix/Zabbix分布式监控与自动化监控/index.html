@@ -5,33 +5,29 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>Centos6.X下GCC4.4.7升级到4.8.1 | Fedor&#39;s blog</title>
+  <title>Zabbix分布式监控与自动化监控 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Zabbix agent两种运行方式二、Zabbix proxy三、Zabbix自动化监控
 
-查看gcc版本# gcc -v
-Using built-in specs.
-Target: x86_64-redhat-linux
-Configured with: ../configure --prefix=/usr --mandir=/">
+一、Zabbix agent两种运行方式1、被动模式和主动模式zabbix agent的运行方式有两种，主动和被动模式，默认情况下zabbix">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Centos6.X下GCC4.4.7升级到4.8.1">
-<meta property="og:url" content="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/index.html">
+<meta property="og:title" content="Zabbix分布式监控与自动化监控">
+<meta property="og:url" content="http://fed0ra.github.io/2016/03/18/Zabbix/Zabbix分布式监控与自动化监控/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Zabbix agent两种运行方式二、Zabbix proxy三、Zabbix自动化监控
 
-查看gcc版本# gcc -v
-Using built-in specs.
-Target: x86_64-redhat-linux
-Configured with: ../configure --prefix=/usr --mandir=/">
-<meta property="og:updated_time" content="2016-07-08T06:19:15.232Z">
+一、Zabbix agent两种运行方式1、被动模式和主动模式zabbix agent的运行方式有两种，主动和被动模式，默认情况下zabbix">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imagezabbix%20proxy.png">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imagezabbix%20proxy01.png">
+<meta property="og:updated_time" content="2016-08-30T09:53:46.286Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Centos6.X下GCC4.4.7升级到4.8.1">
+<meta name="twitter:title" content="Zabbix分布式监控与自动化监控">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
+一、Zabbix agent两种运行方式二、Zabbix proxy三、Zabbix自动化监控
 
-查看gcc版本# gcc -v
-Using built-in specs.
-Target: x86_64-redhat-linux
-Configured with: ../configure --prefix=/usr --mandir=/">
+一、Zabbix agent两种运行方式1、被动模式和主动模式zabbix agent的运行方式有两种，主动和被动模式，默认情况下zabbix">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -251,10 +247,10 @@ Configured with: ../configure --prefix=/usr --mandir=/">
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main"><article id="post-Linux/Centos6.X下GCC4.4.7升级到4.8.1" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Zabbix/Zabbix分布式监控与自动化监控" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" class="article-date">
-  <time datetime="2016-05-25T16:00:00.000Z" itemprop="datePublished">2016-05-26</time>
+    <a href="/2016/03/18/Zabbix/Zabbix分布式监控与自动化监控/" class="article-date">
+  <time datetime="2016-03-17T16:00:00.000Z" itemprop="datePublished">2016-03-18</time>
 </a>
     
   </div>
@@ -265,7 +261,7 @@ Configured with: ../configure --prefix=/usr --mandir=/">
         
   
     <h1 class="article-title" itemprop="name">
-      Centos6.X下GCC4.4.7升级到4.8.1
+      Zabbix分布式监控与自动化监控
     </h1>
   
 
@@ -274,51 +270,163 @@ Configured with: ../configure --prefix=/usr --mandir=/">
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
+<p><a href="#一">一、Zabbix agent两种运行方式</a><br><a href="#二">二、Zabbix proxy</a><br><a href="#三">三、Zabbix自动化监控</a></p>
 <hr>
-<h4 id="查看gcc版本"><a href="#查看gcc版本" class="headerlink" title="查看gcc版本"></a>查看gcc版本</h4><pre><code># gcc -v
-Using built-in specs.
-Target: x86_64-redhat-linux
-Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux
-Thread model: posix
-gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC)
-</code></pre><a id="more"></a>
-<h4 id="下载源码包，及编译所需依赖"><a href="#下载源码包，及编译所需依赖" class="headerlink" title="下载源码包，及编译所需依赖"></a>下载源码包，及编译所需依赖</h4><pre><code># wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-4.8.1/gcc-4.8.1.tar.gz
-# tar -zxvf gcc-4.8.1.tar.gz
-# cd gcc-4.8.1
-# ./contrib/download_prerequisites
-</code></pre><h4 id="建立编译输出目录"><a href="#建立编译输出目录" class="headerlink" title="建立编译输出目录"></a>建立编译输出目录</h4><pre><code># mkdir gcc-build-4.8.1
-</code></pre><h4 id="进入此目录，生成makefile文件"><a href="#进入此目录，生成makefile文件" class="headerlink" title="进入此目录，生成makefile文件"></a>进入此目录，生成makefile文件</h4><pre><code># cd gcc-build-4.8.1/
-# ../../gcc-4.8.1/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib
-</code></pre><h4 id="编译，j后面的是核心数，编译速度会比较快"><a href="#编译，j后面的是核心数，编译速度会比较快" class="headerlink" title="编译，j后面的是核心数，编译速度会比较快"></a>编译，j后面的是核心数，编译速度会比较快</h4><pre><code># make -j2
-</code></pre><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code># make install
-</code></pre><h4 id="切换到GCC4-8-1"><a href="#切换到GCC4-8-1" class="headerlink" title="切换到GCC4.8.1"></a>切换到GCC4.8.1</h4><p>确定新安装的GCC的路径,一般默认在/usr/local/bin下</p>
-<pre><code># ls /usr/local/bin | grep gcc
-</code></pre><p>添加新GCC到可选项，倒数第三个是名字，倒数第二个参数为新GCC路径，最后一个参数100为优先级，设大一些之后就自动使用新版了。<br>install参数用于添加一个命令的link值，相当于添加一个可用值。<br>config参数用于给某个命令选择一个link值，相当于在可用值之中进行切换，install已经添加了一个link值，config可以看到4.8.1的link，交互输入其编号即可。  </p>
-<pre><code># update-alternatives --install /usr/bin/gcc gcc /usr/local/bin/x86_64-unknown-linux-gnu-gcc-4.8.1 100
-# update-alternatives --config gcc
-</code></pre><h4 id="退出终端，重新连接然后查看gcc版本。"><a href="#退出终端，重新连接然后查看gcc版本。" class="headerlink" title="退出终端，重新连接然后查看gcc版本。"></a>退出终端，重新连接然后查看gcc版本。</h4><pre><code># gcc -v
-Using built-in specs.
-COLLECT_GCC=gcc
-COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/4.8.1/lto-wrapper
-Target: x86_64-unknown-linux-gnu
-Configured with: ../../gcc-4.8.1/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib
-Thread model: posix
-gcc version 4.8.1 (GCC)
+<h2 id="一、Zabbix-agent两种运行方式"><a href="#一、Zabbix-agent两种运行方式" class="headerlink" title="一、Zabbix agent两种运行方式"></a><span id="一">一、Zabbix agent两种运行方式</span></h2><h4 id="1、被动模式和主动模式"><a href="#1、被动模式和主动模式" class="headerlink" title="1、被动模式和主动模式"></a>1、被动模式和主动模式</h4><p>zabbix agent的运行方式有两种，主动和被动模式，默认情况下zabbix agent运行在被动模式，也就是默认监听一个10050端口，server端会主动找agent要数据，在这种模式下如果agent太多，那么zabbix server会很繁忙。<br><a id="more"></a><br>所以zabbix server还有一个主动模式（主动模式参数参考上篇文章结尾<a href="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">Zabbix 3.0安装部署</a>），zabbix agent会主动请求zabbix server，agent会主动向server要它需要干的任务，再定期把数据发送给server，这时候server处于被动接受状态，减少server的压力。</p>
+<h4 id="2、开启主动模式"><a href="#2、开启主动模式" class="headerlink" title="2、开启主动模式"></a>2、开启主动模式</h4><p>打开zabbix web管理界面：<br>克隆所需要的模板，默认模板的监控项都是<code>Zabbix agent</code>这种被动模式，需要改成<code>Zabbix agent (active)</code></p>
+<p>其次修改agent的配置文件：</p>
+<pre><code>Server=127.0.0.1    #注释掉Server
+StartAgents=0        #开启zabbix agent主动模式不需监听任何tcp端口，此项参数设置为0
+ServerActive=127.0.0.1    #zabbix server端的ip
+Hostname=Zabbix server    #zabbix server的主机名
+</code></pre><p>重启zabbix agent，在web管理界面创建主机，连接克隆后的模板。<br><strong>需要注意，创建主机的时候，agent代理接口，IP地址填入0.0.0.0 ，端口填入0   保存</strong></p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、Zabbix-proxy"><a href="#二、Zabbix-proxy" class="headerlink" title="二、Zabbix proxy"></a><span id="二">二、Zabbix proxy</span></h2><h4 id="1、zabbix分布式监控介绍"><a href="#1、zabbix分布式监控介绍" class="headerlink" title="1、zabbix分布式监控介绍"></a>1、zabbix分布式监控介绍</h4><p>在大规模监控情况下，仅仅将agent改成主动模式是不够的，zabbix也支持分布式监控(zabbix proxy)，例如有多个机房，可以把每个机房个部署一个zabbix proxy。<br>zabbix proxy的工作原理，其代替zabbix server来收集数据，收集后在本地暂存，然后马上发给zabbix server，这样可以减轻zabbix server的压力，也可以在网络情况比较复杂的情况下部署。<br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imagezabbix%20proxy.png" alt="zabbix proxy.png"></p>
+<h5 id="注意：zabbix-proxy只是一个数据的收集器，它不会计算触发器，处理事件，发送警报"><a href="#注意：zabbix-proxy只是一个数据的收集器，它不会计算触发器，处理事件，发送警报" class="headerlink" title="注意：zabbix proxy只是一个数据的收集器，它不会计算触发器，处理事件，发送警报"></a>注意：zabbix proxy只是一个数据的收集器，它不会计算触发器，处理事件，发送警报</h5><p>Zabbix proxy is a data collector. It does not calculate triggers, process events or send alerts. For an overview of what proxy functionality is, review the following table:<br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imagezabbix%20proxy01.png" alt="zabbix proxy01.png"></p>
+<h4 id="2、zabbix-proxy部署"><a href="#2、zabbix-proxy部署" class="headerlink" title="2、zabbix proxy部署"></a>2、zabbix proxy部署</h4><h4 id="安装zabbix-proxy"><a href="#安装zabbix-proxy" class="headerlink" title="安装zabbix proxy"></a>安装zabbix proxy</h4><pre><code># yum install -y zabbix-proxy zabbix-proxy-mysql mysql-server
+#zabbix proxy需要数据库，收集完的数据要放到数据库，无web界面
+
+# rpm -ql zabbix-proxy
+#查看zabbix-proxy安装了什么东西
+
+# rpm -ql zabbix-proxy-mysql
+#查看zabbix-proxy-mysql安装的文件
+#需要注意的是，安装zabbix server的时候向数据库导入了3个表，而zabbix-proxy-msyql只用导入表结构这一个文件就可以了
+</code></pre><h4 id="登录数据库，创建mysql-proxy库并授权"><a href="#登录数据库，创建mysql-proxy库并授权" class="headerlink" title="登录数据库，创建mysql_proxy库并授权"></a>登录数据库，创建mysql_proxy库并授权</h4><pre><code>mysql&gt; create database zabbix_proxy character set utf8;
+mysql&gt; grant all on zabbix_proxy.* to zabbix@localhost identified by &apos;zabbix&apos;;
+mysql&gt; use zabbix_proxy;
+mysql&gt; source xxx/schema.sql;    #sql文件地址通过rpm -ql zabbix-proxy-mysql查看
+mysql&gt; exit;
+</code></pre><h4 id="修改zabbix-proxy配置文件-etc-zabbix-zabbix-proxy-conf"><a href="#修改zabbix-proxy配置文件-etc-zabbix-zabbix-proxy-conf" class="headerlink" title="修改zabbix proxy配置文件/etc/zabbix/zabbix_proxy.conf"></a>修改zabbix proxy配置文件<code>/etc/zabbix/zabbix_proxy.conf</code></h4><ul>
+<li>ProxyMode=0，0主动，1被动，默认0主动模式，主动被动也是相对于zabbix proxy来说的</li>
+<li>Server=xx.xx.xx.xx，zabbix server的ip，主动模式需填写</li>
+<li>Hostname=xxx，一定要改，不改回报错</li>
+<li>DBName=zabbix_proxy，数据库名称</li>
+<li>DBUser=zabbix，用户名</li>
+<li>DBPassword=zabbix，密码</li>
+<li>DBSocket=/var/lib/mysql/mysql.sock，使用sock连接</li>
+</ul>
+<h4 id="在zabbix-server上加上代理"><a href="#在zabbix-server上加上代理" class="headerlink" title="在zabbix server上加上代理"></a>在zabbix server上加上代理</h4><p>登录zabbix web管理页面，Administration–&gt;proxies–&gt;Create proxy</p>
+<ul>
+<li>Proxy name，生产上命名最好根据idc或者项目</li>
+<li>Proxy mode，默认主动</li>
+<li>Description，描述方便管理</li>
+</ul>
+<p>创建主机的时候唯一注意的是，<code>Monitored by proxy</code>要选择代理的主机进行监控</p>
+<h4 id="agent的ServerActive一定要修改成proxy的IP地址"><a href="#agent的ServerActive一定要修改成proxy的IP地址" class="headerlink" title="agent的ServerActive一定要修改成proxy的IP地址"></a>agent的ServerActive一定要修改成proxy的IP地址</h4><p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、Zabbix自动化监控"><a href="#三、Zabbix自动化监控" class="headerlink" title="三、Zabbix自动化监控"></a><span id="三">三、Zabbix自动化监控</span></h2><p>大规模的监控环境下，成百上千台机器如果手动添加工作量大且无意义，这样就用到了Zabbix自动化监控。<br>Zabbix自动化监控有三种方式：</p>
+<h4 id="1、zabbix-agent自动注册，agent主动去server端注册。"><a href="#1、zabbix-agent自动注册，agent主动去server端注册。" class="headerlink" title="1、zabbix agent自动注册，agent主动去server端注册。"></a>1、zabbix agent自动注册，agent主动去server端注册。</h4><ul>
+<li>创建action：<code>web管理页面--&gt;Configuration--&gt;Actions</code>，注意<code>Event source</code>也就是事件来源一定要选择<code>Auto registration</code>，之后点击Create action。</li>
+<li>name：Agent自动发现，自定义；条件选择：Host metadata like Linux；操作根据需求：Add host,Add to host groups:xx,Link to templates:xx。<strong>【这里的意思是当主机元数据（即system.uname获取到的值中）有Linux，就将执行三个动作，添加主机、添加主机组并link一个模板。】</strong></li>
+<li>配置文件添加一行配置：<code>HostMetadataItem=system.uname</code></li>
+</ul>
+<h4 id="2、自动发现，在server主动扫描发现。"><a href="#2、自动发现，在server主动扫描发现。" class="headerlink" title="2、自动发现，在server主动扫描发现。"></a>2、自动发现，在server主动扫描发现。</h4><ul>
+<li>创建自动发现：<code>web管理页面--&gt;Configuration--&gt;Discovered</code>，填写自动发现ip地址段及相关信息。</li>
+<li>创建自动发现后再创建action：<code>web管理页面--&gt;Configuration--&gt;Actions</code>，，注意<code>Event source</code>也就是事件来源一定要选择<code>Discovery</code>，之后点击Create action。</li>
+<li>name：Auto discovery Linux server，自定义；条件选择：Received value like Linux,Discovery status=Up,Service type=Zabbix agent，操作根据需求：Add host,Add to host groups:xx,Link to templates:xx。**【意思是当接收到的值为Linux，并且自动发现状态为开启，服务类型是zabbix agent的时候，就将执行三个动作，添加主机、添加主机组并link一个模板。】</li>
+</ul>
+<h4 id="3、使用Zabbix-API，server端主动添加。"><a href="#3、使用Zabbix-API，server端主动添加。" class="headerlink" title="3、使用Zabbix API，server端主动添加。"></a>3、使用Zabbix API，server端主动添加。</h4><p><a href="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">Zabbix 3.0安装部署</a>中，安装zabbix server的时候用的是nginx来访问zabbix web，拷贝了PHP网页文件到nginx一个自定义的路径下，找到此路径。</p>
+<pre><code># cat /usr/local/nginx/conf/extra/zabbix.conf
+...
+root /data/web/zabbix;
+...
+
+# ll /data/web/zabbix/api_jsonrpc.php
+</code></pre><p>通过查看nginx配置文件找到网页文件存放在<code>/data/web/zabbix</code>下，此路径下有一个文件<code>api_jsonrpc.php</code>，所有的请求都发送到这里。</p>
+<h4 id="Zabbix-API具体使用参考官方资料"><a href="#Zabbix-API具体使用参考官方资料" class="headerlink" title="Zabbix API具体使用参考官方资料"></a>Zabbix API具体使用参考<a href="https://www.zabbix.com/documentation/3.0/manual/api" target="_blank" rel="external">官方资料</a></h4><h4 id="使用Zabbix-API："><a href="#使用Zabbix-API：" class="headerlink" title="使用Zabbix API："></a>使用Zabbix API：</h4><p>使用API首先需要验证，发送一个POST数据，数据中附带用户名密码，它会返回一个<code>session id</code>，后面再请求的时候带上这个<code>session id</code>。</p>
+<p>获取验证的例子：</p>
+<pre><code>#使用curl构造一个请求，-s静默，-H文档的类型，-d要post的数据
+#用python处理一下返回的数据，便于观看
+
+curl -s -X PORT -H &apos;Content-Type:application/json&apos; -d &apos;
+{
+    &quot;jsonrpc&quot;: &quot;2.0&quot;,
+    &quot;method&quot;: &quot;user.login&quot;,
+    &quot;params&quot;: {
+        &quot;user&quot;: &quot;Admin&quot;,
+        &quot;password&quot;: &quot;shifeng1127&quot;
+    },
+    &quot;id&quot;: 1
+}&apos; http://xx.xx.xx.xx/zabbix/api_jsonrpc.php | python -mjson.tool
+
+#记下result返回的session id
+</code></pre><p>获取所有监控的主机id例子：</p>
+<pre><code>curl -s -X PORT -H &apos;Content-Type:application/json&apos; -d &apos;
+{
+    &quot;jsonrpc&quot;: &quot;2.0&quot;,
+    &quot;method&quot;: &quot;host.get&quot;,
+    &quot;params&quot;: {
+        &quot;output&quot;: [&quot;hostid&quot;]
+    },
+    &quot;auth&quot;: &quot;0364d3a83f8e1da69c84e9cfd45f3f1a&quot;,
+    &quot;id&quot;: 2
+
+}&apos; http://xx.xx.xx.xx/zabbix/api_jsonrpc.php | python -mjson.tool
+</code></pre><p>看主机名称，不输出<code>hostid</code>，只让输出<code>host</code>即可。</p>
+<p>加一台主机，并link一个模板例子：</p>
+<pre><code>#1.验证
+curl -s -X PORT -H &apos;Content-Type:application/json&apos; -d &apos;
+{
+    &quot;jsonrpc&quot;: &quot;2.0&quot;,
+    &quot;method&quot;: &quot;user.login&quot;,
+    &quot;params&quot;: {
+        &quot;user&quot;: &quot;Admin&quot;,
+        &quot;password&quot;: &quot;shifeng1127&quot;
+    },
+    &quot;id&quot;: 1
+}&apos; http://xx.xx.xx.xx/zabbix/api_jsonrpc.php | python -mjson.tool
+
+#得到session id：ff537f2268aac8d020a6d854e30d6958
+#2.请求API，附带上sessionID
+curl -s -X PORT -H &apos;Content-Type:application/json&apos; -d &apos;
+{
+    &quot;jsonrpc&quot;: &quot;2.0&quot;,
+    &quot;method&quot;: &quot;host.create&quot;,
+    &quot;params&quot;: {
+        &quot;host&quot;: &quot;app01&quot;,
+        &quot;interfaces&quot;: [
+            {
+                &quot;type&quot;: 1,
+                &quot;main&quot;: 1,
+                &quot;useip&quot;: 1,
+                &quot;ip&quot;: &quot;10.25.106.196&quot;,
+                &quot;dns&quot;: &quot;&quot;,
+                &quot;port&quot;: &quot;10050&quot;
+            }
+        ],
+        &quot;groups&quot;: [
+            {
+                &quot;groupid&quot;: &quot;8&quot;
+            }
+        ],
+        &quot;templates&quot;: [
+            {
+                &quot;templateid&quot;: &quot;10114&quot;
+            }
+        ]
+    },
+    &quot;auth&quot;: &quot;ff537f2268aac8d020a6d854e30d6958&quot;,
+    &quot;id&quot;: 1
+}&apos; http://xx.xx.xx.xx/zabbix/api_jsonrpc.php | python -mjson.tool
+
+#修改ip、groupid和templateid
 </code></pre><p><a href="#top">返回目录</a></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" data-id="cisibf0g700129ggsch8pym8y" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/03/18/Zabbix/Zabbix分布式监控与自动化监控/" data-id="cisibf0df000b9ggsg0r3zpl0" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/03/18/Zabbix/Zabbix分布式监控与自动化监控/#ds-thread" class="article-comment-link">评论</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
 
     </footer>
   </div>
@@ -326,10 +434,19 @@ gcc version 4.8.1 (GCC)
     
 <nav id="article-nav">
   
+    <a href="/2016/03/30/Nginx/Nginx记录响应与POST请求日志/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          nginx记录响应与POST请求日志
+        
+      </div>
+    </a>
   
-    <a href="/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2016/03/15/Zabbix/Zabbix3.0安装部署/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">Docker学习笔记(二)Dockerfile入门</div>
+      <div class="article-nav-title">Zabbix 3.0安装部署</div>
     </a>
   
 </nav>
@@ -339,7 +456,7 @@ gcc version 4.8.1 (GCC)
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" data-title="Centos6.X下GCC4.4.7升级到4.8.1" data-url="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/03/18/Zabbix/Zabbix分布式监控与自动化监控/" data-title="Zabbix分布式监控与自动化监控" data-url="http://fed0ra.github.io/2016/03/18/Zabbix/Zabbix分布式监控与自动化监控/"></div>
   </section>
 </section>
       
