@@ -8,13 +8,13 @@
   <title>Python运维自动化开发环境搭建（一） | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、Eclipse+PyDev插件搭建Python开发环境二、Eclipse报错问题三、MySQL和Python模块四、Python的easy_install和pip五、Windows结合Linux开发环境（samba+映射磁盘）">
+一、Eclipse+PyDev插件搭建Python开发环境二、Eclipse报错问题三、MySQL和Python模块四、Python的easy_install和pip五、Windows结合Linux开发环境（samba+映射磁盘）六、Djan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python运维自动化开发环境搭建（一）">
 <meta property="og:url" content="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、Eclipse+PyDev插件搭建Python开发环境二、Eclipse报错问题三、MySQL和Python模块四、Python的easy_install和pip五、Windows结合Linux开发环境（samba+映射磁盘）">
+一、Eclipse+PyDev插件搭建Python开发环境二、Eclipse报错问题三、MySQL和Python模块四、Python的easy_install和pip五、Windows结合Linux开发环境（samba+映射磁盘）六、Djan">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%201.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/python%20env%202.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80.png">
@@ -22,11 +22,11 @@
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/login%20samba.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/%E6%98%A0%E5%B0%84%E7%BD%91%E7%BB%9C%E9%A9%B1%E5%8A%A8%E5%99%A8.png">
 <meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/eclipse%20default%20workbase%201.png">
-<meta property="og:updated_time" content="2016-02-26T08:55:16.238Z">
+<meta property="og:updated_time" content="2016-09-03T11:04:21.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python运维自动化开发环境搭建（一）">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、Eclipse+PyDev插件搭建Python开发环境二、Eclipse报错问题三、MySQL和Python模块四、Python的easy_install和pip五、Windows结合Linux开发环境（samba+映射磁盘）">
+一、Eclipse+PyDev插件搭建Python开发环境二、Eclipse报错问题三、MySQL和Python模块四、Python的easy_install和pip五、Windows结合Linux开发环境（samba+映射磁盘）六、Djan">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -269,7 +269,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<p><a href="#一">一、Eclipse+PyDev插件搭建Python开发环境</a><br><a href="#二">二、Eclipse报错问题</a><br><a href="#三">三、MySQL和Python模块</a><br><a href="#四">四、Python的easy_install和pip</a><br><a href="#五">五、Windows结合Linux开发环境（samba+映射磁盘）</a></p>
+<p><a href="#一">一、Eclipse+PyDev插件搭建Python开发环境</a><br><a href="#二">二、Eclipse报错问题</a><br><a href="#三">三、MySQL和Python模块</a><br><a href="#四">四、Python的easy_install和pip</a><br><a href="#五">五、Windows结合Linux开发环境（samba+映射磁盘）</a><br><a href="#六">六、Django安装</a> </p>
 <hr>
 <a id="more"></a>
 <h2 id="一、Eclipse-PyDev插件搭建Python开发环境"><a href="#一、Eclipse-PyDev插件搭建Python开发环境" class="headerlink" title="一、Eclipse+PyDev插件搭建Python开发环境"></a><span id="一">一、Eclipse+PyDev插件搭建Python开发环境</span></h2><p><strong>编辑器: Eclipse + pydev插件</strong></p>
@@ -454,12 +454,21 @@ $ sudo vim /etc/samba/smb.conf
 <li><code>PyDev-&gt;Interpreter - Python</code>，New一个Python解释器，填上解释器名字和路径，路径选相应的python.exe。 </li>
 </ul>
 <p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="Django安装"><a href="#Django安装" class="headerlink" title="Django安装"></a><span id="六">Django安装</span></h2><p>Django下载后为压缩包，解压缩后，在dos下进入到Django-1.8.14（读者可能版本不同）目录，执行python setup.py install，然后开始安装，Django将要被安装到Python的Lib下site-packages。</p>
+<p>检查是否安装成功，进入dos输入：</p>
+<ul>
+<li>1.输入python </li>
+<li>2.输入import django    //不报错能导入即安装成功</li>
+<li>3.输入django.get_version()        //查看django版本</li>
+</ul>
+<p><a href="#top">返回目录</a></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/" data-id="cisibrjmq000skogsmu04qazd" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/16/Python/Python运维自动化环境搭建/" data-id="ciszfy4i3000sxwgsyouvcl2t" class="article-share-link" data-share="baidu">分享到</a>
       
 
       

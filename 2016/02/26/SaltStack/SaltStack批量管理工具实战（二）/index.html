@@ -8,18 +8,18 @@
   <title>SaltStack批量管理工具实战（二） | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、分组管理二、salt模块三、文件系统四、grains五、states六、pillar七、proxy">
+一、分组管理二、salt模块三、文件系统四、数据系统grains五、states六、数据系统pillar七、proxy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SaltStack批量管理工具实战（二）">
 <meta property="og:url" content="http://fed0ra.github.io/2016/02/26/SaltStack/SaltStack批量管理工具实战（二）/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、分组管理二、salt模块三、文件系统四、grains五、states六、pillar七、proxy">
-<meta property="og:updated_time" content="2016-02-26T12:42:39.095Z">
+一、分组管理二、salt模块三、文件系统四、数据系统grains五、states六、数据系统pillar七、proxy">
+<meta property="og:updated_time" content="2016-09-01T03:01:19.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SaltStack批量管理工具实战（二）">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you found any problems, you can tell me on GitHub.
-一、分组管理二、salt模块三、文件系统四、grains五、states六、pillar七、proxy">
+一、分组管理二、salt模块三、文件系统四、数据系统grains五、states六、数据系统pillar七、proxy">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -262,7 +262,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you found any problems, you can tell me on <a href="https://github.com/fed0ra" target="_blank" rel="external">GitHub</a>.</p>
-<p><a href="#一">一、分组管理</a><br><a href="#二">二、salt模块</a><br><a href="#三">三、文件系统</a><br><a href="#四">四、grains</a><br><a href="#五">五、states</a><br><a href="#六">六、pillar</a><br><a href="#七">七、proxy</a></p>
+<p><a href="#一">一、分组管理</a><br><a href="#二">二、salt模块</a><br><a href="#三">三、文件系统</a><br><a href="#四">四、数据系统grains</a><br><a href="#五">五、states</a><br><a href="#六">六、数据系统pillar</a><br><a href="#七">七、proxy</a></p>
 <hr>
 <a id="more"></a>
 <p>在之前的<a href="http://fed0ra.github.io/2016/02/23/SaltStack/SaltStack%E6%89%B9%E9%87%8F%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89/#top">SaltStack批量管理工具实战（一）</a>文章中，见了，salt的安装部署，使用<code>salt-key</code>命令批量管理服务器，如何迁移<code>salt-master</code>，将返回信息等数据写入数据库，以便后续可视化等。</p>
@@ -376,11 +376,14 @@ base:
 </ul>
 <p><a href="#top">返回目录</a></p>
 <hr>
-<h2 id="四、grains"><a href="#四、grains" class="headerlink" title="四、grains"></a><span id="四">四、grains</span></h2><p><strong>用于采集客户端信息，可客户端自定义主动提交，也可服务端定义向下推送，采集完后再汇报上来，pillar相比grains灵活性强一些。</strong></p>
-<h4 id="1-grains"><a href="#1-grains" class="headerlink" title="1.grains"></a>1.grains</h4><pre><code># salt &apos;*&apos; grains.ls    \\ls列出所有grains名
+<h2 id="四、数据系统grains"><a href="#四、数据系统grains" class="headerlink" title="四、数据系统grains"></a><span id="四">四、数据系统grains</span></h2><p><strong>1.用于采集客户端信息，可客户端自定义主动提交，也可服务端定义向下推送，采集完后再汇报上来，pillar相比grains灵活性强一些。</strong><br><strong>2.在远程执行里匹配minion</strong><br><strong>3.可以再top.sls里匹配minion</strong></p>
+<h4 id="1-grains采集minion信息"><a href="#1-grains采集minion信息" class="headerlink" title="1.grains采集minion信息"></a>1.grains采集minion信息</h4><pre><code># salt &apos;*&apos; grains.ls    \\ls列出所有grains名
 # salt &apos;*&apos; grains.items    \\列出名和值
 # salt &apos;*&apos; grains.item shell    \\取指定的
-</code></pre><h4 id="2-自定义grains，主要在minion上配置"><a href="#2-自定义grains，主要在minion上配置" class="headerlink" title="2.自定义grains，主要在minion上配置"></a>2.自定义grains，主要在minion上配置</h4><p>首先，修改<code>minion</code>配置文件：</p>
+# salt -G os:CentOS cmd.run &apos;w&apos;    \\使用grains匹配主机，grains收集到的东西都可以匹配主机
+</code></pre><p><code>-G</code>使用g<code>raings</code>来匹配</p>
+<h4 id="2-自定义grains，远程执行中匹配minion（在minion上配置）"><a href="#2-自定义grains，远程执行中匹配minion（在minion上配置）" class="headerlink" title="2.自定义grains，远程执行中匹配minion（在minion上配置）"></a>2.自定义grains，远程执行中匹配minion（在minion上配置）</h4><p>内置的grains满足不了需求，saltstack支持在minion端通过配置文件的方式自定义grains。</p>
+<p>首先，修改<code>minion</code>配置文件：</p>
 <pre><code># vi /etc/salt/minion
 </code></pre><p>其次，粘贴如下内容：</p>
 <pre><code>grains:
@@ -395,9 +398,26 @@ base:
 <li>webserver  </li>
 <li>memcache    \\属性名对应的值，下同</li>
 </ul>
-<p>最后，重启<code>minion</code>服务：</p>
-<pre><code># /etc/init.d/salt-minion restar
-</code></pre><p><a href="#top">返回目录</a></p>
+<p>最后，重启<code>minion</code>服务（grains只有在minion重启的时候才会收集）：</p>
+<pre><code># /etc/init.d/salt-minion restart
+</code></pre><p>使用自定义<code>grains</code>，在角色是<code>memcache</code>的机器上，执行<code>echo hh</code>命令</p>
+<pre><code># salt -G &apos;roles:memcache&apos; cmd.run &apos;echo hh&apos;
+</code></pre><p>如果觉得写在minion配置文件中不方便，可以创建<code>/etc/salt/grains</code>的文件，它默认从这个文件中读取。格式类似：</p>
+<pre><code># cat /etc/salt/grains
+web: nginx
+# salt -G  web:nginx cmd.run &apos;w&apos;
+#或者
+# salt &apos;*&apos; grains.item web
+</code></pre><p>注意：如果配置文件中有roles的key，写在<code>/etc/salt/grains</code>这个文件中的key就不能用roles了，会冲突，随便起不同的名字即可。</p>
+<h4 id="3-top-sls里匹配minion"><a href="#3-top-sls里匹配minion" class="headerlink" title="3.top.sls里匹配minion"></a>3.top.sls里匹配minion</h4><pre><code># cat /srv/salt/top.sls
+base:
+  &apos;web:nginx&apos;:
+    - match: grain
+    - apache
+
+# salt &apos;*&apos; state.highstate
+</code></pre><p>使用grains匹配所有grains web的值为nginx的，执行apache状态。<br><strong>注意匹配没有<code>s</code></strong></p>
+<p><a href="#top">返回目录</a></p>
 <hr>
 <h2 id="五、states"><a href="#五、states" class="headerlink" title="五、states"></a><span id="五">五、states</span></h2><p>所有操作都要基于sls也就是states，用sls来进行批量管理，需要用sls来做。<br>sls文件存放一些数据，词典数据、列表、字符串、数字。<br>salt状态，其核心是sls，sls表示系统将会是一种什么样的状态，以一种简单的格式来包含这些数据，即配置管理，使用YAML语法。</p>
 <p>YAML：<br>缩进，YAML使用固定缩进风格表示数据层结构关系，salt需要每个缩进级别由两个空格组成，禁止使用<code>Tab</code>。<br>字典，字典的keys在YAML中以冒号结尾，values在冒号后面，用一个空格分隔。<br>列表项，使用一个短横杠<code>-</code>后加一个空格，同一个列表用同样的缩进级别。</p>
@@ -442,7 +462,14 @@ base:
 <p>定时任务：每五分钟同步一次配置文件只需在minion端将<code>salt-call state.sls nginx</code>命令加入<code>crontab</code>定时任务</p>
 <p><a href="#top">返回目录</a></p>
 <hr>
-<h2 id="六、pillar"><a href="#六、pillar" class="headerlink" title="六、pillar"></a><span id="六">六、pillar</span></h2><h4 id="1-pillar定时执行示例"><a href="#1-pillar定时执行示例" class="headerlink" title="1.pillar定时执行示例"></a>1.pillar定时执行示例</h4><pre><code>schedule:
+<h2 id="六、数据系统pillar"><a href="#六、数据系统pillar" class="headerlink" title="六、数据系统pillar"></a><span id="六">六、数据系统pillar</span></h2><p>用于给minion指定它索要的数据；安全性比较好，给谁指定谁才能看到；pillar在master上设置的，很灵活。</p>
+<p>应用场景：1、敏感数据，比如给某一配置文件设置密码，只希望minion本机能看到。2、处理变量差异性</p>
+<pre><code># salt &apos;*&apos; pillar.items    \\查看系统由哪些pillar
+</code></pre><p>默认是关闭的。<code>/etc/salt/master</code>配置文件中<code>pillar_opts: True</code>设置为true</p>
+<pre><code># /etc/init.d/salt-master restart
+# salt &apos;*&apos; pillar.items    \\重启再查看就有了
+</code></pre><p>系统pillar没什么用，一般关闭它，用自定义pillar。</p>
+<h4 id="1-pillar定时执行示例"><a href="#1-pillar定时执行示例" class="headerlink" title="1.pillar定时执行示例"></a>1.pillar定时执行示例</h4><pre><code>schedule:
   highstate:
     function:state.highstate
     minutes:1
@@ -572,7 +599,7 @@ Rejected Keys:
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/26/SaltStack/SaltStack批量管理工具实战（二）/" data-id="cisibrjmq000kkogsqudvjlja" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/02/26/SaltStack/SaltStack批量管理工具实战（二）/" data-id="ciszfy4ho000kxwgsfocrdi7y" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
