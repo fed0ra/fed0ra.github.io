@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
+  <meta charset="utf-8">
+  
+  <title>Logstash常用插件使用 | Fedor&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+学习一个插件的时候，先将结果输入到标准输出，启动logstash后插件是否生效（如下），不要急于求成一次性写到elasticsearch中，如果出现问题日志收集不成功时不好排错，测试没问提后再写到elasticsearch中。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logstash常用插件使用">
+<meta property="og:url" content="http://fed0ra.github.io/2016/01/22/ELKstack/Logstash常用插件使用/index.html">
+<meta property="og:site_name" content="Fedor's blog">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+学习一个插件的时候，先将结果输入到标准输出，启动logstash后插件是否生效（如下），不要急于求成一次性写到elasticsearch中，如果出现问题日志收集不成功时不好排错，测试没问提后再写到elasticsearch中。">
+<meta property="og:updated_time" content="2016-10-12T08:06:23.364Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Logstash常用插件使用">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+学习一个插件的时候，先将结果输入到标准输出，启动logstash后插件是否生效（如下），不要急于求成一次性写到elasticsearch中，如果出现问题日志收集不成功时不好排错，测试没问提后再写到elasticsearch中。">
+  
+    <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fedor&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">keke</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+		
+		
+		
+		<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+		
+		
+		
+		
+		
+		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="fed0ra.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+    <div class="outer">
+      <section id="main"><article id="post-ELKstack/Logstash常用插件使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/22/ELKstack/Logstash常用插件使用/" class="article-date">
+  <time datetime="2016-01-21T16:00:00.000Z" itemprop="datePublished">2016-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Logstash常用插件使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you find any problems, you can tell me in any way.</p>
+<hr>
+<p>学习一个插件的时候，先将结果输入到标准输出，启动logstash后插件是否生效（如下），不要急于求成一次性写到elasticsearch中，如果出现问题日志收集不成功时不好排错，测试没问提后再写到elasticsearch中。</p>
+<a id="more"></a>
+<pre><code>input {
+    file {
+        path =&gt; &quot;/var/log/messages&quot;
+        type =&gt; &quot;system-massages&quot;
+        start_position =&gt; &quot;beginning&quot;
+    }
+
+}
+
+output {
+    stdout {
+        codec =&gt; &quot;rubydebug&quot;
+    }
+
+}
+</code></pre><h2 id="logstash常用插件使用"><a href="#logstash常用插件使用" class="headerlink" title="logstash常用插件使用:"></a>logstash常用插件使用:</h2><h4 id="1-使用logstash常用几种插件收集系统日志、syslog日志、java日志、nginx访问日志。"><a href="#1-使用logstash常用几种插件收集系统日志、syslog日志、java日志、nginx访问日志。" class="headerlink" title="1.使用logstash常用几种插件收集系统日志、syslog日志、java日志、nginx访问日志。"></a>1.使用logstash常用几种插件收集系统日志、syslog日志、java日志、nginx访问日志。</h4><p>####示例：编写配置文件<code>cat /etc/logstash.conf</code></p>
+<pre><code>#输入
+input {
+    #使用文件方式收集system log
+    file {
+        path =&gt; &quot;/var/log/messages&quot;
+        type =&gt; &quot;system-massages&quot;
+        start_position =&gt; &quot;beginning&quot;
+    }
+    #codec multiline插件收集java错误日志
+    file {
+        path =&gt; &quot;/path/jetty/logs/*&quot;
+        type =&gt; &quot;java-error&quot;
+        #start_position =&gt; &quot;beginning&quot;
+        codec =&gt; multiline {
+            pattern =&gt; &quot;^[0-1][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]|^\[&quot;
+            negate =&gt; true
+            what =&gt; previous
+        }
+    }
+    #codec json插件手机json日志
+    file {
+        path =&gt; &quot;/path/to/your/nginxlog/access-json.log&quot;
+        codec =&gt; &quot;json&quot;
+        type =&gt; &quot;nginx_log&quot;
+        start_position =&gt; &quot;beginning&quot;
+    }
+    #使用input syslog插件收集系统日志，此插件会监控tcp和udp的514端口，使用此插件需要设置rsyslog，让rsyslog把日志发送的514端口上，设置见下文
+    syslog {
+            type =&gt; &quot;system-syslog&quot;
+            host =&gt; &quot;192.168.2.42&quot;
+            port =&gt; &quot;514&quot;
+    }
+
+}
+
+#输出
+output {
+    #根据key类型判断，写入到elasticsearch的哪一个key中
+    if [type == &quot;system-massages&quot;] {
+        elasticsearch {
+            hosts =&gt; &quot;192.168.2.42&quot;
+            index =&gt; &quot;system-massages-%{+YYYY.MM.dd}&quot;
+        }
+    }
+
+    if [type] == &quot;java-error&quot;  {
+        elasticsearch {
+            hosts =&gt; &quot;192.168.2.42&quot;
+            index =&gt; &quot;java-error-%{+YYYY.MM.dd}&quot;
+        }
+    }
+
+    if [type] == &quot;nginx_log&quot;  {
+        elasticsearch {
+            hosts =&gt; &quot;192.168.2.42&quot;
+            index =&gt; &quot;nginx_log-%{+YYYY.MM.dd}&quot;
+        }
+    }
+
+    if [type] == &quot;system-syslog&quot;  {
+        elasticsearch {
+            hosts =&gt; &quot;192.168.2.42&quot;
+            index =&gt; &quot;system-syslog-%{+YYYY.MM.dd}&quot;
+        }
+    }      
+}
+</code></pre><p><strong>设置rsyslog方法：</strong>编辑配置文件<code>vim /etc/rsyslog.conf</code>，去掉下面指定行的注释，修改remote-host的IP地址指定某一台机器去收集</p>
+<pre><code>#*.* @@remote-host:514
+*.* @@192.168.2.42:514
+</code></pre><h4 id="2-tcp日志和tcp插件"><a href="#2-tcp日志和tcp插件" class="headerlink" title="2.tcp日志和tcp插件"></a>2.tcp日志和tcp插件</h4><p>场景：把某些日志追加到es的索引中。<br>方法：使用logstash监听一个tcp端口，写一个脚本，通过<code>nc</code>命令把文件内容发送到后端es中的某个索引即可。</p>
+<pre><code>input {
+    tcp {
+        host =&gt; &quot;192.168.2.42&quot;
+        port =&gt; &quot;6666&quot;
+    }
+}
+
+output {
+    stdout {
+        codec =&gt; &quot;rubydebug&quot;
+    }
+}
+</code></pre><p>启动logstash后，<code>netstat -ntlp</code>查看6666端口已经起来了。</p>
+<p>使用nc命令发送文件</p>
+<pre><code># nc 192.168.2.42 6666 &lt; /etc/resolv.conf
+# echo &quot;new line&quot; | nc 192.168.2.42 6666
+#伪设备、伪终端
+# echo &quot;two line&quot; &gt; /dev/tcp/192.168.2.42/6666
+</code></pre><h4 id="3-grok插件"><a href="#3-grok插件" class="headerlink" title="3.grok插件"></a>3.grok插件</h4><p>官网例子：</p>
+<pre><code>[root@test ~]# cat grok.conf 
+input {
+    stdin {}
+}
+#filter
+filter {
+    #grok插件，通过正则匹配，在HTTP日志中取出有用的字段，以特定格式输出。
+    #比如apache日志不能像nginx一样输出json格式，可以使用grok插件自定义。
+    grok {
+        match =&gt; { &quot;message&quot; =&gt; &quot;%{IP:client} %{WORD:method} %{URIPATHPARAM:request} %{NUMBER:bytes} %{NUMBER:duration}&quot; }
+    }
+}
+
+output {
+    stdout {
+        codec =&gt; &quot;rubydebug&quot;
+    }
+}
+[root@test ~]# 
+</code></pre><p>启动logstash，输入一段虚构的http请求日志：<code>55.3.244.1 GET /index.html 15824 0.043</code>，会以以下格式输出。</p>
+<pre><code>[root@test ~]# /opt/logstash/bin/logstash -f grok.conf --configtest
+Configuration OK
+[root@test ~]# /opt/logstash/bin/logstash -f grok.conf
+Settings: Default filter workers: 2
+Logstash startup completed
+55.3.244.1 GET /index.html 15824 0.043
+{
+       &quot;message&quot; =&gt; &quot;55.3.244.1 GET /index.html 15824 0.043&quot;,
+      &quot;@version&quot; =&gt; &quot;1&quot;,
+    &quot;@timestamp&quot; =&gt; &quot;2016-10-12T02:42:39.072Z&quot;,
+          &quot;host&quot; =&gt; &quot;sh-server-6&quot;,
+        &quot;client&quot; =&gt; &quot;55.3.244.1&quot;,
+        &quot;method&quot; =&gt; &quot;GET&quot;,
+       &quot;request&quot; =&gt; &quot;/index.html&quot;,
+         &quot;bytes&quot; =&gt; &quot;15824&quot;,
+      &quot;duration&quot; =&gt; &quot;0.043&quot;
+}
+</code></pre><p><strong>正则表达式logstash安装好后附带120个默认的，可以直接引用</strong><br><strong>最佳实践，自己写好正则，写到<code>grok-patterns</code>内置文件中，以后可以直接引用</strong></p>
+<pre><code>[root@test ~]# find /opt/logstash-2.1.1/  -name &quot;logstash-patterns-core*&quot;
+/opt/logstash-2.1.1/vendor/bundle/jruby/1.9/specifications/logstash-patterns-core-2.0.2.gemspec
+/opt/logstash-2.1.1/vendor/bundle/jruby/1.9/gems/logstash-patterns-core-2.0.2
+/opt/logstash-2.1.1/vendor/bundle/jruby/1.9/gems/logstash-patterns-core-2.0.2/logstash-patterns-core.gemspec
+[root@test ~]# cd /opt/logstash-2.1.1/vendor/bundle/jruby/1.9/gems/logstash-patterns-core-2.0.2
+[root@test logstash-patterns-core-2.0.2]# cd patterns/
+[root@test patterns]# cat grok-patterns
+</code></pre><p><strong>实例：收集MySQL slowlog日志</strong></p>
+<p>查看/tmp/mysqlslow.log</p>
+<pre><code>[root@test data]# tail -f /tmp/mysqlslow.log
+# Time: 130801  2:36:25
+# User@Host: root[root] @ localhost []
+# Query_time: 2.274219  Lock_time: 0.000322 Rows_sent: 0  Rows_examined: 5440
+use test;
+SET timestamp=1375295785;
+insert into t select * from t;
+</code></pre><p>分析slow.log格式，从Time开始算是一个事件，所以要用到多行插件（multiline）把多行处理成单个事件。<br>编辑配置文件：</p>
+<pre><code>[root@test ~]# cat mysql-slow.conf 
+input {
+    file {
+        path =&gt; &quot;/tmp/mysqlslow.log&quot;
+        type =&gt; &quot;mysql-slowlog&quot;
+        codec =&gt; multiline {
+            pattern =&gt; &quot;^# User@Host:&quot;
+            negate =&gt; true
+            what =&gt; previous
+        }
+    }
+}
+
+filter {
+    grok {
+        match =&gt; [ &quot;message&quot; , &quot;(?m)^# User@Host: %{USER:user}\[[^\]]+\] @ (?:(?&lt;clienthost&gt;\S*) )?\[(?:%{IP:clientip})?\]\s+Id: %{NUMBER:row_id:int}\s*# Query_time: %{NUMBER:query_time:float}\s+Lock_time: %{NUMBER:lock_time:float}\s+Rows_sent: %{NUMBER:rows_sent:int}\s+Rows_examined: %{NUMBER:rows_examined:int}\s*(?:use %{DATA:database};\s*)?SET timestamp=%{NUMBER:timestamp};\s*(?&lt;query&gt;(?&lt;action&gt;\w+)\s+.*)\n#\s*&quot; ]
+    }
+    date {
+        match =&gt; [ &quot;timestamp&quot;, &quot;UNIX&quot; ]
+        remove_field =&gt; [ &quot;timestamp&quot; ]
+    }
+}
+
+output {
+    stdout {
+        codec =&gt; &quot;rubydebug&quot;
+    }
+}
+[root@test ~]# 
+[root@test ~]# /opt/logstash/bin/logstash -f mysql-slow.conf --configtest
+Configuration OK
+[root@test ~]# /opt/logstash/bin/logstash -f mysql-slow.conf
+</code></pre><p>启动logstash，向<code>/tmp/mysqlslow.log</code>写入日志，会输出到屏幕上。<br>grok缺点，当日志量特别大的时候很占用CPU。</p>
+<h4 id="logstash的更多使用方法参考ELK官网"><a href="#logstash的更多使用方法参考ELK官网" class="headerlink" title="logstash的更多使用方法参考ELK官网"></a>logstash的更多使用方法参考<a href="https://www.elastic.co/guide/index.html" target="_blank" rel="external">ELK官网</a></h4><p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/01/22/ELKstack/Logstash常用插件使用/" data-id="ciujfi1o20021q4gs63bl7q3e" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/01/22/ELKstack/Logstash常用插件使用/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELKstack/">ELKstack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/15/Git/Git-guide/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Git guide
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/21/ELKstack/ELKstack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">ELKstack</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/01/22/ELKstack/Logstash常用插件使用/" data-title="Logstash常用插件使用" data-url="http://fed0ra.github.io/2016/01/22/ELKstack/Logstash常用插件使用/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 16px;">Docker</a> <a href="/tags/ELKstack/" style="font-size: 16px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 14px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 14px;">KVM</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 12px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 20px;">Zabbix</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/09/29/Python/安装Django和django-rest-framework/">安装Django和django-rest-framework</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/29/Python/Python开发环境PyCharm/">Python开发环境PyCharm</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/03/ELKstack/清除Elasticsearch旧记录/">清除Elasticsearch旧记录</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/">Centos6.X下GCC4.4.7升级到4.8.1</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/">Docker学习笔记(二)Dockerfile入门</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://explainshell.com" target="_blank">explainshell</a>
+          </li>
+        
+          <li>
+            <a href="http://linux.51yip.com" target="_blank">linux命令手册</a>
+          </li>
+        
+          <li>
+            <a href="http://tool.oschina.net" target="_blank">tool.oschina</a>
+          </li>
+        
+          <li>
+            <a href="http://www.bootcss.com" target="_blank">Bootcss</a>
+          </li>
+        
+          <li>
+            <a href="http://www.gycc.com" target="_blank">google替代品</a>
+          </li>
+        
+          <li>
+            <a href="http://www.clipconverter.cc" target="_blank">Youtube downloader</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 LiMY<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+
+		&nbsp;&nbsp;|&nbsp;&nbsp;produce by <a href="http://fed0ra.github.io/" target="_blank">Fedor</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;网站托管于 <a href="https://pages.github.com/" target="_blank">github pages</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;图片托管于 <a href="http://www.qiniu.com/" target="_blank">七牛</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+
+    </div>
+  </div>
+  <div class="outer">
+    <div id="footer-info" class="inner">	
+		<span><a href="/sitemap.xml">Google网站地图</a></span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span>
+
+		<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_uv">您是第<span id="busuanzi_value_site_uv"></span>位访客</span>
+
+		<script>
+		(function(){
+			var bp = document.createElement('script');
+			bp.src = '//push.zhanzhang.baidu.com/push.js';
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(bp, s);
+		})();
+		</script>
+            
+			
+    </div>
+  </div>
+</footer>
+
+
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fed0ra"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+</div>
+</body>
+</html>

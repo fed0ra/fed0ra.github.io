@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
+  <meta charset="utf-8">
+  
+  <title>安装MySQL和python-mysqldb模块 | Fedor&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+1. Linux环境有时候开发是在windows上，而运行代码则需要在Linux系统上，所以需要Linux环境也需要安装MySQL数据库和python-mysqldb模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装MySQL和python-mysqldb模块">
+<meta property="og:url" content="http://fed0ra.github.io/2016/02/16/Python/安装MySQL和python-mysqldb模块/index.html">
+<meta property="og:site_name" content="Fedor's blog">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+1. Linux环境有时候开发是在windows上，而运行代码则需要在Linux系统上，所以需要Linux环境也需要安装MySQL数据库和python-mysqldb模块">
+<meta property="og:updated_time" content="2016-10-21T06:55:44.688Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装MySQL和python-mysqldb模块">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+1. Linux环境有时候开发是在windows上，而运行代码则需要在Linux系统上，所以需要Linux环境也需要安装MySQL数据库和python-mysqldb模块">
+  
+    <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fedor&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">keke</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+		
+		
+		
+		<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+		
+		
+		
+		
+		
+		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="fed0ra.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+    <div class="outer">
+      <section id="main"><article id="post-Python/安装MySQL和python-mysqldb模块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/16/Python/安装MySQL和python-mysqldb模块/" class="article-date">
+  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2016-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      安装MySQL和python-mysqldb模块
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you find any problems, you can tell me in any way.</p>
+<hr>
+<h2 id="1-Linux环境"><a href="#1-Linux环境" class="headerlink" title="1. Linux环境"></a>1. Linux环境</h2><p>有时候开发是在windows上，而运行代码则需要在Linux系统上，所以需要Linux环境也需要安装MySQL数据库和python-mysqldb模块</p>
+<a id="more"></a>
+<h4 id="安装MySQL数据库和python-mysql模块，命令如下："><a href="#安装MySQL数据库和python-mysql模块，命令如下：" class="headerlink" title="安装MySQL数据库和python-mysql模块，命令如下："></a>安装MySQL数据库和python-mysql模块，命令如下：</h4><pre><code>$ apt-get install mysql-server python-mysqldb    \\提示输入mysql密码
+</code></pre><h2 id="2-Windows环境"><a href="#2-Windows环境" class="headerlink" title="2. Windows环境"></a>2. Windows环境</h2><h4 id="2-1-1-使用安装包安装MySQL"><a href="#2-1-1-使用安装包安装MySQL" class="headerlink" title="2.1.1 使用安装包安装MySQL"></a>2.1.1 使用安装包安装MySQL</h4><ul>
+<li>MySQL官网下载<a href="http://dev.mysql.com/downloads/installer/" target="_blank" rel="external">安装包</a><code>mysql_installer_community_V5.6.21.1_setup.1415604646.msi</code>，一步步安装</li>
+</ul>
+<h4 id="2-1-2-使用MySQL免安装版安装"><a href="#2-1-2-使用MySQL免安装版安装" class="headerlink" title="2.1.2 使用MySQL免安装版安装"></a>2.1.2 使用MySQL免安装版安装</h4><ul>
+<li>MySQL官网<code>Download--&gt;Community--&gt;MySQL Community Server</code>，<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">下载</a> mysql-5.5.47-winx64.zip安装包</li>
+<li>解压，将以下载的MySQL压缩包解压到自定义目录下,我的解压目录是：<code>&quot;F:\MySQL\mysql-5.5.47-winx64&quot;</code></li>
+<li>将解压目录下默认配置文件 my-default.ini拷贝一份，改名my.ini（如果没有my-default.ini,可自己新建my.ini或者从其他地方中获取）</li>
+<li><p>添加环境变量，操作如下：</p>
+<pre><code>a)    右键单击我的电脑-&gt;属性-&gt;高级系统设置(高级)-&gt;环境变量
+    点击系统变量下的新建按钮
+    输入变量名：MYSQL_HOME
+    输入变量值：F:\MySQL\mysql-5.5.47-winx64
+    #即为mysql的自定义解压目录。
+b)    选择系统变量中的Path
+    点击编辑按钮
+    在变量值中添加变量值：%MYSQL_HOME%\bin
+    注意是在原有变量值后面加上这个变量，用;隔开，不能删除原来的变量值，
+</code></pre></li>
+<li><p>将mysql注册为windows系统服务</p>
+<pre><code>a)从控制台进入（管理员身份运行）到MySQL解压目录下的 bin 目录下：
+b)输入服务安装命令：
+    mysqld.exe install MySQL --defaults-file=&quot;F:\MySQL\mysql-5.5.47-winx64\my.ini&quot;    \\解压目录下修改的my.ini文件
+
+安装成功后会提示服务安装成功。移除服务命令为：mysqld remove
+
+注1：my.ini文件放在MySQL解压后的根目录下
+注2：在windos的cmd下安装mysql，切换到mysql的bin目录下面执行：mysqld --install
+报错信息如下：Install/Remove of the Service Denied
+解决办法：打开cmd.exe程序的时候选择“用管理员身份打开”。
+</code></pre></li>
+<li><p>启动MySQL服务</p>
+<pre><code>方法一：
+    启动服务命令为：net start mysql
+方法二：
+    打开管理工具 服务，找到MySQL服务。
+    通过右键选择启动或者直接点击左边的启动来启动服务。
+</code></pre></li>
+<li><p>修改root账号的密码（刚安装完成时root账号默认密码为空，此时可以将密码修改为指定的密码。如：123456）</p>
+<pre><code>c:&gt;mysql –uroot
+mysql&gt;show databases;
+mysql&gt;use mysql;
+mysql&gt;UPDATE user SET password=PASSWORD(&quot;123456&quot;) WHERE user=&apos;root&apos;;
+mysql&gt;FLUSH PRIVILEGES;
+mysql&gt;QUIT
+</code></pre></li>
+</ul>
+<h4 id="2-2-安装python-mysql模块：MySQL-python-1-2-5-win32-py2-7"><a href="#2-2-安装python-mysql模块：MySQL-python-1-2-5-win32-py2-7" class="headerlink" title="2.2 安装python-mysql模块：MySQL-python-1.2.5.win32-py2.7"></a>2.2 安装python-mysql模块：MySQL-python-1.2.5.win32-py2.7</h4><ul>
+<li><p>前往<a href="https://www.python.org/" target="_blank" rel="external">Python官网</a>–&gt;PyPI–&gt;search MySQL-python，下载MySQL-python-1.2.5.win32-py2.7.exe，下一步下一步安装。</p>
+</li>
+<li><p>安装MySQL-python-1.2.5.win32-py2.7报错</p>
+<p>  报错：Python version 2.7 required,which was not found in the registry.<br>  解决办法：下载<a href="https://github.com/fed0ra/python-oamad" target="_blank" rel="external">registry.py脚本</a>，把脚本放到任意一盘中执行，运行–&gt;cmd，执行<code>python registry.py</code><br>  例：registry.py脚本在F:\MySQL\data目录下</p>
+<pre><code>&gt;f:    \\F盘
+&gt;cd MySQL/data \\切换到脚本所在路径
+&gt;python registry.py \\执行脚本
+python 2.7 is already registered    \\OK
+</code></pre></li>
+</ul>
+<h4 id="2-3安装WindowsMySQL数据库管理工具：Navicat-for-MySQL"><a href="#2-3安装WindowsMySQL数据库管理工具：Navicat-for-MySQL" class="headerlink" title="2.3安装WindowsMySQL数据库管理工具：Navicat_for_MySQL"></a>2.3安装WindowsMySQL数据库管理工具：Navicat_for_MySQL</h4><ul>
+<li>Navicat数据库管理工具，搜索引擎搜索Navicat，下载安装，过程简单，略。</li>
+</ul>
+<h4 id="2-4-测试模块安装成功与否"><a href="#2-4-测试模块安装成功与否" class="headerlink" title="2.4 测试模块安装成功与否"></a>2.4 测试模块安装成功与否</h4><p>导入MySQLdb测试是否安装成功(Windows/Linux同),如果没报错证明安装成功。</p>
+<pre><code>C:\Users\my-pc&gt;python
+Python 2.7.10 (default, May 23 2015, 09:44:00) [MSC v.1500 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import MySQLdb
+&gt;&gt;&gt;
+</code></pre><p><a href="#top">返回目录</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/02/16/Python/安装MySQL和python-mysqldb模块/" data-id="ciujfi1lp000sq4gsv5ywr25a" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/02/16/Python/安装MySQL和python-mysqldb模块/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Windows下使用GitHub Pages+Hexo搭建博客
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/16/Python/Python运维自动化环境搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Python开发环境搭建-Eclipse+pydev插件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/16/Python/安装MySQL和python-mysqldb模块/" data-title="安装MySQL和python-mysqldb模块" data-url="http://fed0ra.github.io/2016/02/16/Python/安装MySQL和python-mysqldb模块/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELKstack/">ELKstack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVM/">KVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaltStack/">SaltStack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zabbix/">Zabbix</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 16px;">Docker</a> <a href="/tags/ELKstack/" style="font-size: 16px;">ELKstack</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 14px;">Hexo</a> <a href="/tags/KVM/" style="font-size: 14px;">KVM</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SaltStack/" style="font-size: 12px;">SaltStack</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Zabbix/" style="font-size: 20px;">Zabbix</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/09/29/Python/安装Django和django-rest-framework/">安装Django和django-rest-framework</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/29/Python/Python开发环境PyCharm/">Python开发环境PyCharm</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/03/ELKstack/清除Elasticsearch旧记录/">清除Elasticsearch旧记录</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/">Centos6.X下GCC4.4.7升级到4.8.1</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/">Docker学习笔记(二)Dockerfile入门</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://explainshell.com" target="_blank">explainshell</a>
+          </li>
+        
+          <li>
+            <a href="http://linux.51yip.com" target="_blank">linux命令手册</a>
+          </li>
+        
+          <li>
+            <a href="http://tool.oschina.net" target="_blank">tool.oschina</a>
+          </li>
+        
+          <li>
+            <a href="http://www.bootcss.com" target="_blank">Bootcss</a>
+          </li>
+        
+          <li>
+            <a href="http://www.gycc.com" target="_blank">google替代品</a>
+          </li>
+        
+          <li>
+            <a href="http://www.clipconverter.cc" target="_blank">Youtube downloader</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 LiMY<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+
+		&nbsp;&nbsp;|&nbsp;&nbsp;produce by <a href="http://fed0ra.github.io/" target="_blank">Fedor</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;网站托管于 <a href="https://pages.github.com/" target="_blank">github pages</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;图片托管于 <a href="http://www.qiniu.com/" target="_blank">七牛</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+
+    </div>
+  </div>
+  <div class="outer">
+    <div id="footer-info" class="inner">	
+		<span><a href="/sitemap.xml">Google网站地图</a></span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span>
+
+		<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&nbsp;&nbsp;|&nbsp;&nbsp;<span id="busuanzi_container_site_uv">您是第<span id="busuanzi_value_site_uv"></span>位访客</span>
+
+		<script>
+		(function(){
+			var bp = document.createElement('script');
+			bp.src = '//push.zhanzhang.baidu.com/push.js';
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(bp, s);
+		})();
+		</script>
+            
+			
+    </div>
+  </div>
+</footer>
+
+
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fed0ra"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+</div>
+</body>
+</html>
