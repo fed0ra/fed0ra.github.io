@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://fed0ra.github.io/2016/09/29/Python/%E5%AE%89%E8%A3%85Django%E5%92%8Cdjango-rest-framework/</loc>
+    <lastmod>2016-10-28T07:19:37.581Z</lastmod>
+    <data>
+        <display>
+        <title>安装Django、django-rest-framework和django-debugtools</title>
+        <pubTime>2016-09-28T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://fed0ra.github.io/2016/09/29/Python/Python%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83PyCharm/</loc>
     <lastmod>2016-10-24T07:40:01.320Z</lastmod>
     <data>
@@ -27,23 +44,6 @@
         <display>
         <title>安装MySQL和python-mysqldb模块</title>
         <pubTime>2016-02-15T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://fed0ra.github.io/2016/09/29/Python/%E5%AE%89%E8%A3%85Django%E5%92%8Cdjango-rest-framework/</loc>
-    <lastmod>2016-10-21T06:31:43.656Z</lastmod>
-    <data>
-        <display>
-        <title>安装Django和django-rest-framework</title>
-        <pubTime>2016-09-28T16:00:00.000Z</pubTime>
         
         <tag>Python</tag>
          
