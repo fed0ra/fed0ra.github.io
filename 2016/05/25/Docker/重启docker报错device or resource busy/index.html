@@ -5,27 +5,27 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>访问Nginx出现状态码为403 forbidden原因 | Fedor&#39;s blog</title>
+  <title>重启docker服务报错&#39;device or resource busy&#39; | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
-1)nginx配置文件里不配置默认首页参数或者首页文件在站点目录下没有
-2)模拟站点目录下没有配置文件里指定的首页文件index.php index.html index.htm。
-# rm -f ../../html/www/index.h">
+
+如果有容器在运行的时候重启docker服务，可能会导致容器无法启动， 错误信息类似于
+Error response from daemon: Cannot start container zookeeper: Error getting c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="访问Nginx出现状态码为403 forbidden原因">
-<meta property="og:url" content="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /index.html">
+<meta property="og:title" content="重启docker服务报错'device or resource busy'">
+<meta property="og:url" content="http://fed0ra.github.io/2016/05/25/Docker/重启docker报错device or resource busy/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
-1)nginx配置文件里不配置默认首页参数或者首页文件在站点目录下没有
-2)模拟站点目录下没有配置文件里指定的首页文件index.php index.html index.htm。
-# rm -f ../../html/www/index.h">
-<meta property="og:updated_time" content="2016-10-11T10:13:21.146Z">
+
+如果有容器在运行的时候重启docker服务，可能会导致容器无法启动， 错误信息类似于
+Error response from daemon: Cannot start container zookeeper: Error getting c">
+<meta property="og:updated_time" content="2016-11-14T03:28:24.121Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="访问Nginx出现状态码为403 forbidden原因">
+<meta name="twitter:title" content="重启docker服务报错'device or resource busy'">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
-1)nginx配置文件里不配置默认首页参数或者首页文件在站点目录下没有
-2)模拟站点目录下没有配置文件里指定的首页文件index.php index.html index.htm。
-# rm -f ../../html/www/index.h">
+
+如果有容器在运行的时候重启docker服务，可能会导致容器无法启动， 错误信息类似于
+Error response from daemon: Cannot start container zookeeper: Error getting c">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -245,10 +245,10 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main"><article id="post-Nginx/访问Nginx出现状态码为403 forbidden原因 " class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Docker/重启docker报错device or resource busy" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" class="article-date">
-  <time datetime="2016-02-16T16:00:00.000Z" itemprop="datePublished">2016-02-17</time>
+    <a href="/2016/05/25/Docker/重启docker报错device or resource busy/" class="article-date">
+  <time datetime="2016-05-24T16:00:00.000Z" itemprop="datePublished">2016-05-25</time>
 </a>
     
   </div>
@@ -259,7 +259,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      访问Nginx出现状态码为403 forbidden原因
+      重启docker服务报错&#39;device or resource busy&#39;
     </h1>
   
 
@@ -268,27 +268,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you find any problems, you can tell me in any way.</p>
-<p>1)nginx配置文件里不配置默认首页参数或者首页文件在站点目录下没有</p>
-<p>2)模拟站点目录下没有配置文件里指定的首页文件<code>index.php index.html index.htm</code>。</p>
-<pre><code># rm -f ../../html/www/index.html#&lt;==删除物理首页文件
-# curl -I -s 10.0.0.8|head-1
-HTTP/1.1 403 Forbidden
-</code></pre><p>3)站点目录或内部的程序文件没有Nginx用户访问权限。</p>
-<p>4)Nginx配置文件中设置allow、deny等权限控制，导致客户端没有没权限访问。</p>
+<hr>
+<p>如果有容器在运行的时候重启docker服务，可能会导致容器无法启动， 错误信息类似于</p>
+<pre><code>Error response from daemon: Cannot start container zookeeper: Error getting container cad1fg3721g43gd128733827d3f4f8wwi82f1jusi8cf1d97fdc701076d2229j2 from driver devicemapper: Error mounting &apos;/dev/mapper/docker-8:1-525372-cad1fg3721g43gd128733827d3f4f8wwi82f1jusi8cf1d97fdc701076d2229j2&apos; on &apos;/var/lib/docker/devicemapper/mnt/cad1fg3721g43gd128733827d3f4f8wwi82f1jusi8cf1d97fdc701076d2229j2&apos;: device or resource busy  
+2016/05/25 04:42:07 Error: failed to start one or more containers
+</code></pre><p>或者</p>
+<pre><code>d2859bd1f84b: Error pulling image (latest) from xxxxxx, Driver devicemapper failed to create image rootfs e6158e7962db43274de40fc3db65ad64811d43fe342dea633df20639f5a4e3cd: device e6158e7962db43274de40fc3db65ad64811d43fe342dea633df20639f5a4e3cd already exists 43fe342dea633df20639f5a4e3cd already exists c049b2b: Download complete  
+e6158e7962db: Error downloading dependent layers  
+</code></pre><p>解决方法：找出没有umount的路径，命令如下：</p>
+<pre><code>cat /proc/mounts | grep &quot;mapper/docker&quot; | awk &apos;{print $2}&apos;
+</code></pre><p>然后依次unmount</p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" data-id="civhih74a0011bogssj7hg17b" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/25/Docker/重启docker报错device or resource busy/" data-id="civhih7550023bogscw5rg8wt" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/05/25/Docker/重启docker报错device or resource busy/#ds-thread" class="article-comment-link">评论</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
 
     </footer>
   </div>
@@ -296,19 +299,19 @@ HTTP/1.1 403 Forbidden
     
 <nav id="article-nav">
   
-    <a href="/2016/02/17/Hexo/High一下/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          High一下
+          Centos6.X下GCC4.4.7升级到4.8.1
         
       </div>
     </a>
   
   
-    <a href="/2016/02/16/Python/samba+映射磁盘/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/05/24/Docker/Docker学习笔记(二)Dockerfile入门/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">samba+映射磁盘</div>
+      <div class="article-nav-title">Docker学习笔记(二)Dockerfile入门</div>
     </a>
   
 </nav>
@@ -318,7 +321,7 @@ HTTP/1.1 403 Forbidden
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" data-title="访问Nginx出现状态码为403 forbidden原因" data-url="http://fed0ra.github.io/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/05/25/Docker/重启docker报错device or resource busy/" data-title="重启docker服务报错&#39;device or resource busy&#39;" data-url="http://fed0ra.github.io/2016/05/25/Docker/重启docker报错device or resource busy/"></div>
   </section>
 </section>
       
