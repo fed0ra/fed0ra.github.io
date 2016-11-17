@@ -5,17 +5,35 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>Tag: Redis | Fedor&#39;s blog</title>
+  <title>Zabbix监控Node.js | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Devops">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fedor's blog">
-<meta property="og:url" content="http://fed0ra.github.io/tags/Redis/index.html">
+  <meta name="description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+通过pm2-zabbix工具可以实现Zabbix对Node.js的监控报警。Github地址https://github.com/greatcare/pm2-zabbix
+
+自动发现通过PM2管理的Node.js进程
+报告Nodes.js进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zabbix监控Node.js">
+<meta property="og:url" content="http://fed0ra.github.io/2016/11/15/Zabbix/Zabbix监控Node.js/index.html">
 <meta property="og:site_name" content="Fedor's blog">
-<meta property="og:description" content="Devops">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+通过pm2-zabbix工具可以实现Zabbix对Node.js的监控报警。Github地址https://github.com/greatcare/pm2-zabbix
+
+自动发现通过PM2管理的Node.js进程
+报告Nodes.js进">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imagePM2Discover.jpg">
+<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imagezabbix-get-pm2.process.jpg">
+<meta property="og:updated_time" content="2016-11-17T02:08:13.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fedor's blog">
-<meta name="twitter:description" content="Devops">
+<meta name="twitter:title" content="Zabbix监控Node.js">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+通过pm2-zabbix工具可以实现Zabbix对Node.js的监控报警。Github地址https://github.com/greatcare/pm2-zabbix
+
+自动发现通过PM2管理的Node.js进程
+报告Nodes.js进">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -235,39 +253,107 @@
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/22/Redis/Redis部署配置与维护/" class="archive-article-date">
-  <time datetime="2016-02-21T16:00:00.000Z" itemprop="datePublished">2月 22</time>
+      <section id="main"><article id="post-Zabbix/Zabbix监控Node.js" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/15/Zabbix/Zabbix监控Node.js/" class="article-date">
+  <time datetime="2016-11-14T16:00:00.000Z" itemprop="datePublished">2016-11-15</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/22/Redis/Redis部署配置与维护/">Redis部署配置与维护</a>
+    <h1 class="article-title" itemprop="name">
+      Zabbix监控Node.js
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you find any problems, you can tell me in any way.</p>
+<hr>
+<p>通过pm2-zabbix工具可以实现Zabbix对Node.js的监控报警。<br>Github地址<a href="https://github.com/greatcare/pm2-zabbix" target="_blank" rel="external">https://github.com/greatcare/pm2-zabbix</a></p>
+<ul>
+<li>自动发现通过PM2管理的Node.js进程</li>
+<li>报告Nodes.js进程状态、CPU占用率、内存占用以及进程是否重启</li>
+<li>监控PM2守护进程自身状态、资源占用和PID改变</li>
+<li>已提供易于安装的Zabbix监控项模板</li>
+</ul>
+<a id="more"></a>
+<h2 id="一、Node-js服务器安装pm2-zabbix"><a href="#一、Node-js服务器安装pm2-zabbix" class="headerlink" title="一、Node.js服务器安装pm2-zabbix"></a>一、Node.js服务器安装pm2-zabbix</h2><pre><code># npm install -g pm2-zabbix
+</code></pre><h2 id="二、测试自动发现功能、连通性"><a href="#二、测试自动发现功能、连通性" class="headerlink" title="二、测试自动发现功能、连通性"></a>二、测试自动发现功能、连通性</h2><h4 id="1-测试自动发现功能"><a href="#1-测试自动发现功能" class="headerlink" title="1. 测试自动发现功能"></a>1. 测试自动发现功能</h4><p>使用<code>pm2 ls</code>查看启动的nodejs进程，然后使用<code>pm2-zabbix --discover</code>命令，输出如下类似字典表明自动发现功能正常：</p>
+<p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imagePM2Discover.jpg" alt="PM2Discover"></p>
+<h4 id="2-测试连通性"><a href="#2-测试连通性" class="headerlink" title="2. 测试连通性"></a>2. 测试连通性</h4><p>异步后台监控协议使用<code>zabbix_sender</code>发送数据到服务器。  </p>
+<p>默认配置参数来自于<code>/etc/zabbix/zabbix_agentd.conf</code>，包括服务器地址和身份验证凭据等。  </p>
+<p>开启监控模式，使用如下命令：</p>
+<pre><code>[root@test ~]# pm2-zabbix --monitor
+</code></pre><p>将启动一个线程，连接到当前用户的PM2实例，并在后台发送更新，<code>pm2-zabbix --help</code>查看帮助。</p>
+<h2 id="三、克隆代码"><a href="#三、克隆代码" class="headerlink" title="三、克隆代码"></a>三、克隆代码</h2><pre><code>[root@test ~]# git clone https://github.com/greatcare/pm2-zabbix.git
+</code></pre><h2 id="四、添加服务"><a href="#四、添加服务" class="headerlink" title="四、添加服务"></a>四、添加服务</h2><p>pm2-zabbix仅仅是一个能被pm2启动的Node.js脚本，这样的做法是不推荐的，推荐将pm2-zabbix添加到服务。</p>
+<pre><code># RHEL/CentOS 6
+[root@test ~]# cp pm2-zabbix/install/init/sysv/pm2-zabbix /etc/init.d/
+# 修改启动文件pm2-zabbix内容，改为`DAEMON_USER=root`
+[root@test ~]# vim /etc/init.d/pm2-zabbix
+
+# RHEL/CentOS 7
+[root@test ~]# cp pm2-zabbix/install/init/systemd/pm2-zabbix.service /usr/lib/systemd/system
+# 修改启动文件pm2-zabbix.service内容，改为`User=root`
+</code></pre><h2 id="五、配置Zabbix-Agent和Zabbix-Server"><a href="#五、配置Zabbix-Agent和Zabbix-Server" class="headerlink" title="五、配置Zabbix Agent和Zabbix Server"></a>五、配置Zabbix Agent和Zabbix Server</h2><h4 id="1-从源代码中拷贝zabbix-agent的配置文件"><a href="#1-从源代码中拷贝zabbix-agent的配置文件" class="headerlink" title="1. 从源代码中拷贝zabbix-agent的配置文件"></a>1. 从源代码中拷贝zabbix-agent的配置文件</h4><pre><code>[root@test ~]# cp pm2-zabbix/install/zabbix-agent/pm2-zabbix.conf /etc/zabbix/zabbix_agentd.conf.d/
+[root@test ~]# cat /usr/local/zabbix-3.0.4/etc/zabbix_agentd.conf.d/pm2-zabbix.conf
+# Put this file in /etc/zabbix/zabbix_agentd.d/ and remember to change the sudo -u &lt;user&gt; to use your user name
+UserParameter=pm2.processes,sudo -u root pm2-zabbix --discover
+
+# Note that it is advised you test whether sudo works from the zabbix user first, including *without a TTY*.
+# If you get a &quot;Value should be a JSON object&quot; error during key discovery, please check your sudoers -
+# refer to the example sudoers file for an option that disables the tty requirement.
+[root@test ~]# 
+</code></pre><h4 id="2-Zabbix-Server导入模板，模板文件路径"><a href="#2-Zabbix-Server导入模板，模板文件路径" class="headerlink" title="2. Zabbix Server导入模板，模板文件路径"></a>2. Zabbix Server导入模板，模板文件路径</h4><pre><code>[root@test ~]# ll pm2-zabbix/install/zabbix-server/pm2-zabbix.template.xml
+</code></pre><h2 id="六、创建sudo用户zabbi"><a href="#六、创建sudo用户zabbi" class="headerlink" title="六、创建sudo用户zabbi"></a>六、创建sudo用户zabbi</h2><pre><code>[root@test www]# cp pm2-zabbix/install/zabbix-agent/pm2-zabbix-sudoers /etc/sudoers.d/
+</code></pre><h2 id="七、测试获取数据"><a href="#七、测试获取数据" class="headerlink" title="七、测试获取数据"></a>七、测试获取数据</h2><p>在Zabbix-agent端使用<code>zabbix-get</code>（需安装）命令测试是否能获取数据。</p>
+<p><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imagezabbix-get-pm2.process.jpg" alt="zabbix-get-pm2.process"><br><code>-s</code>根参数跟<code>Zabbix agent</code>IP地址，<code>-p</code>端口。</p>
+<p>如果输出信息，没有报错即可。</p>
+<p><a href="#top">返回顶部</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://fed0ra.github.io/2016/11/15/Zabbix/Zabbix监控Node.js/" data-id="civlpxdnu000950gs2ban20vd" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://fed0ra.github.io/2016/11/15/Zabbix/Zabbix监控Node.js/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/30/Django/Django模板变量直接显示html代码问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Django模板变量直接显示html代码问题</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/11/15/Zabbix/Zabbix监控Node.js/" data-title="Zabbix监控Node.js" data-url="http://fed0ra.github.io/2016/11/15/Zabbix/Zabbix监控Node.js/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
