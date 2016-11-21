@@ -5,36 +5,27 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>KVM虚拟化（二）KVM虚拟机克隆 | Fedor&#39;s blog</title>
+  <title>Zabbix心跳监控Jetty进程 | Fedor&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
-一、复制配置文件与磁盘文件克隆二、KVM主机本机虚拟机直接克隆  
 
-本文克隆虚拟机为CentOS release 6.6 X64。kvm虚拟机的克隆分为两种情况。
-
-复制配置文件与磁盘文件克隆(异机的静态迁移)
-KVM主机本机虚拟机直接克隆">
+1. 克隆代码# git clone https://github.com/fed0ra/template4zabbix.git
+2. 拷贝配置文件# cp template4zabbix/zabbix-agent/ping_jetty.c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KVM虚拟化（二）KVM虚拟机克隆">
-<meta property="og:url" content="http://fed0ra.github.io/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/index.html">
+<meta property="og:title" content="Zabbix心跳监控Jetty进程">
+<meta property="og:url" content="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/index.html">
 <meta property="og:site_name" content="Fedor's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
-一、复制配置文件与磁盘文件克隆二、KVM主机本机虚拟机直接克隆  
 
-本文克隆虚拟机为CentOS release 6.6 X64。kvm虚拟机的克隆分为两种情况。
-
-复制配置文件与磁盘文件克隆(异机的静态迁移)
-KVM主机本机虚拟机直接克隆">
-<meta property="og:updated_time" content="2016-10-11T10:12:17.669Z">
+1. 克隆代码# git clone https://github.com/fed0ra/template4zabbix.git
+2. 拷贝配置文件# cp template4zabbix/zabbix-agent/ping_jetty.c">
+<meta property="og:updated_time" content="2016-11-21T09:36:12.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KVM虚拟化（二）KVM虚拟机克隆">
+<meta name="twitter:title" content="Zabbix心跳监控Jetty进程">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
-一、复制配置文件与磁盘文件克隆二、KVM主机本机虚拟机直接克隆  
 
-本文克隆虚拟机为CentOS release 6.6 X64。kvm虚拟机的克隆分为两种情况。
-
-复制配置文件与磁盘文件克隆(异机的静态迁移)
-KVM主机本机虚拟机直接克隆">
+1. 克隆代码# git clone https://github.com/fed0ra/template4zabbix.git
+2. 拷贝配置文件# cp template4zabbix/zabbix-agent/ping_jetty.c">
   
     <link rel="alternative" href="/atom.xml" title="Fedor&#39;s blog" type="application/atom+xml">
   
@@ -254,10 +245,10 @@ KVM主机本机虚拟机直接克隆">
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main"><article id="post-KVM/KVM虚拟化（二）KVM虚拟机克隆" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Zabbix/Zabbix心跳监控Jetty进程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/" class="article-date">
-  <time datetime="2016-04-05T16:00:00.000Z" itemprop="datePublished">2016-04-06</time>
+    <a href="/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/" class="article-date">
+  <time datetime="2016-11-16T16:00:00.000Z" itemprop="datePublished">2016-11-17</time>
 </a>
     
   </div>
@@ -268,7 +259,7 @@ KVM主机本机虚拟机直接克隆">
         
   
     <h1 class="article-title" itemprop="name">
-      KVM虚拟化（二）KVM虚拟机克隆
+      Zabbix心跳监控Jetty进程
     </h1>
   
 
@@ -277,78 +268,47 @@ KVM主机本机虚拟机直接克隆">
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you find any problems, you can tell me in any way.</p>
-<p><a href="#一">一、复制配置文件与磁盘文件克隆</a><br><a href="#二">二、KVM主机本机虚拟机直接克隆</a>  </p>
 <hr>
-<p>本文克隆虚拟机为CentOS release 6.6 X64。<br>kvm虚拟机的克隆分为两种情况。</p>
-<ul>
-<li>复制配置文件与磁盘文件克隆(异机的静态迁移)</li>
-<li>KVM主机本机虚拟机直接克隆<a id="more"></a>
-</li>
-</ul>
-<h2 id="一、复制配置文件与磁盘文件克隆"><a href="#一、复制配置文件与磁盘文件克隆" class="headerlink" title="一、复制配置文件与磁盘文件克隆"></a><span id="一">一、复制配置文件与磁盘文件克隆</span></h2><h4 id="1-导入kvm虚拟机配置文件"><a href="#1-导入kvm虚拟机配置文件" class="headerlink" title="(1)导入kvm虚拟机配置文件"></a>(1)导入kvm虚拟机配置文件</h4><pre><code># virsh list --all
-# virsh dumpxml centos2 &gt; /etc/libvirt/qemu/centos-clone.xml
-# ll /etc/libvirt/qemu
-</code></pre><p>将<code>centos2</code>虚拟机的配置文件导出重命名为<code>centos-clone.xml</code></p>
-<h4 id="2-复制KVM虚拟机磁盘文件"><a href="#2-复制KVM虚拟机磁盘文件" class="headerlink" title="(2)复制KVM虚拟机磁盘文件"></a>(2)复制KVM虚拟机磁盘文件</h4><pre><code># cp /data/img/kvm_centos2.img /data/img/kvm_centos-clone.img
-# ll /data/img/
-</code></pre><h4 id="3-编辑修改配置文件"><a href="#3-编辑修改配置文件" class="headerlink" title="(3)编辑修改配置文件"></a>(3)编辑修改配置文件</h4><p>修改name,uuid,disk位置,mac,vnc端口，uuid和mac随意修改</p>
-<pre><code># cat /etc/libvirt/qemu/centos-clone.xml
-&lt;name&gt;centos-clone&lt;/name&gt;
-&lt;uuid&gt;62492255-296b-80e4-5431-ae6795040437&lt;/uuid&gt;
-&lt;source file=’/data/img/kvm_centos-clone.img’/&gt;
-&lt;mac address=&apos;52:54:00:0a:bd:32&apos;/&gt;
-&lt;graphics type=’vnc’ port=’5916′ autoport=’no’ listen=’0.0.0.0′&gt;
-</code></pre><p>name改成新虚拟机名字<code>centos-clone</code><br>uuid随意修改一个字符，会自动生成<br>disk位置，克隆的新的虚拟机的磁盘位置<br>mac同uuid</p>
-<h4 id="4-定义新虚拟机配置文件"><a href="#4-定义新虚拟机配置文件" class="headerlink" title="(4)定义新虚拟机配置文件"></a>(4)定义新虚拟机配置文件</h4><pre><code># virsh define /etc/libvirt/qemu/centos-clone.xml
-#再查看，克隆的虚拟机已经存在，处于关闭状态
-# virsh list --all
-#启动虚拟机
-# virsh start centos-clone
-</code></pre><h4 id="5-VNC使用IP-5916端口，登录虚拟机进行主机名，IP等修改"><a href="#5-VNC使用IP-5916端口，登录虚拟机进行主机名，IP等修改" class="headerlink" title="(5)VNC使用IP:5916端口，登录虚拟机进行主机名，IP等修改"></a>(5)VNC使用IP:5916端口，登录虚拟机进行主机名，IP等修改</h4><pre><code>#修改主机名
-# hostname centos-clone
-# vi /etc/sysconfig/network
-HOSTNAME=centos-clone
+<h3 id="1-克隆代码"><a href="#1-克隆代码" class="headerlink" title="1. 克隆代码"></a>1. 克隆代码</h3><pre><code># git clone https://github.com/fed0ra/template4zabbix.git
+</code></pre><h3 id="2-拷贝配置文件"><a href="#2-拷贝配置文件" class="headerlink" title="2. 拷贝配置文件"></a>2. 拷贝配置文件</h3><pre><code># cp template4zabbix/zabbix-agent/ping_jetty.conf /etc/zabbix/zabbix_agentd.d/
+</code></pre><a id="more"></a>
+<h3 id="3-拷贝脚本"><a href="#3-拷贝脚本" class="headerlink" title="3. 拷贝脚本"></a>3. 拷贝脚本</h3><pre><code># 创建存放脚本目录
+# mkdir -p /etc/zabbix/zabbix_shells
+# 拷贝脚本文件
+# cp template4zabbix/zabbix-agent/ping_jetty.sh /etc/zabbix/zabbix_shells/
+</code></pre><h3 id="4-编辑Zabbix-Agent配置文件"><a href="#4-编辑Zabbix-Agent配置文件" class="headerlink" title="4. 编辑Zabbix Agent配置文件"></a>4. 编辑Zabbix Agent配置文件</h3><pre><code># 修改内容如下
+# vim /etc/zabbix/zabbix_agentd.conf
+Include=/etc/zabbix/zabbix_agentd.d/*.conf
+UnsafeUserParameters=1
 
-#修改IP
-# vi /etc/sysconfig/network-scripts/ifcfg-eth0
-</code></pre><p>注：重启网卡错误解决方法</p>
-<pre><code># vi /etc/sysconfig/network-scripts/ifcfg-eth0
-#删除虚拟机eth0中的UUID和HWADDR
-#并且删除udev下
-# rm -rf /etc/udev/rules.d/70-persistent-net.rules
-# reboot
-</code></pre><p><a href="#top">返回目录</a></p>
-<hr>
-<h2 id="二、KVM主机本机虚拟机直接克隆"><a href="#二、KVM主机本机虚拟机直接克隆" class="headerlink" title="二、KVM主机本机虚拟机直接克隆"></a><span id="二">二、KVM主机本机虚拟机直接克隆</span></h2><h4 id="1-查看虚拟机，寻找一台关闭状态的虚拟机作为克隆的源"><a href="#1-查看虚拟机，寻找一台关闭状态的虚拟机作为克隆的源" class="headerlink" title="(1)查看虚拟机，寻找一台关闭状态的虚拟机作为克隆的源"></a>(1)查看虚拟机，寻找一台关闭状态的虚拟机作为克隆的源</h4><pre><code># virsh list --all
-</code></pre><p>这里以centos2作为源，创建名为centos-clo的虚拟机，使用/data/img/kvm_ctest-clo.img为磁盘文件</p>
-<h4 id="2-克隆"><a href="#2-克隆" class="headerlink" title="(2)克隆"></a>(2)克隆</h4><pre><code># virt-clone -o centos2 -n centos-clo -f /data/img/kvm_centos-clo.img
-#克隆成功，查看是否已经生成xml和磁盘文件
-# ll /etc/libvirt/qemu
-# ll /data/img/
-</code></pre><h4 id="3-启动虚拟机"><a href="#3-启动虚拟机" class="headerlink" title="(3)启动虚拟机"></a>(3)启动虚拟机</h4><pre><code># virsh list --all
-# virsh start centos-clo
-</code></pre><h4 id="4-登录虚拟机进行主机名，IP等修改"><a href="#4-登录虚拟机进行主机名，IP等修改" class="headerlink" title="(4)登录虚拟机进行主机名，IP等修改"></a>(4)登录虚拟机进行主机名，IP等修改</h4><pre><code>#修改主机名
-# hostname centos-clo
-# vi /etc/sysconfig/network
-HOSTNAME=centos-clo
-
-#修改IP
-# vi /etc/sysconfig/network-scripts/ifcfg-eth0
-</code></pre><p><a href="#top">返回目录</a></p>
+# 重启客户端agentd
+# /etc/init.d/zabbix-agent restart
+</code></pre><h3 id="5-客户端测试脚本可用性"><a href="#5-客户端测试脚本可用性" class="headerlink" title="5. 客户端测试脚本可用性"></a>5. 客户端测试脚本可用性</h3><pre><code># cd /etc/zabbix/zabbix_shells/
+# sh ping_jetty.sh jetty_ping 8080 testproject
+1
+</code></pre><p><code>jetty_status</code>为key，<code>8080</code>是所监控的jetty端口，<code>testproject</code>为工程名（没有工程名可不写）</p>
+<p>默认进程存在输出1，进程不存在输出0】</p>
+<h3 id="6-服务端获取参数"><a href="#6-服务端获取参数" class="headerlink" title="6. 服务端获取参数"></a>6. 服务端获取参数</h3><pre><code># zabbix_get -s 10.0.0.10 -p 10050 -k jetty_status[jetty_ping,8080,testproject]
+1
+</code></pre><p><code>-s</code>代表被监控服务端的Zabbix agent IP地址。<br><code>-p</code>代表被监控服务端的Zabbix agent端口。</p>
+<h3 id="7-登录Zabbix-web页面导入模板"><a href="#7-登录Zabbix-web页面导入模板" class="headerlink" title="7. 登录Zabbix web页面导入模板"></a>7. 登录Zabbix web页面导入模板</h3><p>模板在<code>template4zabbix/zabbix-server/</code>路径下。</p>
+<p>Jetty模板：<code>template4zabbix/zabbix-server/Template Java Jetty.xml</code></p>
+<p>需监控多个jetty进程，通过，配置–&gt;模板–&gt;Template Java Jetty，可自定义添加应用集、监控项和触发器。</p>
+<p><a href="#top">返回顶部</a></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/" data-id="civrvs8ad001jjsgsp3shicw6" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/" data-id="civrvs892000fjsgs38kx102a" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/#ds-thread" class="article-comment-link">评论</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/KVM/">KVM</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
 
     </footer>
   </div>
@@ -356,19 +316,19 @@ HOSTNAME=centos-clo
     
 <nav id="article-nav">
   
-    <a href="/2016/04/10/KVM/KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/11/17/Zabbix/Zabbix监控NginxMysqlRedisTCP/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          KVM虚拟化（三）KVM虚拟机快照及监控优化、libvirtAPI、KVM和OpenStack简介
+          Zabbix监控Nginx、Mysql、Redis、TCP
         
       </div>
     </a>
   
   
-    <a href="/2016/04/05/KVM/KVM虚拟化（一）Linux上KVM虚拟机安装/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/11/15/Zabbix/Zabbix监控Node.js/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">KVM虚拟化（一）Linux上KVM虚拟机安装</div>
+      <div class="article-nav-title">Zabbix监控Node.js</div>
     </a>
   
 </nav>
@@ -378,7 +338,7 @@ HOSTNAME=centos-clo
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/" data-title="KVM虚拟化（二）KVM虚拟机克隆" data-url="http://fed0ra.github.io/2016/04/06/KVM/KVM虚拟化（二）KVM虚拟机克隆/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/" data-title="Zabbix心跳监控Jetty进程" data-url="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/"></div>
   </section>
 </section>
       

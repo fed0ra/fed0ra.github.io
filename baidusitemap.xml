@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix%E7%9B%91%E6%8E%A7NginxMysqlRedisTCP/</loc>
+    <lastmod>2016-11-21T09:36:54.315Z</lastmod>
+    <data>
+        <display>
+        <title>Zabbix监控Nginx、Mysql、Redis、TCP</title>
+        <pubTime>2016-11-16T16:00:00.000Z</pubTime>
+        
+        <tag>Zabbix</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix%E5%BF%83%E8%B7%B3%E7%9B%91%E6%8E%A7Jetty%E8%BF%9B%E7%A8%8B/</loc>
+    <lastmod>2016-11-21T09:36:12.627Z</lastmod>
+    <data>
+        <display>
+        <title>Zabbix心跳监控Jetty进程</title>
+        <pubTime>2016-11-16T16:00:00.000Z</pubTime>
+        
+        <tag>Zabbix</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://fed0ra.github.io/2016/11/15/Zabbix/Zabbix%E7%9B%91%E6%8E%A7Node.js/</loc>
     <lastmod>2016-11-17T02:08:13.800Z</lastmod>
     <data>
