@@ -263,44 +263,16 @@
 <hr>
 <p>Zabbix在配置好触发器后，需要有触发的动作(actions)才会报警</p>
 <h3 id="一、配置"><a href="#一、配置" class="headerlink" title="一、配置"></a>一、配置</h3><h4 id="1-发送短信示例"><a href="#1-发送短信示例" class="headerlink" title="1. 发送短信示例"></a>1. 发送短信示例</h4><p>由于发送短信有字符限制，在创建的时候尽量精简信息内容，以保证准确收到信息。</p>
-<p><strong>步骤：配置–&gt;动作–&gt;事件源（触发器）–&gt;创建动作</strong></p>
-<p>动作：</p>
-<pre><code>名称：Report problems to Zabbix administrators
-默认接收人：{TRIGGER.STATUS}:
-默认信息：({HOST.NAME1}:{ITEM.KEY1}): {ITEM.VALUE1}
-恢复主题：{TRIGGER.STATUS}:
-恢复信息：({HOST.NAME1}:{ITEM.KEY1}): {ITEM.VALUE1}
-</code></pre><p>条件：A and B</p>
-<pre><code>维护状态为非维护状态(Maintenance status not in maintenance)
-触发器值=问题(Tigger value = PROBLEM)
-</code></pre><p>操作：发消息给用户，可以指定某一时间段内发送给某一用户组或用，发送间隔等。</p>
-<h4 id="2-发送邮件示例"><a href="#2-发送邮件示例" class="headerlink" title="2. 发送邮件示例"></a>2. 发送邮件示例</h4><p><strong>创建步骤同上，配置–&gt;动作–&gt;事件源（触发器）–&gt;创建动作。</strong></p>
-<p>不同的是，因为发送邮件没有字符限制，接受人、接受信息等可用默认，也可自定义。</p>
-<h3 id="二、创建报警媒介给用户发送报警"><a href="#二、创建报警媒介给用户发送报警" class="headerlink" title="二、创建报警媒介给用户发送报警"></a>二、创建报警媒介给用户发送报警</h3><p>创建完触发的动作后，要想给用户发送告警，还需要创建报警媒介。</p>
-<p><strong>步骤：管理(Administration)–&gt;报警媒介类型(Media types)</strong></p>
-<p>自带模板比较鸡肋，可以自己创建媒介，点击右上角创建</p>
-<h4 id="1-创建媒介"><a href="#1-创建媒介" class="headerlink" title="1. 创建媒介"></a>1. 创建媒介</h4><pre><code>名称：Send_Mail
-类型：脚本（Script）
-脚本名称：Send_Mail.py（此报警脚本需在Zabbix server自己编写，见下文）
-脚本参数：需要传三个参数，目标邮件地址，邮件主题、邮件内容
-</code></pre><h4 id="2-编辑报警脚本"><a href="#2-编辑报警脚本" class="headerlink" title="2. 编辑报警脚本"></a>2. 编辑报警脚本</h4><p>编辑配置文件</p>
-<pre><code>[root@test ~]# vim /etc/zabbix/zabbix_server.conf
-# 报警脚本路径
-AlertScriptsPath=/etc/zabbix/alertscripts
-</code></pre><p>创建脚本路径</p>
-<pre><code>[root@test ~]# mkdir -p /etc/zabbix/alertscripts/
-</code></pre><p>克隆脚本代码</p>
-<pre><code>[root@test ~]# git clone https://github.com/fed0ra/template4zabbix.git
-[root@test ~]# cp template4zabbix/zabbix-server/alertscripts/Send_Mail.py /etc/zabbix/alertscripts/
-[root@test ~]# chmod +x /etc/zabbix/alertscripts/Send_Mail.py
-</code></pre><h4 id="3-给用户指定报警媒介"><a href="#3-给用户指定报警媒介" class="headerlink" title="3. 给用户指定报警媒介"></a>3. 给用户指定报警媒介</h4><p><strong>步骤：管理–&gt;用户–&gt;报警媒介，选择创建好的的Send_Mail。</strong></p>
-<p><a href="#top">返回顶部</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2016/11/22/Zabbix/Zabbix自定义报警/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/11/22/Zabbix/Zabbix自定义报警/" data-id="civuc7ghp0007rwgsretcs74o" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/11/22/Zabbix/Zabbix自定义报警/" data-id="civud3bmj00079kgs1tgswb6i" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -353,7 +325,7 @@ AlertScriptsPath=/etc/zabbix/alertscripts
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix监控NginxMysqlRedisTCP/" data-id="civuc7ghv000drwgs2407eqll" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix监控NginxMysqlRedisTCP/" data-id="civud3bmn000d9kgs8ibmoqxz" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -406,7 +378,7 @@ AlertScriptsPath=/etc/zabbix/alertscripts
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/" data-id="civuc7ghy000hrwgs327e7e4i" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/" data-id="civud3bmr000h9kgsfza19x4a" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -463,7 +435,7 @@ AlertScriptsPath=/etc/zabbix/alertscripts
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/11/15/Zabbix/Zabbix监控Node.js/" data-id="civuc7ght000brwgshbbquaza" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/11/15/Zabbix/Zabbix监控Node.js/" data-id="civud3bmm000b9kgscr9pgedx" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -511,7 +483,7 @@ AlertScriptsPath=/etc/zabbix/alertscripts
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/09/30/Django/Django模板变量直接显示html代码问题/" data-id="civuc7gk7002prwgskbyhzo1f" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/09/30/Django/Django模板变量直接显示html代码问题/" data-id="civud3bow002p9kgsn0u7p4ze" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -564,7 +536,7 @@ AlertScriptsPath=/etc/zabbix/alertscripts
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/09/29/Django/安装Django和django-rest-framework/" data-id="civuc7gk5002mrwgsufoz9wvs" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/09/29/Django/安装Django和django-rest-framework/" data-id="civud3bou002m9kgsmz95u24d" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -617,7 +589,7 @@ AlertScriptsPath=/etc/zabbix/alertscripts
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/09/29/Python/Python开发环境PyCharm/" data-id="civuc7gis0017rwgs7sj1rgxt" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/09/29/Python/Python开发环境PyCharm/" data-id="civud3bng00179kgsxnoiyhit" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -668,7 +640,7 @@ AlertScriptsPath=/etc/zabbix/alertscripts
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/06/03/ELKstack/清除Elasticsearch旧记录/" data-id="civuc7gjn0022rwgslsds94nb" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/06/03/ELKstack/清除Elasticsearch旧记录/" data-id="civud3boc00229kgsxwsnrl05" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -725,7 +697,7 @@ gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" data-id="civuc7gj2001irwgsyuhl9ksj" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/26/Linux/Centos6.X下GCC4.4.7升级到4.8.1/" data-id="civud3bnp001i9kgso8by0qe4" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -780,7 +752,7 @@ e6158e7962db: Error downloading dependent layers
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/05/25/Docker/重启docker报错device or resource busy/" data-id="civuc7gjv002brwgsgaw2q6lo" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/05/25/Docker/重启docker报错device or resource busy/" data-id="civud3bom002b9kgsgaiihymm" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
