@@ -4,17 +4,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016/2 | Boomer&#39;s blog</title>
+  <title>Zabbix自定义报警 | Boomer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Devops">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Boomer's blog">
-<meta property="og:url" content="http://fed0ra.github.io/archives/2016/02/index.html">
+  <meta name="description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+Zabbix在配置好触发器后，需要有触发的动作(actions)才会报警
+一、配置1. 发送短信示例由于发送短信有字符限制，在创建的时候尽量精简信息内容，以保证准确收到信息。
+步骤：配置–&amp;gt;动作–&amp;gt;事件源（触发器）–&amp;gt;创建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zabbix自定义报警">
+<meta property="og:url" content="http://fed0ra.github.io/2016/11/22/Zabbix/Zabbix自定义报警/index.html">
 <meta property="og:site_name" content="Boomer's blog">
-<meta property="og:description" content="Devops">
+<meta property="og:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+Zabbix在配置好触发器后，需要有触发的动作(actions)才会报警
+一、配置1. 发送短信示例由于发送短信有字符限制，在创建的时候尽量精简信息内容，以保证准确收到信息。
+步骤：配置–&amp;gt;动作–&amp;gt;事件源（触发器）–&amp;gt;创建">
+<meta property="og:updated_time" content="2016-11-23T01:13:27.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Boomer's blog">
-<meta name="twitter:description" content="Devops">
+<meta name="twitter:title" content="Zabbix自定义报警">
+<meta name="twitter:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
+
+Zabbix在配置好触发器后，需要有触发的动作(actions)才会报警
+一、配置1. 发送短信示例由于发送短信有字符限制，在创建的时候尽量精简信息内容，以保证准确收到信息。
+步骤：配置–&amp;gt;动作–&amp;gt;事件源（触发器）–&amp;gt;创建">
   
     <link rel="alternative" href="/atom.xml" title="Boomer&#39;s blog" type="application/atom+xml">
   
@@ -72,344 +85,100 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/26/SaltStack/SaltStack批量管理工具实战（二）/" class="archive-article-date">
-  <time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished">2月 26</time>
+      <section id="main"><article id="post-Zabbix/Zabbix自定义报警" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/22/Zabbix/Zabbix自定义报警/" class="article-date">
+  <time datetime="2016-11-21T16:00:00.000Z" itemprop="datePublished">2016-11-22</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/26/SaltStack/SaltStack批量管理工具实战（二）/">SaltStack批量管理工具实战（二）</a>
+    <h1 class="article-title" itemprop="name">
+      Zabbix自定义报警
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/24/SaltStack/SaltStack批量管理工具实战（一）/" class="archive-article-date">
-  <time datetime="2016-02-23T16:00:00.000Z" itemprop="datePublished">2月 24</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/24/SaltStack/SaltStack批量管理工具实战（一）/">SaltStack批量管理工具实战（一）</a>
-    </h1>
-  
+        <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you find any problems, you can tell me in any way.</p>
+<hr>
+<p>Zabbix在配置好触发器后，需要有触发的动作(actions)才会报警</p>
+<h3 id="一、配置"><a href="#一、配置" class="headerlink" title="一、配置"></a>一、配置</h3><h4 id="1-发送短信示例"><a href="#1-发送短信示例" class="headerlink" title="1. 发送短信示例"></a>1. 发送短信示例</h4><p>由于发送短信有字符限制，在创建的时候尽量精简信息内容，以保证准确收到信息。</p>
+<p><strong>步骤：配置–&gt;动作–&gt;事件源（触发器）–&gt;创建动作</strong></p>
+<p>动作：</p>
+<pre><code>名称：Report problems to Zabbix administrators
+默认接收人：{TRIGGER.STATUS}:
+默认信息：({HOST.NAME1}:{ITEM.KEY1}): {ITEM.VALUE1}
+恢复主题：{TRIGGER.STATUS}:
+恢复信息：({HOST.NAME1}:{ITEM.KEY1}): {ITEM.VALUE1}
+</code></pre><p>条件：A and B</p>
+<pre><code>维护状态为非维护状态(Maintenance status not in maintenance)
+触发器值=问题(Tigger value = PROBLEM)
+</code></pre><p>操作：发消息给用户，可以指定某一时间段内发送给某一用户组或用，发送间隔等。</p>
+<h4 id="2-发送邮件示例"><a href="#2-发送邮件示例" class="headerlink" title="2. 发送邮件示例"></a>2. 发送邮件示例</h4><p><strong>创建步骤同上，配置–&gt;动作–&gt;事件源（触发器）–&gt;创建动作。</strong></p>
+<p>不同的是，因为发送邮件没有字符限制，接受人、接受信息等可用默认，也可自定义。</p>
+<h3 id="二、创建报警媒介给用户发送报警"><a href="#二、创建报警媒介给用户发送报警" class="headerlink" title="二、创建报警媒介给用户发送报警"></a>二、创建报警媒介给用户发送报警</h3><p>创建完触发的动作后，要想给用户发送告警，还需要创建报警媒介。</p>
+<p><strong>步骤：管理(Administration)–&gt;报警媒介类型(Media types)</strong></p>
+<p>自带模板比较鸡肋，可以自己创建媒介，点击右上角创建</p>
+<h4 id="1-创建媒介"><a href="#1-创建媒介" class="headerlink" title="1. 创建媒介"></a>1. 创建媒介</h4><pre><code>名称：Send_Mail
+类型：脚本（Script）
+脚本名称：Send_Mail.py（此报警脚本需在Zabbix server自己编写，见下文）
+脚本参数：需要传三个参数，目标邮件地址，邮件主题、邮件内容
+</code></pre><h4 id="2-编辑报警脚本"><a href="#2-编辑报警脚本" class="headerlink" title="2. 编辑报警脚本"></a>2. 编辑报警脚本</h4><p>编辑配置文件</p>
+<pre><code>[root@test ~]# vim /etc/zabbix/zabbix_server.conf
+# 报警脚本路径
+AlertScriptsPath=/etc/zabbix/alertscripts
+</code></pre><p>创建脚本路径</p>
+<pre><code>[root@test ~]# mkdir -p /etc/zabbix/alertscripts/
+</code></pre><p>克隆脚本代码</p>
+<pre><code>[root@test ~]# git clone https://github.com/fed0ra/template4zabbix.git
+[root@test ~]# cp template4zabbix/zabbix-server/alertscripts/Send_Mail.py /etc/zabbix/alertscripts/
+[root@test ~]# chmod +x /etc/zabbix/alertscripts/Send_Mail.py
+</code></pre><h4 id="3-给用户指定报警媒介"><a href="#3-给用户指定报警媒介" class="headerlink" title="3. 给用户指定报警媒介"></a>3. 给用户指定报警媒介</h4><p><strong>步骤：管理–&gt;用户–&gt;报警媒介，选择创建好的的Send_Mail。</strong></p>
+<p><a href="#top">返回顶部</a></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/22/Redis/Redis部署配置与维护/" class="archive-article-date">
-  <time datetime="2016-02-21T16:00:00.000Z" itemprop="datePublished">2月 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/22/Redis/Redis部署配置与维护/">Redis部署配置与维护</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/21/Hexo/Hexo landscape主题优化/" class="archive-article-date">
-  <time datetime="2016-02-20T16:00:00.000Z" itemprop="datePublished">2月 21</time>
-</a>
+    </div>
+    <footer class="article-footer">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/21/Hexo/Hexo landscape主题优化/">Hexo landscape主题优化</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/20/Zabbix/Zabbix监控nginx性能/" class="archive-article-date">
-  <time datetime="2016-02-19T16:00:00.000Z" itemprop="datePublished">2月 20</time>
-</a>
+        <a data-url="http://fed0ra.github.io/2016/11/22/Zabbix/Zabbix自定义报警/" data-id="civubyoh50007hggs78otqxwl" class="article-share-link" data-share="baidu" data-title="Zabbix自定义报警">分享到</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/20/Zabbix/Zabbix监控nginx性能/">Zabbix监控nginx性能</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/20/Zabbix/Zabbix链接及解除模板链接/" class="archive-article-date">
-  <time datetime="2016-02-19T16:00:00.000Z" itemprop="datePublished">2月 20</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/20/Zabbix/Zabbix链接及解除模板链接/">Zabbix链接及解除模板链接</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/19/Nginx/Nginx优化/" class="archive-article-date">
-  <time datetime="2016-02-18T16:00:00.000Z" itemprop="datePublished">2月 19</time>
-</a>
+        <a href="http://fed0ra.github.io/2016/11/22/Zabbix/Zabbix自定义报警/#ds-thread" class="article-comment-link">评论</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/19/Nginx/Nginx优化/">Nginx优化相关</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/18/Zabbix/Zabbix定期自动清理数据库数据/" class="archive-article-date">
-  <time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2月 18</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/18/Zabbix/Zabbix定期自动清理数据库数据/">Zabbix定期自动清理数据库数据</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zabbix/">Zabbix</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/18/Zabbix/Zabbix数据库硬盘容量选取计算/" class="archive-article-date">
-  <time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2月 18</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/18/Zabbix/Zabbix数据库硬盘容量选取计算/">Zabbix数据库硬盘容量选取计算</a>
-    </h1>
   
+    <a href="/2016/11/17/Zabbix/Zabbix监控NginxMysqlRedisTCP/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Zabbix监控Nginx、Mysql、Redis、TCP</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/18/Zabbix/Zabbix自带模板监控MySQL数据库/" class="archive-article-date">
-  <time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2月 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/18/Zabbix/Zabbix自带模板监控MySQL数据库/">Zabbix自带模板监控MySQL数据库</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/17/Hexo/High一下/" class="archive-article-date">
-  <time datetime="2016-02-16T16:00:00.000Z" itemprop="datePublished">2月 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/17/Hexo/High一下/">High一下</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /" class="archive-article-date">
-  <time datetime="2016-02-16T16:00:00.000Z" itemprop="datePublished">2月 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/17/Nginx/访问Nginx出现状态码为403 forbidden原因 /">访问Nginx出现状态码为403 forbidden原因</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/16/Python/Python运维自动化环境搭建/" class="archive-article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2月 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/Python/Python运维自动化环境搭建/">Python开发环境搭建-Eclipse+pydev插件</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/" class="archive-article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2月 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/Hexo/Windows下使用GitHub Pages+Hexo搭建博客/">Windows下使用GitHub Pages+Hexo搭建博客</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/16/Python/安装MySQL和python-mysqldb模块/" class="archive-article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2月 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/Python/安装MySQL和python-mysqldb模块/">安装MySQL和python-mysqldb模块</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/16/Python/samba+映射磁盘/" class="archive-article-date">
-  <time datetime="2016-02-15T16:00:00.000Z" itemprop="datePublished">2月 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/Python/samba+映射磁盘/">samba+映射磁盘</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/15/Git/Git-guide/" class="archive-article-date">
-  <time datetime="2016-02-14T16:00:00.000Z" itemprop="datePublished">2月 15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/15/Git/Git-guide/">Git guide</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/11/22/Zabbix/Zabbix自定义报警/" data-title="Zabbix自定义报警" data-url="http://fed0ra.github.io/2016/11/22/Zabbix/Zabbix自定义报警/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
