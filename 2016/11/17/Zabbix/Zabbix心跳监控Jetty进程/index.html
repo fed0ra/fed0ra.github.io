@@ -9,23 +9,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
 
+仅供参考
 1. 克隆代码# git clone https://github.com/fed0ra/template4zabbix.git
-2. 拷贝配置文件# cp template4zabbix/zabbix-agent/conf/ping_je">
+2. 拷贝配置文件# cp template4zabbix/zabbix-agent/conf/pi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zabbix心跳监控Jetty进程">
 <meta property="og:url" content="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/index.html">
 <meta property="og:site_name" content="Boomer's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
 
+仅供参考
 1. 克隆代码# git clone https://github.com/fed0ra/template4zabbix.git
-2. 拷贝配置文件# cp template4zabbix/zabbix-agent/conf/ping_je">
-<meta property="og:updated_time" content="2016-11-23T01:10:09.129Z">
+2. 拷贝配置文件# cp template4zabbix/zabbix-agent/conf/pi">
+<meta property="og:updated_time" content="2016-11-23T08:50:32.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix心跳监控Jetty进程">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
 
+仅供参考
 1. 克隆代码# git clone https://github.com/fed0ra/template4zabbix.git
-2. 拷贝配置文件# cp template4zabbix/zabbix-agent/conf/ping_je">
+2. 拷贝配置文件# cp template4zabbix/zabbix-agent/conf/pi">
   
     <link rel="alternative" href="/atom.xml" title="Boomer&#39;s blog" type="application/atom+xml">
   
@@ -269,6 +272,7 @@
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you find any problems, you can tell me in any way.</p>
 <hr>
+<p>仅供参考</p>
 <h3 id="1-克隆代码"><a href="#1-克隆代码" class="headerlink" title="1. 克隆代码"></a>1. 克隆代码</h3><pre><code># git clone https://github.com/fed0ra/template4zabbix.git
 </code></pre><h3 id="2-拷贝配置文件"><a href="#2-拷贝配置文件" class="headerlink" title="2. 拷贝配置文件"></a>2. 拷贝配置文件</h3><pre><code># cp template4zabbix/zabbix-agent/conf/ping_jetty.conf /etc/zabbix/zabbix_agentd.d/
 </code></pre><a id="more"></a>
@@ -276,7 +280,10 @@
 # mkdir -p /etc/zabbix/zabbix_shells
 # 拷贝脚本文件
 # cp template4zabbix/zabbix-agent/scripts/ping_jetty.sh /etc/zabbix/zabbix_shells/
-</code></pre><h3 id="4-编辑Zabbix-Agent配置文件"><a href="#4-编辑Zabbix-Agent配置文件" class="headerlink" title="4. 编辑Zabbix Agent配置文件"></a>4. 编辑Zabbix Agent配置文件</h3><pre><code># 修改内容如下
+# chmod +x /etc/zabbix/zabbix_shells/ping_jetty.sh
+</code></pre><p>注：Jetty服务需要提供一个接口，如本脚本访问<code>/$2/heartbeat</code>接口，会返回<code>success</code>。<code>$2</code>为工程名，没有工程名传参时可不传。</p>
+<p>接口和返回不同可自行修改脚本内容。</p>
+<h3 id="4-编辑Zabbix-Agent配置文件"><a href="#4-编辑Zabbix-Agent配置文件" class="headerlink" title="4. 编辑Zabbix Agent配置文件"></a>4. 编辑Zabbix Agent配置文件</h3><pre><code># 修改内容如下
 # vim /etc/zabbix/zabbix_agentd.conf
 Include=/etc/zabbix/zabbix_agentd.d/*.conf
 UnsafeUserParameters=1
@@ -300,7 +307,7 @@ UnsafeUserParameters=1
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/" data-id="civud3bmr000h9kgsfza19x4a" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix心跳监控Jetty进程/" data-id="civup193l000hvogsnpr5g4fv" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
