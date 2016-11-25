@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>http://fed0ra.github.io/2016/03/16/Zabbix/%E5%9F%BA%E4%BA%8EZabbix%E7%9A%84%E7%9B%91%E6%8E%A7%E4%BD%93%E7%B3%BB%E4%BB%8B%E7%BB%8D/</loc>
+    <lastmod>2016-11-25T05:24:33.780Z</lastmod>
+    <data>
+        <display>
+        <title>基于Zabbix的监控体系介绍</title>
+        <pubTime>2016-03-15T16:00:00.000Z</pubTime>
+        
+        <tag>Zabbix</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2016-11-25T02:48:29.024Z</lastmod>
+    <data>
+        <display>
+        <title>Zabbix 3.0安装部署</title>
+        <pubTime>2016-03-14T16:00:00.000Z</pubTime>
+        
+        <tag>Zabbix</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://fed0ra.github.io/2016/11/17/Zabbix/Zabbix%E7%9B%91%E6%8E%A7NginxMysqlRedisTCP/</loc>
     <lastmod>2016-11-23T08:53:21.335Z</lastmod>
     <data>
@@ -316,23 +350,6 @@
         <display>
         <title>Zabbix定期自动清理数据库数据</title>
         <pubTime>2016-02-17T16:00:00.000Z</pubTime>
-        
-        <tag>Zabbix</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</loc>
-    <lastmod>2016-10-11T10:14:32.905Z</lastmod>
-    <data>
-        <display>
-        <title>Zabbix 3.0安装部署</title>
-        <pubTime>2016-03-14T16:00:00.000Z</pubTime>
         
         <tag>Zabbix</tag>
          

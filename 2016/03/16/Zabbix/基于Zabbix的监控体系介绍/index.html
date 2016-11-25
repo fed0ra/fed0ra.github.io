@@ -5,28 +5,21 @@
 	<meta name="baidu-site-verification" content="8CvL6Q4Ypk" />
   <meta charset="utf-8">
   
-  <title>Zabbix 3.0安装部署 | Boomer&#39;s blog</title>
+  <title>基于Zabbix的监控体系介绍 | Boomer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
-一、Zabbix的部署准备二、Zabbix Server的安装三、通过Web设置zabbix四、客户端agentd安装  
-
-Zabbix简介1、zabbix是一个基于WEB界面的，并提供分布式系统监视以及网络监视功能的企业级的开源解决方案。">
+一、硬件监控二、系统监控三、网络监控四、应用监控五、引入Zabbix六、流量监控和监控可视化七、其他监控">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zabbix 3.0安装部署">
-<meta property="og:url" content="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0安装部署/index.html">
+<meta property="og:title" content="基于Zabbix的监控体系介绍">
+<meta property="og:url" content="http://fed0ra.github.io/2016/03/16/Zabbix/基于Zabbix的监控体系介绍/index.html">
 <meta property="og:site_name" content="Boomer's blog">
 <meta property="og:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
-一、Zabbix的部署准备二、Zabbix Server的安装三、通过Web设置zabbix四、客户端agentd安装  
-
-Zabbix简介1、zabbix是一个基于WEB界面的，并提供分布式系统监视以及网络监视功能的企业级的开源解决方案。">
-<meta property="og:image" content="http://7xqy5y.com1.z0.glb.clouddn.com/imagezabbix-must-need.png">
-<meta property="og:updated_time" content="2016-11-25T02:48:29.024Z">
+一、硬件监控二、系统监控三、网络监控四、应用监控五、引入Zabbix六、流量监控和监控可视化七、其他监控">
+<meta property="og:updated_time" content="2016-11-25T05:24:33.780Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zabbix 3.0安装部署">
+<meta name="twitter:title" content="基于Zabbix的监控体系介绍">
 <meta name="twitter:description" content="Welcome to Fedor’s blog! If you find any problems, you can tell me in any way.
-一、Zabbix的部署准备二、Zabbix Server的安装三、通过Web设置zabbix四、客户端agentd安装  
-
-Zabbix简介1、zabbix是一个基于WEB界面的，并提供分布式系统监视以及网络监视功能的企业级的开源解决方案。">
+一、硬件监控二、系统监控三、网络监控四、应用监控五、引入Zabbix六、流量监控和监控可视化七、其他监控">
   
     <link rel="alternative" href="/atom.xml" title="Boomer&#39;s blog" type="application/atom+xml">
   
@@ -246,10 +239,10 @@ Zabbix简介1、zabbix是一个基于WEB界面的，并提供分布式系统监�
 
 <a href="https://github.com/fed0ra"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     <div class="outer">
-      <section id="main"><article id="post-Zabbix/Zabbix3.0安装部署" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Zabbix/基于Zabbix的监控体系介绍" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/03/15/Zabbix/Zabbix3.0安装部署/" class="article-date">
-  <time datetime="2016-03-14T16:00:00.000Z" itemprop="datePublished">2016-03-15</time>
+    <a href="/2016/03/16/Zabbix/基于Zabbix的监控体系介绍/" class="article-date">
+  <time datetime="2016-03-15T16:00:00.000Z" itemprop="datePublished">2016-03-16</time>
 </a>
     
   </div>
@@ -260,7 +253,7 @@ Zabbix简介1、zabbix是一个基于WEB界面的，并提供分布式系统监�
         
   
     <h1 class="article-title" itemprop="name">
-      Zabbix 3.0安装部署
+      基于Zabbix的监控体系介绍
     </h1>
   
 
@@ -269,133 +262,139 @@ Zabbix简介1、zabbix是一个基于WEB界面的，并提供分布式系统监�
     <div class="article-entry" itemprop="articleBody">
       
         <p><span id="top"></span><br>Welcome to <a href="http://fed0ra.github.io/">Fedor’s blog</a>! If you find any problems, you can tell me in any way.</p>
-<p><a href="#一">一、Zabbix的部署准备</a><br><a href="#二">二、Zabbix Server的安装</a><br><a href="#三">三、通过Web设置zabbix</a><br><a href="#四">四、客户端agentd安装</a>  </p>
+<p><a href="#一">一、硬件监控</a><br><a href="#二">二、系统监控</a><br><a href="#三">三、网络监控</a><br><a href="#四">四、应用监控</a><br><a href="#五">五、引入Zabbix</a><br><a href="#六">六、流量监控和监控可视化</a><br><a href="#七">七、其他监控</a></p>
 <hr>
-<h4 id="Zabbix简介"><a href="#Zabbix简介" class="headerlink" title="Zabbix简介"></a>Zabbix简介</h4><p>1、zabbix是一个基于WEB界面的，并提供分布式系统监视以及网络监视功能的企业级的开源解决方案。 zabbix能监视各种网络参数，保证服务器系统的安全运营；并提供柔软的通知机制以让运维人员能够快速定位。<br><a id="more"></a><br>2、zabbix通过C/S模型来收集数据，通过B/S模型模式在web端展示和进行配置。</p>
+<a id="more"></a>
+<h2 id="一、硬件监控"><a href="#一、硬件监控" class="headerlink" title="一、硬件监控"></a><span id="一">一、硬件监控</span></h2><p>定期对机房巡检，比如机房巡检所有服务器各种状态，哪些电源线、网线松动，或者硬盘闪黄灯等。</p>
+<p>从服务器本身考虑，一般个大硬件厂商都提供了远程控制口，即服务器上的远程控制卡，如ibm的imm。远程控制卡是完全独立的，可以通过它来控制服务器开关机，硬盘故障也可以通过远程控制卡看日志，购买服务器的时候建议安装，能减少工作量。</p>
+<p>在linux下做硬件监控，我们通过使用ipmitool实现linux系统下对服务器的IPMI管理。</p>
+<p>IPMI即智能平台管理界面（IPMI，Intelligent Platform Management Interface)是管理基于 Intel® 结构的企业系统中所使用的外围设备采用的一种工业标准，用户可以利用IPMI监视服务器的物理健康特征，如温度、电压、风扇工作状态、电源状态等。</p>
+<p>使用IPMI管理先决条件：</p>
 <ul>
-<li>被监控端：主机设备通过安装agent收集数据并发送给server端，网络设备通过SNMP收集数据并发送给server端。</li>
-<li>server端：通过收集SNMP和agent发送来的数据，将数据写入到后台数据库中（例如：mysql，oracle），在通过web展示出来。</li>
+<li>1.硬件支持ipmi协议，现在一般服务器都支持</li>
+<li>2.操作系统支持，linux通过内核提供了对ipmi的支持</li>
+<li><p>3.用户管理工具，linux下有ipmitool，可以通过</p>
+<pre><code># yum install OpenIPMI ipmitool -y
+# lsmod | grep ipmi  # 查看没有加载ipmi模块，需要启动ipmi
+# /etc/init.d/ipmi start
+# lsmod | grep ipmi
+# ipmitool help;
+</code></pre></li>
 </ul>
-<p>3、运行环境</p>
-<ul>
-<li>zabbix server 需要运行在LAMP或者是LNMP的环境下；</li>
-<li>agent可以部署在目前常见的OS中，例如linux，windows，HPUX，Solaris，Sun；</li>
-<li>SNMP可以支持常见的网络设备。</li>
-</ul>
-<p>官方给出了zabbix根据不同环境与平台所需要的硬件需求：<br><img src="http://7xqy5y.com1.z0.glb.clouddn.com/imagezabbix-must-need.png" alt="zabbix根据不同环境与平台所需要的硬件需求"><br><a href="https://www.zabbix.com/documentation/3.0/manual/installation/requirements" target="_blank" rel="external">https://www.zabbix.com/documentation/3.0/manual/installation/requirements</a></p>
-<h2 id="一、Zabbix的部署准备"><a href="#一、Zabbix的部署准备" class="headerlink" title="一、Zabbix的部署准备"></a><span id="一">一、Zabbix的部署准备</span></h2><h4 id="系统：CentOS-release-6-5"><a href="#系统：CentOS-release-6-5" class="headerlink" title="系统：CentOS release 6.5"></a>系统：CentOS release 6.5</h4><h4 id="软件版本：nginx-1-7-0、PHP-5-6-25、mysql-5-5-36，zabbix-server-3-0-4"><a href="#软件版本：nginx-1-7-0、PHP-5-6-25、mysql-5-5-36，zabbix-server-3-0-4" class="headerlink" title="软件版本：nginx 1.7.0、PHP 5.6.25、mysql-5.5.36，zabbix server 3.0.4"></a>软件版本：nginx 1.7.0、PHP 5.6.25、mysql-5.5.36，zabbix server 3.0.4</h4><h4 id="1、环境准备与配置"><a href="#1、环境准备与配置" class="headerlink" title="1、环境准备与配置"></a>1、环境准备与配置</h4><p>需要提前安装好nginx/php/mysql，安装略。<br>php装好后需修改几项参数，如下：</p>
-<pre><code>sed -i &quot;s/;date.timezone =/date.timezone = Asia\/Shanghai/g&quot; /usr/local/php/etc/php.ini
-sed -i &quot;s#max_execution_time = 30#max_execution_time = 300#g&quot; /usr/local/php/etc/php.ini
-sed -i &quot;s#post_max_size = 8M#post_max_size = 16M#g&quot; /usr/local/php/etc/php.ini
-sed -i &quot;s#max_input_time = 60#max_input_time = 300#g&quot; /usr/local/php/etc/php.ini
-#下面另个参数php5.6默认开启了
-#memory_limit = 128M
-#upload_max_filesize = 2M
-</code></pre><p>说明：</p>
-<ul>
-<li>1、mysql是zabbix数据存放主机，nginx和php用于zabbix的web前端展示主机（nginx/php/mysql编译或yum安装均可）；</li>
-<li>2、zabbix服务端装在监控主机上(服务端最好编译安装，以提高监控机性能)；</li>
-<li>3、agentd是装在被监控主机上（yum安装方便快捷）。</li>
-<li>4、通常情况下这四个角色可以搭建在同一个主机上，也可以分开部署了。</li>
+<p>可以使用IPMI来监控，通过ipmitool命令过滤出需要的信息，超过阀值之后报警。</p>
+<p>IPMI命令执行两种方式，本地和网路，所以还需要给远程控制卡设置IP地址，一般是在bios中给远程控制卡设置IP，像戴尔的也可以在面板上设置ipmi的IP，还可以设置impi的overline，即不用单独插一个网线直接用物理机的网线。但最好给远程控制卡单独插一根网线，单独设置一个IP地址，维护起来方便。具体操作略。</p>
+<p>IPMI缺点，获取不到硬盘的状态，硬盘状态我们可以使用MegaCli工具，可以查看raid磁盘阵列状态。<br>参考：<a href="http://www.ttlsa.com/tools/megacli-tool-query-raid-status/" target="_blank" rel="external">http://www.ttlsa.com/tools/megacli-tool-query-raid-status/</a></p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="二、系统监控"><a href="#二、系统监控" class="headerlink" title="二、系统监控"></a><span id="二">二、系统监控</span></h2><p><em>并不是开源的一定最好，有时候花些钱比做一个方案更有效更直接，对业务带来的价值更多。</em><br><em>架构和流程设计根据业务来做。</em></p>
+<p>Linux系统级别监控一般需要监控cpu、内存、硬盘、网络。</p>
+<p>做监控首先要了解将空对象的运行原理，其次，要知道性能的基准线，知道监控对象的指标达到什么时候是好，什么时候是坏，最后，要知道怎么做，做监控方法千千万，没有一种方法是完全对的。</p>
+<p>常用监控工具<code>sysstat</code>：</p>
+<pre><code># yum install sysstat -y
+</code></pre><h4 id="1-CPU监控"><a href="#1-CPU监控" class="headerlink" title="1. CPU监控"></a>1. CPU监控</h4><p>查看CPU信息两个命令：</p>
+<pre><code># cat /proc/cpuinfo
+# lscpu
+</code></pre><p><strong>CPU指标：</strong><br>上下文切换：同一时间只有一个进程在CPU运行，CPU会给每个进程分配时间片，当某一进程时间片结束时，有可能让其他进程运行，或者被高优先级的进程所抢占，所以CPU的作用，是做时间片的分享、做调度。CPU为了调度执行的进程，会把相关数据从CPU寄存器中拿出来，把另一个进程的信息拿来载入到CPU寄存器中，这个操作叫做上下文切换，上下文切换越多系统开销越大，但一般不会出现。<br>上下文切换怎样判断好坏，要根据当前cpu繁忙程度确定，cpu越繁忙上下文切换越高，也可以通过图形看，如果cpu不繁忙上下文切换高，肯定有问题，还应该确定服务的类型来确定基准线。另外，服务有io密集型的，有cpu密集型的，简单来说有些服务占用cpu，有些服务占io。计算类吃cpu，数据库占io，数据库一般占io，如果数据库cpu达到60%，可能数据库慢查询一堆了。</p>
+<p>负载：通过<code>uptime</code>命令显示cpu负载，命令会显示cpu的1/5/15分钟的平均负载，此数据是从<code>cat /proc/loadavg</code>文件读来的。<br>通常会通过负载判断系统运行状态，一般情况下，每个cpu的运行队列小于等于3是正常的，如果两个核，负载小于等于6在可以接受范围内，超过六代表负载比较高了。</p>
+<p>cpu使用率：通过<code>top</code>或者<code>mpstat 1</code>命令查看CPU使用率。CPU使用率中会有两种状态，用户态和内核态，普通的程序进程默认运行在用户态，当做系统调用的时候运行内核态，例如open一个文件，这就是一个系统调用，会在内核态打开文件，这样做是为了隔离保证系统安全性，普通程序没有权限直接操作硬件，做任何操作都要将用户态切换到内核态来执行。<br>CPU使用率，通常下，内核态和用户态的比例是35%-30%和65%-70%，如果内核态70%，用户态30%，可能有问题，证明程不停的在做系统调用，正常的运行给耽误住了。</p>
+<h4 id="2-内存监控"><a href="#2-内存监控" class="headerlink" title="2. 内存监控"></a>2. 内存监控</h4><pre><code># vmstat 1
+# free -m
+</code></pre><p>监控内存使用率，使用多少，剩余内存多少等，看内存一般看<code>-/+ buffers/cache</code>，</p>
+<h4 id="3-磁盘监控"><a href="#3-磁盘监控" class="headerlink" title="3. 磁盘监控"></a>3. 磁盘监控</h4><pre><code># df -h
+#安装使用iptop工具
+# yum install iotop -y
+# iotop
+</code></pre><p>监控磁盘一般监控磁盘的使用率，io占用百分比，通过iotop工具</p>
+<h4 id="4-网路监控"><a href="#4-网路监控" class="headerlink" title="4. 网路监控"></a>4. 网路监控</h4><p>见下文</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="三、网络监控"><a href="#三、网络监控" class="headerlink" title="三、网络监控"></a><span id="三">三、网络监控</span></h2><p>网路一般监控网卡流量，比如流量从哪个ip过来的，监控工具iftop安装：</p>
+<pre><code># yum install iftop -y;iftop
+</code></pre><h4 id="1-nmon工具"><a href="#1-nmon工具" class="headerlink" title="1. nmon工具"></a>1. nmon工具</h4><p>可以提供更详细信息，需掌握，比如做性能报表，nmon可列出比较详细的性能指标，实践操作略。</p>
+<h4 id="2-网络监控"><a href="#2-网络监控" class="headerlink" title="2. 网络监控"></a>2. 网络监控</h4><p>可以使用第三方的系统，如监控宝、基调、博瑞等，监测机房质量可以通过站长工具超级ping检测机房网络质量等。</p>
+<p>开源工具使用smokeping，是一款网络状态监控工具。支持分布式，可配置多个slave，全国十个机房，每个机房装一个slave，来交叉ping另外的ip，检测另外九个机房到本机房的延时，可以将检测到的网络延时详细的显示出来，节点越多越准确，因为用户访问我们和我们访问用户路由是不一样的。如果只有一个机房，不能交叉ping，就从机房ping全国各地的，可以间接反应出自己的网络状况，但是不准确，因为过去和过来路由不同，过去没问题，过来也许就有问题。</p>
+<p>所以做网络监控，要么第三方监控宝，要么使用开源工具（smokeping等）。</p>
+<h4 id="3-其他"><a href="#3-其他" class="headerlink" title="3. 其他"></a>3. 其他</h4><ul>
+<li>iptraf工具，可以做网卡性能测试</li>
+<li>tcp监控</li>
+<li>tcpdump抓包需掌握</li>
 </ul>
 <p><a href="#top">返回目录</a></p>
 <hr>
-<h2 id="二、Zabbix-Server的安装"><a href="#二、Zabbix-Server的安装" class="headerlink" title="二、Zabbix Server的安装"></a><span id="二">二、Zabbix Server的安装</span></h2><h4 id="1、zabbix源文件的下载与编译安装"><a href="#1、zabbix源文件的下载与编译安装" class="headerlink" title="1、zabbix源文件的下载与编译安装"></a>1、zabbix源文件的下载与编译安装</h4><pre><code># yum install unixODBC-devel net-snmp-devel libssh2-devel OpenIPMI-devel openldap-devel -y
-# wget http://120.52.73.47/downloads.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/3.0.4/zabbix-3.0.4.tar.gz
-# tar xf zabbix-3.0.4.tar.gz 
-# cd zabbix-3.0.4
-# ./configure --prefix=/usr/local/zabbix-3.0.4 --enable-server --enable-agent --with-mysql --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --enable-proxy --with-ssh2 --with-openipmi --with-unixodbc --with-ldap
-# make install
-</code></pre><p>通过命令<code>cat /etc/services | grep zabbix</code>检查zabbix是否被添加进入系统服务文件中，如果看到如下信息则代表已经添加成功，或者可以自行手动添加到<code>/etc/services</code>文件中：</p>
-<pre><code>zabbix-agent 10050/tcp     #Zabbix Agent
-zabbix-agent 10050/udp    #Zabbix Agent
-zabbix-trapper 10051/tcp   #Zabbix Trapper
-zabbix-trapper 10051/udp  #Zabbix Trappe
-</code></pre><h4 id="2、创建zabbix用户"><a href="#2、创建zabbix用户" class="headerlink" title="2、创建zabbix用户"></a>2、创建zabbix用户</h4><pre><code># groupadd zabbix
-# useradd -s /sbin/nologin -g zabbix -M zabbix
-</code></pre><h4 id="3、建立zabbix所需的数据库"><a href="#3、建立zabbix所需的数据库" class="headerlink" title="3、建立zabbix所需的数据库"></a>3、建立zabbix所需的数据库</h4><p>添加mysql数据库的zabbix用户，并设置密码：先用root身份登入mysql中，并执行以下命令：</p>
-<pre><code>mysql&gt; create database zabbix character set utf8 collate utf8_bin;
-mysql&gt; grant all privileges on zabbix.* to zabbix@localhost identified by &apos;&lt;password&gt;&apos;;
-mysql&gt; flush privileges;
-mysql&gt; quit;
-</code></pre><p>导入zabbix数据库（确保路径在zabbix源码路径下）而后在下载的源文件中存在一个<code>database/mysql</code>子目录，中间存放在建立zabbix数据库结构的SQL脚本文件。<br>先进入到zabbix源文件所在的目录，并执行以下语句：</p>
-<pre><code># cd database/mysql
-# mysql -u zabbix -p &lt;password&gt; zabbix &lt; schema.sql
-# mysql -u zabbix -p &lt;password&gt; zabbix &lt; images.sql
-# mysql -u zabbix -p &lt;password&gt; zabbix &lt; data.sql
-</code></pre><h4 id="4、创建zabbix的的日志文件和连接"><a href="#4、创建zabbix的的日志文件和连接" class="headerlink" title="4、创建zabbix的的日志文件和连接"></a>4、创建zabbix的的日志文件和连接</h4><pre><code># mkdir /var/log/zabbix
-# chown zabbix.zabbix /var/log/zabbix
-# ln -s /usr/local/zabbix-3.0.4/etc /etc/zabbix
-# ln -s /usr/local/zabbix-3.0.4/bin/* /usr/bin/
-# ln -s /usr/local/zabbix-3.0.4/sbin/* /usr/sbin/
-</code></pre><h4 id="5、拷贝与配置zabbix启动文件"><a href="#5、拷贝与配置zabbix启动文件" class="headerlink" title="5、拷贝与配置zabbix启动文件"></a>5、拷贝与配置zabbix启动文件</h4><pre><code># cp misc/init.d/fedora/core/zabbix_* /etc/init.d/
-# chmod 755 /etc/init.d/zabbix_*
-# sed -i &quot;s#BASEDIR=/usr/local#BASEDIR=/usr/local/zabbix-3.0.4#g&quot; /etc/init.d/zabbix_server
-# sed -i &quot;s#BASEDIR=/usr/local#BASEDIR=/usr/local/zabbix-3.0.4#g&quot; /etc/init.d/zabbix_agentd
-</code></pre><h4 id="6、配置zabbix-server-conf服务端文件"><a href="#6、配置zabbix-server-conf服务端文件" class="headerlink" title="6、配置zabbix_server.conf服务端文件"></a>6、配置zabbix_server.conf服务端文件</h4><p>编辑并修改<code>/etc/zabbix/zabbix_server.conf</code>文件，并修改如下条目：</p>
+<h2 id="四、应用监控"><a href="#四、应用监控" class="headerlink" title="四、应用监控"></a><span id="四">四、应用监控</span></h2><p>服务器上通常会运行很多服务，这些服务也需要监控，介绍最常用的服务监控，如apache，nginx这些web服务，memcached，redis等等。</p>
+<h4 id="1-Apache"><a href="#1-Apache" class="headerlink" title="1. Apache"></a>1. Apache</h4><p>Apache有一个<code>mod_status</code>的模块，用来做Apache相关的性能指标监控。</p>
+<p>使用Apache<code>mod_status模块</code>：</p>
 <ul>
-<li>DBHost=xx.xx.xx.xx    数据库的地址</li>
-<li>DBName=zabbix    zabbix数据库名称</li>
-<li>DBUser=zabbix 连接zabbix库的用户</li>
-<li>DBPassword=zabbix 数据库密码（这里为了演示，先前设置了zabbix数据库密码为<password>）</password></li>
-<li>LogFile=/var/log/zabbix/zabbix_server.log    日志</li>
+<li>编译Apache时候，将此模块编译进去</li>
+<li>在配置文件中load此模块</li>
+<li>写相关配置文件</li>
+<li>实践操作略</li>
 </ul>
-<h4 id="7、拷贝PHP网页文件到nginx中"><a href="#7、拷贝PHP网页文件到nginx中" class="headerlink" title="7、拷贝PHP网页文件到nginx中"></a>7、拷贝PHP网页文件到nginx中</h4><p>将前端文件拷贝到项目目录下：</p>
-<pre><code># cp -r ./frontends/php/ /data/web/zabbix
-</code></pre><p>编辑nginx虚拟主机：</p>
-<pre><code># cd /usr/local/nginx/conf/
-# mkdir extra/^C
-# cd extra/
-# vim zabbix.conf
-</code></pre><p>内容如下：</p>
-<pre><code>server {
-        listen 80;
-        server_name xx.xx.xx.xx;
-        access_log logs/xx.xx.xx.xx.log main;
-        index index.html index.php index.html;
-        root /data/web/zabbix;
+<h4 id="2-Nginx"><a href="#2-Nginx" class="headerlink" title="2. Nginx"></a>2. Nginx</h4><p>Nginx有一个status状态监控模块。</p>
+<p>使用Nginx状态监控模块：</p>
+<ul>
+<li>编译Nginx状态监控模块</li>
+<li>在Nginx配置文件中加配置，实践操作略，可在博客其他文章中找到具体操作</li>
+</ul>
+<h4 id="3-Memcached和Redis"><a href="#3-Memcached和Redis" class="headerlink" title="3. Memcached和Redis"></a>3. Memcached和Redis</h4><p>使用以下命令，可以列出Memcached和redis一些状态：</p>
+<pre><code>#Memcached状态，可以列出命中率，线程等一系列指标
+# telnet 192.168.174.12 11211 stats
 
-        location / {
-                try_files $uri $uri/ /index.php?$args;
-        }
-
-        location ~ ^(.+.php)(.*)$ {
-                fastcgi_split_path_info ^(.+.php)(.*)$;
-                include fastcgi.conf;
-                fastcgi_pass 127.0.0.1:9000;                fastcgi_index index.php;
-                fastcgi_param PATH_INFO $fastcgi_path_info;
-        }
-
-}
-</code></pre><p>编辑nginx.conf配置文件，在http标签中加入：</p>
-<pre><code>include extra/*.conf;
-</code></pre><h4 id="8、设置zabbix开机自启并启动"><a href="#8、设置zabbix开机自启并启动" class="headerlink" title="8、设置zabbix开机自启并启动"></a>8、设置zabbix开机自启并启动</h4><pre><code>chkconfig zabbix_server on
-chkconfig zabbix_agentd on
-/etc/init.d/zabbix_server start
-/etc/init.d/zabbix_agentd start
-</code></pre><p><a href="#top">返回目录</a></p>
-<hr>
-<h2 id="三、通过Web设置zabbix"><a href="#三、通过Web设置zabbix" class="headerlink" title="三、通过Web设置zabbix"></a><span id="三">三、通过Web设置zabbix</span></h2><p>先确保mysql/nginx/php服务均已启动。在浏览器中输入地址：<a href="http://xx.xx.xx.xx（nginx配置文件中配置的ip地址或域名），则可看到初始化欢迎界面。" target="_blank" rel="external">http://xx.xx.xx.xx（nginx配置文件中配置的ip地址或域名），则可看到初始化欢迎界面。</a></p>
-<p><strong>PS：</strong><br><strong>1、初始的账号名为：Admin，初始密码为：zabbix；</strong><br><strong>2、检测那些配置不显示ok，按照提示修改即可；</strong><br><strong>3、最后一步生成不了配置文件，按照提示将配置文件下载下来，放到相关目录即可。</strong></p>
+#Redis状态，版本号客户端连接数等一些列指标
+# redis info
+</code></pre><p>基本所有的应用程序都会提供相关的接口，可以获取其运行状态等。</p>
+<p>获取应用运行状态后，我们可以通过脚本过滤出需要监控的指标，报警等等。</p>
+<p>另外，项目上线前期，运维应该考虑的</p>
+<ul>
+<li>应用提供接口，能让运维看到，以便运维以后监控来使用。</li>
+<li>安全，怎么实现acl控制，内部白名单机制等。例如，测试环境有可能连接生产环境，会产生安全问题，如果是http请求，可以在前面放一个nginx，设置一个acl控制，如果是tcp，可以使用iptables规则等。生产只允许生产ip段访问，不允许测试ip段访问。</li>
+<li>验证功能，内部接口要求开发有验证功能，用户名密码等等方式，技术某些情况下测试环境连接到生产环境也可以避免不必要的问题出现。</li>
+</ul>
 <p><a href="#top">返回目录</a></p>
 <hr>
-<h2 id="四、客户端agentd安装"><a href="#四、客户端agentd安装" class="headerlink" title="四、客户端agentd安装"></a><span id="四">四、客户端agentd安装</span></h2><h4 id="1、装yum源"><a href="#1、装yum源" class="headerlink" title="1、装yum源"></a>1、装yum源</h4><pre><code># rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/6/x86_64/zabbix-release-3.0-1.el6.noarch.rpm
-</code></pre><h4 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h4><pre><code># yum install zabbix-agent -y
-</code></pre><h4 id="3、修改配置文件"><a href="#3、修改配置文件" class="headerlink" title="3、修改配置文件"></a>3、修改配置文件</h4><p><code>/etc/zabbix/zabbix_agentd.conf</code>是客户端配置文件，该文件需要修改如下条目：<br>1、Server=127.0.0.1，zabbix server服务端的ip。<br>2、StartAgents=0，开启zabbix agent主动模式不需监听任何tcp端口，此项参数设置为0。<br>3、ServerActive=127.0.0.1，zabbix server端的ip，主动模式需此项参数。<br>4、Hostname=Zabbix server，zabbix server的主机名，主动模式需要。<br>5、UnsafeUserParameters=0，默认是不启用自定义脚本功能的，要自定义key，需开启，设置为1。</p>
-<p>开启zabbix agent的active主动模式：需注释掉掉1，开启第2项将参数为0，修改3项zabbix server ip地址，修改第4项zabbix server的主机名，如果需要自定义key需开启第5项。</p>
-<h4 id="4、设置开机自己并启动zabbix-agent"><a href="#4、设置开机自己并启动zabbix-agent" class="headerlink" title="4、设置开机自己并启动zabbix-agent"></a>4、设置开机自己并启动zabbix-agent</h4><pre><code># chkconfig zabbix-agent on
-# /etc/init.d/zabbix-agent start
-</code></pre><p><a href="#top">返回目录</a></p>
+<h2 id="五、引入Zabbix"><a href="#五、引入Zabbix" class="headerlink" title="五、引入Zabbix"></a><span id="五">五、引入Zabbix</span></h2><p>做好以上的硬件监控、系统监控、网络监控、应用监控之后，如果我们通过脚本来实现，会很麻烦，这时候我们可以通过Zabbix等开源工具来帮我们实现。</p>
+<p>Zabbix的安装使用，见博客Zabbix标签下文章。</p>
+<p>Zabbix自带的监控模板对系统监控的已经很详细。<br>应用监控在接下来有时间在博客会写一些相关的脚本来结合Zabbix监控一些常见的服务，如memcached、redis、nginx等。</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="六、流量监控和监控可视化"><a href="#六、流量监控和监控可视化" class="headerlink" title="六、流量监控和监控可视化"></a><span id="六">六、流量监控和监控可视化</span></h2><h4 id="1-流量监控分析-重要"><a href="#1-流量监控分析-重要" class="headerlink" title="1. 流量监控分析(重要)"></a>1. 流量监控分析(重要)</h4><p>流量分析可以把我们的业务数据和监控数据对应起来。</p>
+<p>做流量监控我们可以使用百度统计、CNZZ统计、google分析等工具，实现统计网站PV、UV、趋势分析、来源分析、页面分析、访客分析等等。</p>
+<p>不想把数据放在个大统计，我们可以使用开源流量分析工具，如<code>piwik</code></p>
+<p><code>Piwik</code>是一个PHP和MySQL的开放源代码的Web统计软件。它给你一些关于你的网站的实用统计报告，比如网页浏览人数, 访问最多的页面, 搜索引擎关键词等等。Piwik有甚多不同功能的插件，可以添加或移除不需要的功能，Piwik同样可以安装在服务器上面，这样数据就保存在服务器上面。可以非常容易的插入统计图表到网站或是后台的控制面板中。安装完成后，只需将一小段代码放到将要统计的网页中即可。</p>
+<p>piwik官网<a href="https://piwik.org/" target="_blank" rel="external">https://piwik.org/</a>，实践操作略。</p>
+<h4 id="2-监控可视化-关系网"><a href="#2-监控可视化-关系网" class="headerlink" title="2. 监控可视化(关系网)"></a>2. 监控可视化(关系网)</h4><p>把所有监控项之间建立关系网，业务、网络、系统、数据库之间都是存在关联的，找到它们之间关联，像百度的ECharts(<a href="http://echarts.baidu.com/" target="_blank" rel="external">http://echarts.baidu.com/</a>)</p>
+<p>Zabbix也可是实现简单的关系网，把相关联的数据图表做成一个<code>screen</code>，即放到一个大的图表上，某一项数据一变动，可以看到所有我们自己定义的关联图表的变动。操作实现略。</p>
+<p><a href="#top">返回目录</a></p>
+<hr>
+<h2 id="七、其他监控"><a href="#七、其他监控" class="headerlink" title="七、其他监控"></a><span id="七">七、其他监控</span></h2><ul>
+<li>页面性能监控，一般第三方博瑞基调提供监控数据，如DNS解析时间、传输时间等等。</li>
+<li>安全监控，nginx+lua实现wab应用防火墙等。</li>
+<li>ELK日志监控。</li>
+<li>娱情监控，抓取微博、各论坛、公司相关关键字，有没有投诉之类的。</li>
+</ul>
+<h4 id="基于Zabbix监控体系总结"><a href="#基于Zabbix监控体系总结" class="headerlink" title="基于Zabbix监控体系总结"></a>基于Zabbix监控体系总结</h4><ul>
+<li>用Zabbix监控硬件、系统健康；</li>
+<li>通过Zabbix自定义key监控应用服务，比如数据库主从状态也加到Zabbix上；</li>
+<li>网络监控，流量分析用piwik或百度统计；</li>
+<li>jvm监控；</li>
+<li>自动化监控；</li>
+<li>日志监控使用ELK；</li>
+<li>安全监控Nginx+lua web应用防火墙；</li>
+<li>业务监控，Zabbix自定义key，或者写一些接口能够获取到，或者开发专门的业务监控系统；</li>
+<li>业务波动可以通过Zabbix自定义的screen基本能找到问题的根源，再通过ELK日志监控，加上流量分析，能找到问题的根源。</li>
+<li>分布式监控下一篇文章来介绍</li>
+</ul>
+<p><a href="#top">返回目录</a></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0安装部署/" data-id="civxcjaq5000pmggs1fmxe7xr" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://fed0ra.github.io/2016/03/16/Zabbix/基于Zabbix的监控体系介绍/" data-id="civxcjapc0002mggsuprpi7d9" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0安装部署/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://fed0ra.github.io/2016/03/16/Zabbix/基于Zabbix的监控体系介绍/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -407,19 +406,19 @@ chkconfig zabbix_agentd on
     
 <nav id="article-nav">
   
-    <a href="/2016/03/16/Zabbix/基于Zabbix的监控体系介绍/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/03/18/Zabbix/Zabbix分布式监控与自动化监控/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          基于Zabbix的监控体系介绍
+          Zabbix分布式监控与自动化监控
         
       </div>
     </a>
   
   
-    <a href="/2016/03/01/VMware/VMware虚拟机克隆网卡配置-构建Linux实验环境/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/03/15/Zabbix/Zabbix3.0安装部署/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">VMware虚拟机克隆网卡配置-构建Linux实验环境</div>
+      <div class="article-nav-title">Zabbix 3.0安装部署</div>
     </a>
   
 </nav>
@@ -429,7 +428,7 @@ chkconfig zabbix_agentd on
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/03/15/Zabbix/Zabbix3.0安装部署/" data-title="Zabbix 3.0安装部署" data-url="http://fed0ra.github.io/2016/03/15/Zabbix/Zabbix3.0安装部署/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/03/16/Zabbix/基于Zabbix的监控体系介绍/" data-title="基于Zabbix的监控体系介绍" data-url="http://fed0ra.github.io/2016/03/16/Zabbix/基于Zabbix的监控体系介绍/"></div>
   </section>
 </section>
       
